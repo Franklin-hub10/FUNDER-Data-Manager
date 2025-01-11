@@ -1,0 +1,56 @@
+
+:root{
+    --fuenteTitulos: 'Roboto', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+
+    --primarioAzul: #176FA6;
+    --secundarioVerde: #29A632;
+    --verdeClaro: #96D99A;
+    --amarillo: #F2BB16;
+    --blanco: #F2F2F2;
+    --negro: #000000;
+}
+
+/*TRANSFORMACION: 1rem = 10px; 5rem=50px; 10rem=100px...*/
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;/*1 rem = 10px*/
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+
+body{
+    font-family: var(--fuenteParrafos);
+    font-size: 1.5rem;
+    line-height: 2;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+h1, h2, h3, h4{
+    font-family: var(--fuenteTitulos);
+    line-height: 1.2;
+    
+}
+
+h1{
+    font-size: 4.8rem;
+    
+}
+
+h2{
+    font-size: 4rem;
+}
+
+h3{
+    font-size: 3.2rem;
+}
+
+h4{
+    font-size: 2.8rem;
+}
