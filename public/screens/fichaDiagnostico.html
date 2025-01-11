@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramienta de Diagnóstico y Necesidades</title>
+    <link rel="stylesheet" href="/public/css/fichaDiagnostico.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/assets/images/Logo FUNDER 2021.png" alt="150 px" width="150 px">
+        <ul>
+            <li><a href="#">Gestión Organizacional</a></li>
+            <li><a href="#">Gestión Productiva</a></li>
+            <li><a href="#">Gestión Comercial</a></li>
+            <li><a href="#">Gestión Financiera</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1>Herramienta de Diagnóstico y Necesidades</h1>
+        </div>
+
+        <form>
+            <table>
+                <tr>
+                    <th colspan="4">INFORMACIÓN GENERAL</th>
+                </tr>
+                <tr>
+                    <td><label for="nombre_comercial">Nombre comercial:</label></td>
+                    <td><input type="text" id="nombre_comercial" name="nombre_comercial"></td>
+                    <td><label for="razon_social">Razón Social:</label></td>
+                    <td><input type="text" id="razon_social" name="razon_social"></td>
+                </tr>
+                <tr>
+                    <td><label for="sede">Sede:</label></td>
+                    <td colspan="3"><input type="text" id="sede" name="sede"></td>
+                </tr>
+                <tr>
+                    <td><label for="productos_servicios">Productos y/o servicios:</label></td>
+                    <td colspan="3"><input type="text" id="productos_servicios" name="productos_servicios"></td>
+                </tr>
+                <tr>
+                    <td><label for="direccion">Dirección:</label></td>
+                    <td><input type="text" id="direccion" name="direccion"></td>
+                    <td><label for="ciudad">Ciudad:</label></td>
+                    <td><input type="text" id="ciudad" name="ciudad"></td>
+                </tr>
+                <tr>
+                    <td><label for="canton">Cantón:</label></td>
+                    <td><input type="text" id="canton" name="canton"></td>
+                    <td><label for="parroquia">Parroquia:</label></td>
+                    <td><input type="text" id="parroquia" name="parroquia"></td>
+                </tr>
+                <tr>
+                    <td><label for="telefono1">Teléfono 1:</label></td>
+                    <td><input type="text" id="telefono1" name="telefono1"></td>
+                    <td><label for="telefono2">Teléfono 2:</label></td>
+                    <td><input type="text" id="telefono2" name="telefono2"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td colspan="3"><input type="email" id="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="num_socios">Número de socios:</label></td>
+                    <td><input type="number" id="num_socios" name="num_socios"></td>
+                    <td><label for="num_empleados">Número de empleados:</label></td>
+                    <td><input type="number" id="num_empleados" name="num_empleados"></td>
+                </tr>
+                <tr>
+                    <td><label for="antiguedad">Antigüedad de la empresa:</label></td>
+                    <td><input type="text" id="antiguedad" name="antiguedad"></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td><label for="contacto1">Persona de contacto 1:</label></td>
+                    <td><input type="text" id="contacto1" name="contacto1"></td>
+                    <td><label for="contacto2">Persona de contacto 2:</label></td>
+                    <td><input type="text" id="contacto2" name="contacto2"></td>
+                </tr>
+                <tr>
+                    <td><label for="referencia">Referencia:</label></td>
+                    <td colspan="3"><input type="text" id="referencia" name="referencia"></td>
+                </tr>
+                <tr>
+                    <td><label for="tecnico">Nombre del técnico evaluador:</label></td>
+                    <td colspan="3"><input type="text" id="tecnico" name="tecnico"></td>
+                </tr>
+                <tr>
+                    <td><label for="fecha_evaluacion">Fecha de la evaluación:</label></td>
+                    <td colspan="3"><input type="date" id="fecha_evaluacion" name="fecha_evaluacion"></td>
+                </tr>
+            </table>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
