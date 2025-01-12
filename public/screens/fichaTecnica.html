@@ -3,125 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario - Información General</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .header-image {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            max-width: 100px;
+    <title>Ficha de Inscripción Centro de Negocios</title>
+    <link rel="stylesheet" href="/public/css/fichaDiagnostico.css">
+    <script>
+        function mostrarMensajeExito() {
+            alert("Guardado con éxito");
         }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="container mt-5">
-        <!-- Imagen en la esquina superior derecha -->
-        <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo o Imagen" class="header-image">
+    <div class="sidebar">
+        <img src="/assets/images/Logo FUNDER 2021.png" alt="Logo FUNDER" width="150px">
+        <ul>
 
-        <!-- Título -->
-        <h2 class="text-center mb-4">Formulario de Información General</h2>
-
-        <!-- Formulario -->
-        <form>
-            <!-- Información básica -->
-            <div class="mb-3">
-                <label for="nombreComercial" class="form-label">Nombre Comercial:</label>
-                <input type="text" class="form-control" id="nombreComercial" placeholder="Ingresa el nombre comercial">
-            </div>
-            <div class="mb-3">
-                <label for="razonSocial" class="form-label">Razón Social:</label>
-                <input type="text" class="form-control" id="razonSocial" placeholder="Ingresa la razón social">
-            </div>
-            <div class="mb-3">
-                <label for="sede" class="form-label">Sede:</label>
-                <input type="text" class="form-control" id="sede" placeholder="Ingresa la sede">
-            </div>
-            <div class="mb-3">
-                <label for="productosServicios" class="form-label">Productos y/o Servicios:</label>
-                <textarea class="form-control" id="productosServicios" rows="3" placeholder="Describe los productos y/o servicios"></textarea>
-            </div>
-
-            <!-- Dirección -->
-            <h4 class="mt-4">Dirección</h4>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="ciudad" class="form-label">Ciudad:</label>
-                    <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
-                </div>
-                <div class="col-md-4">
-                    <label for="canton" class="form-label">Cantón:</label>
-                    <input type="text" class="form-control" id="canton" placeholder="Cantón">
-                </div>
-                <div class="col-md-4">
-                    <label for="parroquia" class="form-label">Parroquia:</label>
-                    <input type="text" class="form-control" id="parroquia" placeholder="Parroquia">
-                </div>
-            </div>
-            <div class="row g-3 mt-3">
-                <div class="col-md-4">
-                    <label for="telefono1" class="form-label">Teléfono 1:</label>
-                    <input type="tel" class="form-control" id="telefono1" placeholder="Teléfono principal">
-                </div>
-                <div class="col-md-4">
-                    <label for="telefono2" class="form-label">Teléfono 2:</label>
-                    <input type="tel" class="form-control" id="telefono2" placeholder="Teléfono alternativo">
-                </div>
-                <div class="col-md-4">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Correo electrónico">
-                </div>
-            </div>
-
-            <!-- Información adicional -->
-            <h4 class="mt-4">Información Adicional</h4>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="numSocios" class="form-label">Número de Socios:</label>
-                    <input type="number" class="form-control" id="numSocios" placeholder="Número de socios">
-                </div>
-                <div class="col-md-4">
-                    <label for="numEmpleados" class="form-label">Número de Empleados:</label>
-                    <input type="number" class="form-control" id="numEmpleados" placeholder="Número de empleados">
-                </div>
-                <div class="col-md-4">
-                    <label for="antiguedad" class="form-label">Antigüedad de la Empresa (años):</label>
-                    <input type="number" class="form-control" id="antiguedad" placeholder="Años de antigüedad">
-                </div>
-            </div>
-            <div class="mb-3 mt-3">
-                <label for="personaContacto1" class="form-label">Persona de Contacto 1:</label>
-                <input type="text" class="form-control" id="personaContacto1" placeholder="Nombre del contacto principal">
-            </div>
-            <div class="mb-3">
-                <label for="personaContacto2" class="form-label">Persona de Contacto 2:</label>
-                <input type="text" class="form-control" id="personaContacto2" placeholder="Nombre del segundo contacto">
-            </div>
-            <div class="mb-3">
-                <label for="referencia" class="form-label">Referencia:</label>
-                <textarea class="form-control" id="referencia" rows="2" placeholder="Ingresa una referencia"></textarea>
-            </div>
-
-            <!-- Información del técnico -->
-            <h4 class="mt-4">Evaluación</h4>
-            <div class="mb-3">
-                <label for="nombreTecnico" class="form-label">Nombre del Técnico Evaluador:</label>
-                <input type="text" class="form-control" id="nombreTecnico" placeholder="Nombre del técnico">
-            </div>
-            <div class="mb-3">
-                <label for="fechaEvaluacion" class="form-label">Fecha de la Evaluación:</label>
-                <input type="date" class="form-control" id="fechaEvaluacion">
-            </div>
-
-            <!-- Botón -->
-            <div class="d-flex justify-content-center mt-4">
-                <button type="submit" class="btn btn-primary me-2">Enviar</button>
-                <button type="submit" class="btn btn-primary">Siguiente</button>
-            </div>
-            
-        </form>
+            <li><a href="fichaTecnica.html">Ficha Tecnica Del Emprendedor</a></li>
+            <li><a href="home.html">Home</a></li>
+           
+        </ul>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="content">
+        <div class="header">
+            <h1>Ficha de Inscripción Centro de Negocios</h1>
+        </div>
+
+        <form onsubmit="mostrarMensajeExito(); return false;">
+            <table>
+                <tr>
+                    <th colspan="4">DATOS GENERALES</th>
+                </tr>
+                <tr>
+                    <td><label for="sede_funder">Sede FUNDER:</label></td>
+                    <td colspan="3"><input type="text" id="sede_funder" name="sede_funder"></td>
+                </tr>
+                <tr>
+                    <td><label for="nombres_apellidos">Nombres y Apellidos:</label></td>
+                    <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos"></td>
+                </tr>
+                <tr>
+                    <td><label for="documento_identidad">Documento de Identidad:</label></td>
+                    <td colspan="3">
+                        <input type="checkbox" id="ci_dni" name="documento_identidad"> CI/DNI
+                        <input type="checkbox" id="pasaporte" name="documento_identidad"> Pasaporte
+                        <input type="checkbox" id="tarjeta_identidad" name="documento_identidad"> Tarjeta Identidad
+                        <input type="checkbox" id="doc_refugio" name="documento_identidad"> Doc. Refugio
+                        <input type="checkbox" id="carnet_solicitante" name="documento_identidad"> Carnet de Solicitante
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="visa_amparo">Visa Amparo:</label></td>
+                    <td><input type="text" id="visa_amparo" name="visa_amparo"></td>
+                    <td><label for="no_tiene">No Tiene:</label></td>
+                    <td><input type="checkbox" id="no_tiene" name="visa_amparo"></td>
+                </tr>
+                <tr>
+                    <td><label for="lugar_nacimiento">Lugar y Fecha de Nacimiento:</label></td>
+                    <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento"></td>
+                    <td><label for="edad">Edad:</label></td>
+                    <td><input type="number" id="edad" name="edad"></td>
+                </tr>
+                <tr>
+                    <th colspan="4">AUTOIDENTIFICACIÓN ÉTNICA</th>
+                </tr>
+                <tr>
+                    <td><label for="genero">Identidad Sexo-Genérica:</label></td>
+                    <td>
+                        <input type="checkbox" id="femenino" name="genero"> Femenino
+                        <input type="checkbox" id="masculino" name="genero"> Masculino
+                        <input type="checkbox" id="lgbtiq" name="genero"> LGBTIQ+
+                    </td>
+                    <td><label for="estado_civil">Estado Civil:</label></td>
+                    <td>
+                        <input type="checkbox" id="casado" name="estado_civil"> Casado/a
+                        <input type="checkbox" id="soltero" name="estado_civil"> Soltero/a
+                        <input type="checkbox" id="union_libre" name="estado_civil"> Unión Libre
+                        <input type="checkbox" id="viudo" name="estado_civil"> Viudo/a
+                        <input type="checkbox" id="divorciado" name="estado_civil"> Divorciado/a
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="rol_familiar">Rol Familiar:</label></td>
+                    <td colspan="3">
+                        <input type="checkbox" id="mujer_cabeza_hogar" name="rol_familiar"> Mujer Cabeza de Hogar
+                        <input type="checkbox" id="hombre_cabeza_hogar" name="rol_familiar"> Hombre Cabeza de Hogar
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="discapacidad">Algún Tipo de Discapacidad:</label></td>
+                    <td colspan="3">
+                        <input type="checkbox" id="intelectual" name="discapacidad"> Intelectual
+                        <input type="checkbox" id="fisica" name="discapacidad"> Física
+                        <input type="checkbox" id="visual" name="discapacidad"> Visual
+                        <input type="checkbox" id="auditiva" name="discapacidad"> Auditiva
+                        <input type="checkbox" id="lenguaje" name="discapacidad"> De Lenguaje
+                        <input type="checkbox" id="psicosocial" name="discapacidad"> Psicosocial
+                        <input type="checkbox" id="multiple" name="discapacidad"> Múltiple
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="4">SITUACIÓN ACTUAL DEL NEGOCIO</th>
+                </tr>
+                <tr>
+                    <td><label for="estatus">Estatus (en caso de ser extranjero):</label></td>
+                    <td colspan="3">
+                        <input type="checkbox" id="refugiado" name="estatus"> Refugiado
+                        <input type="checkbox" id="migrante" name="estatus"> Migrante
+                        <input type="checkbox" id="asilado" name="estatus"> Asilado
+                        <input type="checkbox" id="solicitante_refugio" name="estatus"> Solicitante de Refugio
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tiempo_residencia">Tiempo de Residencia en el País:</label></td>
+                    <td colspan="3">
+                        <input type="text" id="tiempo_residencia" name="tiempo_residencia" placeholder="Años y Meses">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="direccion_negocio">Dirección Actual del Negocio:</label></td>
+                    <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio" placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
+                </tr>
+                <tr>
+                    <td><label for="contacto">Contacto:</label></td>
+                    <td colspan="3">
+                        Telf. Convencional: <input type="text" id="telefono_convencional" name="telefono_convencional">
+                        Telf. Celular: <input type="text" id="telefono_celular" name="telefono_celular">
+                        E-mail: <input type="email" id="email" name="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="acceso_tic">Acceso a las TIC:</label></td>
+                    <td colspan="3">
+                        Servicio de Internet Fijo: <input type="checkbox" id="internet_fijo" name="acceso_tic"> 
+                        Celular: <input type="checkbox" id="celular" name="acceso_tic">
+                        Computador: <input type="checkbox" id="computador" name="acceso_tic">
+                        Tablet: <input type="checkbox" id="tablet" name="acceso_tic">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="instruccion">Instrucción:</label></td>
+                    <td colspan="3">
+                        <input type="checkbox" id="primaria" name="instruccion"> Primaria
+                        <input type="checkbox" id="bachillerato" name="instruccion"> Bachillerato
+                        <input type="checkbox" id="tecnologico" name="instruccion"> Tecnológico
+                        <input type="checkbox" id="superior" name="instruccion"> Superior
+                        <input type="checkbox" id="ninguna" name="instruccion"> Ninguna
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tipo_negocio">Tipo del Negocio:</label></td>
+                    <td>
+                        <input type="checkbox" id="produccion" name="tipo_negocio"> Producción
+                        <input type="checkbox" id="servicio" name="tipo_negocio"> Servicio
+                        <input type="checkbox" id="comercializacion" name="tipo_negocio"> Comercialización
+                        <input type="checkbox" id="otro" name="tipo_negocio"> Otro
+                    </td>
+                    <td><label for="actividad_economica">Actividad Económica:</label></td>
+                    <td><input type="text" id="actividad_economica" name="actividad_economica"></td>
+                </tr>
+                <tr>
+                    <td><label for="ingresos_mensuales">Promedio Mensual de Ingresos:</label></td>
+                    <td><input type="text" id="ingresos_mensuales" name="ingresos_mensuales"></td>
+                    <td><label for="gastos_mensuales">Promedio Mensual de Gastos:</label></td>
+                    <td><input type="text" id="gastos_mensuales" name="gastos_mensuales"></td>
+                </tr>
+                <tr>
+                    <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>
+                    <td colspan="3"><input type="text" id="utilidad_mensual" name="utilidad_mensual"></td>
+                </tr>
+                <tr>
+                    <td><label for="caracteristicas_negocio">Describa las características del negocio:</label></td>
+                    <td colspan="3">
+                        <textarea id="caracteristicas_negocio" name="caracteristicas_negocio" rows="4"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="asistencia_tecnica">Campos de Asistencia Técnica (en orden de prioridad):</label></td>
+                    <td colspan="3">
+                        <textarea id="asistencia_tecnica" name="asistencia_tecnica" rows="3"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="temas_capacitacion">Temas de Capacitación (en orden de prioridad):</label></td>
+                    <td colspan="3">
+                        <textarea id="temas_capacitacion" name="temas_capacitacion" rows="3"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
