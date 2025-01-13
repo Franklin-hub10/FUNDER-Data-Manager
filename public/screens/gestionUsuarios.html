@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página de gestión de usuarios para el administrador. Permite crear, eliminar y asignar roles a los usuarios.">
+  <title>Gestión de Usuarios - Aplicación Web</title>
+</head>
+<body>
+  <header>
+    <h1>Gestión de Usuarios</h1>
+    <p>Administra usuarios y roles en la plataforma.</p>
+  </header>
+
+  <main>
+
+    <!-- Crear Usuario -->
+
+    <section>
+      <h2>Crear Nuevo Usuario</h2>
+      <form id="form-create-user">
+        <div>
+          <label for="username">Nombre de usuario:</label>
+          <input type="text" id="username" name="username" placeholder="Ingrese el nombre de usuario" required>
+        </div>
+        <div>
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" placeholder="Ingrese el correo electrónico" required>
+        </div>
+        <div>
+          <label for="role">Rol:</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Seleccione un rol</option>
+            <option value="admin">Administrador</option>
+            <option value="gestor">Gestor</option>
+            <option value="supervisor">Supervisor</option>
+          </select>
+        </div>
+        <button type="submit">Crear Usuario</button>
+      </form>
+    </section>
+
+    <!-- Listar Usuarios -->
+
+    <section>
+      <h2>Usuarios Existentes</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre de Usuario</th>
+            <th>Correo Electrónico</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="user-table">
+
+          <!-- Las filas de los usuarios se generarán dinámicamente -->
+
+          <tr>
+            <td>1</td>
+            <td>admin123</td>
+            <td>admin@funder.com</td>
+            <td>Administrador</td>
+            <td>
+              <button data-id="1" class="btn-edit">Editar</button>
+              <button data-id="1" class="btn-delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Asignar Roles -->
+
+    <section>
+      <h2>Asignar Rol a Usuario</h2>
+      <form id="form-assign-role">
+        <div>
+          <label for="user-id">ID del Usuario:</label>
+          <input type="number" id="user-id" name="user-id" placeholder="Ingrese el ID del usuario" required>
+        </div>
+        <div>
+          <label for="new-role">Nuevo Rol:</label>
+          <select id="new-role" name="new-role" required>
+            <option value="" disabled selected>Seleccione un nuevo rol</option>
+            <option value="admin">Administrador</option>
+            <option value="gestor">Gestor</option>
+            <option value="supervisor">Supervisor</option>
+          </select>
+        </div>
+        <button type="submit">Asignar Rol</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Fundación FUNDER - Plataforma de Gestión</p>
+  </footer>
+</body>
+</html>
