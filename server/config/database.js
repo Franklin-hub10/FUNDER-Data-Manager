@@ -1,12 +1,19 @@
-const mysql = require('mysql2');
-const pool = mysql.createPool({
-    host: 'your-database-host',
-    user: 'your-database-user',
-    password: 'your-database-password',
-    database: 'your-database-name',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-});
+    const mysql = require('mysql2');
 
-module.exports = pool.promise(); // Exporta el pool para usarlo en otros módulos
+    const pool = mysql.createPool({
+        host: '127.0.0.1', // Cambia si tu host es diferente
+        user: 'root', // Reemplaza con tu usuario
+        password: 'FPdesmond10', // Reemplaza con tu contraseña
+        database: 'funder', // Reemplaza con tu base de datos
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+    });
+
+    module.exports = pool.promise(); // Exporta el pool para usarlo en otros módulos
+
+
+    //host: '178.63.7.242',
+// user: 'funderedu_cnig',
+//password: 'c.b2s.25.nig',
+//database: 'funderedu_cnig',
