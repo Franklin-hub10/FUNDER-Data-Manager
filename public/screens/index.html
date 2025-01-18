@@ -3,56 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="icon" href="imagenes/cart3.svg">  
-    <link rel="stylesheet" href="bootstrap.css">
-    <title>PAG PRINCIPAL</title>
-    
+    <title>Página de Inicio de Sesión</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="container content-container">
-        <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-lg-6 col-sm-12 text-center">
-                <!-- Contenedor de imagen con texto encima -->
-                <div class="image-container">
-                    <img src="../../assets/images/descarga.png" alt="Logo" class="img-fluid" style="max-width: 500px;">
-                    
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="/assets/images/Logo FUNDER 2021.png" alt="Logo">
+            </div>
+            <h1>¡Bienvenido de nuevo!</h1>
+           
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Usuario o Correo Electrónico</label>
+                    <input type="text" id="email" name="email" placeholder="Ingresa tu usuario o correo electrónico" required>
+                    <span id="email-error" ></span>
                 </div>
-            </div>
-            <div class="col-lg-6 col-sm-12 d-flex justify-content-center">
-                <form id="loginForm">
-                    <div class="mb-3">
-                        <input type="text" id="username" class="form-control" placeholder="USUARIO" aria-label="nombre">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" id="password" class="form-control" placeholder="CONTRASEÑA" aria-label="apellido">
-                    </div>
-                    <button type="submit" class="btn btn-primary">INGRESAR</button>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    <span id="password-error"></span>
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox"> Mantener sesión iniciada
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="login-button">Iniciar Sesión</button>
+            </form>
         </div>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
-            // Reemplaza con tu usuario y contraseña correctos
-            var correctUsername = 'Funder';
-            var correctPassword = '1234';
-
-            if (username === correctUsername && password === correctPassword) {
-                // Redirigir a otra página
-                window.location.href = 'home.html'; // Reemplaza con tu página de destino
-            } else {
-                alert('Usuario o contraseña incorrectos');
-            }
-        });
-    </script>
+    <script src="../js/Login.js"></script>
 </body>
 </html>
-
