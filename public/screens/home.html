@@ -51,19 +51,17 @@
     </div>
 
     <!-- Barra lateral derecha para perfil -->
-    <div class="profile-sidebar" id="profileSidebar">
-        <img src="../../assets/images/profile-icon.png" alt="Perfil" class="profile-icon">
-        <ul class="nav">
-            <li class="nav-item">
-                <i class="bi bi-person-circle"></i>
-                <span><a href="#">Perfil</a></span>
-            </li>
-            <li class="nav-item">
-                <i class="bi bi-box-arrow-right"></i>
-                <span><a href="#" id="logoutLink">Cerrar Sesión</a></span>
-            </li>
+    <div class="dropdown">
+        <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i>
+            Usuario Desconocido
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
         </ul>
-    </div>
+  
 
     <!-- Contenido principal -->
     <div class="content" id="content">
