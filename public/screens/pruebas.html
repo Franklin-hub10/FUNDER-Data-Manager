@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de Roles y Vistas</title>
+  <link rel="stylesheet" href="../css/styles.css"> <!-- Estilos opcionales -->
+</head>
+<body>
+  <h1>Prueba de Roles y Vistas</h1>
+  <p>Bienvenido, <span id="usuario"></span></p>
+
+  <!-- Botones de prueba -->
+  <button id="btnDashboard" disabled>Acceder al Dashboard</button>
+  <button id="btnGestionUsuarios" disabled>Gestión de Usuarios</button>
+  <button id="btnFichaTecnica" disabled>Ficha Técnica</button>
+
+  <!-- Enlaces de prueba -->
+  <a id="linkHome" href="home.html" style="pointer-events: none;">Ir a Home</a>
+  <a id="linkLogin" href="login.html" style="pointer-events: none;">Ir a Login</a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const idUsuario = 1; // Simulación del usuario autenticado. Cambiar según el usuario real
+
+      try {
+        // Solicitar vistas permitidas al backend
+        const response = await fetch(`/roles/allowed-views/${idUsuario}`);
+        if (!response.ok) {
+          throw new Error('Error al obtener las vistas permitidas');
+        }
+        const data = await response.json();
+        const vistasPermitidas = data.allowedViews;
+
+        // Mostrar nombre del usuario
+        document.getElementById('usuario').innerText = 'Usuario de Prueba';
+
+        // Habilitar botones y enlaces según las vistas permitidas
+        if (vistasPermitidas.includes('dashboard.html')) {
+          document.getElementById('btnDashboard').disabled = false;
+        }
+        if (vistasPermitidas.includes('gestionUsuarios.html')) {
+          document.getElementById('btnGestionUsuarios').disabled = false;
+        }
+        if (vistasPermitidas.includes('fichaTecnica.html')) {
+          document.getElementById('btnFichaTecnica').disabled = false;
+        }
+        if (vistasPermitidas.includes('home.html')) {
+          const linkHome = document.getElementById('linkHome');
+          linkHome.style.pointerEvents = 'auto';
+          linkHome.style.color = 'blue';
+        }
+        if (vistasPermitidas.includes('login.html')) {
+          const linkLogin = document.getElementById('linkLogin');
+          linkLogin.style.pointerEvents = 'auto';
+          linkLogin.style.color = 'blue';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudieron cargar las vistas permitidas.');
+      }
+    });
+  </script>
+</body>
+</html>

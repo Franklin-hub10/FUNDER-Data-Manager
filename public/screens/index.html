@@ -5,40 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/login.css">
     <link rel="icon" href="imagenes/cart3.svg">  
-    <title>Página Principal</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>PAG PRINCIPAL</title>
+    
 </head>
 <body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="row content-container">
+    <div class="container content-container">
+        <div class="row justify-content-center align-items-center vh-100">
             <div class="col-lg-6 col-sm-12 text-center">
                 <!-- Contenedor de imagen con texto encima -->
-                <div class="image-container mb-4">
-                    <img src="../../assets/images/descarga.png" alt="Logo" class="img-fluid">
+                <div class="image-container">
+                    <img src="../../assets/images/descarga.png" alt="Logo" class="img-fluid" style="max-width: 500px;">
+                    
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <form id="loginForm" class="p-4">
-                    <h2 class="mb-4 text-center">Iniciar Sesión</h2>
+            <div class="col-lg-6 col-sm-12 d-flex justify-content-center">
+                <form id="loginForm">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Usuario</label>
-                        <input type="text" id="username" class="form-control" placeholder="Ingresa tu usuario" aria-label="Usuario">
+                        <input type="text" id="username" class="form-control" placeholder="USUARIO" aria-label="nombre">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" id="password" class="form-control" placeholder="Ingresa tu contraseña" aria-label="Contraseña">
+                        <input type="password" id="password" class="form-control" placeholder="CONTRASEÑA" aria-label="apellido">
                     </div>
-                    <div class="text-end mb-3">
-                        <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    <button type="submit" class="btn btn-custom w-100">Ingresar</button>
-                    <div id="errorMessage" class="mt-3 text-danger" style="display: none;">Por favor, completa todos los campos.</div>
+                    <button type="submit" class="btn btn-primary">INGRESAR</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="../js/Login.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Reemplaza con tu usuario y contraseña correctos
+            var correctUsername = 'Funder';
+            var correctPassword = '1234';
+
+            if (username === correctUsername && password === correctPassword) {
+                // Redirigir a otra página
+                window.location.href = 'home.html'; // Reemplaza con tu página de destino
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        });
+    </script>
 </body>
 </html>
+
