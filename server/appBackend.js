@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const rolesRoutes = require('./routes/roles');
+const usuariosRoutes =require('./routes/usuarios')
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/roles', rolesRoutes);
+app.use('/usuarios', usuariosRoutes);
 
 // Inicio del servidor
 const PORT = 3000;
