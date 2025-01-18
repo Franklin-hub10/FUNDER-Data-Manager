@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `funder`
+-- Base de datos: `funder` 
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE `canton` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `colaborador`
+-- Estructura de tabla para la tabla `colaborador` rol
 --
 
 CREATE TABLE `colaborador` (
@@ -152,7 +152,7 @@ CREATE TABLE `etapamedicion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `etnia`
+-- Estructura de tabla para la tabla `etnia` 
 --
 
 CREATE TABLE `etnia` (
@@ -663,7 +663,7 @@ ALTER TABLE `tipoparroquia`
   MODIFY `idTipoParroquia` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Restricciones para tablas volcadas   
 --
 
 --
