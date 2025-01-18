@@ -1,116 +1,147 @@
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  width: 60px; /* Barra lateral colapsada */
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 1050;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #0078d4;
-    color: #fff;
-  }
-  
-  header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  header nav ul {
-    display: flex;
-    list-style: none;
-  }
-  
-  header nav ul li {
-    margin: 0 1rem;
-  }
-  
-  header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  header nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .hero {
-    text-align: center;
-    background: url('https://via.placeholder.com/1500x500') no-repeat center/cover;
-    color: #fff;
-    padding: 5rem 2rem;
-  }
-  
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  
-  .hero .btn {
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    background-color: #ff6f61;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-  
-  .hero .btn:hover {
-    background-color: #ff4a3a;
-  }
-  
-  .content {
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-  
-  .content h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .cards {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .card {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    max-width: 300px;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #222;
-    color: #fff;
-    margin-top: 2rem;
-  }
-  
-  footer p {
-    font-size: 0.875rem;
-  }
-  .parrafo{
-    font-size: 45px;
-  }
-  .titulohome{
-    font-size: 42;
+.sidebar:hover {
+  width: 250px; /* Barra lateral expandida al pasar el mouse */
+}
 
-  }
+.sidebar a.navbar-brand img {
+  width: 40px; /* Ajusta el tamaño del logo en estado colapsado */
+  transition: width 0.3s ease;
+}
+
+.sidebar:hover a.navbar-brand img {
+  width: 60px; /* Ajusta el tamaño del logo en estado expandido */
+}
+
+.sidebar ul.nav {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover ul.nav {
+  opacity: 1;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #f1f1f1;
+  padding-left: 15px;
+}
+
+.dropdown-container.show {
+  display: block;
+}
+
+.dropdown-btn {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-btn i {
+  margin-right: 10px;
+}
+
+.dropdown-btn:focus {
+  outline: none;
+}
+
+.content {
+  margin-left: 60px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover + .content {
+  margin-left: 250px;
+}
+
+.profile-sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-left: 1px solid #ddd;
+  width: 60px; /* Barra lateral colapsada */
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 1050;
+}
+
+.profile-sidebar:hover {
+  width: 250px; /* Barra lateral expandida al pasar el mouse */
+}
+
+.profile-sidebar .profile-icon {
+  width: 40px; /* Ajusta el tamaño del icono en estado colapsado */
+  transition: width 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.profile-sidebar:hover .profile-icon {
+  width: 60px; 
+}
+
+.profile-sidebar ul.nav {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.profile-sidebar:hover ul.nav {
+  opacity: 1;
+}
+
+.profile-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-sidebar ul li {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.profile-sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.profile-sidebar ul li i {
+  font-size: 1.5rem;
+}
+
+.profile-sidebar ul li span {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
