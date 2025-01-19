@@ -97,7 +97,7 @@ input[type="text"],
 input[type="email"],
 input[type="number"],
 textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 10px;
     font-size: 14px;

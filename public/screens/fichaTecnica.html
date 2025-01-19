@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Inscripción Centro de Negocios</title>
-    <link rel="stylesheet" href="/FUNDER-Data-Manager/public/css/FichaTecnica.css">
+    <link rel="stylesheet" href="/public/css/FichaTecnica.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <script>
         function mostrarMensajeExito() {
             alert("Guardado con éxito");
@@ -13,6 +15,7 @@
 </head>
 <body>
 
+    
     <!-- <div class="sidebar">
         <img src="/FUNDER-Data-Manager/assets/images/Logo FUNDER 2021.png" alt="Logo FUNDER" width="150px">
         <ul>
@@ -68,13 +71,15 @@
                 </tr>
                 <tr>
                     <td><label for="genero">Identidad Sexo-Genérica:</label></td>
-                    <td>
+                    <td colspan="3">
                         <input type="checkbox" id="femenino" name="genero"> Femenino
                         <input type="checkbox" id="masculino" name="genero"> Masculino
                         <input type="checkbox" id="lgbtiq" name="genero"> LGBTIQ+
                     </td>
+                </tr>
+                <tr>
                     <td><label for="estado_civil">Estado Civil:</label></td>
-                    <td>
+                    <td colspan="3">
                         <input type="checkbox" id="casado" name="estado_civil"> Casado/a
                         <input type="checkbox" id="soltero" name="estado_civil"> Soltero/a
                         <input type="checkbox" id="union_libre" name="estado_civil"> Unión Libre
@@ -152,20 +157,24 @@
                 </tr>
                 <tr>
                     <td><label for="tipo_negocio">Tipo del Negocio:</label></td>
-                    <td>
+                    <td colspan="3">
                         <input type="checkbox" id="produccion" name="tipo_negocio"> Producción
                         <input type="checkbox" id="servicio" name="tipo_negocio"> Servicio
                         <input type="checkbox" id="comercializacion" name="tipo_negocio"> Comercialización
                         <input type="checkbox" id="otro" name="tipo_negocio"> Otro
                     </td>
-                    <td><label for="actividad_economica">Actividad Económica:</label></td>
-                    <td><input type="text" id="actividad_economica" name="actividad_economica"></td>
+                </tr>
+                <tr>
+                    <td ><label for="actividad_economica">Actividad Económica:</label></td>
+                    <td colspan="3"><input type="text" id="actividad_economica" name="actividad_economica"></td>
                 </tr>
                 <tr>
                     <td><label for="ingresos_mensuales">Promedio Mensual de Ingresos:</label></td>
-                    <td><input type="text" id="ingresos_mensuales" name="ingresos_mensuales"></td>
+                    <td colspan="3"><input type="text" id="ingresos_mensuales" name="ingresos_mensuales"></td>
+                </tr>
+                <tr>
                     <td><label for="gastos_mensuales">Promedio Mensual de Gastos:</label></td>
-                    <td><input type="text" id="gastos_mensuales" name="gastos_mensuales"></td>
+                    <td colspan="3"><input type="text" id="gastos_mensuales" name="gastos_mensuales"></td>
                 </tr>
                 <tr>
                     <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>

@@ -1,195 +1,170 @@
-/* General */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: var(--fuenteParrafos);
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--blanco);
+    position: relative; 
+    background: none; 
+    background: rgba(121, 172, 255, 0.4);
 }
 
-/* Contenido */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/images/Logo FUNDER 2021.png') no-repeat center center fixed;
+    background-size: 400px; 
+    filter: brightness(0.5); 
+    z-index: -1; 
+}
+
 .content {
-    max-width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: margin-left 0.3s ease; /* Para transición suave en pantallas pequeñas */
-}
-
-/* Encabezado */
-.header {
-    text-align: center;
-    margin-bottom: 20px;
+    position: relative; 
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+    margin: 20px;
+    overflow-y: auto;
 }
 
 .header h1 {
+    font-family: var(--fuenteTitulos);
     font-size: 24px;
-    color: #0056b3;
+    text-align: center;
+    color: var(--secundarioVerde);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secundarioVerde);
+    padding-bottom: 10px;
 }
 
-/* Tabla */
+/* Form */
+form {
+    width: 100%;
+}
+
+/* Table */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    border-spacing: 0;
+    margin-bottom: 20px;
 }
 
-table th {
-    background: #0056b3;
-    color: #fff;
+th {
+    background: var(--primarioAzul);
+    color: var(--blanco);
     text-align: left;
     padding: 10px;
     font-size: 16px;
+    border-radius: 5px 5px 0 0;
+}
+th:nth-child(odd) {
+    background: var(--primarioAzul); 
 }
 
-table td {
+th:nth-child(even) {
+    background: var(--secundarioVerde); 
+}
+
+td {
     padding: 10px;
-    border: 1px solid #ddd;
     vertical-align: top;
+    color: var(--negro);
+    border-bottom: 1px solid var(--negro);
 }
 
-table td label {
-    font-weight: bold;
-    margin-bottom: 5px;
+tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+label {
     display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-table input[type="text"],
-table input[type="number"],
-table input[type="email"],
-table textarea {
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-table input[type="checkbox"] {
-    margin-right: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #f9f9f9;
+    color: #333;
 }
 
 textarea {
     resize: vertical;
+    min-height: 80px;
 }
 
-/* Botones */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primarioAzul);
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    accent-color: var(--primarioAzul);
+}
+
+td input[type="checkbox"] + label {
+    display: inline;
+    font-size: 14px;
+}
+
 button[type="submit"] {
-    display: block;
     width: 100%;
-    background: #0056b3;
-    color: #fff;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
+    font-weight: bold;
+    color: var(--blanco);
+    background: var(--primarioAzul);
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: background 0.3s ease;
 }
 
 button[type="submit"]:hover {
-    background: #004494;
+    background: #156dc1;
 }
 
-/* Dropdown */
-.dropdown-container {
-    display: none;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-.dropdown-container.show {
-    display: flex;
-}
-
-/* Estilo principal para la barra lateral */
-.sidebar {
-    width: 250px; /* Ancho de la barra lateral en pantallas grandes */
-    height: 100vh;
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    z-index: 999;
-}
-
-.sidebar img {
-    width: 100%;
-    max-width: 150px;
-    display: block;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar li {
-    margin: 15px 0;
-}
-
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar a:hover {
-    background-color: #34495e;
-    border-radius: 5px;
-}
-
-.sidebar a.active {
-    background-color: #1abc9c;
-    border-radius: 5px;
-}
-
-/* Media Queries */
 @media (max-width: 768px) {
-    /* En pantallas pequeñas, el contenido y barra lateral se ajustan */
     .content {
-        margin-left: 0;
+        padding: 20px;
     }
 
-    .sidebar {
-        width: 100%; /* La barra lateral ocupa toda la pantalla */
-        position: relative;
-        height: auto;
-        padding: 10px;
+    table,
+    th,
+    td {
+        display: block;
+        width: 100%;
     }
 
-    .sidebar img {
-        max-width: 120px; /* Ajuste del tamaño de la imagen */
+    td {
+        margin-bottom: 10px;
     }
 
-    .sidebar a {
-        font-size: 16px; /* Reducción del tamaño de texto en la barra lateral */
-    }
-
-    /* Ajustes en la tabla para pantallas más pequeñas */
-    table th, table td {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .header h1 {
-        font-size: 20px;
-    }
-
-    button[type="submit"] {
-        font-size: 14px;
+    th {
+        border-radius: 5px;
     }
 }
