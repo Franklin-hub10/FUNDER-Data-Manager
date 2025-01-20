@@ -84,7 +84,7 @@ input:focus {
 }
 
 .forgot-password {
-    color: #a0d4ff;
+    color: #176FA6;
     text-decoration: none;
 }
 
@@ -98,12 +98,12 @@ input:focus {
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background: #1e90ff;
+    background:  #176FA6;
     color: #ffffff;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .login-button:hover {
-    background: #156dc1;
+    background:  #176FA6;
 }
