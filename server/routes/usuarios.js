@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
-const bcrypt = require('bcrypt'); // Para encriptar la contraseña
+// const bcrypt = require('bcrypt'); // Para encriptar la contraseña
 
 // Obtener todos los usuarios
 router.get('/users', async (req, res) => {
