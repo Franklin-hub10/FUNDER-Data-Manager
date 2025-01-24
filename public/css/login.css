@@ -3,7 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('/assets/images/FondoLogin2.jpg') no-repeat center center fixed;
+    background: linear-gradient(180deg, #2c3e50 0%, #176FA6 100%); 
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    color: #ffffff; 
+    min-height: 100vh;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -84,7 +88,7 @@ input:focus {
 }
 
 .forgot-password {
-    color: #176FA6;
+    color:#cccccc;
     text-decoration: none;
 }
 
