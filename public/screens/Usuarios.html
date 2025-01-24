@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/usuarios.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Prueba de API de Usuarios</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+</head>
+<body>
+    <div class="container">
+    <h1>Prueba de API de Usuarios</h1>
+
+    <!-- Crear Usuario -->
+    <h2>Crear Usuario</h2>
+    <form id="create-user-form">
+        <input type="text" id="create-nombre" placeholder="Nombre" required><br><br>
+        <input type="email" id="create-email" placeholder="Correo Electrónico" required><br><br>
+        <input type="password" id="create-password" placeholder="Contraseña" required><br><br>
+        <input type="number" id="create-idRol" placeholder="ID del Rol" required><br><br>
+        <button type="submit">Crear Usuario</button>
+    </form>
+    
+    <hr>
+
+    <!-- Obtener Usuario por ID -->
+    <h2>Obtener Usuario</h2>
+    <input type="number" id="get-user-id" placeholder="ID del Usuario">
+    <button onclick="getUser()">Obtener Usuario</button>
+    <div id="user-details"></div>
+
+    <hr>
+
+    <!-- Actualizar Usuario -->
+    <h2>Actualizar Usuario</h2>
+    <form id="update-user-form">
+        <input type="number" id="update-id" placeholder="ID del Usuario" required><br><br>
+        <input type="text" id="update-nombre" placeholder="Nuevo Nombre"><br><br>
+        <input type="email" id="update-email" placeholder="Nuevo Correo"><br><br>
+        <input type="password" id="update-password" placeholder="Nueva Contraseña"><br><br>
+        <input type="number" id="update-idRol" placeholder="Nuevo ID del Rol"><br><br>
+        <button type="submit">Actualizar Usuario</button>
+    </form>
+
+    <hr>
+
+    <!-- Eliminar Usuario -->
+    <h2>Eliminar Usuario</h2>
+    <input type="number" id="delete-id" placeholder="ID del Usuario">
+    <button onclick="deleteUser()">Eliminar Usuario</button>
+
+    <script>
+        // Función para crear un usuario
+        document.getElementById('create-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById('create-nombre').value;
+            const email = document.getElementById('create-email').value;
+            const password = document.getElementById('create-password').value;
+            const idRol = document.getElementById('create-idRol').value;
+
+            try {
+                const response = await axios.post('http://localhost:3000/create-user', {
+                    nombre,
+                    email,
+                    password,
+                    idRol
+                });
+                alert(response.data.message);
+            } catch (error) {
+                alert('Error al crear el usuario: ' + error.response.data.message);
+            }
+        });
+
+        // Función para obtener un usuario por ID
+        async function getUser() {
+            const userId = document.getElementById('get-user-id').value;
+            try {
+                const response = await axios.get(`http://localhost:3000/user/${userId}`);
+                const user = response.data.user;
+                document.getElementById('user-details').innerHTML = `
+                    <p><strong>ID:</strong> ${user.id}</p>
+                    <p><strong>Nombre:</strong> ${user.nombre}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Rol:</strong> ${user.rol}</p>
+                `;
+            } catch (error) {
+                document.getElementById('user-details').innerHTML = 'Usuario no encontrado';
+            }
+        }
+
+        // Función para actualizar un usuario
+        document.getElementById('update-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById('update-id').value;
+            const nombre = document.getElementById('update-nombre').value;
+            const email = document.getElementById('update-email').value;
+            const password = document.getElementById('update-password').value;
+            const idRol = document.getElementById('update-idRol').value;
+
+            const data = { nombre, email, password, idRol };
+            // Eliminar propiedades vacías antes de enviar la solicitud
+            Object.keys(data).forEach(key => data[key] === '' && delete data[key]);
+
+            try {
+                const response = await axios.put(`http://localhost:3000/update-user/${id}`, data);
+                alert(response.data.message);
+            } catch (error) {
+                alert('Error al actualizar el usuario: ' + error.response.data.message);
+            }
+        });
+
+        // Función para eliminar un usuario
+        async function deleteUser() {
+            const userId = document.getElementById('delete-id').value;
+            try {
+                const response = await axios.delete(`http://localhost:3000/delete-user/${userId}`);
+                alert(response.data.message);
+            } catch (error) {
+                alert('Error al eliminar el usuario: ' + error.response.data.message);
+            }
+        }
+    </script>
+    </div>
+</body>
+</html>

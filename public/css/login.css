@@ -1,62 +1,109 @@
+/* General Styles */
 body {
-    background-image: url('/assets/images/FondoLogin.jpg'); 
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/assets/images/FondoLogin2.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-}
-
-.btn-custom {
-    background-color: transparent;
-    border: 2px solid #007bff;
-    color: #007bff;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.btn-custom:hover {
-    background-color: #007bff;
     color: #ffffff;
 }
 
-.btn-custom:active {
-    transform: scale(0.95);
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
-#forgotPassword {
-    color: #007bff;
-    transition: color 0.3s ease;
+.login-box {
+    background: rgba(56, 58, 61, 0.288); /* Fondo semi-transparente */
+    padding: 30px 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
 }
 
-#forgotPassword:hover {
-    color: #0056b3;
-    text-decoration: underline;
+.logo img {
+    max-width: 100px;
+    margin-bottom: 20px;
 }
 
-.content-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffffff;
 }
 
-h2 {
-    font-family: 'Arial', sans-serif;
-    font-weight: 700;
-    color: #333;
+p {
+    margin-bottom: 20px;
+    color: #cccccc;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 label {
-    font-weight: bold;
-    color: #555;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #ffffff;
 }
 
-input::placeholder {
-    font-style: italic;
-    color: #aaa;
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: #f0f0f0;
+    color: #333;
 }
 
-.image-container img {
-    max-width: 200px;
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.forgot-password {
+    color: #176FA6;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background:  #176FA6;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background:  #176FA6;
 }
