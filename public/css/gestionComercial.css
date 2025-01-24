@@ -225,9 +225,9 @@ button[type="submit"]:hover {
 }
 
 .nav-link i {
-    font-size: 2rem; /* Tamaño del ícono */
+    font-size: 2rem; 
     margin-right: 15px;
-    color: #bdc3c7; /* Gris claro */
+    color: #bdc3c7; 
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
