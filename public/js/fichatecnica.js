@@ -117,5 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             event.preventDefault(); // Prevenir envío del formulario si hay errores
         }
+
+        
+    
     });
 });

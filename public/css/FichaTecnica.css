@@ -120,17 +120,23 @@ textarea:focus {
     box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
 }
 
-/* Checkboxes */
-input[type="checkbox"] {
-    margin-right: 8px;
-    transform: scale(1.2);
+/* Estilo para los radio buttons */
+
+input[type="radio"] {
+    margin-right: 8px; 
+    transform: scale(1.2); 
     accent-color: var(--primarioAzul);
 }
 
-td input[type="checkbox"] + label {
-    display: inline;
-    font-size: 14px;
+/* Estilo para las etiquetas asociadas a los radio buttons */
+
+td input[type="radio"] + label {
+    display: inline; /* Mantiene el texto en línea con el radio button */
+    font-size: 14px; /* Tamaño razonable para el texto */
+    margin-left: 5px; /* Espaciado entre el radio button y el texto */
+    color: var(--negro); /* Asegúrate de que el color sea visible */
 }
+
 
 button[type="submit"] {
     width: 100%;
@@ -170,240 +176,143 @@ button[type="submit"]:hover {
     }
 }
 
-/* Barra lateral */
+/* Barra lateral principal */
+
 .sidebar {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #2c3e50; /* Azul oscuro */
-    padding: 15px;
-    border-right: 1px solid #34495e;
-    width: 60px; /* Barra lateral colapsada */
-    overflow: hidden;
-    transition: width 0.3s ease, background-color 0.3s ease;
-    z-index: 1050;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50; 
+  padding: 20px 10px;
+  border-right: 1px solid #34495e;
+  width: 70px; 
+  overflow: hidden;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  z-index: 1050;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .sidebar:hover {
-    width: 250px; /* Barra lateral expandida */
-    background-color: #34495e; /* Azul más oscuro */
+  width: 250px; /* Barra lateral expandida */
+  background-color: #34495e; /* Azul más oscuro */
 }
 
 /* Logo */
 .sidebar a.navbar-brand img {
-    width: 50px; /* Tamaño del logo colapsado */
+  width: 50px; /* Tamaño del logo colapsado */
   transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .sidebar:hover a.navbar-brand img {
-    width: 80px; /* Tamaño del logo expandido */
+  width: 80px; /* Tamaño del logo expandido */
   transform: scale(1.1); /* Ligeramente más grande */
 }
 
 /* Lista de navegación */
-.nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 20px;
+.sidebar ul.nav {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover ul.nav {
+  opacity: 1;
 }
 
 .nav-item {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    color: #ecf0f1; /* Blanco suave */
-    font-size: 1.8rem; /* Tamaño de la letra*/
-    font-weight: 500;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  color: #ecf0f1; /* Blanco suave */
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-link i {
-    font-size: 2rem; /* Tamaño del ícono */
-    margin-right: 15px;
-    color: #bdc3c7; /* Gris claro */
-    transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 1.5rem; /* Tamaño del ícono */
+  margin-right: 15px;
+  color: #bdc3c7; /* Gris claro */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 /* Hover: Efectos al pasar el mouse */
+
 .nav-link:hover {
-    background-color:  var(--secundarioVerde);
-    color: #ffffff; /* Texto blanco */
-    transform: translateX(5px); /* Mueve ligeramente a la derecha */
+  background-color: #29A632; 
+  color: #ffffff; 
+  transform: translateX(5px); /* Mueve ligeramente a la derecha */
 }
 
 .nav-link:hover i {
-    color: #ffffff; /* Ícono blanco */
-    transform: rotate(15deg); /* Rotación ligera */
+  color: #ffffff; 
+  transform: rotate(15deg); /* Rotación ligera */
 }
 
-/* Ajuste de los botones desplegables */
+/* Botones desplegables */
 .dropdown-btn {
-    cursor: pointer;
-    padding: 10px;
-    font-size: 1rem;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border: none;
+  background: none;
+  color: #ecf0f1; /* Blanco suave */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-btn i {
+  font-size: 1.2rem; /* Flecha */
+  transition: transform 0.3s ease;
 }
 
 .dropdown-btn:hover {
-    background-color:solid var(--secundarioVerde);
-    color: white; /* Texto blanco */
+  background-color:  #29A632; 
 }
 
 .dropdown-container {
-    display: none;
-    padding-left: 15px;
+  display: none;
+  padding-left: 20px; 
+  margin-top: 10px;
 }
 
-.sidebar:hover .dropdown-container {
-    display: block;
+.dropdown-container a {
+  font-size: 1rem;
+  color: #bdc3c7; 
+  text-decoration: none;
+  padding: 8px 15px;
+  display: block;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Scroll dentro de la barra lateral */
-.sidebar::-webkit-scrollbar {
-    width: 5px;
+.dropdown-container a:hover {
+  background-color: #29A632; 
+  color: white;
 }
 
-.sidebar::-webkit-scrollbar-thumb {
-    background:solid var(--secundarioVerde);
-    border-radius: 10px;
+.dropdown-container.show {
+  display: block;
 }
 
-.sidebar::-webkit-scrollbar-track {
-    background: transparent;
+/* Contenido */
+.content {
+  margin-left: 70px;
+  transition: margin-left 0.3s ease;
 }
 
-  /* Diseño responsivo para pantallas pequeñas */
-
-@media (max-width: 768px) {
-    /* Ajustes generales del body */
-    body {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    /* Barra lateral colapsada */
-
-    .sidebar {
-      position: fixed;
-      width: 100%; /* Ocupa todo el ancho */
-      height: 60px; /* Altura fija para dispositivos móviles */
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: row; /* Elementos en fila */
-      align-items: center;
-      justify-content: space-between;
-      background-color: var(--primarioAzul);
-      border-right: none;
-      border-bottom: 1px solid #ccc;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1050;
-      overflow: visible;
-    }
-  
-    .sidebar:hover {
-      width: 100%;
-      height: auto;
-    }
-  
-    .sidebar a.navbar-brand img {
-      width: 30px;
-      margin-left: 15px;
-    }
-  
-    .nav {
-      flex-direction: row;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      overflow-x: auto; /* Habilitar scroll horizontal */
-      scrollbar-width: thin;
-      display: flex;
-    }
-  
-    .nav-item {
-      flex-shrink: 0;
-      margin: 5px;
-    }
-  
-    .nav-link {
-      padding: 5px 10px;
-      font-size: 1.5rem; /* Tamaño más pequeño */
-    }
-  
-    .dropdown-container {
-      padding-left: 0;
-    }
-  }
-  
-  /* Diseño para tablets */
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .sidebar {
-      width: 80px; /* Aumenta el tamaño en tablets */
-    }
-  
-    .sidebar a.navbar-brand img {
-      width: 50px;
-    }
-  
-    .nav-link {
-      font-size: 1.6rem;
-    }
-  
-    .nav-link i {
-      font-size: 2rem;
-    }
-  }
-  
-  /* Ajustes específicos del contenido principal */
-
-  @media (max-width: 768px) {
-    .content {
-      margin-top: 70px; /* Empuja el contenido hacia abajo debido a la barra lateral superior */
-      margin-left: 0;
-      padding: 15px;
-    }
-  
-    .content h1 {
-      font-size: 1.5rem;
-    }
-  
-    table {
-      font-size: 0.9rem;
-    }
-  
-    th,
-    td {
-      padding: 5px;
-    }
-  
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    textarea {
-      font-size: 14px;
-    }
-  
-    button[type="submit"] {
-      font-size: 14px;
-      padding: 10px;
-    }
-  }
-  
+.sidebar:hover + .content {
+  margin-left: 250px;
+}
