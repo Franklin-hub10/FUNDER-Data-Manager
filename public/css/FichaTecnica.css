@@ -262,7 +262,7 @@ button[type="submit"]:hover {
 .dropdown-btn {
   cursor: pointer;
   padding: 10px 15px;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   border: none;
   background: none;
   color: #ecf0f1; /* Blanco suave */
@@ -271,10 +271,11 @@ button[type="submit"]:hover {
   justify-content: space-between; 
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  gap: 10px;
 }
 
 .dropdown-btn i {
-  font-size: 1.2rem; /* Flecha */
+  font-size: 1.3rem; /* Flecha */
   transition: transform 0.3s ease;
 }
 
@@ -289,7 +290,7 @@ button[type="submit"]:hover {
 }
 
 .dropdown-container a {
-  font-size: 1rem;
+  font-size: 1.8rem;
   color: #bdc3c7; 
   text-decoration: none;
   padding: 8px 15px;
