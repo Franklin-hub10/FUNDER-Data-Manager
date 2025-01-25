@@ -9,7 +9,8 @@ body {
     color: var(--blanco);
     position: relative; 
     background: none; 
-    background: rgba(121, 172, 255, 0.4);
+    background: linear-gradient(180deg, #2c3e50 0%, #176FA6 100%); 
+    
 }
 
 body::before {
