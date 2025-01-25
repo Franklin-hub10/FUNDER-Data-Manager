@@ -1,7 +1,7 @@
     const mysql = require('mysql2');
 
     const pool = mysql.createPool({
-        host: '127.0.0.1', // Cambia si tu host es diferente
+        host: '192.168.18.8', // Cambia si tu host es diferente
         user: 'root', // Reemplaza con tu usuario
         password: 'FPdesmond10', // Reemplaza con tu contraseña
         database: 'funder', // Reemplaza con tu base de datos
@@ -17,3 +17,4 @@
 // user: 'funderedu_cnig',
 //password: 'c.b2s.25.nig',
 //database: 'funderedu_cnig',
+//100.121.64.34 

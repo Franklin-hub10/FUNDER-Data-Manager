@@ -12,6 +12,7 @@ app.use(express.json());
 // Rutas
 app.use('/roles', rolesRoutes);
 app.use('/usuarios', usuariosRoutes);
+app.use('/login', usuariosRoutes);
 
 // Inicio del servidor
 const PORT = 3000;
