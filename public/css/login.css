@@ -1,22 +1,20 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(180deg, #2c3e50 0%, #176FA6 100%); 
-    margin: 0; 
-    font-family: Arial, sans-serif; 
-    color: #ffffff; 
+    background-image: url('/assets/images/imagFondo.jpg'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover; /* Ajusta la imagen al tamaño del viewport */
+    background-position: center; /* Centra la imagen en el viewport */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: #ffffff;
     min-height: 100vh;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #ffffff;
 }
-
-/* Login Container */
+   /* Login Container */
 .login-container {
     display: flex;
     justify-content: center;
@@ -111,3 +109,9 @@ input:focus {
 .login-button:hover {
     background:  #176FA6;
 }
+
+
+    
+  
+
+
