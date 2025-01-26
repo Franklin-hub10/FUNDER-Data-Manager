@@ -11,15 +11,52 @@
 </head>
 <body>
 
+    <!--barra lateral -->
     <div class="sidebar" id="sidebar">
         <a class="navbar-brand" href="index.html">
             <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
         </a>
+        
         <ul class="nav flex-column mt-4">
             <li class="nav-item">
-                <a class="nav-link" href="../screens/home.html">
+                <button class="dropdown-btn" onclick="window.location.href='./home.html'">
                     <i class="bi bi-house-door-fill"></i> Home
-                </a>
+                </button>
+            </li>
+                
+               
+            
+            
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-gear-fill"></i> Gestión
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="gestionComercial.html">Gestión Comercial</a>
+                    <a class="nav-link" href="gestionFinanciera.html">Gestión Financiera</a>
+                    <a class="nav-link" href="gestionOrganizacional.html">Gestión Organizacional</a>
+                    <a class="nav-link" href="gestionProductiva.html">Gestión Productiva</a>
+                   
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-person-badge-fill"></i> Manager
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="roles.html">Roles</a>
+                    <a class="nav-link" href="gestionUsuarios.html">Usuarios</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-bar-chart-line-fill"></i> Analityca
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="#">Sugerencias del Dx</a>
+                </div>
             </li>
         </ul>
     </div>
@@ -141,5 +178,15 @@
             <button type="submit">Guardar</button>
         </form>
     </div>
+    <script>
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+    
+        dropdownBtns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const container = this.nextElementSibling;
+                container.classList.toggle('show');
+            });
+        });
+    </script>
 </body>
 </html>
