@@ -189,18 +189,18 @@ button[type="submit"]:hover {
 
 .sidebar:hover {
   width: 250px; /* Barra lateral expandida */
-  background-color: #34495e; /* Azul más oscuro */
+  background-color: #34495e;
 }
 
 /* Logo */
 .sidebar a.navbar-brand img {
-  width: 50px; /* Tamaño del logo colapsado */
+  width: 50px; 
   transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .sidebar:hover a.navbar-brand img {
   width: 80px; /* Tamaño del logo expandido */
-  transform: scale(1.1); /* Ligeramente más grande */
+  transform: scale(1.1); 
 }
 
 /* Lista de navegación */
@@ -223,7 +223,7 @@ button[type="submit"]:hover {
 .nav-link {
   display: flex;
   align-items: center;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1; 
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: none;
@@ -235,7 +235,7 @@ button[type="submit"]:hover {
 .nav-link i {
   font-size: 1.5rem; /* Tamaño del ícono */
   margin-right: 15px;
-  color: #bdc3c7; /* Gris claro */
+  color: #bdc3c7; 
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -249,7 +249,7 @@ button[type="submit"]:hover {
 
 .nav-link:hover i {
   color: #ffffff; 
-  transform: rotate(15deg); /* Rotación ligera */
+  transform: rotate(15deg); 
 }
 
 /* Botones desplegables */
@@ -259,7 +259,7 @@ button[type="submit"]:hover {
   font-size: 1.8rem;
   border: none;
   background: none;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1; 
   display: flex;
   align-items: center;
   justify-content: space-between; 
@@ -269,7 +269,7 @@ button[type="submit"]:hover {
 }
 
 .dropdown-btn i {
-  font-size: 1.3rem; /* Flecha */
+  font-size: 1.3rem; 
   transition: transform 0.3s ease;
 }
 

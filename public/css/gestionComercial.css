@@ -186,8 +186,8 @@ button[type="submit"]:hover {
 }
 
 .sidebar:hover {
-  width: 250px; /* Barra lateral expandida */
-  background-color: #34495e; /* Azul más oscuro */
+  width: 250px; 
+  background-color: #34495e; 
 }
 
 /* Logo */
@@ -221,7 +221,7 @@ button[type="submit"]:hover {
 .nav-link {
   display: flex;
   align-items: center;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1; 
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: none;
@@ -233,7 +233,7 @@ button[type="submit"]:hover {
 .nav-link i {
   font-size: 1.5rem; /* Tamaño del ícono */
   margin-right: 15px;
-  color: #bdc3c7; /* Gris claro */
+  color: #bdc3c7; 
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -257,7 +257,7 @@ button[type="submit"]:hover {
   font-size: 1.8rem;
   border: none;
   background: none;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1; 
   display: flex;
   align-items: center;
   justify-content: space-between; 
@@ -267,7 +267,7 @@ button[type="submit"]:hover {
 }
 
 .dropdown-btn i {
-  font-size: 1.3rem; /* Flecha */
+  font-size: 1.3rem; 
   transition: transform 0.3s ease;
 }
 
