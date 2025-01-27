@@ -1,122 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/roles.css">
-    <link rel="stylesheet" href="/public/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <title>Gestión de Roles y Permisos</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/roles.css">
+    <title>Gestión de Roles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-    <h1>Gestión de Roles y Permisos</h1>
+    <!-- Navbar superior -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> Usuario
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Crear Rol -->
-    <h2>Crear Rol</h2>
-    <form id="createRoleForm">
-        <label for="roleName">Nombre del Rol:</label>
-        <input type="text" id="roleName" required>
-        <button type="submit">Crear Rol</button>
-    </form>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a class="navbar-brand" href="index.html">
+            <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
+        </a>
+        <ul class="nav flex-column mt-4">
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-gear-fill"></i> Gestión
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
+                    <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-person-badge-fill"></i> Manager
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link active" href="roles.html">Roles</a>
+                    <a class="nav-link" href="gestionUsuarios.html">Usuarios</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-bar-chart-line-fill"></i> Analityca
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="#">Sugerencias del Dx</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-    <!-- Asignar Permisos -->
-    <h2>Asignar Permisos</h2>
-    <form id="assignPermissionsForm">
-        <label for="roleId">ID del Rol:</label>
-        <input type="number" id="roleId" required>
-        <label for="permissions">Permisos (IDs separados por comas):</label>
-        <input type="text" id="permissions" required>
-        <button type="submit">Asignar Permisos</button>
-    </form>
+    <!-- Contenido principal -->
+    <div class="content" id="content">
+        <div class="container mt-4">
+            <h1 class="text-center">Gestión de Roles</h1>
 
-    <!-- Mostrar Roles y Permisos -->
-    <h2>Roles Existentes</h2>
-    <ul id="rolesList"></ul>
+            <div class="container">
+                <h1>Gestión de Roles y Permisos</h1>
 
-    <h2>Permisos Disponibles</h2>
-    <ul id="permissionsList"></ul>
+                <!-- Crear Rol -->
+                <div class="card mb-4">
+                    <div class="card-header">Crear Rol y Asignar Permisos</div>
+                    <div class="card-body">
+                        <form id="createRoleForm">
+                            <label for="roleName" class="form-label">Nombre del Rol:</label>
+                            <input type="text" id="roleName" class="form-control mb-3" required>
 
-    <script>
-        const API_URL = 'http://localhost:3000/roles';
+                            <label for="permissionsCheckboxes" class="form-label">Permisos Disponibles:</label>
+                            <div id="permissionsCheckboxes" class="mb-3"></div>
 
-        // Cargar roles y permisos
-        async function loadRolesAndPermissions() {
-            try {
-                const response = await fetch(`${API_URL}/roles-and-permissions`);
-                const data = await response.json();
+                            <button type="submit" class="btn btn-success">Crear Rol</button>
+                        </form>
+                    </div>
+                </div>
 
-                // Mostrar roles
-                const rolesList = document.getElementById('rolesList');
-                rolesList.innerHTML = '';
-                data.roles.forEach(role => {
-                    const li = document.createElement('li');
-                    li.textContent = `${role.idRol} - ${role.nombre}`;
-                    rolesList.appendChild(li);
-                });
+                <!-- Roles Existentes -->
+                <div class="card">
+                    <div class="card-header">Roles Existentes</div>
+                    <div class="card-body">
+                        <table class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Rol</th>
+                                    <th>Permisos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rolesTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-                // Mostrar permisos
-                const permissionsList = document.getElementById('permissionsList');
-                permissionsList.innerHTML = '';
-                data.permissions.forEach(permission => {
-                    const li = document.createElement('li');
-                    li.textContent = `${permission.idPermiso} - ${permission.nombre}`;
-                    permissionsList.appendChild(li);
-                });
-            } catch (error) {
-                console.error('Error al cargar roles y permisos:', error);
-            }
-        }
+            <!-- Modal para permisos -->
+            <div class="modal" id="permissionsModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Permisos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="permissionsModalBody"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="savePermissionsButton" class="btn btn-primary">Guardar
+                                Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        // Crear rol
-        document.getElementById('createRoleForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const roleName = document.getElementById('roleName').value;
+        </div>
 
-            try {
-                const response = await fetch(`${API_URL}/create-role`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nombre: roleName }),
-                });
-
-                if (response.ok) {
-                    alert('Rol creado exitosamente');
-                    loadRolesAndPermissions();
-                } else {
-                    alert('Error al crear el rol');
-                }
-            } catch (error) {
-                console.error('Error al crear el rol:', error);
-            }
-        });
-
-        // Asignar permisos
-        document.getElementById('assignPermissionsForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const roleId = parseInt(document.getElementById('roleId').value);
-            const permissions = document.getElementById('permissions').value.split(',').map(Number);
-
-            try {
-                const response = await fetch(`${API_URL}/assign-permissions`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ idRol: roleId, permisos: permissions }),
-                });
-
-                if (response.ok) {
-                    alert('Permisos asignados exitosamente');
-                } else {
-                    alert('Error al asignar permisos');
-                }
-            } catch (error) {
-                console.error('Error al asignar permisos:', error);
-            }
-        });
-
-        // Cargar datos al inicio
-        loadRolesAndPermissions();
-    </script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/rolesF.js"></script>
     </div>
 </body>
+
 </html>
