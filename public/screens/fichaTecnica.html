@@ -8,19 +8,57 @@
     <link rel="stylesheet" href="/public/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     
 </head>
 <body>
+    
 
+    <!--barra lateral -->
     <div class="sidebar" id="sidebar">
         <a class="navbar-brand" href="index.html">
             <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
         </a>
+        
         <ul class="nav flex-column mt-4">
             <li class="nav-item">
-                <a class="nav-link" href="../screens/home.html">
+                <button class="dropdown-btn" onclick="window.location.href='./home.html'">
                     <i class="bi bi-house-door-fill"></i> Home
-                </a>
+                </button>
+            </li>
+                
+               
+            
+            
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-gear-fill"></i> Gestión
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
+                    <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
+                   
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-person-badge-fill"></i> Manager
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="roles.html">Roles</a>
+                    <a class="nav-link" href="gestionUsuarios.html">Usuarios</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="dropdown-btn">
+                    <i class="bi bi-bar-chart-line-fill"></i> Analityca
+                </button>
+                <div class="dropdown-container">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="#">Sugerencias del Dx</a>
+                </div>
             </li>
         </ul>
     </div>
@@ -28,28 +66,32 @@
         <div class="header">
             <h1>Ficha de Inscripción Centro de Negocios</h1>
         </div>
-
-        <form onsubmit="mostrarMensajeExito(); return false;">
+        
             <table>
                 <tr>
                     <th colspan="4">DATOS GENERALES</th>
                 </tr>
                 <tr>
                     <td><label for="sede_funder">Sede FUNDER:</label></td>
-                    <td colspan="3"><input type="text" id="sede_funder" name="sede_funder"></td>
+                    <td colspan="3"><input type="text" id="sede_funder" name="sede_funder" required></td>
                 </tr>
                 <tr>
                     <td><label for="nombres_apellidos">Nombres y Apellidos:</label></td>
-                    <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos"></td>
+                    <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos" required></td>
                 </tr>
                 <tr>
                     <td><label for="documento_identidad">Documento de Identidad:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="ci_dni" name="documento_identidad"> CI/DNI
-                        <input type="checkbox" id="pasaporte" name="documento_identidad"> Pasaporte
-                        <input type="checkbox" id="tarjeta_identidad" name="documento_identidad"> Tarjeta Identidad
-                        <input type="checkbox" id="doc_refugio" name="documento_identidad"> Doc. Refugio
-                        <input type="checkbox" id="carnet_solicitante" name="documento_identidad"> Carnet de Solicitante
+                        <input type="radio" id="ci_dni" name="documento_identidad" required> 
+                        <label for="CI/DNI">CI/DNI</label>
+                        <input type="radio" id="pasaporte" name="documento_identidad" required>
+                        <label for="pasaporte">Pasaporte</label>
+                        <input type="radio" id="tarjeta_identidad" name="documento_identidad" required> 
+                        <label for="tarjeta_identidad">Tarjeta De Identidad</label>
+                        <input type="radio" id="doc_refugio" name="documento_identidad" required> 
+                        <label for="doc_refugio">Doc. Refugio</label>
+                        <input type="radio" id="carnet_solicitante" name="documento_identidad" required>
+                        <label for="carnet_solicitante">Carnet De Solicitante</label>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +102,7 @@
                 </tr>
                 <tr>
                     <td><label for="lugar_nacimiento">Lugar y Fecha de Nacimiento:</label></td>
-                    <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento"></td>
+                    <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
                     <td><label for="edad">Edad:</label></td>
                     <td><input type="number" id="edad" name="edad"></td>
                 </tr>
@@ -70,38 +112,57 @@
                 <tr>
                     <td><label for="genero">Identidad Sexo-Genérica:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="femenino" name="genero"> Femenino
-                        <input type="checkbox" id="masculino" name="genero"> Masculino
-                        <input type="checkbox" id="lgbtiq" name="genero"> LGBTIQ+
+                        <input type="radio" id="femenino" name="genero"> 
+                        <label for="femenino">Femenino</label>
+                        <input type="radio" id="masculino" name="genero"> 
+                        <label for="masculino">Masculino</label>
+                        <input type="radio" id="lgbtiq" name="genero">
+                        <label for="lgbtiq">LGBTQI+</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="estado_civil">Estado Civil:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="casado" name="estado_civil"> Casado/a
-                        <input type="checkbox" id="soltero" name="estado_civil"> Soltero/a
-                        <input type="checkbox" id="union_libre" name="estado_civil"> Unión Libre
-                        <input type="checkbox" id="viudo" name="estado_civil"> Viudo/a
-                        <input type="checkbox" id="divorciado" name="estado_civil"> Divorciado/a
+                        <input type="radio" id="casado" name="estado_civil"> 
+                        <label for="casado">Casado/a</label>
+                        <input type="radio" id="soltero" name="estado_civil"> 
+                        <label for="soltero">Soltero/a</label>
+                        <input type="radio" id="union_libre" name="estado_civil"> 
+                        <label for="union_libre">Union Libre</label>
+                        <input type="radio" id="viudo" name="estado_civil"> 
+                        <label for="Viudo">Viudo/a</label>
+                        <input type="radio" id="divorciado" name="estado_civil"> 
+                        <label for="divorciado">Divorciado/a</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="rol_familiar">Rol Familiar:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="mujer_cabeza_hogar" name="rol_familiar"> Mujer Cabeza de Hogar
-                        <input type="checkbox" id="hombre_cabeza_hogar" name="rol_familiar"> Hombre Cabeza de Hogar
+                        <input type="radio" id="mujer_cabeza_hogar" name="rol_familiar"> 
+                        <label for="mujer_cabeza_hogar">Mujer cabeza hogar</label>
+                        <input type="radio" id="hombre_cabeza_hogar" name="rol_familiar">
+                        <label for="hombre_cabeza_hogar">Hombre cabeza hogar</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="discapacidad">Algún Tipo de Discapacidad:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="intelectual" name="discapacidad"> Intelectual
-                        <input type="checkbox" id="fisica" name="discapacidad"> Física
-                        <input type="checkbox" id="visual" name="discapacidad"> Visual
-                        <input type="checkbox" id="auditiva" name="discapacidad"> Auditiva
-                        <input type="checkbox" id="lenguaje" name="discapacidad"> De Lenguaje
-                        <input type="checkbox" id="psicosocial" name="discapacidad"> Psicosocial
-                        <input type="checkbox" id="multiple" name="discapacidad"> Múltiple
+                        <input type="radio" id="intelectual" name="discapacidad"> 
+                        <label for="intelectual">Intelectual</label>
+                        <input type="radio" id="fisica" name="discapacidad"> 
+                        <label for="fisica">Fisica</label>
+                        <input type="radio" id="visual" name="discapacidad"> 
+                        <label for="visual">Visual</label>
+                        <input type="radio" id="auditiva" name="discapacidad"> 
+                        <label for="auditiva"><A></A>uditiva</label>
+                        <input type="radio" id="lenguaje" name="discapacidad"> 
+                        <label for="lenguaje">De Lenguaje</label>
+                        <input type="radio" id="psicosocial" name="discapacidad"> 
+                        <label for="psicosocial">Psicosocial</label>
+                        <input type="radio" id="multiple" name="discapacidad"> 
+                        <label for="multiple">Multiple</label>
+                        <input type="radio" id="ninguna" name="discapacidad"> 
+                        <label for="ninguna">Ninguna</label>
                     </td>
                 </tr>
                 <tr>
@@ -110,10 +171,14 @@
                 <tr>
                     <td><label for="estatus">Estatus (en caso de ser extranjero):</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="refugiado" name="estatus"> Refugiado
-                        <input type="checkbox" id="migrante" name="estatus"> Migrante
-                        <input type="checkbox" id="asilado" name="estatus"> Asilado
-                        <input type="checkbox" id="solicitante_refugio" name="estatus"> Solicitante de Refugio
+                        <input type="radio" id="refugiado" name="estatus">
+                        <label for="refugiado">Refugiado</label>
+                        <input type="radio" id="migrante" name="estatus">
+                        <label for="migrante">Migrante</label>
+                        <input type="radio" id="asilado" name="estatus"> 
+                        <label for="asilado">Asilado</label>
+                        <input type="radio" id="solicitante_refugio" name="estatus"> 
+                        <label for="solicitante_refugio">Solicitante de Refugio</label>
                     </td>
                 </tr>
                 <tr>
@@ -137,29 +202,44 @@
                 <tr>
                     <td><label for="acceso_tic">Acceso a las TIC:</label></td>
                     <td colspan="3">
-                        Servicio de Internet Fijo: <input type="checkbox" id="internet_fijo" name="acceso_tic"> 
-                        Celular: <input type="checkbox" id="celular" name="acceso_tic">
-                        Computador: <input type="checkbox" id="computador" name="acceso_tic">
-                        Tablet: <input type="checkbox" id="tablet" name="acceso_tic">
+                        <input type="radio" id="internet_fijo" name="acceso_tic">
+                        <label for="servicio_de_internet_fijo">servicio de internet fijo </label>
+                        <input type="radio" id="celular" name="acceso_tic"> 
+                        <label for="celular">Celular</label>
+                        <input type="radio" id="computador" name="acceso_tic">  
+                        <label for="computadora">computadora</label>
+                        <input type="radio" id="tablet" name="acceso_tic"> 
+                        <label for="tablet">tablet</label>
+                        <input type="radio" id="todas_las_anteriores" name="acceso_tic">
+                        <label for="todas_las_anteriores">Todas las Anteriores</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="instruccion">Instrucción:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="primaria" name="instruccion"> Primaria
-                        <input type="checkbox" id="bachillerato" name="instruccion"> Bachillerato
-                        <input type="checkbox" id="tecnologico" name="instruccion"> Tecnológico
-                        <input type="checkbox" id="superior" name="instruccion"> Superior
-                        <input type="checkbox" id="ninguna" name="instruccion"> Ninguna
+                        <input type="radio" id="primaria" name="instruccion"> 
+                        <label for="primaria">primaria</label>
+                        <input type="radio" id="bachillerato" name="instruccion">
+                        <label for="bachillerato">Bachillerato</label>
+                        <input type="radio" id="tecnologico" name="instruccion"> 
+                        <label for="tecnologico">Tecnologico</label>
+                        <input type="radio" id="superior" name="instruccion"> 
+                        <label for="superior">Superior</label>
+                        <input type="radio" id="ninguna" name="instruccion"> 
+                        <label for="ninguna">Ninguna</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="tipo_negocio">Tipo del Negocio:</label></td>
                     <td colspan="3">
-                        <input type="checkbox" id="produccion" name="tipo_negocio"> Producción
-                        <input type="checkbox" id="servicio" name="tipo_negocio"> Servicio
-                        <input type="checkbox" id="comercializacion" name="tipo_negocio"> Comercialización
-                        <input type="checkbox" id="otro" name="tipo_negocio"> Otro
+                        <input type="radio" id="produccion" name="tipo_negocio">
+                        <label for="produccion">Produccion</label>
+                        <input type="radio" id="servicio" name="tipo_negocio"> 
+                        <label for="servicio">Servicio</label>
+                        <input type="radio" id="comercializacion" name="tipo_negocio"> 
+                        <label for="comercializacion">comercializacion</label>
+                        <input type="radio" id="otro" name="tipo_negocio"> 
+                        <label for="otro">otro</label>
                     </td>
                 </tr>
                 <tr>
@@ -176,29 +256,45 @@
                 </tr>
                 <tr>
                     <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>
-                    <td colspan="3"><input type="text" id="utilidad_mensual" name="utilidad_mensual"></td>
+                    <td colspan="3"><input type="text" id="utilidad_mensual" name="utilidad_mensual" required></td>
                 </tr>
                 <tr>
                     <td><label for="caracteristicas_negocio">Describa las características del negocio:</label></td>
                     <td colspan="3">
-                        <textarea id="caracteristicas_negocio" name="caracteristicas_negocio" rows="4"></textarea>
+                        <textarea id="caracteristicas_negocio" name="caracteristicas_negocio" rows="4" required></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="asistencia_tecnica">Campos de Asistencia Técnica (en orden de prioridad):</label></td>
                     <td colspan="3">
-                        <textarea id="asistencia_tecnica" name="asistencia_tecnica" rows="3"></textarea>
+                        <textarea id="asistencia_tecnica" name="asistencia_tecnica" rows="3" required></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="temas_capacitacion">Temas de Capacitación (en orden de prioridad):</label></td>
                     <td colspan="3">
-                        <textarea id="temas_capacitacion" name="temas_capacitacion" rows="3"></textarea>
+                        <textarea id="temas_capacitacion" name="temas_capacitacion" rows="3" required></textarea>
                     </td>
                 </tr>
             </table>
+        <form>   
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
+            
+    <script>
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+    
+        dropdownBtns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const container = this.nextElementSibling;
+                container.classList.toggle('show');
+            });
+        });
+    </script>
+    
+    
+      
+    <script src="/public/js/fichatecnica.js"></script>
 </body>
 </html>

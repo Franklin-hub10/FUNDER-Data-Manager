@@ -1,63 +1,79 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.querySelector("form");
-    const telefono1 = document.getElementById("telefono1");
-    const telefono2 = document.getElementById("telefono2");
-    const email = document.getElementById("email");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
 
-    // Función para mostrar mensajes de alerta
-    const mostrarAlerta = (mensaje, tipo = "error") => {
-        const alerta = document.createElement("div");
-        alerta.textContent = mensaje;
-        alerta.className = tipo === "error" ? "alert-error" : "alert-success";
-        document.body.appendChild(alerta);
+    form.addEventListener("submit", function (event) {
+        let valid = true; // Controla si el formulario es válido
+        const mensajesErrores = [];
 
-        setTimeout(() => alerta.remove(), 3000);
-    };
+        // Validar campos de texto requeridos
+        const requiredTextFields = [
+            "nombre_comercial",
+            "razon_social",
+            "sede",
+            "productos_servicios",
+            "direccion",
+            "ciudad",
+            "canton",
+            "parroquia",
+            "contacto1",
+            "contacto2",
+            "referencia",
+            "tecnico"
+        ];
+        requiredTextFields.forEach((id) => {
+            const field = document.getElementById(id);
+            if (field.value.trim() === "") {
+                mensajesErrores.push(`El campo '${field.previousElementSibling.textContent}' es obligatorio.`);
+                valid = false;
+            }
+        });
 
-    // Validar teléfonos
-    const validarTelefonos = () => {
-        let valido = true;
-
-        if (telefono1.value.length !== 10) {
-            mostrarAlerta("Teléfono 1 debe tener exactamente 10 dígitos.", "error");
-            valido = false;
+        // Validar números de teléfono (10 dígitos)
+        const telefono1 = document.getElementById("telefono1").value.trim();
+        const telefono2 = document.getElementById("telefono2").value.trim();
+        if (!/^\d{10}$/.test(telefono1)) {
+            mensajesErrores.push("El 'Teléfono 1' debe contener exactamente 10 dígitos.");
+            valid = false;
+        }
+        if (!/^\d{10}$/.test(telefono2)) {
+            mensajesErrores.push("El 'Teléfono 2' debe contener exactamente 10 dígitos.");
+            valid = false;
         }
 
-        if (telefono2.value.length !== 10) {
-            mostrarAlerta("Teléfono 2 debe tener exactamente 10 dígitos.", "error");
-            valido = false;
+        // Validar correo electrónico
+        const email = document.getElementById("email").value.trim();
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            mensajesErrores.push("El campo 'Email' debe contener una dirección de correo válida.");
+            valid = false;
         }
 
-        return valido;
-    };
+        // Validar números requeridos (socios, empleados, antigüedad)
+        const requiredNumberFields = [
+            { id: "num_socios", label: "Número de socios" },
+            { id: "num_empleados", label: "Número de empleados" },
+            { id: "antiguedad", label: "Antigüedad de la empresa" }
+        ];
+        requiredNumberFields.forEach((field) => {
+            const value = document.getElementById(field.id).value.trim();
+            if (value === "" || isNaN(value) || value <= 0) {
+                mensajesErrores.push(`El campo '${field.label}' debe ser un número mayor a 0.`);
+                valid = false;
+            }
+        });
 
-    // Validar email
-    const validarEmail = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(email.value)) {
-            mostrarAlerta("El correo electrónico no es válido.", "error");
-            return false;
+        // Validar fecha de evaluación
+        const fechaEvaluacion = document.getElementById("fecha_evaluacion").value.trim();
+        if (fechaEvaluacion === "") {
+            mensajesErrores.push("El campo 'Fecha de la evaluación' es obligatorio.");
+            valid = false;
         }
 
-        return true;
-    };
-
-    // Validar el formulario completo
-    const validarFormulario = () => {
-        const telefonosValidos = validarTelefonos();
-        const emailValido = validarEmail();
-
-        return telefonosValidos && emailValido;
-    };
-
-    // Manejar evento de envío del formulario
-    formulario.addEventListener("Guardar", (e) => {
-        e.preventDefault(); // Prevenir el envío por defecto
-
-        if (validarFormulario()) {
-            mostrarAlerta("Guardado con éxito.", "success");
-            formulario.reset(); // Limpia el formulario si es válido
+        // Mostrar errores o mensaje de éxito
+        if (!valid) {
+            event.preventDefault(); // Evitar envío del formulario si hay errores
+            alert(`Errores encontrados:\n\n${mensajesErrores.join("\n")}`);
+        } else {
+            alert("Formulario guardado con éxito.");
         }
     });
 });
