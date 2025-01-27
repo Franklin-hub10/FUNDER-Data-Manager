@@ -11,119 +11,180 @@
 </head>
 <body>
     <div class="container">
-    <h1>Prueba de API de Usuarios</h1>
+        <h1>Prueba de API de Colaboradores</h1>
 
-    <!-- Crear Usuario -->
-    <h2>Crear Usuario</h2>
-    <form id="create-user-form">
-        <input type="text" id="create-nombre" placeholder="Nombre" required><br><br>
-        <input type="email" id="create-email" placeholder="Correo Electrónico" required><br><br>
-        <input type="password" id="create-password" placeholder="Contraseña" required><br><br>
-        <input type="number" id="create-idRol" placeholder="ID del Rol" required><br><br>
-        <button type="submit">Crear Usuario</button>
-    </form>
-    
-    <hr>
+        <!-- Crear Colaborador -->
+        <h2>Crear Colaborador</h2>
+        <form id="create-user-form">
+            <input type="text" id="create-nombres" placeholder="Nombres" required><br><br>
+            <input type="text" id="create-apellidos" placeholder="Apellidos" required><br><br>
+            <input type="text" id="create-cedula" placeholder="Cédula" required><br><br>
+            <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" required><br><br>
+            <input type="text" id="create-cargo" placeholder="Cargo" required><br><br>
+            <select id="create-idRol" required>
+                <option value="">Seleccione un rol</option>
+            </select><br><br>
+            <select id="create-idSede" required>
+                <option value="">Seleccione una sede</option>
+            </select><br><br>
+            <button type="submit">Crear Colaborador</button>
+        </form>
+        
+        <hr>
 
-    <!-- Obtener Usuario por ID -->
-    <h2>Obtener Usuario</h2>
-    <input type="number" id="get-user-id" placeholder="ID del Usuario">
-    <button onclick="getUser()">Obtener Usuario</button>
-    <div id="user-details"></div>
+        <!-- Obtener Colaborador por ID -->
+        <h2>Buscar Colaborador</h2>
+        <input type="number" id="get-user-id" placeholder="ID del Colaborador">
+        <button onclick="getUser()">Obtener Colaborador</button>
+        <div id="user-details"></div>
 
-    <hr>
+        <hr>
 
-    <!-- Actualizar Usuario -->
-    <h2>Actualizar Usuario</h2>
-    <form id="update-user-form">
-        <input type="number" id="update-id" placeholder="ID del Usuario" required><br><br>
-        <input type="text" id="update-nombre" placeholder="Nuevo Nombre"><br><br>
-        <input type="email" id="update-email" placeholder="Nuevo Correo"><br><br>
-        <input type="password" id="update-password" placeholder="Nueva Contraseña"><br><br>
-        <input type="number" id="update-idRol" placeholder="Nuevo ID del Rol"><br><br>
-        <button type="submit">Actualizar Usuario</button>
-    </form>
+        <h2>Editar o Eliminar Colaborador</h2>
+        <form id="edit-delete-user-form">
+            <input type="number" id="edit-delete-id" placeholder="ID del Colaborador" required><br><br>
+            <input type="text" id="edit-delete-nombres" placeholder="Nuevos Nombres"><br><br>
+            <input type="text" id="edit-delete-apellidos" placeholder="Nuevos Apellidos"><br><br>
+            <input type="text" id="edit-delete-cedula" placeholder="Nueva Cédula"><br><br>
+            <input type="date" id="edit-delete-fechaNacimiento" placeholder="Nueva Fecha de Nacimiento"><br><br>
+            <input type="text" id="edit-delete-cargo" placeholder="Nuevo Cargo"><br><br>
+            <select id="edit-delete-idRol">
+                <option value="">Seleccione un nuevo rol</option>
+            </select><br><br>
+            <select id="edit-delete-idSede">
+                <option value="">Seleccione una nueva sede</option>
+            </select><br><br>
+            <!-- Botones separados para Editar o Eliminar -->
+            <button type="button" id="update-btn" onclick="updateUser()">Actualizar Colaborador</button>
+            <button type="button" id="delete-btn" onclick="deleteUser()">Eliminar Colaborador</button>
+        </form>
 
-    <hr>
-
-    <!-- Eliminar Usuario -->
-    <h2>Eliminar Usuario</h2>
-    <input type="number" id="delete-id" placeholder="ID del Usuario">
-    <button onclick="deleteUser()">Eliminar Usuario</button>
-
-    <script>
-        // Función para crear un usuario
-        document.getElementById('create-user-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const nombre = document.getElementById('create-nombre').value;
-            const email = document.getElementById('create-email').value;
-            const password = document.getElementById('create-password').value;
-            const idRol = document.getElementById('create-idRol').value;
-
-            try {
-                const response = await axios.post('http://localhost:3000/create-user', {
-                    nombre,
-                    email,
-                    password,
-                    idRol
-                });
-                alert(response.data.message);
-            } catch (error) {
-                alert('Error al crear el usuario: ' + error.response.data.message);
+        <script>
+            // Cargar roles y sedes desde la API y llenar los menús desplegables
+            async function loadRolesAndSedes() {
+                try {
+                    const rolesResponse = await axios.get('http://localhost:3000/roles');
+                    const sedesResponse = await axios.get('http://localhost:3000/sedes');
+                    
+                    const roles = rolesResponse.data.roles || [];
+                    const sedes = sedesResponse.data.sedes || [];
+        
+                    const createRoleSelect = document.getElementById('create-idRol');
+                    const updateRoleSelect = document.getElementById('edit-delete-idRol');
+                    const createSedeSelect = document.getElementById('create-idSede');
+                    const updateSedeSelect = document.getElementById('edit-delete-idSede');
+        
+                    roles.forEach(role => {
+                        const option = document.createElement('option');
+                        option.value = role.id;
+                        option.textContent = role.nombre;
+                        createRoleSelect.appendChild(option);
+        
+                        const updateOption = document.createElement('option');
+                        updateOption.value = role.id;
+                        updateOption.textContent = role.nombre;
+                        updateRoleSelect.appendChild(updateOption);
+                    });
+        
+                    sedes.forEach(sede => {
+                        const option = document.createElement('option');
+                        option.value = sede.id;
+                        option.textContent = sede.nombre;
+                        createSedeSelect.appendChild(option);
+        
+                        const updateOption = document.createElement('option');
+                        updateOption.value = sede.id;
+                        updateOption.textContent = sede.nombre;
+                        updateSedeSelect.appendChild(updateOption);
+                    });
+        
+                } catch (error) {
+                    alert('Error al cargar los roles o sedes: ' + error.message);
+                }
             }
-        });
+        
+            window.onload = loadRolesAndSedes;
 
-        // Función para obtener un usuario por ID
-        async function getUser() {
-            const userId = document.getElementById('get-user-id').value;
-            try {
-                const response = await axios.get(`http://localhost:3000/user/${userId}`);
-                const user = response.data.user;
-                document.getElementById('user-details').innerHTML = `
-                    <p><strong>ID:</strong> ${user.id}</p>
-                    <p><strong>Nombre:</strong> ${user.nombre}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Rol:</strong> ${user.rol}</p>
-                `;
-            } catch (error) {
-                document.getElementById('user-details').innerHTML = 'Usuario no encontrado';
+            // Función para obtener un colaborador por ID
+            async function getUser() {
+                const userId = document.getElementById('get-user-id').value;
+                const userDetailsContainer = document.getElementById('user-details');
+        
+                if (!userId) {
+                    userDetailsContainer.innerHTML = 'Por favor ingresa un ID de colaborador.';
+                    return;
+                }
+        
+                try {
+                    const response = await axios.get(`http://localhost:3000/colaborador/${userId}`);
+                    const user = response.data.colaborador;
+                    userDetailsContainer.innerHTML = `
+                        <div class="user-detail">
+                            <p><strong>ID:</strong> ${user.idColaborador}</p>
+                            <p><strong>Nombres:</strong> ${user.nombres}</p>
+                            <p><strong>Apellidos:</strong> ${user.apellidos}</p>
+                            <p><strong>Cédula:</strong> ${user.cedula}</p>
+                            <p><strong>Fecha de Nacimiento:</strong> ${user.fechaNacimiento}</p>
+                            <p><strong>Cargo:</strong> ${user.cargo}</p>
+                            <p><strong>Rol:</strong> ${user.rol}</p>
+                            <p><strong>Sede:</strong> ${user.sede}</p>
+                        </div>
+                    `;
+                } catch (error) {
+                    userDetailsContainer.innerHTML = 'No se encontró el colaborador con ese ID.';
+                }
             }
-        }
 
-        // Función para actualizar un usuario
-        document.getElementById('update-user-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const id = document.getElementById('update-id').value;
-            const nombre = document.getElementById('update-nombre').value;
-            const email = document.getElementById('update-email').value;
-            const password = document.getElementById('update-password').value;
-            const idRol = document.getElementById('update-idRol').value;
-
-            const data = { nombre, email, password, idRol };
-            // Eliminar propiedades vacías antes de enviar la solicitud
-            Object.keys(data).forEach(key => data[key] === '' && delete data[key]);
-
-            try {
-                const response = await axios.put(`http://localhost:3000/update-user/${id}`, data);
-                alert(response.data.message);
-            } catch (error) {
-                alert('Error al actualizar el usuario: ' + error.response.data.message);
+            // Función para actualizar un colaborador
+            async function updateUser() {
+                const id = document.getElementById('edit-delete-id').value;
+                const nombres = document.getElementById('edit-delete-nombres').value;
+                const apellidos = document.getElementById('edit-delete-apellidos').value;
+                const cedula = document.getElementById('edit-delete-cedula').value;
+                const fechaNacimiento = document.getElementById('edit-delete-fechaNacimiento').value;
+                const cargo = document.getElementById('edit-delete-cargo').value;
+                const idRol = document.getElementById('edit-delete-idRol').value;
+                const idSede = document.getElementById('edit-delete-idSede').value;
+        
+                try {
+                    const response = await axios.put(`http://localhost:3000/update-colaborador/${id}`, {
+                        nombres,
+                        apellidos,
+                        cedula,
+                        fechaNacimiento,
+                        cargo,
+                        idRol,
+                        idSede
+                    });
+                    alert(response.data.message);
+                } catch (error) {
+                    alert('Error al actualizar el colaborador: ' + error.response.data.message);
+                }
             }
-        });
-
-        // Función para eliminar un usuario
-        async function deleteUser() {
-            const userId = document.getElementById('delete-id').value;
-            try {
-                const response = await axios.delete(`http://localhost:3000/delete-user/${userId}`);
-                alert(response.data.message);
-            } catch (error) {
-                alert('Error al eliminar el usuario: ' + error.response.data.message);
+        
+            // Función para eliminar un colaborador
+            function deleteUser() {
+                const id = document.getElementById('edit-delete-id').value;
+        
+                if (!id) {
+                    alert("Por favor, ingrese un ID de colaborador");
+                    return;
+                }
+        
+                const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este colaborador?");
+                if (confirmDelete) {
+                    axios.delete(`http://localhost:3000/delete-colaborador/${id}`)
+                        .then(response => {
+                            alert(response.data.message);
+                            document.getElementById('edit-delete-user-form').reset();
+                        })
+                        .catch(error => {
+                            alert('Error al eliminar el colaborador: ' + error.response.data.message);
+                        });
+                }
             }
-        }
-    </script>
+        </script>
+        
     </div>
 </body>
 </html>
