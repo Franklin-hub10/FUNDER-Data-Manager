@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/usuarios.css">
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/roles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <title>Prueba de API de Usuarios</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
@@ -21,13 +21,18 @@
             <input type="text" id="create-cedula" placeholder="Cédula" required><br><br>
             <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" required><br><br>
             <input type="text" id="create-cargo" placeholder="Cargo" required><br><br>
-            <select id="create-idRol" required>
-                <option value="">Seleccione un rol</option>
-            </select><br><br>
+            <h1>Selecciona un Rol</h1>
+    
+            <!-- Elemento <select> donde se cargarán los roles -->
+            <select id="miSelect">
+                <option value="loadRoles">Cargando roles...</option>
+            </select>
+        
+            
             <select id="create-idSede" required>
                 <option value="">Seleccione una sede</option>
             </select><br><br>
-            <button type="submit">Crear Colaborador</button>
+            <button type="submit" value="createColaborador">Crear Colaborador</button>
         </form>
         
         <hr>
@@ -59,132 +64,9 @@
             <button type="button" id="delete-btn" onclick="deleteUser()">Eliminar Colaborador</button>
         </form>
 
-        <script>
-            // Cargar roles y sedes desde la API y llenar los menús desplegables
-            async function loadRolesAndSedes() {
-                try {
-                    const rolesResponse = await axios.get('http://localhost:3000/roles');
-                    const sedesResponse = await axios.get('http://localhost:3000/sedes');
-                    
-                    const roles = rolesResponse.data.roles || [];
-                    const sedes = sedesResponse.data.sedes || [];
+        <script  src="../js/usuariosF.js" type="module"></script>
         
-                    const createRoleSelect = document.getElementById('create-idRol');
-                    const updateRoleSelect = document.getElementById('edit-delete-idRol');
-                    const createSedeSelect = document.getElementById('create-idSede');
-                    const updateSedeSelect = document.getElementById('edit-delete-idSede');
-        
-                    roles.forEach(role => {
-                        const option = document.createElement('option');
-                        option.value = role.id;
-                        option.textContent = role.nombre;
-                        createRoleSelect.appendChild(option);
-        
-                        const updateOption = document.createElement('option');
-                        updateOption.value = role.id;
-                        updateOption.textContent = role.nombre;
-                        updateRoleSelect.appendChild(updateOption);
-                    });
-        
-                    sedes.forEach(sede => {
-                        const option = document.createElement('option');
-                        option.value = sede.id;
-                        option.textContent = sede.nombre;
-                        createSedeSelect.appendChild(option);
-        
-                        const updateOption = document.createElement('option');
-                        updateOption.value = sede.id;
-                        updateOption.textContent = sede.nombre;
-                        updateSedeSelect.appendChild(updateOption);
-                    });
-        
-                } catch (error) {
-                    alert('Error al cargar los roles o sedes: ' + error.message);
-                }
-            }
-        
-            window.onload = loadRolesAndSedes;
 
-            // Función para obtener un colaborador por ID
-            async function getUser() {
-                const userId = document.getElementById('get-user-id').value;
-                const userDetailsContainer = document.getElementById('user-details');
-        
-                if (!userId) {
-                    userDetailsContainer.innerHTML = 'Por favor ingresa un ID de colaborador.';
-                    return;
-                }
-        
-                try {
-                    const response = await axios.get(`http://localhost:3000/colaborador/${userId}`);
-                    const user = response.data.colaborador;
-                    userDetailsContainer.innerHTML = `
-                        <div class="user-detail">
-                            <p><strong>ID:</strong> ${user.idColaborador}</p>
-                            <p><strong>Nombres:</strong> ${user.nombres}</p>
-                            <p><strong>Apellidos:</strong> ${user.apellidos}</p>
-                            <p><strong>Cédula:</strong> ${user.cedula}</p>
-                            <p><strong>Fecha de Nacimiento:</strong> ${user.fechaNacimiento}</p>
-                            <p><strong>Cargo:</strong> ${user.cargo}</p>
-                            <p><strong>Rol:</strong> ${user.rol}</p>
-                            <p><strong>Sede:</strong> ${user.sede}</p>
-                        </div>
-                    `;
-                } catch (error) {
-                    userDetailsContainer.innerHTML = 'No se encontró el colaborador con ese ID.';
-                }
-            }
-
-            // Función para actualizar un colaborador
-            async function updateUser() {
-                const id = document.getElementById('edit-delete-id').value;
-                const nombres = document.getElementById('edit-delete-nombres').value;
-                const apellidos = document.getElementById('edit-delete-apellidos').value;
-                const cedula = document.getElementById('edit-delete-cedula').value;
-                const fechaNacimiento = document.getElementById('edit-delete-fechaNacimiento').value;
-                const cargo = document.getElementById('edit-delete-cargo').value;
-                const idRol = document.getElementById('edit-delete-idRol').value;
-                const idSede = document.getElementById('edit-delete-idSede').value;
-        
-                try {
-                    const response = await axios.put(`http://localhost:3000/update-colaborador/${id}`, {
-                        nombres,
-                        apellidos,
-                        cedula,
-                        fechaNacimiento,
-                        cargo,
-                        idRol,
-                        idSede
-                    });
-                    alert(response.data.message);
-                } catch (error) {
-                    alert('Error al actualizar el colaborador: ' + error.response.data.message);
-                }
-            }
-        
-            // Función para eliminar un colaborador
-            function deleteUser() {
-                const id = document.getElementById('edit-delete-id').value;
-        
-                if (!id) {
-                    alert("Por favor, ingrese un ID de colaborador");
-                    return;
-                }
-        
-                const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este colaborador?");
-                if (confirmDelete) {
-                    axios.delete(`http://localhost:3000/delete-colaborador/${id}`)
-                        .then(response => {
-                            alert(response.data.message);
-                            document.getElementById('edit-delete-user-form').reset();
-                        })
-                        .catch(error => {
-                            alert('Error al eliminar el colaborador: ' + error.response.data.message);
-                        });
-                }
-            }
-        </script>
-        
     </div>
 </body>
 </html>
