@@ -1,3 +1,8 @@
+SHOW DATABASES;
+
+
+
+
 -- phpMyAdmin SQL Dump
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
@@ -6,6 +11,10 @@
 -- Tiempo de generación: 17-08-2024 a las 03:03:45
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
+
+
+create database funder;
+USE funder;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +27,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `funder` 
+-- Base de datos: `funder`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +46,7 @@ CREATE TABLE `canton` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `colaborador` rol
+-- Estructura de tabla para la tabla `colaborador`
 --
 
 CREATE TABLE `colaborador` (
@@ -46,7 +55,8 @@ CREATE TABLE `colaborador` (
   `nombres` varchar(200) NOT NULL,
   `apellidos` varchar(200) NOT NULL,
   `idSede` int(10) NOT NULL,
-  `cargo` varchar(100) NOT NULL
+  `cargo` varchar(100) NOT NULL,
+  identificacion
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -152,7 +162,7 @@ CREATE TABLE `etapamedicion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `etnia` 
+-- Estructura de tabla para la tabla `etnia`
 --
 
 CREATE TABLE `etnia` (
@@ -663,7 +673,7 @@ ALTER TABLE `tipoparroquia`
   MODIFY `idTipoParroquia` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas   
+-- Restricciones para tablas volcadas
 --
 
 --
@@ -754,3 +764,25 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+-- tablas nuevas Franklin --
+
+-- permisos -- 
+
+CREATE TABLE `permiso` (
+  `idPermiso` int(10) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`idPermiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `rol_permiso` (
+  `idRol` int(10) NOT NULL,
+  `idPermiso` int(10) NOT NULL,
+  PRIMARY KEY (`idRol`, `idPermiso`),
+  FOREIGN KEY (`idRol`) REFERENCES `rol`(`idRol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`idPermiso`) REFERENCES `permiso`(`idPermiso`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
