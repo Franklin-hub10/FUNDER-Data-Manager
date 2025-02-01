@@ -11,97 +11,63 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <!-- Navbar superior -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> Usuario
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container">
+        <h1>Prueba de API de Colaboradores</h1>
+
+        <!-- Crear Colaborador -->
+        <h2>Crear Colaborador</h2>
+        <form id="create-user-form">
+            <input type="text" id="create-nombres" placeholder="Nombres" required><br><br>
+            <input type="text" id="create-apellidos" placeholder="Apellidos" required><br><br>
+            <input type="text" id="create-cedula" placeholder="Cédula" required><br><br>
+            <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" required><br><br>
+            <input type="text" id="create-cargo" placeholder="Cargo" required><br><br>
+            <h1>Selecciona un Rol</h1>
     
-    <!-- Barra lateral -->
-    <div class="sidebar" id="sidebar">
-        <a class="navbar-brand" href="index.html">
-            <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
-        </a>
-        <ul class="nav flex-column mt-4">
-            <li class="nav-item">
-                <button class="dropdown-btn"><i class="bi bi-gear-fill"></i> Gestión</button>
-                <div class="dropdown-container">
-                    <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
-                    <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <button class="dropdown-btn"><i class="bi bi-person-badge-fill"></i> Manager</button>
-                <div class="dropdown-container">
-                    <a class="nav-link" href="roles.html">Roles</a>
-                    <a class="nav-link" href="gestionUsuarios.html">Usuarios</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <button class="dropdown-btn"><i class="bi bi-bar-chart-line-fill"></i> Analityca</button>
-                <div class="dropdown-container">
-                    <a class="nav-link" href="#">Dashboard</a>
-                    <a class="nav-link" href="#">Sugerencias del Dx</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- Contenido principal -->
-    <div class="content" id="content">
-        <div class="container mt-4 text-center">
-            <h1>Gestión de Usuarios</h1>
-            <form id="create-user-form">
-                <input type="text" id="create-nombres" placeholder="Nombres" required>
-                <input type="text" id="create-apellidos" placeholder="Apellidos" required>
-                <input type="text" id="create-cedula" placeholder="Cédula" required>
-                <input type="date" id="create-fechaNacimiento" required>
-                <input type="text" id="create-cargo" placeholder="Cargo" required>
-                <h2>Selecciona un Rol</h2>
-                <select id="miSelect">
-                    <option value="loadRoles">Cargando roles...</option>
-                </select>
-                <select id="create-idSede" required>
-                    <option value="">Seleccione una sede</option>
-                </select>
-                <button type="submit">Crear Colaborador</button>
-            </form>
-            <hr>
-            <h2>Lista de Usuarios</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Correo</th>
-                        <th>Cargo</th>
-                        <th>Sede</th>
-                        <th>Fecha de Creación</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="users-table-body">
-                    <!-- Aquí se llenará la tabla dinámicamente -->
-                </tbody>
-            </table>
-        </div>
+            <!-- Elemento <select> donde se cargarán los roles -->
+            <select id="miSelect">
+                <option value="loadRoles">Cargando roles...</option>
+            </select>
+        
+            
+            <select id="create-idSede" required>
+                <option value="">Seleccione una sede</option>
+            </select><br><br>
+            <button type="submit" value="createColaborador">Crear Colaborador</button>
+        </form>
+        
+        <hr>
+
+        <!-- Obtener Colaborador por ID -->
+        <h2>Buscar Colaborador</h2>
+        <input type="number" id="get-user-id" placeholder="ID del Colaborador">
+        <button onclick="getUser()">Obtener Colaborador</button>
+        <div id="user-details"></div>
+
+        <hr>
+
+        <h2>Editar o Eliminar Colaborador</h2>
+        <form id="edit-delete-user-form">
+            <input type="number" id="edit-delete-id" placeholder="ID del Colaborador" required><br><br>
+            <input type="text" id="edit-delete-nombres" placeholder="Nuevos Nombres"><br><br>
+            <input type="text" id="edit-delete-apellidos" placeholder="Nuevos Apellidos"><br><br>
+            <input type="text" id="edit-delete-cedula" placeholder="Nueva Cédula"><br><br>
+            <input type="date" id="edit-delete-fechaNacimiento" placeholder="Nueva Fecha de Nacimiento"><br><br>
+            <input type="text" id="edit-delete-cargo" placeholder="Nuevo Cargo"><br><br>
+            <select id="edit-delete-idRol">
+                <option value="">Seleccione un nuevo rol</option>
+            </select><br><br>
+            <select id="edit-delete-idSede">
+                <option value="">Seleccione una nueva sede</option>
+            </select><br><br>
+            <!-- Botones separados para Editar o Eliminar -->
+            <button type="button" id="update-btn" onclick="updateUser()">Actualizar Colaborador</button>
+            <button type="button" id="delete-btn" onclick="deleteUser()">Eliminar Colaborador</button>
+        </form>
+
+        <script  src="../js/usuariosF.js" type="module"></script>
+        
+
     </div>
     
     <!-- Bootstrap JS -->

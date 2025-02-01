@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Inscripción Centro de Negocios</title>
-    <link rel="stylesheet" href="/public/css/FichaTecnica.css">
+    <link rel="stylesheet" href="/FUNDER-Data-Manager/public/css/FichaTecnica.css">
     <link rel="stylesheet" href="/public/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,7 +13,8 @@
     
 </head>
 <body>
-    
+
+ 
 
     <!--barra lateral -->
     <div class="sidebar" id="sidebar">
@@ -63,7 +64,7 @@
         </ul>
     </div>
 
-    <i class="bi bi-download download-icon" title="Descargar"></i>
+    
 
     <div class="content">
         <div class="header">
@@ -285,17 +286,32 @@
         </form>
     </div>
             
-    <script>
-        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-    
-        dropdownBtns.forEach((btn) => {
-            btn.addEventListener('click', function () {
-                const container = this.nextElementSibling;
-                container.classList.toggle('show');
-            });
-        });
-    </script>
-    
+     <!-- Bootstrap JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+         const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+         const logoutLink = document.getElementById('logoutLink');
+ 
+         // Manejo del menú desplegable
+         dropdownBtns.forEach((btn) => {
+             btn.addEventListener('click', function () {
+                 const container = this.nextElementSibling;
+                 container.classList.toggle('show');
+             });
+         });
+ 
+         // Manejo del cierre de sesión
+         logoutLink.addEventListener('click', function (event) {
+             event.preventDefault(); // Evita la redirección inmediata
+ 
+             // Limpia datos almacenados (si aplica)
+             localStorage.clear(); // Limpia almacenamiento local
+             sessionStorage.clear(); // Limpia almacenamiento de sesión
+ 
+             // Redirige al usuario a la página de inicio de sesión
+             window.location.href = './index.html';
+         });
+     </script>
     
       
     <script src="/public/js/fichatecnica.js"></script>

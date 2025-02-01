@@ -160,4 +160,19 @@ router.post('/assign-permissions', async (req, res) => {
     }
 });
 
+// Obtener solo los sede
+router.get('/sede', async (req, res) => {
+    try {
+        const [sede] = await db.query(`
+            SELECT idSede, nombre AS sede
+            FROM sede
+        `);
+        res.status(200).json(sede); // Devuelve los roles como un array
+    } catch (error) {
+        console.error('Error al obtener sedes:', error);
+        res.status(500).json({ message: 'Error al obtener roles', error });
+    }
+});
+
+
 module.exports = router;
