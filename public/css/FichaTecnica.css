@@ -183,7 +183,6 @@ button[type="submit"]:hover {
         border-radius: 5px;
     }
 }
-
 /* Barra lateral principal */
 
 .sidebar {
@@ -203,7 +202,7 @@ button[type="submit"]:hover {
 
 .sidebar:hover {
   width: 250px; /* Barra lateral expandida */
-  background-color: #34495e; 
+  background-color: #34495e; /* Azul más oscuro */
 }
 
 /* Logo */
@@ -237,7 +236,7 @@ button[type="submit"]:hover {
 .nav-link {
   display: flex;
   align-items: center;
-  color: #ecf0f1; 
+  color: #ecf0f1; /* Blanco suave */
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: none;
@@ -249,7 +248,7 @@ button[type="submit"]:hover {
 .nav-link i {
   font-size: 1.5rem; /* Tamaño del ícono */
   margin-right: 15px;
-  color: #bdc3c7; 
+  color: #bdc3c7; /* Gris claro */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -270,20 +269,20 @@ button[type="submit"]:hover {
 .dropdown-btn {
   cursor: pointer;
   padding: 10px 15px;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   border: none;
   background: none;
-  color: #ecf0f1;
+  color: #ecf0f1; /* Blanco suave */
   display: flex;
   align-items: center;
   justify-content: space-between; 
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  gap: 10px;
+  gap: 10;
 }
 
 .dropdown-btn i {
-  font-size: 1.3rem; 
+  font-size: 1.2rem; /* Flecha */
   transition: transform 0.3s ease;
 }
 
@@ -298,7 +297,7 @@ button[type="submit"]:hover {
 }
 
 .dropdown-container a {
-  font-size: 1.8rem;
+  font-size: 1rem;
   color: #bdc3c7; 
   text-decoration: none;
   padding: 8px 15px;
@@ -325,3 +324,5 @@ button[type="submit"]:hover {
 .sidebar:hover + .content {
   margin-left: 250px;
 }
+
+

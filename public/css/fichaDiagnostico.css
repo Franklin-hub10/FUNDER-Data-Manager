@@ -311,3 +311,15 @@ button[type="submit"]:hover {
 .sidebar:hover + .content {
   margin-left: 250px;
 }
+.download-icon {
+  position: fixed; 
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #007bff; 
+  cursor: pointer;
+  z-index: 1000; 
+}
+.download-icon:hover {
+  color: #0056b3; 
+}
