@@ -83,28 +83,60 @@ async function createColaborador(data) {
 }
 
 // Cargar sedes
-async function loadSedes() {
-    const sedeSelect = document.getElementById('create-idSede');
-    try {
-        const response = await fetch(`${API_URL}/sedes`);
-        if (!response.ok) {
-            console.error("Error al cargar sedes");
-            throw new Error("No se pudieron cargar las sedes.");
-        }
-        const sedes = await response.json();
+export async function loadSedes() {
+    const selectId = 'create-idSede'; // ID del <select> en el HTML
+    console.log(`Intentando cargar sedes desde la API: ${API_URL}/sedes`);
 
-        sedeSelect.innerHTML = '<option value="">Seleccione una sede</option>';
-        sedes.forEach(sede => {
-            const option = document.createElement('option');
-            option.value = sede.idSede;
-            option.textContent = sede.sede;
-            sedeSelect.appendChild(option);
+    try {
+        // Realizar la solicitud a la API
+        const response = await fetch(`${API_URL}/sedes`);
+
+        console.log(`Respuesta recibida: ${response.status} ${response.statusText}`);
+        
+        // Verificar si la respuesta es exitosa
+        if (!response.ok) {
+            console.error(`Error en la solicitud: ${response.status}`);
+            throw new Error(`Error al obtener sedes: ${response.statusText}`);
+        }
+
+        const sedes = await response.json();
+        console.log("Datos obtenidos de la API:", sedes);
+
+        // Validar que sedes sea un arreglo
+        if (!Array.isArray(sedes)) {
+            console.error("La respuesta no es un arreglo válido:", sedes);
+            throw new Error("Formato incorrecto en la respuesta de la API.");
+        }
+
+        // Seleccionar el elemento <select>
+        const selectElement = document.getElementById(selectId);
+
+        if (!selectElement) {
+            console.error(`No se encontró el elemento <select> con ID "${selectId}" en el DOM.`);
+            throw new Error(`Elemento <select> no encontrado.`);
+        }
+
+        console.log("Limpiando opciones actuales en el <select>.");
+        // Limpiar las opciones actuales
+        selectElement.innerHTML = '<option value="">Seleccione una sede</option>';
+
+        // Agregar cada sede como opción
+        sedes.forEach((sede, index) => {
+            console.log(`Agregando sede [${index}]: ID=${sede.idSede}, Nombre=${sede.sede}`);
+            const option = document.createElement("option");
+            option.value = sede.idSede; // Usar el ID de la sede
+            option.textContent = sede.sede; // Usar el nombre de la sede
+            selectElement.appendChild(option);
         });
+
+        console.log("Sedes cargadas exitosamente en el <select>.");
+
     } catch (error) {
         console.error("Error al cargar sedes:", error.message);
-        alert(`Error al cargar sedes: ${error.message}`);
+        alert(`No se pudieron cargar las sedes. Detalles: ${error.message}`);
     }
 }
+
 
 // Crear colaborador
 document.getElementById('create-user-form').addEventListener('submit', async (e) => {

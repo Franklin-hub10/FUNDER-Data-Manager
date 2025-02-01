@@ -30,7 +30,7 @@
         
             
             <select id="create-idSede" required>
-                <option value="">Seleccione una sede</option>
+                <option value="loadSedes">Seleccione una sede</option>
             </select><br><br>
             <button type="submit" value="createColaborador">Crear Colaborador</button>
         </form>
@@ -53,9 +53,12 @@
             <input type="text" id="edit-delete-cedula" placeholder="Nueva Cédula"><br><br>
             <input type="date" id="edit-delete-fechaNacimiento" placeholder="Nueva Fecha de Nacimiento"><br><br>
             <input type="text" id="edit-delete-cargo" placeholder="Nuevo Cargo"><br><br>
-            <select id="edit-delete-idRol">
-                <option value="">Seleccione un nuevo rol</option>
-            </select><br><br>
+             <h1>Selecciona un Rol</h1>
+    
+            <!-- Elemento <select> donde se cargarán los roles -->
+            <select id="miSelect">
+                <option value="loadRoles">Cargando roles...</option>
+            </select>
             <select id="edit-delete-idSede">
                 <option value="">Seleccione una nueva sede</option>
             </select><br><br>
