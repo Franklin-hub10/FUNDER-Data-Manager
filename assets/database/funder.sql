@@ -50,13 +50,13 @@ CREATE TABLE `canton` (
 --
 
 CREATE TABLE `colaborador` (
-  `idColaborador` int(10) NOT NULL,
+  `idColaborador` int(10) NOT NULL AUTO_INCREMENT,
   `idRol` int(10) NOT NULL,
   `nombres` varchar(200) NOT NULL,
   `apellidos` varchar(200) NOT NULL,
   `idSede` int(10) NOT NULL,
   `cargo` varchar(100) NOT NULL,
-  identificacion
+   identificacion
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

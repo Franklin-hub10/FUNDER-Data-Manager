@@ -14,16 +14,6 @@ router.get('/users', async (req, res) => {
     }
 });
 
-router.get('/sedes', async (req, res) => {
-    try {
-        const [sedes] = await db.query('SELECT idSede, nombre FROM sede');
-        res.status(200).json(sedes);
-    } catch (error) {
-        console.error('Error al obtener sedes:', error);
-        res.status(500).json({ message: 'Error al obtener sedes', error });
-    }
-});
-
 // Obtener solo los roles
 router.get('/roles', async (req, res) => {
     try {
@@ -38,10 +28,22 @@ router.get('/roles', async (req, res) => {
     }
 });
 
-
+// Obtener las sedes
+router.get('/sedes', async (req, res) => {
+    try {
+        const [sedes] = await db.query(`
+            SELECT idSede, nombre AS sede
+            FROM sede
+        `);
+        res.status(200).json(sedes); // Devuelve las sedes como un array
+    } catch (error) {
+        console.error('Error al obtener sedes:', error);
+        res.status(500).json({ message: 'Error al obtener sedes', error });
+    }
+});
 
 // Crear un colaborador con rol
-router.post('/create-colaborador', async (req, res) => {
+router.post('/createColaborador', async (req, res) => {
     const { nombres, apellidos, idRol, idSede, cargo } = req.body;
 
     try {
@@ -120,7 +122,7 @@ router.put('/update-user/:id', async (req, res) => {
 router.delete('/delete-user/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await db.query('DELETE FROM usuario WHERE id = ?', [id]);
+        const result = await db.query('DELETE FROM usuario WHERE idColaborador = ?', [id]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Usuario no encontrado' });

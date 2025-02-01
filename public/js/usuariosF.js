@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRoles();
     loadSedes();
     
+    
 });
 
 export async function loadRoles() {
@@ -129,8 +130,6 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
 
     const nombres = document.getElementById('create-nombres').value;
     const apellidos = document.getElementById('create-apellidos').value;
-    const cedula = document.getElementById('create-cedula').value;
-    const fechaNacimiento = document.getElementById('create-fechaNacimiento').value;
     const cargo = document.getElementById('create-cargo').value;
     const idRol = document.getElementById('miSelect').value;
     const idSede = document.getElementById('create-idSede').value;
@@ -143,8 +142,6 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
     const data = {
         nombres,
         apellidos,
-        cedula,
-        fechaNacimiento,
         cargo,
         idRol,
         idSede
@@ -158,8 +155,11 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
             },
             body: JSON.stringify(data),
         });
-
+    
         const result = await response.json();
+    
+        console.log("Respuesta del servidor:", result); // Añadir esto para obtener más detalles
+    
         if (response.ok) {
             alert('Colaborador creado con éxito');
             console.log(result);

@@ -19,8 +19,8 @@
         <form id="create-user-form">
             <input type="text" id="create-nombres" placeholder="Nombres" required><br><br>
             <input type="text" id="create-apellidos" placeholder="Apellidos" required><br><br>
-            <input type="text" id="create-cedula" placeholder="Cédula" required><br><br>
-            <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" required><br><br>
+            <input type="text" id="create-cedula" placeholder="Cédula" ><br><br>
+            <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" ><br><br>
             <input type="text" id="create-cargo" placeholder="Cargo" required><br><br>
             <h1>Selecciona un Rol</h1>
     
@@ -31,7 +31,7 @@
         
             
             <select id="create-idSede" required>
-                <option value="">Seleccione una sede</option>
+                <option value="loadSede">Seleccione una sede</option>
             </select><br><br>
             <button type="submit" value="createColaborador">Crear Colaborador</button>
         </form>
@@ -55,10 +55,10 @@
             <input type="date" id="edit-delete-fechaNacimiento" placeholder="Nueva Fecha de Nacimiento"><br><br>
             <input type="text" id="edit-delete-cargo" placeholder="Nuevo Cargo"><br><br>
             <select id="edit-delete-idRol">
-                <option value="">Seleccione un nuevo rol</option>
+                <option value="loadRoles">Seleccione un nuevo rol</option>
             </select><br><br>
             <select id="edit-delete-idSede">
-                <option value="">Seleccione una nueva sede</option>
+                <option value="loadSede">Seleccione una nueva sede</option>
             </select><br><br>
             <!-- Botones separados para Editar o Eliminar -->
             <button type="button" id="update-btn" onclick="updateUser()">Actualizar Colaborador</button>
