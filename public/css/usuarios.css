@@ -1,169 +1,509 @@
-:root {
-    --fuenteTitulos: 'Roboto', sans-serif;
-    --fuenteParrafos: 'Open Sans', sans-serif;
-    --primarioAzul: #176FA6;
-    --secundarioVerde: #29A632;
-    --verdeClaro: #96D99A;
-    --amarillo: #F2BB16;
-    --blanco: #F2F2F2;
-    --negro: #000000;
-    --grisClaro: #f9f9f9;
-    --grisOscuro: #444;
-    --sombra: rgba(0, 0, 0, 0.2);
-}
-
-html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
+/* Estilo global */
 body {
-    font-family: var(--fuenteParrafos);
-    font-size: 1.5rem;
-    line-height: 2;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: var(--blanco);
-    background: rgba(250, 255, 200, 0.8);
-    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 500px;
+    padding: 600;
+    
+    height: 100vh;
+    color: #333;
+    background-color: #f4f8fb;
+    overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/assets/images/Logo\ FUNDER\ 2021.png') no-repeat center center fixed;
-    background-size: 400px;
-    filter: brightness(0.8) blur(80px);
-    z-index: -1;
-}
 
+/* Contenedor principal */
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    max-width: 900px;
-    padding: 20px;
-    background: rgba(222, 219, 219, 0.5);
-    border-radius: 15px;
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
-
-h1, h2, h3 {
-    font-family: var(--fuenteTitulos);
-    text-align: center;
-}
-
-h1 {
-    font-size: 4rem;
-    color: var(--secundarioVerde);
-    border-bottom: 2px solid var(--secundarioVerde);
-    padding-bottom: 10px;
-}
-
-h2 {
-    font-size: 3rem;
-    color: var(--primarioAzul);
-}
-
-form {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: var(--blanco);
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 4px 10px var(--sombra);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 50px;
 }
 
-label {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: var(--negro);
+/* Títulos */
+h1, h2 {
+    text-align: center;
+    color: #176FA6;
+    margin-bottom: 20px;
 }
 
-input, select {
+/* Campos de entrada */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: #f9f9f9;
     width: 100%;
-    padding: 10px;
-    font-size: 1.4rem;
-    border: 1px solid var(--grisOscuro);
-    border-radius: 5px;
-    background: var(--grisClaro);
-    margin-bottom: 15px;
 }
 
 input:focus, select:focus {
+    border-color: #176FA6;
     outline: none;
-    border-color: var(--primarioAzul);
-    box-shadow: 0 0 5px rgba(23, 111, 166, 0.5);
 }
 
+/* Botones */
 button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.6rem;
+    padding: 10px;
+    font-size: 16px;
     font-weight: bold;
-    color: var(--blanco);
-    background: var(--primarioAzul);
+    color: #ffffff;
+    background-color: #176FA6;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 10px;
 }
 
 button:hover {
-    background: #156dc1;
+    background-color: #29A632;
 }
 
-button#delete-btn {
-    background: #d9534f;
-}
-
-button#delete-btn:hover {
-    background: #c9302c;
-}
-
-hr {
-    margin: 20px 0;
-    border: none;
-    height: 1px;
-    background: var(--grisOscuro);
-}
-
+/* Responsivo */
 @media (max-width: 768px) {
-    h1, h2 {
-        font-size: 3rem;
+    .sidebar {
+        width: 50px;
     }
 
-    form {
-        padding: 15px;
+    .sidebar:hover {
+        width: 200px;
     }
 
-    input, select {
-        font-size: 1.2rem;
-        padding: 8px;
+    .content {
+        margin-left: 50px;
     }
 
-    button {
-        font-size: 1.4rem;
+    .sidebar:hover ~ .content {
+        margin-left: 200px;
     }
 }
+
+
+
+  /* Barra lateral principal */
+  .sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #176FA6, #2c3e50); /* Degradado de azul a verde */
+    padding: 20px 10px;
+    border-right: 1px solid #34495e;
+    width: 70px;
+    overflow: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1050;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  .sidebar:hover {
+    width: 250px;
+    background-color: #34495e;
+  }
+  
+  /* Logo */
+  .sidebar a.navbar-brand img {
+    width: 50px;
+    transition: width 0.3s ease, transform 0.3s ease;
+  }
+  
+  .sidebar:hover a.navbar-brand img {
+    width: 80px;
+    transform: scale(1.1);
+  }
+  
+  /* Lista de navegación en la barra lateral */
+  .sidebar ul.nav {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar:hover ul.nav {
+    opacity: 1;
+  }
+  
+  .nav-item {
+    margin: 15px 0;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    color: #ecf0f1;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+  .nav-link i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #bdc3c7;
+    transition: color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+  .nav-link:hover {
+    background-color: #29A632;
+    color: #ffffff;
+    transform: translateX(5px);
+    
+  }
+  
+  .nav-link:hover i {
+    color: #ffffff;
+    transform: rotate(15deg);
+    
+  }
+  
+  /* Botones desplegables en la barra lateral */
+  
+  
+  
+  .dropdown-btn {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 1.8rem; /* tamaño del texto*/
+    border: none;
+    background: none;
+    color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+   
+  }
+  
+  .dropdown-btn i {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-btn:hover {
+    background-color: #29A632;
+  }
+  
+  .dropdown-container {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .dropdown-container a {
+    font-size: 1.4rem; /*texto interno*/
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 8px 15px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dropdown-container a:hover {
+    background-color: #29A632;
+    color: white;
+  }
+  
+  .dropdown-container.show {
+    display: block;
+  }
+  
+ /* Contenido principal */
+.content {
+    margin-left: 70px; /* Ajustar al ancho inicial de la barra lateral */
+    padding: 20px;
+    width: calc(100% - 70px); /* Restar el ancho de la barra lateral */
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+  .sidebar:hover + .content {
+    margin-left: 250px;
+  }
+  
+  /* Navbar principal */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(20deg, #dee1de, #a8b0b8);
+    padding: 5px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: fixed; /* Mantener el navbar siempre visible */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupar todo el ancho */
+    z-index: 1000; /* Por encima de otros elementos */
+  }
+  
+  .navbar:hover {
+    background-color: rgba(44, 62, 80, 0.9);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Logo en el navbar */
+  .navbar-brand {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-brand:hover {
+    color: #29A632;
+  }
+  
+  /* Íconos dentro del navbar */
+  .navbar i {
+    color: #2c3e50;
+    font-size: 2rem;  /* tamaño del icono*/
+    transition: color 0.3s ease, transform 0.2s ease;
+    vertical-align: middle;
+  }
+  
+  .navbar i:hover {
+    color: #29A632;
+    transform: scale(1.1);
+  }
+  
+  /* Enlaces del navbar */
+  .navbar-nav .nav-link {
+    color: #2c3e50;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #29A632;
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+  
+  /* Botón del menú responsive */
+  .navbar-toggler {
+    border: none;
+    background-color: rgba(241, 234, 234, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    
+  }
+  
+  .navbar-toggler:hover {
+    background-color: #29A632;
+  }
+  
+  /* Menú desplegable */
+  
+  .dropdown {
+    position: relative; /* Necesario para posicionar correctamente el menú desplegable */
+  }
+  .dropdown-menu {
+    position: absolute; /* Posicionar el menú respecto al contenedor padre */
+    right: 0; /* Alinear al borde derecho */
+    left: auto; /* Desactivar alineación izquierda */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(248, 246, 246, 0.2);
+    font-size: 0.85rem;
+    backdrop-filter: blur(6px);
+  }
+  
+  
+  /* Elementos del menú desplegable */
+  .dropdown-item {
+    color: #2c3e50;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #29A632;
+    color: #ffffff;
+  }
+  
+  
+  /* Íconos adicionales */
+  .nav-item.dropdown {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-item.dropdown .nav-link i {
+    font-size: 2rem;  /*tamaño del icono*/
+    
+  }
+  /* Responsividad general para dispositivos pequeños */
+  @media (max-width: 768px) {
+    /* Ajustar barra lateral */
+    .sidebar {
+      width: 50px; /* Barra lateral más compacta */
+    }
+  
+    .sidebar:hover {
+      width: 200px; /* Expandir menos en pantallas pequeñas */
+    }
+  
+    /* Ocultar texto en los enlaces de la barra lateral cuando está colapsada */
+    .sidebar ul.nav .nav-link span {
+      display: none;
+    }
+  
+    .sidebar:hover ul.nav .nav-link span {
+      display: inline;
+    }
+  
+    /* Contenido principal */
+    .content {
+      margin-left: 50px;
+    }
+  
+    .sidebar:hover + .content {
+      margin-left: 200px;
+    }
+  
+    /* Ajustar tamaño de los íconos en la barra lateral */
+    .nav-link i {
+      font-size: 1.2rem; /* Íconos más pequeños */
+    }
+  
+    /* Navbar en pantallas pequeñas */
+    .navbar {
+      padding: 10px 15px;
+    }
+  
+    .navbar-brand {
+      font-size: 1rem; /* Logo más pequeño */
+    }
+  
+    .navbar-nav .nav-link {
+      font-size: 0.9rem; /* Enlaces más pequeños */
+      padding: 5px; /* Menor espacio */
+    }
+  }
+  
+  /* Responsividad para dispositivos extra pequeños */
+  @media (max-width: 480px) {
+    /* Ajustar barra lateral aún más compacta */
+    .sidebar {
+      width: 40px;
+    }
+  
+    .sidebar:hover {
+      width: 150px;
+    }
+  
+    /* Ajustar íconos y fuentes */
+    .nav-link i {
+      font-size: 1rem;
+      margin-right: 10px; /* Menor espacio */
+    }
+  
+    .nav-link {
+      font-size: 0.8rem; /* Texto más pequeño */
+    }
+  
+    /* Ajustar navbar */
+    .navbar {
+      flex-wrap: wrap; /* Permitir que los elementos del navbar se apilen */
+      padding: 5px 10px;
+    }
+  
+    .navbar-brand {
+      font-size: 0.9rem;
+    }
+  
+    .navbar-nav .nav-link {
+      font-size: 0.8rem;
+      padding: 5px;
+    }
+  
+    /* Ajustar botones desplegables */
+    .dropdown-btn {
+      font-size: 0.9rem;
+    }
+  
+    .dropdown-btn i {
+      font-size: 1rem;
+    }
+  }
+  
+  
+  
+  .progress-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 0 20px;
+  }
+  
+  .progress-steps .step {
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .progress-steps .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .progress-steps .circle:hover {
+    transform: scale(1.1);
+  }
+  
+  .progress-steps .label {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  .progress-steps .step.active .circle {
+    background-color: #007bff;
+  }
+  
+  .progress-steps .step.completed .circle {
+    background-color: #28a745;
+  }
+  
+  .progress-steps .line {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 0;
+    transition: width 0.3s ease;
+  }
