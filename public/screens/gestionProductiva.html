@@ -55,6 +55,37 @@
 
     <div class="content">
         <div class="header">
+
+
+            <div class="progress-steps">
+                <div class="step" data-step="1">
+                    <div class="circle">1</div>
+                    <div class="label">Ficha Técnica</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="circle">2</div>
+                    <div class="label">Ficha Diagnóstico</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="circle">3</div>
+                    <div class="label">Gestión Organizacional</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="circle">4</div>
+                    <div class="label">Gestión Productiva</div>
+                </div>
+                <div class="step" data-step="5">
+                    <div class="circle">5</div>
+                    <div class="label">Gestión Comercial</div>
+                </div>
+                <div class="step" data-step="6">
+                    <div class="circle">6</div>
+                    <div class="label">Gestión Financiera</div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+
             <h1>Gestión Productiva</h1>
         </div>
 
@@ -155,6 +186,65 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+//Barra de progreso
+
+const steps = document.querySelectorAll('.progress-steps .step');
+    const line = document.querySelector('.progress-steps .line');
+
+    // Función para actualizar el progreso
+    function updateProgress(currentStep) {
+        steps.forEach((step, index) => {
+            if (index < currentStep) {
+                step.classList.add('completed');
+                step.classList.remove('active');
+            } else if (index === currentStep) {
+                step.classList.add('active');
+                step.classList.remove('completed');
+            } else {
+                step.classList.remove('active', 'completed');
+            }
+        });
+
+        const progressWidth = (currentStep / (steps.length - 1)) * 100;
+        line.style.width = `${progressWidth}%`;
+    }
+
+    // Inicializar con el primer paso activo
+    updateProgress(3);
+
+    // Redirigir al hacer clic en un círculo
+    steps.forEach((step, index) => {
+        step.addEventListener('click', () => {
+            updateProgress(index);
+            switch (index) {
+                case 0:
+                    window.location.href = 'fichaTecnica.html';
+                    break;
+                case 1:
+                    window.location.href = 'fichaDiagnostico.html';
+                    break;
+                case 2:
+                    window.location.href = 'gestionOrganizacional.html';
+                    break;
+                case 3:
+                    window.location.href = 'gestionProductiva.html';
+                    break;
+                case 4:
+                    window.location.href = 'gestionComercial.html';
+                    break;
+                case 5:
+                    window.location.href = 'gestionFinanciera.html';
+                    break;
+                default:
+                    break;
+            }
+        });
+    });
+
+            //
+
         // Función para calcular los subtotales
         function calcularSubtotales() {
             // Contar checkboxes marcados en cada columna
@@ -186,6 +276,7 @@
                 container.classList.toggle('show');
             });
         });
+    });
     </script>
 </body>
 </html>
