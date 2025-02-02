@@ -2,16 +2,16 @@ body {
   font-family: var(--fuenteParrafos);
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid; /* Usamos grid en lugar de flex */
+  grid-template-rows: auto 1fr; /* Navbar ocupa la primera fila, el resto del contenido la segunda */
+  justify-items: center; /* Centra horizontalmente los elementos */
+  align-items: start; /* Alinea los elementos en la parte superior */
   min-height: 100vh;
   color: var(--blanco);
   position: relative; 
   background: none; 
-  
-  
 }
+
 
 body::before {
     content: '';
@@ -171,39 +171,39 @@ button[type="submit"]:hover {
 }
 
 /* Barra lateral principal */
-
 .sidebar {
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #2c3e50; 
+  background: linear-gradient(180deg, #176FA6, #2c3e50); /* Degradado de azul a verde */
   padding: 20px 10px;
   border-right: 1px solid #34495e;
-  width: 70px; 
+  width: 70px;
   overflow: hidden;
   transition: width 0.3s ease, background-color 0.3s ease;
   z-index: 1050;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  
 }
 
 .sidebar:hover {
-  width: 250px; /* Barra lateral expandida */
+  width: 250px;
   background-color: #34495e;
 }
 
 /* Logo */
 .sidebar a.navbar-brand img {
-  width: 50px; 
+  width: 50px;
   transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .sidebar:hover a.navbar-brand img {
-  width: 80px; /* Tamaño del logo expandido */
-  transform: scale(1.1); 
+  width: 80px;
+  transform: scale(1.1);
 }
 
-/* Lista de navegación */
+/* Lista de navegación en la barra lateral */
 .sidebar ul.nav {
   list-style: none;
   padding: 0;
@@ -223,69 +223,74 @@ button[type="submit"]:hover {
 .nav-link {
   display: flex;
   align-items: center;
-  color: #ecf0f1; 
+  color: #ecf0f1;
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 8px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  
 }
 
 .nav-link i {
-  font-size: 1.5rem; /* Tamaño del ícono */
+  font-size: 1.5rem;
   margin-right: 15px;
-  color: #bdc3c7; 
+  color: #bdc3c7;
   transition: color 0.3s ease, transform 0.3s ease;
+  
 }
 
-/* Hover: Efectos al pasar el mouse */
-
 .nav-link:hover {
-  background-color: #29A632; 
-  color: #ffffff; 
-  transform: translateX(5px); /* Mueve ligeramente a la derecha */
+  background-color: #29A632;
+  color: #ffffff;
+  transform: translateX(5px);
+  
 }
 
 .nav-link:hover i {
-  color: #ffffff; 
-  transform: rotate(15deg); 
+  color: #ffffff;
+  transform: rotate(15deg);
+  
 }
 
-/* Botones desplegables */
+/* Botones desplegables en la barra lateral */
+
+
+
 .dropdown-btn {
   cursor: pointer;
   padding: 10px 15px;
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* tamaño del texto*/
   border: none;
   background: none;
-  color: #ecf0f1; 
+  color: #ecf0f1;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  gap: 10px;
+ 
 }
 
 .dropdown-btn i {
-  font-size: 1.3rem; 
+  font-size: 1.8rem;
   transition: transform 0.3s ease;
 }
 
 .dropdown-btn:hover {
-  background-color:  #29A632; 
+  background-color: #29A632;
 }
 
 .dropdown-container {
   display: none;
-  padding-left: 20px; 
+  padding-left: 20px;
   margin-top: 10px;
 }
 
 .dropdown-container a {
-  font-size: 1.8rem;
-  color: #bdc3c7; 
+  font-size: 1.4rem; /*texto interno*/
+  color: #bdc3c7;
   text-decoration: none;
   padding: 8px 15px;
   display: block;
@@ -294,7 +299,7 @@ button[type="submit"]:hover {
 }
 
 .dropdown-container a:hover {
-  background-color: #29A632; 
+  background-color: #29A632;
   color: white;
 }
 
@@ -302,7 +307,7 @@ button[type="submit"]:hover {
   display: block;
 }
 
-/* Contenido */
+/* Contenido principal */
 .content {
   margin-left: 70px;
   transition: margin-left 0.3s ease;
@@ -311,6 +316,223 @@ button[type="submit"]:hover {
 .sidebar:hover + .content {
   margin-left: 250px;
 }
+
+/* Navbar principal */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(20deg, #dee1de, #a8b0b8);
+  padding: 5px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: fixed; /* Mantener el navbar siempre visible */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupar todo el ancho */
+  z-index: 1000; /* Por encima de otros elementos */
+}
+
+.navbar:hover {
+  background-color: rgba(44, 62, 80, 0.9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo en el navbar */
+.navbar-brand {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #29A632;
+}
+
+/* Íconos dentro del navbar */
+.navbar i {
+  color: #2c3e50;
+  font-size: 2rem;  /* tamaño del icono*/
+  transition: color 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.navbar i:hover {
+  color: #29A632;
+  transform: scale(1.1);
+}
+
+/* Enlaces del navbar */
+.navbar-nav .nav-link {
+  color: #2c3e50;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #29A632;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Botón del menú responsive */
+.navbar-toggler {
+  border: none;
+  background-color: rgba(241, 234, 234, 0.2);
+  border-radius: 8px;
+  padding: 5px;
+  
+}
+
+.navbar-toggler:hover {
+  background-color: #29A632;
+}
+
+/* Menú desplegable */
+
+.dropdown {
+  position: relative; /* Necesario para posicionar correctamente el menú desplegable */
+}
+.dropdown-menu {
+  position: absolute; /* Posicionar el menú respecto al contenedor padre */
+  right: 0; /* Alinear al borde derecho */
+  left: auto; /* Desactivar alineación izquierda */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(248, 246, 246, 0.2);
+  font-size: 0.85rem;
+  backdrop-filter: blur(6px);
+}
+
+
+/* Elementos del menú desplegable */
+.dropdown-item {
+  color: #2c3e50;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #29A632;
+  color: #ffffff;
+}
+
+
+/* Íconos adicionales */
+.nav-item.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item.dropdown .nav-link i {
+  font-size: 2rem;  /*tamaño del icono*/
+  
+}
+/* Responsividad general para dispositivos pequeños */
+@media (max-width: 768px) {
+  /* Ajustar barra lateral */
+  .sidebar {
+    width: 50px; /* Barra lateral más compacta */
+  }
+
+  .sidebar:hover {
+    width: 200px; /* Expandir menos en pantallas pequeñas */
+  }
+
+  /* Ocultar texto en los enlaces de la barra lateral cuando está colapsada */
+  .sidebar ul.nav .nav-link span {
+    display: none;
+  }
+
+  .sidebar:hover ul.nav .nav-link span {
+    display: inline;
+  }
+
+  /* Contenido principal */
+  .content {
+    margin-left: 50px;
+  }
+
+  .sidebar:hover + .content {
+    margin-left: 200px;
+  }
+
+  /* Ajustar tamaño de los íconos en la barra lateral */
+  .nav-link i {
+    font-size: 1.2rem; /* Íconos más pequeños */
+  }
+
+  /* Navbar en pantallas pequeñas */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem; /* Logo más pequeño */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem; /* Enlaces más pequeños */
+    padding: 5px; /* Menor espacio */
+  }
+}
+
+/* Responsividad para dispositivos extra pequeños */
+@media (max-width: 480px) {
+  /* Ajustar barra lateral aún más compacta */
+  .sidebar {
+    width: 40px;
+  }
+
+  .sidebar:hover {
+    width: 150px;
+  }
+
+  /* Ajustar íconos y fuentes */
+  .nav-link i {
+    font-size: 1rem;
+    margin-right: 10px; /* Menor espacio */
+  }
+
+  .nav-link {
+    font-size: 0.8rem; /* Texto más pequeño */
+  }
+
+  /* Ajustar navbar */
+  .navbar {
+    flex-wrap: wrap; /* Permitir que los elementos del navbar se apilen */
+    padding: 5px 10px;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  /* Ajustar botones desplegables */
+  .dropdown-btn {
+    font-size: 0.9rem;
+  }
+
+  .dropdown-btn i {
+    font-size: 1rem;
+  }
+}
+
 
 
 .progress-steps {
