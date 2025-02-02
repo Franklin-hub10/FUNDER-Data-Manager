@@ -1,14 +1,38 @@
+:root {
+    --fuenteTitulos: 'Roboto', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+    --primarioAzul: #176FA6;
+    --secundarioVerde: #29A632;
+    --verdeClaro: #96D99A;
+    --amarillo: #F2BB16;
+    --blanco: #F2F2F2;
+    --negro: #000000;
+    --grisClaro: #f9f9f9;
+    --grisOscuro: #444;
+    --sombra: rgba(0, 0, 0, 0.2);
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     font-family: var(--fuenteParrafos);
+    font-size: 1.5rem;
+    line-height: 2;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     color: var(--blanco);
-    background: rgba(250, 255, 200, 0.8); 
-    flex-direction: column; 
+    background: rgba(250, 255, 200, 0.8);
+    flex-direction: column;
 }
 
 body::before {
@@ -20,7 +44,7 @@ body::before {
     height: 100%;
     background: url('/assets/images/Logo\ FUNDER\ 2021.png') no-repeat center center fixed;
     background-size: 400px;
-    filter: brightness(0.8) blur(80px); 
+    filter: brightness(0.8) blur(80px);
     z-index: -1;
 }
 
@@ -28,80 +52,74 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center; 
+    align-items: center;
     width: 100%;
     max-width: 900px;
     padding: 20px;
-    background: rgba(222, 219, 219, 0.5); 
+    background: rgba(222, 219, 219, 0.5);
     border-radius: 15px;
     box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.6);
-    z-index: 1; 
+    z-index: 1;
 }
 
-/* Títulos */
-h1 {
+h1, h2, h3 {
     font-family: var(--fuenteTitulos);
-    font-size: 32px;
-    color: var(--secundarioVerde);
     text-align: center;
-    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    color: var(--secundarioVerde);
     border-bottom: 2px solid var(--secundarioVerde);
     padding-bottom: 10px;
 }
 
 h2 {
-    font-family: var(--fuenteTitulos);
-    font-size: 24px;
+    font-size: 3rem;
     color: var(--primarioAzul);
-    margin-bottom: 20px;
-    text-align: center;
 }
 
-/* Formularios */
 form {
     width: 100%;
     max-width: 600px;
-    margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.94); /* Fondo semi-transparente */
+    margin: 20px auto;
     padding: 20px;
+    background: var(--blanco);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--sombra);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
-    display: block;
-    font-size: 14px;
+    font-size: 1.4rem;
+    font-weight: bold;
     margin-bottom: 5px;
+    display: block;
     color: var(--negro);
 }
 
-/* Campos de entrada */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea {
+input, select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    border: 1px solid #444;
+    font-size: 1.4rem;
+    border: 1px solid var(--grisOscuro);
     border-radius: 5px;
-    background: #f9f9f9;
-    color: #333;
+    background: var(--grisClaro);
+    margin-bottom: 15px;
 }
 
-input:focus,
-textarea:focus {
+input:focus, select:focus {
     outline: none;
     border-color: var(--primarioAzul);
-    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+    box-shadow: 0 0 5px rgba(23, 111, 166, 0.5);
 }
 
-/* Botones */
-button[type="submit"] {
+button {
     width: 100%;
     padding: 12px;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: bold;
     color: var(--blanco);
     background: var(--primarioAzul);
@@ -109,53 +127,43 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    margin-top: 10px;
 }
 
-button[type="submit"]:hover {
+button:hover {
     background: #156dc1;
 }
 
-/* Listas */
-ul {
-    list-style-type: none;
-    padding: 0;
+button#delete-btn {
+    background: #d9534f;
+}
+
+button#delete-btn:hover {
+    background: #c9302c;
+}
+
+hr {
     margin: 20px 0;
-    width: 100%;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.94);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    height: 1px;
+    background: var(--grisOscuro);
 }
 
-ul li {
-    margin-bottom: 10px;
-    color: var(--negro);
-}
-
-ul li:last-child {
-    margin-bottom: 0;
-}
-
-/* Responsividad */
 @media (max-width: 768px) {
     h1, h2 {
-        font-size: 24px;
+        font-size: 3rem;
     }
 
     form {
         padding: 15px;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    textarea {
-        font-size: 12px;
+    input, select {
+        font-size: 1.2rem;
         padding: 8px;
     }
 
-    button[type="submit"] {
-        font-size: 14px;
+    button {
+        font-size: 1.4rem;
     }
 }

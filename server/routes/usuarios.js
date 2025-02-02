@@ -43,7 +43,7 @@ router.get('/sedes', async (req, res) => {
 });
 
 // Crear un colaborador con rol
-router.post('/create-colaborador', async (req, res) => {
+router.post('/createColaborador', async (req, res) => {
     const { nombres, apellidos, idRol, idSede, cargo } = req.body;
 
     try {
@@ -122,7 +122,7 @@ router.put('/update-user/:id', async (req, res) => {
 router.delete('/delete-user/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await db.query('DELETE FROM usuario WHERE id = ?', [id]);
+        const result = await db.query('DELETE FROM usuario WHERE idColaborador = ?', [id]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -161,5 +161,20 @@ router.post('/assign-permissions', async (req, res) => {
         res.status(500).json({ message: 'Error al asignar permisos', error });
     }
 });
+
+// Obtener solo los sede
+router.get('/sede', async (req, res) => {
+    try {
+        const [sede] = await db.query(`
+            SELECT idSede, nombre AS sede
+            FROM sede
+        `);
+        res.status(200).json(sede); // Devuelve los roles como un array
+    } catch (error) {
+        console.error('Error al obtener sedes:', error);
+        res.status(500).json({ message: 'Error al obtener roles', error });
+    }
+});
+
 
 module.exports = router;

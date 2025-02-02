@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Documento cargado. Iniciando la función para cargar roles...");
     loadRoles();
     loadSedes();
+    
+    
 });
 
 export async function loadRoles() {
@@ -82,29 +84,45 @@ async function createColaborador(data) {
     }
 }
 
-// Cargar sedes
+
+
 async function loadSedes() {
     const sedeSelect = document.getElementById('create-idSede');
-    try {
-        const response = await fetch(`${API_URL}/sedes`);
-        if (!response.ok) {
-            console.error("Error al cargar sedes");
-            throw new Error("No se pudieron cargar las sedes.");
-        }
-        const sedes = await response.json();
+    console.log("🔹 Intentando cargar sedes...");
 
+    try {
+        const response = await fetch('http://localhost:3000/sedes');
+        console.log(`🔹 Respuesta HTTP: ${response.status} ${response.statusText}`);
+
+        if (!response.ok) {
+            throw new Error(`Error al cargar sedes: ${response.status} ${response.statusText}`);
+        }
+
+        const sedes = await response.json();
+        console.log("✅ Sedes obtenidas:", sedes);
+
+        // Limpiar opciones anteriores y agregar opción por defecto
         sedeSelect.innerHTML = '<option value="">Seleccione una sede</option>';
+
         sedes.forEach(sede => {
             const option = document.createElement('option');
             option.value = sede.idSede;
-            option.textContent = sede.sede;
+            option.textContent = sede.nombre;
             sedeSelect.appendChild(option);
         });
+
+        console.log("✅ Sedes cargadas correctamente en el select.");
     } catch (error) {
-        console.error("Error al cargar sedes:", error.message);
-        alert(`Error al cargar sedes: ${error.message}`);
+        console.error("❌ Error al cargar sedes:", error.message);
     }
 }
+
+// Llamar a la función al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    loadSedes();
+});
+
+
 
 // Crear colaborador
 document.getElementById('create-user-form').addEventListener('submit', async (e) => {
@@ -112,8 +130,6 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
 
     const nombres = document.getElementById('create-nombres').value;
     const apellidos = document.getElementById('create-apellidos').value;
-    const cedula = document.getElementById('create-cedula').value;
-    const fechaNacimiento = document.getElementById('create-fechaNacimiento').value;
     const cargo = document.getElementById('create-cargo').value;
     const idRol = document.getElementById('miSelect').value;
     const idSede = document.getElementById('create-idSede').value;
@@ -126,8 +142,6 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
     const data = {
         nombres,
         apellidos,
-        cedula,
-        fechaNacimiento,
         cargo,
         idRol,
         idSede
@@ -141,8 +155,11 @@ document.getElementById('create-user-form').addEventListener('submit', async (e)
             },
             body: JSON.stringify(data),
         });
-
+    
         const result = await response.json();
+    
+        console.log("Respuesta del servidor:", result); // Añadir esto para obtener más detalles
+    
         if (response.ok) {
             alert('Colaborador creado con éxito');
             console.log(result);
