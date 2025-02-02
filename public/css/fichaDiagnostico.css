@@ -330,15 +330,280 @@ button[type="submit"]:hover {
 .sidebar:hover + .content {
   margin-left: 250px;
 }
-.download-icon {
-  position: fixed; 
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
-  color: #007bff; 
-  cursor: pointer;
-  z-index: 1000; 
+
+/* Navbar principal */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(20deg, #dee1de, #a8b0b8);
+  padding: 5px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: fixed; /* Mantener el navbar siempre visible */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupar todo el ancho */
+  z-index: 1000; /* Por encima de otros elementos */
 }
-.download-icon:hover {
-  color: #0056b3; 
+
+.navbar:hover {
+  background-color: rgba(44, 62, 80, 0.9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo en el navbar */
+.navbar-brand {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #29A632;
+}
+
+/* Íconos dentro del navbar */
+.navbar i {
+  color: #2c3e50;
+  font-size: 2rem;  /* tamaño del icono*/
+  transition: color 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.navbar i:hover {
+  color: #29A632;
+  transform: scale(1.1);
+}
+
+/* Enlaces del navbar */
+.navbar-nav .nav-link {
+  color: #2c3e50;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #29A632;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Botón del menú responsive */
+.navbar-toggler {
+  border: none;
+  background-color: rgba(241, 234, 234, 0.2);
+  border-radius: 8px;
+  padding: 5px;
+  
+}
+
+.navbar-toggler:hover {
+  background-color: #29A632;
+}
+
+/* Menú desplegable */
+
+.dropdown {
+  position: relative; /* Necesario para posicionar correctamente el menú desplegable */
+}
+.dropdown-menu {
+  position: absolute; /* Posicionar el menú respecto al contenedor padre */
+  right: 0; /* Alinear al borde derecho */
+  left: auto; /* Desactivar alineación izquierda */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(248, 246, 246, 0.2);
+  font-size: 0.85rem;
+  backdrop-filter: blur(6px);
+}
+
+
+/* Elementos del menú desplegable */
+.dropdown-item {
+  color: #2c3e50;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #29A632;
+  color: #ffffff;
+}
+
+
+/* Íconos adicionales */
+.nav-item.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item.dropdown .nav-link i {
+  font-size: 2rem;  /*tamaño del icono*/
+  
+}
+/* Responsividad general para dispositivos pequeños */
+@media (max-width: 768px) {
+  /* Ajustar barra lateral */
+  .sidebar {
+    width: 50px; /* Barra lateral más compacta */
+  }
+
+  .sidebar:hover {
+    width: 200px; /* Expandir menos en pantallas pequeñas */
+  }
+
+  /* Ocultar texto en los enlaces de la barra lateral cuando está colapsada */
+  .sidebar ul.nav .nav-link span {
+    display: none;
+  }
+
+  .sidebar:hover ul.nav .nav-link span {
+    display: inline;
+  }
+
+  /* Contenido principal */
+  .content {
+    margin-left: 50px;
+  }
+
+  .sidebar:hover + .content {
+    margin-left: 200px;
+  }
+
+  /* Ajustar tamaño de los íconos en la barra lateral */
+  .nav-link i {
+    font-size: 1.2rem; /* Íconos más pequeños */
+  }
+
+  /* Navbar en pantallas pequeñas */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem; /* Logo más pequeño */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem; /* Enlaces más pequeños */
+    padding: 5px; /* Menor espacio */
+  }
+}
+
+/* Responsividad para dispositivos extra pequeños */
+@media (max-width: 480px) {
+  /* Ajustar barra lateral aún más compacta */
+  .sidebar {
+    width: 40px;
+  }
+
+  .sidebar:hover {
+    width: 150px;
+  }
+
+  /* Ajustar íconos y fuentes */
+  .nav-link i {
+    font-size: 1rem;
+    margin-right: 10px; /* Menor espacio */
+  }
+
+  .nav-link {
+    font-size: 0.8rem; /* Texto más pequeño */
+  }
+
+  /* Ajustar navbar */
+  .navbar {
+    flex-wrap: wrap; /* Permitir que los elementos del navbar se apilen */
+    padding: 5px 10px;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  /* Ajustar botones desplegables */
+  .dropdown-btn {
+    font-size: 0.9rem;
+  }
+
+  .dropdown-btn i {
+    font-size: 1rem;
+  }
+}
+
+
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 0 20px;
+}
+
+.progress-steps .step {
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.progress-steps .circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.progress-steps .circle:hover {
+  transform: scale(1.1);
+}
+
+.progress-steps .label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.progress-steps .step.active .circle {
+  background-color: #007bff;
+}
+
+.progress-steps .step.completed .circle {
+  background-color: #28a745;
+}
+
+.progress-steps .line {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+  transition: width 0.3s ease;
 }
