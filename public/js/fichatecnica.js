@@ -1,5 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
+    const steps = document.querySelectorAll('.progress-steps .step');
+    const line = document.querySelector('.progress-steps .line');
+
+    // Función para actualizar el progreso
+    function updateProgress(currentStep) {
+        steps.forEach((step, index) => {
+            if (index < currentStep) {
+                step.classList.add('completed');
+                step.classList.remove('active');
+            } else if (index === currentStep) {
+                step.classList.add('active');
+                step.classList.remove('completed');
+            } else {
+                step.classList.remove('active', 'completed');
+            }
+        });
+
+        const progressWidth = (currentStep / (steps.length - 1)) * 100;
+        line.style.width = `${progressWidth}%`;
+    }
+
+    // Inicializar con el primer paso activo
+    updateProgress(0);
+
+    // Redirigir al hacer clic en un círculo
+    steps.forEach((step, index) => {
+        step.addEventListener('click', () => {
+            updateProgress(index);
+            switch (index) {
+                case 0:
+                    window.location.href = 'fichaTecnica.html';
+                    break;
+                case 1:
+                    window.location.href = 'fichaDiagnostico.html';
+                    break;
+                case 2:
+                    window.location.href = 'gestionOrganizacional.html';
+                    break;
+                case 3:
+                    window.location.href = 'gestionProductiva.html';
+                    break;
+                case 4:
+                    window.location.href = 'gestionComercial.html';
+                    break;
+                case 5:
+                    window.location.href = 'gestionFinanciera.html';
+                    break;
+                default:
+                    break;
+            }
+        });
+    });
+
+    
 
     form.addEventListener("submit", function (event) {
         let valid = true; // Controla si el formulario es válido
