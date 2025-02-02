@@ -11,37 +11,38 @@ body {
 
 /* Barra lateral principal */
 .sidebar {
-  height: 100vh; /* Ocupa toda la altura de la ventana */
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #2c3e50;
+  background: linear-gradient(180deg, #176FA6, #2c3e50); /* Degradado de azul a verde */
   padding: 20px 10px;
   border-right: 1px solid #34495e;
-  width: 70px; /* Ancho inicial colapsado */
+  width: 70px;
   overflow: hidden;
   transition: width 0.3s ease, background-color 0.3s ease;
-  z-index: 1061;
+  z-index: 1050;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  
 }
 
 .sidebar:hover {
-  width: 250px; /* Ancho expandido */
-  background-color: #34495e; /* Azul más oscuro */
+  width: 250px;
+  background-color: #34495e;
 }
 
 /* Logo */
 .sidebar a.navbar-brand img {
-  width: 50px; /* Tamaño del logo colapsado */
+  width: 50px;
   transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .sidebar:hover a.navbar-brand img {
-  width: 80px; /* Tamaño del logo expandido */
-  transform: scale(1.1); /* Ligeramente más grande */
+  width: 80px;
+  transform: scale(1.1);
 }
 
-/* Lista de navegación */
+/* Lista de navegación en la barra lateral */
 .sidebar ul.nav {
   list-style: none;
   padding: 0;
@@ -61,52 +62,58 @@ body {
 .nav-link {
   display: flex;
   align-items: center;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1;
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 8px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  
 }
 
 .nav-link i {
-  font-size: 1.5rem; /* Tamaño del ícono */
+  font-size: 1.5rem;
   margin-right: 15px;
-  color: #bdc3c7; /* Gris claro */
+  color: #bdc3c7;
   transition: color 0.3s ease, transform 0.3s ease;
+  
 }
 
-/* Hover: Efectos al pasar el mouse */
 .nav-link:hover {
   background-color: #29A632;
   color: #ffffff;
-  transform: translateX(5px); /* Mueve ligeramente a la derecha */
+  transform: translateX(5px);
+  
 }
 
 .nav-link:hover i {
   color: #ffffff;
-  transform: rotate(15deg); /* Rotación ligera */
+  transform: rotate(15deg);
+  
 }
 
-/* Botones desplegables */
+/* Botones desplegables en la barra lateral */
+
+
+
 .dropdown-btn {
   cursor: pointer;
   padding: 10px 15px;
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* tamaño del texto*/
   border: none;
   background: none;
-  color: #ecf0f1; /* Blanco suave */
+  color: #ecf0f1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  gap: 10;
+ 
 }
 
 .dropdown-btn i {
-  font-size: 1.2rem; /* Flecha */
+  font-size: 1.2rem; /* tamaño del icono*/
   transition: transform 0.3s ease;
 }
 
@@ -121,7 +128,7 @@ body {
 }
 
 .dropdown-container a {
-  font-size: 1rem;
+  font-size: 1rem; /*texto interno*/
   color: #bdc3c7;
   text-decoration: none;
   padding: 8px 15px;
@@ -141,42 +148,41 @@ body {
 
 /* Contenido principal */
 .content {
-  margin-left: 70px; /* Margen inicial para el sidebar colapsado */
-  padding: 20px;
-  flex: 1;
-  background-color: #dddddd;
-  min-height: 100vh;
+  margin-left: 70px;
   transition: margin-left 0.3s ease;
 }
 
 .sidebar:hover + .content {
-  margin-left: 250px; /* Margen cuando el sidebar está expandido */
+  margin-left: 250px;
 }
 
-/* Estilo base del navbar */
+/* Navbar principal */
 .navbar {
-  background-color: #2c3e50; /* Fondo translúcido */
-  padding: 5px 10px !important; /* Reducir el padding para hacer el navbar más pequeño */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-  backdrop-filter: blur(8px); /* Efecto de desenfoque */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(20deg, #dee1de, #a8b0b8);
+  padding: 5px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  backdrop-filter: blur(8px);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  height: 50px; /* Ajustar altura del navbar */
-  position: fixed; /* Fijar el navbar en la parte superior */
+  position: fixed; /* Mantener el navbar siempre visible */
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1060; /* Asegurar que esté por encima del sidebar */
+  width: 100%; /* Ocupar todo el ancho */
+  z-index: 1000; /* Por encima de otros elementos */
 }
 
 .navbar:hover {
-  background-color: rgba(44, 62, 80, 0.9); /* Fondo más opaco al pasar el cursor */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+  background-color: rgba(44, 62, 80, 0.9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Logo del navbar */
+/* Logo en el navbar */
 .navbar-brand {
   color: #ffffff;
-  font-size: 1.2rem; /* Ajustar tamaño del logo para el navbar pequeño */
+  font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
   margin-right: 10px;
@@ -187,28 +193,44 @@ body {
   color: #29A632;
 }
 
+/* Íconos dentro del navbar */
+.navbar i {
+  color: #2c3e50;
+  font-size: 1.4rem;  /* tamaño del icono*/
+  transition: color 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.navbar i:hover {
+  color: #29A632;
+  transform: scale(1.1);
+}
+
 /* Enlaces del navbar */
 .navbar-nav .nav-link {
-  color: #ffffff;
-  font-size: 1rem; /* Reducir el tamaño de fuente */
-  padding: 2px 8px; /* Reducir padding para ajustarse al tamaño del navbar */
+  color: #2c3e50;
+  font-size: 1rem;
+  padding: 5px 10px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
   background-color: #29A632;
   color: #ffffff;
-  transform: scale(1.05); /* Efecto ligero de zoom */
+  transform: scale(1.05);
 }
 
-/* Botón del menú desplegable (responsive) */
+/* Botón del menú responsive */
 .navbar-toggler {
   border: none;
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(241, 234, 234, 0.2);
   border-radius: 8px;
-  padding: 5px; /* Botón más pequeño */
+  padding: 5px;
+  
 }
 
 .navbar-toggler:hover {
@@ -216,17 +238,26 @@ body {
 }
 
 /* Menú desplegable */
+
+.dropdown {
+  position: relative; /* Necesario para posicionar correctamente el menú desplegable */
+}
 .dropdown-menu {
+  position: absolute; /* Posicionar el menú respecto al contenedor padre */
+  right: 0; /* Alinear al borde derecho */
+  left: auto; /* Desactivar alineación izquierda */
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  font-size: 0.85rem; /* Reducir el tamaño del menú desplegable */
-  backdrop-filter: blur(6px); /* Efecto de desenfoque */
+  box-shadow: 0px 4px 8px rgba(248, 246, 246, 0.2);
+  font-size: 0.85rem;
+  backdrop-filter: blur(6px);
 }
 
+
+/* Elementos del menú desplegable */
 .dropdown-item {
   color: #2c3e50;
-  padding: 5px 10px; /* Reducir padding */
+  padding: 5px 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -235,57 +266,112 @@ body {
   color: #ffffff;
 }
 
-/* Tarjetas */
-.card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
+
+/* Íconos adicionales */
+.nav-item.dropdown {
+  display: flex;
+  align-items: center;
 }
 
-.card-header {
-  background-color: #2c3e50;
-  color: white;
-  text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 15px;
+.nav-item.dropdown .nav-link i {
+  font-size: 1.4rem;  /*tamaño del icono*/
+  
+}
+/* Responsividad general para dispositivos pequeños */
+@media (max-width: 768px) {
+  /* Ajustar barra lateral */
+  .sidebar {
+    width: 50px; /* Barra lateral más compacta */
+  }
+
+  .sidebar:hover {
+    width: 200px; /* Expandir menos en pantallas pequeñas */
+  }
+
+  /* Ocultar texto en los enlaces de la barra lateral cuando está colapsada */
+  .sidebar ul.nav .nav-link span {
+    display: none;
+  }
+
+  .sidebar:hover ul.nav .nav-link span {
+    display: inline;
+  }
+
+  /* Contenido principal */
+  .content {
+    margin-left: 50px;
+  }
+
+  .sidebar:hover + .content {
+    margin-left: 200px;
+  }
+
+  /* Ajustar tamaño de los íconos en la barra lateral */
+  .nav-link i {
+    font-size: 1.2rem; /* Íconos más pequeños */
+  }
+
+  /* Navbar en pantallas pequeñas */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem; /* Logo más pequeño */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem; /* Enlaces más pequeños */
+    padding: 5px; /* Menor espacio */
+  }
 }
 
-.card-body {
-  padding: 20px;
+/* Responsividad para dispositivos extra pequeños */
+@media (max-width: 480px) {
+  /* Ajustar barra lateral aún más compacta */
+  .sidebar {
+    width: 40px;
+  }
+
+  .sidebar:hover {
+    width: 150px;
+  }
+
+  /* Ajustar íconos y fuentes */
+  .nav-link i {
+    font-size: 1rem;
+    margin-right: 10px; /* Menor espacio */
+  }
+
+  .nav-link {
+    font-size: 0.8rem; /* Texto más pequeño */
+  }
+
+  /* Ajustar navbar */
+  .navbar {
+    flex-wrap: wrap; /* Permitir que los elementos del navbar se apilen */
+    padding: 5px 10px;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  /* Ajustar botones desplegables */
+  .dropdown-btn {
+    font-size: 0.9rem;
+  }
+
+  .dropdown-btn i {
+    font-size: 1rem;
+  }
 }
 
-/* Formularios */
-form {
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-form .form-label {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-form input,
-form button {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-form button {
-  background-color: #96D99A;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #96D99A;
-}
 /* Estilos para la tabla */
 .table {
   width: 100%;
