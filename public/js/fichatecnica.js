@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
+    const form = document.getElementById("formulario"); // CORREGIDO: Se usa getElementById
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
-
-
 
     // Función para actualizar el progreso
     function updateProgress(currentStep) {
@@ -30,172 +28,133 @@ document.addEventListener("DOMContentLoaded", function () {
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
             updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
+            const pages = [
+                'fichaTecnica.html',
+                'fichaDiagnostico.html',
+                'gestionOrganizacional.html',
+                'gestionProductiva.html',
+                'gestionComercial.html',
+                'gestionFinanciera.html'
+            ];
+            window.location.href = pages[index];
         });
     });
 
-
-
+    // Manejo del envío del formulario
     form.addEventListener("submit", function (event) {
-        let valid = true; // Controla si el formulario es válido
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
-        // Validar Sede FUNDER
-        const sedeFunder = document.getElementById("sede_funder");
-        if (sedeFunder.value.trim() === "") {
-            alert("El campo 'Sede FUNDER' es obligatorio.");
-            valid = false;
-        }
+        let valid = true;
 
-        // Validar Nombres y Apellidos
-        const nombresApellidos = document.getElementById("nombres_apellidos");
-        if (nombresApellidos.value.trim() === "") {
-            alert("El campo 'Nombres y Apellidos' es obligatorio.");
-            valid = false;
-        }
+        // Lista de campos obligatorios
+        const requiredFields = [
+            "sede_funder", "nombres_apellidos", "lugar_nacimiento", "fecha_nacimiento",
+            "direccion_negocio", "telefono_celular", "email", "ingresos_mensuales",
+            "gastos_mensuales", "utilidad_mensual", "caracteristicas_negocio", "temas_capacitacion"
+        ];
 
-        // Validar Documento de Identidad (al menos uno seleccionado)
-        const documentos = document.querySelectorAll("input[name='documento_identidad']:checked");
-        if (documentos.length === 0) {
+        // Validar que los campos requeridos no estén vacíos
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field);
+            if (!input.value.trim()) {
+                alert(`El campo '${input.previousElementSibling.innerText}' es obligatorio.`);
+                valid = false;
+            }
+        });
+
+        // Validar Documento de Identidad (Debe haber al menos un seleccionado)
+        const documentoIdentidad = document.querySelectorAll("input[name='documento_identidad']:checked");
+        if (documentoIdentidad.length === 0) {
             alert("Seleccione al menos un tipo de documento de identidad.");
             valid = false;
         }
 
-        // Validar Lugar de Nacimiento
-        const lugarNacimiento = document.getElementById("lugar_nacimiento");
-        if (lugarNacimiento.value.trim() === "") {
-            alert("El campo 'Lugar y Fecha de Nacimiento' es obligatorio.");
+        // Validar teléfono celular
+        const telefonoCelular = document.getElementById("telefono_celular").value.trim();
+        const phoneRegex = /^0\d{9}$/;
+        if (!phoneRegex.test(telefonoCelular)) {
+            alert("El teléfono celular debe comenzar con 0 y tener exactamente 10 dígitos.");
+            valid = false;
+        }
+
+        // Validar correo electrónico
+        const email = document.getElementById("email").value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Ingrese un correo electrónico válido.");
             valid = false;
         }
 
         // Validar Edad
-        const edad = document.getElementById("edad");
-        if (!edad.value || isNaN(edad.value) || edad.value <= 0 || edad.value < 18) {
+        const edad = document.getElementById("edad").value.trim();
+        if (!edad || isNaN(edad) || edad < 18) {
             alert("El campo 'Edad' debe ser un número positivo mayor o igual a 18.");
             valid = false;
         }
 
-        // Validar Género (al menos uno seleccionado)
+        // Validar Promedio Mensual de Ingresos
+        const ingresosMensuales = document.getElementById("ingresos_mensuales").value.trim();
+        if (!ingresosMensuales || isNaN(ingresosMensuales)) {
+            alert("El campo 'Promedio Mensual de Ingresos' debe ser un número.");
+            valid = false;
+        }
+
+        // Validar Promedio Mensual de Gastos
+        const gastosMensuales = document.getElementById("gastos_mensuales").value.trim();
+        if (!gastosMensuales || isNaN(gastosMensuales)) {
+            alert("El campo 'Promedio Mensual de Gastos' debe ser un número.");
+            valid = false;
+        }
+
+        // Validar Promedio Mensual de Utilidad
+        const utilidadMensual = document.getElementById("utilidad_mensual").value.trim();
+        if (!utilidadMensual || isNaN(utilidadMensual)) {
+            alert("El campo 'Promedio Mensual de Utilidad' debe ser un número.");
+            valid = false;
+        }
+
+        // Validar que haya seleccionado al menos una opción en género
         const genero = document.querySelectorAll("input[name='genero']:checked");
         if (genero.length === 0) {
             alert("Seleccione al menos una opción en 'Identidad Sexo-Genérica'.");
             valid = false;
         }
 
-        // Validar Estado Civil (al menos uno seleccionado)
+        // Validar Estado Civil (Debe haber al menos uno seleccionado)
         const estadoCivil = document.querySelectorAll("input[name='estado_civil']:checked");
         if (estadoCivil.length === 0) {
             alert("Seleccione al menos una opción en 'Estado Civil'.");
             valid = false;
         }
 
-        // Validar Rol Familiar (al menos uno seleccionado)
+        // Validar Rol Familiar (Debe haber al menos uno seleccionado)
         const rolFamiliar = document.querySelectorAll("input[name='rol_familiar']:checked");
         if (rolFamiliar.length === 0) {
             alert("Seleccione al menos una opción en 'Rol Familiar'.");
             valid = false;
         }
 
-        // Validar Dirección Actual del Negocio
-        const direccionNegocio = document.getElementById("direccion_negocio");
-        if (direccionNegocio.value.trim() === "") {
-            alert("El campo 'Dirección Actual del Negocio' es obligatorio.");
-            valid = false;
-        }
-
-        // Validar Contacto
-        const telefonoCelular = document.getElementById("telefono_celular").value.trim();
-        const email = document.getElementById("email").value.trim();
-
-        // Expresión regular para validar teléfonos
-        const phoneRegex = /^0\d{9}$/;
-
-        // Expresión regular para validar correos electrónicos
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        // Validar Teléfono Celular (Obligatorio y debe cumplir con el formato)
-        if (!telefonoCelular) {
-            alert("El campo 'Teléfono Celular' es obligatorio.");
-            valid = false;
-        } else if (!phoneRegex.test(telefonoCelular)) {
-            alert("El teléfono celular debe comenzar con 0 y tener exactamente 10 dígitos.");
-            valid = false;
-        }
-
-        // Validar Correo Electrónico (Obligatorio y debe cumplir con el formato)
-        if (!email) {
-            alert("El campo 'Correo Electrónico' es obligatorio.");
-            valid = false;
-        } else if (!emailRegex.test(email)) {
-            alert("Ingrese un correo electrónico válido.");
-            valid = false;
-        }
-
-        // Validar Promedio Mensual de Ingresos
-        const ingresosMensuales = document.getElementById("ingresos_mensuales");
-        if (ingresosMensuales.value.trim() === "" || isNaN(ingresosMensuales.value)) {
-            alert("El campo 'Promedio Mensual de Ingresos' debe ser un número.");
-            valid = false;
-        }
-
-        // Validar Promedio Mensual de Gastos
-        const gastosMensuales = document.getElementById("gastos_mensuales");
-        if (gastosMensuales.value.trim() === "" || isNaN(gastosMensuales.value)) {
-            alert("El campo 'Promedio Mensual de Gastos' debe ser un número.");
-            valid = false;
-        }
-
-        // Validar Promedio Mensual de Utilidad
-        const utilidadMensual = document.getElementById("utilidad_mensual");
-        if (utilidadMensual.value.trim() === "" || isNaN(utilidadMensual.value)) {
-            alert("El campo 'Promedio Mensual de Utilidad' debe ser un número.");
-            valid = false;
-        }
-
         // Validar Características del Negocio
-        const caracteristicasNegocio = document.getElementById("caracteristicas_negocio");
-        if (caracteristicasNegocio.value.trim() === "") {
+        const caracteristicasNegocio = document.getElementById("caracteristicas_negocio").value.trim();
+        if (!caracteristicasNegocio) {
             alert("El campo 'Describa las características del negocio' es obligatorio.");
             valid = false;
         }
 
         // Validar Temas de Capacitación
-        const temasCapacitacion = document.getElementById("temas_capacitacion");
-        if (temasCapacitacion.value.trim() === "") {
+        const temasCapacitacion = document.getElementById("temas_capacitacion").value.trim();
+        if (!temasCapacitacion) {
             alert("El campo 'Temas de Capacitación' es obligatorio.");
             valid = false;
         }
 
-        // Si el formulario es válido
+        // Si todas las validaciones son exitosas, enviar el formulario y redirigir
         if (valid) {
+            console.log("Formulario válido. Redirigiendo...");
             alert("Formulario guardado con éxito.");
-        } else {
-            event.preventDefault(); // Prevenir envío del formulario si hay errores
+            setTimeout(() => {
+                window.location.href = '../screens/fichaDiagnostico.html';
+            }, 1000);
         }
-
-
-
-
-
     });
 });
