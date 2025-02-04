@@ -121,7 +121,7 @@
             <h1>Gestión Comercial</h1>
         </div>
 
-        <form>
+        <form id="formulario">
             <table>
                 <tr>
                     <th>Preguntas</th>
@@ -133,7 +133,7 @@
                 </tr>
                 <tr>
                     <td>¿Cuenta su negocio con una marca comercial?</td>
-                    <td><input type="checkbox" name="diagnostico1"></td>
+                    <td><input type="checkbox" name="diagnostico1" required></td>
                     <td><input type="checkbox" name="intermedia1"></td>
                     <td><input type="checkbox" name="final1"></td>
                     <td><input type="checkbox" name="finalco1"></td>
@@ -141,7 +141,7 @@
                 </tr>
                 <tr>
                     <td>¿Dispone de aplicaciones graficas y de promoción? (tarjetas y etiquetas)</td>
-                    <td><input type="checkbox" name="diagnostico2"></td>
+                    <td><input type="checkbox" name="diagnostico2" required></td>
                     <td><input type="checkbox" name="intermedia2"></td>
                     <td><input type="checkbox" name="final2"></td>
                     <td><input type="checkbox" name="finalco2"></td>
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td>Promociona sus productos por redes sociales</td>
-                    <td><input type="checkbox" name="diagnostico3"></td>
+                    <td><input type="checkbox" name="diagnostico3" required></td>
                     <td><input type="checkbox" name="intermedia3"></td>
                     <td><input type="checkbox" name="final3"></td>
                     <td><input type="checkbox" name="finalco3"></td>
@@ -157,7 +157,7 @@
                 </tr>
                 <tr>
                     <td>Considera que los canales de comercialización que utiliza son los adecuados</td>
-                    <td><input type="checkbox" name="diagnostico4"></td>
+                    <td><input type="checkbox" name="diagnostico4" required></td>
                     <td><input type="checkbox" name="intermedia4"></td>
                     <td><input type="checkbox" name="final4"></td>
                     <td><input type="checkbox" name="finalco4"></td>
@@ -165,7 +165,7 @@
                 </tr>
                 <tr>
                     <td>¿Realiza servicio post venta?</td>
-                    <td><input type="checkbox" name="diagnostico5"></td>
+                    <td><input type="checkbox" name="diagnostico5" required></td>
                     <td><input type="checkbox" name="intermedia5"></td>
                     <td><input type="checkbox" name="final5"></td>
                     <td><input type="checkbox" name="finalco5"></td>
@@ -173,7 +173,7 @@
                 </tr>
                 <tr>
                     <td>¿Existe inversión en publicidad?</td>
-                    <td><input type="checkbox" name="diagnostico6"></td>
+                    <td><input type="checkbox" name="diagnostico6" required></td>
                     <td><input type="checkbox" name="intermedia6"></td>
                     <td><input type="checkbox" name="final6"></td>
                     <td><input type="checkbox" name="finalco6"></td>
@@ -181,7 +181,7 @@
                 </tr>
                 <tr>
                     <td>¿Sus productos tienen carácterísticas innovadoras apreciados por los compradores?</td>
-                    <td><input type="checkbox" name="diagnostico7"></td>
+                    <td><input type="checkbox" name="diagnostico7" required></td>
                     <td><input type="checkbox" name="intermedia7"></td>
                     <td><input type="checkbox" name="final7"></td>
                     <td><input type="checkbox" name="finalco7"></td>
@@ -189,7 +189,7 @@
                 </tr>
                 <tr>
                     <td>En el caso de ser afirmativo, describa las redes sociales que utiliza.</td>
-                    <td><input type="checkbox" name="diagnostico8"></td>
+                    <td><input type="checkbox" name="diagnostico8" required></td>
                     <td><input type="checkbox" name="intermedia8"></td>
                     <td><input type="checkbox" name="final8"></td>
                     <td><input type="checkbox" name="finalco8"></td>
@@ -197,12 +197,12 @@
                 </tr>
                 <tr id="redesSocialesInput" style="display: none;">
                     <td colspan="6">
-                        <input type="text" placeholder="Describa las redes sociales" style="width: 100%;">
+                        <input type="text" placeholder="Describa las redes sociales" style="width: 100%;" required>
                     </td>
                 </tr>
                 <tr>
                     <td>¿Sus productos disponen de una adecuada presentación y protección?</td>
-                    <td><input type="checkbox" name="diagnostico9"></td>
+                    <td><input type="checkbox" name="diagnostico9" required></td>
                     <td><input type="checkbox" name="intermedia9"></td>
                     <td><input type="checkbox" name="final9"></td>
                     <td><input type="checkbox" name="finalco9"></td>
@@ -210,7 +210,7 @@
                 </tr>
                 <tr>
                     <td>En el caso de ser afirmativo, indique los recursos que utiliza</td>
-                    <td><input type="checkbox" name="diagnostico10"></td>
+                    <td><input type="checkbox" name="diagnostico10" required></td>
                     <td><input type="checkbox" name="intermedia10"></td>
                     <td><input type="checkbox" name="final10"></td>
                     <td><input type="checkbox" name="finalco10"></td>
@@ -218,12 +218,12 @@
                 </tr>
                 <tr id="recursosInput" style="display: none;">
                     <td colspan="6">
-                        <input type="text" placeholder="Indique los recursos que utiliza" style="width: 100%;">
+                        <input type="text" placeholder="Indique los recursos que utiliza" style="width: 100%;" required>
                     </td>
                 </tr>
                 <tr>
                     <td>¿Que temas de capacitación y asistencia técnica considera que se requiere en su negocio?</td>
-                    <td><input type="checkbox" name="diagnostico11"></td>
+                    <td><input type="checkbox" name="diagnostico11" required></td>
                     <td><input type="checkbox" name="intermedco11"></td>
                     <td><input type="checkbox" name="finco11"></td>
                     <td><input type="checkbox" name="finalco11"></td>
@@ -231,13 +231,13 @@
                 </tr>
                 <tr id="temasInput" style="display: none;">
                     <td colspan="6">
-                        <input type="text" placeholder="Indique los temas que requiere" style="width: 100%;">
+                        <input type="text" placeholder="Indique los temas que requiere" style="width: 100%;" required>
                     </td>
                 </tr>
                 
                 <tr>
                     <td>Subtotal:</td>
-                    <td><input type="text" id="subtotal_diagnostico" readonly></td>
+                    <td><input type="text" id="subtotal_diagnostico" readonly required></td>
                     <td><input type="text" id="subtotal_intermedia" readonly></td>
                     <td><input type="text" id="subtotal_final" readonly></td>
                     <td><input type="text" id="subtotal_final1" readonly></td>
@@ -248,140 +248,35 @@
             <button type="submit">Guardar</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Mostrar/ocultar inputs basados en checkbox
-        document.addEventListener('DOMContentLoaded', function () {
-            // Redes sociales
-            const checkboxRedes = document.querySelector('input[name="diagnostico8"]');
-            const inputRedes = document.getElementById('redesSocialesInput');
+     <!-- Bootstrap JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+         const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+         const logoutLink = document.getElementById('logoutLink');
+ 
+         // Manejo del menú desplegable
+         dropdownBtns.forEach((btn) => {
+             btn.addEventListener('click', function () {
+                 const container = this.nextElementSibling;
+                 container.classList.toggle('show');
+             });
+         });
+ 
+         // Manejo del cierre de sesión
+         logoutLink.addEventListener('click', function (event) {
+             event.preventDefault(); // Evita la redirección inmediata
+ 
+             // Limpia datos almacenados (si aplica)
+             localStorage.clear(); // Limpia almacenamiento local
+             sessionStorage.clear(); // Limpia almacenamiento de sesión
+ 
+             // Redirige al usuario a la página de inicio de sesión
+             window.location.href = './index.html';
+         });
+ 
+ 
+     </script>
 
-
-            //Barra de progreso
-
-            const steps = document.querySelectorAll('.progress-steps .step');
-    const line = document.querySelector('.progress-steps .line');
-
-    // Función para actualizar el progreso
-    function updateProgress(currentStep) {
-        steps.forEach((step, index) => {
-            if (index < currentStep) {
-                step.classList.add('completed');
-                step.classList.remove('active');
-            } else if (index === currentStep) {
-                step.classList.add('active');
-                step.classList.remove('completed');
-            } else {
-                step.classList.remove('active', 'completed');
-            }
-        });
-
-        const progressWidth = (currentStep / (steps.length - 1)) * 100;
-        line.style.width = `${progressWidth}%`;
-    }
-
-    // Inicializar con el primer paso activo
-    updateProgress(4);
-
-    // Redirigir al hacer clic en un círculo
-    steps.forEach((step, index) => {
-        step.addEventListener('click', () => {
-            updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
-        });
-    });
-
-            //
-
-
-
-            checkboxRedes.addEventListener('change', function () {
-                inputRedes.style.display = this.checked ? 'table-row' : 'none';
-            });
-
-            // Recursos
-            const checkboxRecursos = document.querySelector('input[name="diagnostico10"]');
-            const inputRecursos = document.getElementById('recursosInput');
-
-            checkboxRecursos.addEventListener('change', function () {
-                inputRecursos.style.display = this.checked ? 'table-row' : 'none';
-            });
-
-            // Temas de capacitación
-            const checkboxTemas = document.querySelector('input[name="diagnostico11"]');
-            const inputTemas = document.getElementById('temasInput');
-
-            checkboxTemas.addEventListener('change', function () {
-                inputTemas.style.display = this.checked ? 'table-row' : 'none';
-            });
-        });
-
-        // Función para calcular los subtotales
-        function calcularSubtotales() {
-            // Contar checkboxes marcados en cada columna
-            const diagnostico = document.querySelectorAll('input[name^="diagnostico"]:checked').length;
-            const intermedia = document.querySelectorAll('input[name^="intermedia"]:checked').length;
-            const final = document.querySelectorAll('input[name^="final"]:checked').length;
-            const final1 = document.querySelectorAll('input[name^="finalco"]:checked').length;
-            const status = document.querySelectorAll('input[name^="status"]:checked').length;
-
-            // Actualizar los campos de subtotal
-            document.getElementById('subtotal_diagnostico').value = diagnostico;
-            document.getElementById('subtotal_intermedia').value = intermedia;
-            document.getElementById('subtotal_final').value = final;
-            document.getElementById('subtotal_final1').value = final1;
-            document.getElementById('status_final').value = status;
-        }
-
-        // Evento para calcular subtotales automáticamente al marcar/desmarcar un checkbox
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', calcularSubtotales);
-        });
-
-        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-        const logoutLink = document.getElementById('logoutLink');
-
-        // Manejo del menú desplegable
-        dropdownBtns.forEach((btn) => {
-            btn.addEventListener('click', function () {
-                const container = this.nextElementSibling;
-                container.classList.toggle('show');
-            });
-        });
-
-        // Manejo del cierre de sesión
-        logoutLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Evita la redirección inmediata
-
-            // Limpia datos almacenados (si aplica)
-            localStorage.clear(); // Limpia almacenamiento local
-            sessionStorage.clear(); // Limpia almacenamiento de sesión
-
-            // Redirige al usuario a la página de inicio de sesión
-            window.location.href = './index.html';
-        });
-    </script>
+    <script src="/public/js/gestionComercial.js"></script>
 </body>
 </html>
