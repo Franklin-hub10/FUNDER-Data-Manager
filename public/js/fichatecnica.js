@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    
+
 
     form.addEventListener("submit", function (event) {
         let valid = true; // Controla si el formulario es válido
@@ -124,32 +124,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Validar Contacto
-const telefonoCelular = document.getElementById("telefono_celular").value.trim();
-const email = document.getElementById("email").value.trim();
+        const telefonoCelular = document.getElementById("telefono_celular").value.trim();
+        const email = document.getElementById("email").value.trim();
 
-// Expresión regular para validar teléfonos
-const phoneRegex = /^0\d{9}$/;
+        // Expresión regular para validar teléfonos
+        const phoneRegex = /^0\d{9}$/;
 
-// Expresión regular para validar correos electrónicos
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Expresión regular para validar correos electrónicos
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Validar Teléfono Celular (Obligatorio y debe cumplir con el formato)
-if (!telefonoCelular) {
-    alert("El campo 'Teléfono Celular' es obligatorio.");
-    valid = false;
-} else if (!phoneRegex.test(telefonoCelular)) {
-    alert("El teléfono celular debe comenzar con 0 y tener exactamente 10 dígitos.");
-    valid = false;
-}
+        // Validar Teléfono Celular (Obligatorio y debe cumplir con el formato)
+        if (!telefonoCelular) {
+            alert("El campo 'Teléfono Celular' es obligatorio.");
+            valid = false;
+        } else if (!phoneRegex.test(telefonoCelular)) {
+            alert("El teléfono celular debe comenzar con 0 y tener exactamente 10 dígitos.");
+            valid = false;
+        }
 
-// Validar Correo Electrónico (Obligatorio y debe cumplir con el formato)
-if (!email) {
-    alert("El campo 'Correo Electrónico' es obligatorio.");
-    valid = false;
-} else if (!emailRegex.test(email)) {
-    alert("Ingrese un correo electrónico válido.");
-    valid = false;
-}
+        // Validar Correo Electrónico (Obligatorio y debe cumplir con el formato)
+        if (!email) {
+            alert("El campo 'Correo Electrónico' es obligatorio.");
+            valid = false;
+        } else if (!emailRegex.test(email)) {
+            alert("Ingrese un correo electrónico válido.");
+            valid = false;
+        }
 
         // Validar Promedio Mensual de Ingresos
         const ingresosMensuales = document.getElementById("ingresos_mensuales");
@@ -193,9 +193,9 @@ if (!email) {
             event.preventDefault(); // Prevenir envío del formulario si hay errores
         }
 
-      
 
-        
-    
+
+
+
     });
 });
