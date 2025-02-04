@@ -172,6 +172,8 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault(); // Prevenir envío del formulario si hay errores
         }
 
+       
+
         
     
     });

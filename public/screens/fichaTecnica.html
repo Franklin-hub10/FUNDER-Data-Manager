@@ -31,6 +31,7 @@
                         <i class="bi bi-wifi"></i>
                     </button>
                     
+                    
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle"></i> 
                     </a>
@@ -161,10 +162,19 @@
                     <td><input type="checkbox" id="no_tiene" name="visa_amparo"></td>
                 </tr>
                 <tr>
-                    <td><label for="lugar_nacimiento">Lugar y Fecha de Nacimiento:</label></td>
+                   
+                    <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
                     <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="fecha_nacimiento">Fecha de Nacimiento:</label></td>
+                    <td><input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required></td>
+                </tr>
+                <tr>
+                   
                     <td><label for="edad">Edad:</label></td>
-                    <td><input type="number" id="edad" name="edad"></td>
+                    <td><input type="number" id="edad" name="edad" min="0"></td>
                 </tr>
                 <tr>
                     <th colspan="4">AUTOIDENTIFICACIÓN ÉTNICA</th>
@@ -308,16 +318,50 @@
                 </tr>
                 <tr>
                     <td><label for="ingresos_mensuales">Promedio Mensual de Ingresos:</label></td>
-                    <td colspan="3"><input type="text" id="ingresos_mensuales" name="ingresos_mensuales"></td>
+                    <td colspan="3">
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 5px;">$</span>
+                            <input 
+                                type="text" 
+                                id="ingresos_mensuales" 
+                                name="ingresos_mensuales" 
+                                placeholder="0.00"
+                                oninput="validateCurrency(this)" 
+                                required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="gastos_mensuales">Promedio Mensual de Gastos:</label></td>
-                    <td colspan="3"><input type="text" id="gastos_mensuales" name="gastos_mensuales"></td>
+                    <td colspan="3">
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 5px;">$</span>
+                            <input 
+                                type="text" 
+                                id="gastos_mensuales" 
+                                name="gastos_mensuales" 
+                                placeholder="0.00"
+                                oninput="validateCurrency(this)" 
+                                required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>
-                    <td colspan="3"><input type="text" id="utilidad_mensual" name="utilidad_mensual" required></td>
+                    <td colspan="3">
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 5px;">$</span>
+                            <input 
+                                type="text" 
+                                id="utilidad_mensual" 
+                                name="utilidad_mensual" 
+                                placeholder="0.00"
+                                oninput="validateCurrency(this)" 
+                                required>
+                        </div>
+                    </td>
                 </tr>
+                
                 <tr>
                     <td><label for="caracteristicas_negocio">Describa las características del negocio:</label></td>
                     <td colspan="3">
@@ -367,6 +411,13 @@
              // Redirige al usuario a la página de inicio de sesión
              window.location.href = './index.html';
          });
+
+         function validateCurrency(input) {
+        input.value = input.value.replace(/[^0-9.,]/g, ''); // Solo números, comas y puntos
+        if (input.value.includes(',')) {
+            input.value = input.value.replace(',', '.'); // Reemplaza coma por punto
+        }
+    }
      </script>
     
       
