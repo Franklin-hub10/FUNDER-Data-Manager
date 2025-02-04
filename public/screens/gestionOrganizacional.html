@@ -119,7 +119,7 @@
             <h1>Gestión Organizacional</h1>
         </div>
 
-        <form>
+        <form id="formulario">
             <table>
                 <tr>
                     <th>Preguntas</th>
@@ -131,7 +131,7 @@
                 </tr>
                 <tr>
                     <td>¿El negocio cuenta con personería jurídica?</td>
-                    <td><input type="checkbox" name="diagnostico1"></td>
+                    <td><input type="checkbox" name="diagnostico1"required></td>
                     <td><input type="checkbox" name="intermedia1"></td>
                     <td><input type="checkbox" name="final1"></td>
                     <td><input type="checkbox" name="final1.1"></td>
@@ -139,7 +139,7 @@
                 </tr>
                 <tr>
                     <td>¿El negocio cuenta con una estructura de funciones definida?</td>
-                    <td><input type="checkbox" name="diagnostico2"></td>
+                    <td><input type="checkbox" name="diagnostico2" required></td>
                     <td><input type="checkbox" name="intermedia2"></td>
                     <td><input type="checkbox" name="final2"></td>
                     <td><input type="checkbox" name="final2.2"></td>
@@ -147,7 +147,7 @@
                 </tr>
                 <tr>
                     <td>¿Ha capacitado a sus empleados en este último año?</td>
-                    <td><input type="checkbox" name="diagnostico3"></td>
+                    <td><input type="checkbox" name="diagnostico3" required></td>
                     <td><input type="checkbox" name="intermedia3"></td>
                     <td><input type="checkbox" name="final3"></td>
                     <td><input type="checkbox" name="final3.3"></td>
@@ -156,7 +156,7 @@
                 
                 <tr>
                     <td>¿El personal se encuentra afiliado al IESS?</td>
-                    <td><input type="checkbox" name="diagnostico4"></td>
+                    <td><input type="checkbox" name="diagnostico4" required></td>
                     <td><input type="checkbox" name="intermedia4"></td>
                     <td><input type="checkbox" name="final4"></td>
                     <td><input type="checkbox" name="final4.4"></td>
@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <td>¿Cuenta con un local propio?</td>
-                    <td><input type="checkbox" name="diagnostico5"></td>
+                    <td><input type="checkbox" name="diagnostico5" required></td>
                     <td><input type="checkbox" name="intermedia5"></td>
                     <td><input type="checkbox" name="final5"></td>
                     <td><input type="checkbox" name="final5.5"></td>
@@ -172,7 +172,7 @@
                 </tr>
                 <tr>
                     <td>¿Dispone de un plan de negocios?</td>
-                    <td><input type="checkbox" name="diagnostico6"></td>
+                    <td><input type="checkbox" name="diagnostico6" required></td>
                     <td><input type="checkbox" name="intermedia6"></td>
                     <td><input type="checkbox" name="final6"></td>
                     <td><input type="checkbox" name="final6.6"></td>
@@ -180,7 +180,7 @@
                 </tr>
                 <tr>
                     <td>¿Tiene socios en su negocio?</td>
-                    <td><input type="checkbox" name="diagnostico7"></td>
+                    <td><input type="checkbox" name="diagnostico7" required></td>
                     <td><input type="checkbox" name="intermedia7"></td>
                     <td><input type="checkbox" name="final7"></td>
                     <td><input type="checkbox" name="final7.7"></td>
@@ -189,7 +189,7 @@
                 
                 <tr>
                     <td>¿Usted está afiliado al seguro social?</td>
-                    <td><input type="checkbox" name="diagnostico8"></td>
+                    <td><input type="checkbox" name="diagnostico8" required></td>
                     <td><input type="checkbox" name="intermedia8"></td>
                     <td><input type="checkbox" name="final8"></td>
                     <td><input type="checkbox" name="final8.8"></td>
@@ -197,7 +197,7 @@
                 </tr>
                 <tr>
                     <td>¿Su familia está asegurada al seguro social?</td>
-                    <td><input type="checkbox" name="diagnostico9"></td>
+                    <td><input type="checkbox" name="diagnostico9" required></td>
                     <td><input type="checkbox" name="intermedia9"></td>
                     <td><input type="checkbox" name="final9"></td>
                     <td><input type="checkbox" name="final9.9"></td>
@@ -218,90 +218,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-         document.addEventListener('DOMContentLoaded', function () {
         
-        //Barra de progreso
-
-        const steps = document.querySelectorAll('.progress-steps .step');
-    const line = document.querySelector('.progress-steps .line');
-
-    // Función para actualizar el progreso
-    function updateProgress(currentStep) {
-        steps.forEach((step, index) => {
-            if (index < currentStep) {
-                step.classList.add('completed');
-                step.classList.remove('active');
-            } else if (index === currentStep) {
-                step.classList.add('active');
-                step.classList.remove('completed');
-            } else {
-                step.classList.remove('active', 'completed');
-            }
-        });
-
-        const progressWidth = (currentStep / (steps.length - 1)) * 100;
-        line.style.width = `${progressWidth}%`;
-    }
-
-    // Inicializar con el primer paso activo
-    updateProgress(2);
-
-    // Redirigir al hacer clic en un círculo
-    steps.forEach((step, index) => {
-        step.addEventListener('click', () => {
-            updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
-        });
-    });
-
-            //
-
-
-
-        // Función para calcular los subtotales
-        function calcularSubtotales() {
-            // Contar checkboxes marcados en cada columna
-            const diagnostico = document.querySelectorAll('input[name^="diagnostico"]:checked').length;
-            const intermedia = document.querySelectorAll('input[name^="intermedia"]:checked').length;
-            const final = document.querySelectorAll('input[name^="final"]:checked').length;
-            const final1 = document.querySelectorAll('input[name^="final1"]:checked').length;
-            const status = document.querySelectorAll('input[name^="status"]:checked').length;
-
-            // Actualizar los campos de subtotal
-            document.getElementById('subtotal_diagnostico').value = diagnostico;
-            document.getElementById('subtotal_intermedia').value = intermedia;
-            document.getElementById('subtotal_final').value = final;
-            document.getElementById('subtotal_final1').value = final1;
-            document.getElementById('status_final').value = status;
-        }
-
-        // Evento para calcular subtotales automáticamente al marcar/desmarcar un checkbox
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', calcularSubtotales);
-        });
-
         const dropdownBtns = document.querySelectorAll('.dropdown-btn');
         const logoutLink = document.getElementById('logoutLink');
 
@@ -325,7 +242,8 @@
             window.location.href = './index.html';
         });
 
-    });
+    
     </script>
+    <script src="/public/js/gestionOrganizacional.js"></script>
 </body>
 </html>
