@@ -1,5 +1,5 @@
-    document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("formulario"); // Ahora selecciona por ID
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
@@ -53,9 +53,9 @@
         });
     });
 
-
     form.addEventListener("submit", function (event) {
-        let valid = true; // Controla si el formulario es válido
+        event.preventDefault(); // Prevenir el envío del formulario inicialmente
+        let valid = true;
         const mensajesErrores = [];
 
         // Validar campos de texto requeridos
@@ -75,8 +75,8 @@
         ];
         requiredTextFields.forEach((id) => {
             const field = document.getElementById(id);
-            if (field.value.trim() === "") {
-                mensajesErrores.push(`El campo '${field.previousElementSibling.textContent}' es obligatorio.`);
+            if (!field || field.value.trim() === "") {
+                mensajesErrores.push(`El campo '${id}' es obligatorio.`);
                 valid = false;
             }
         });
@@ -121,12 +121,14 @@
             valid = false;
         }
 
-        // Mostrar errores o mensaje de éxito
+        // Mostrar errores o redirigir
         if (!valid) {
-            event.preventDefault(); // Evitar envío del formulario si hay errores
             alert(`Errores encontrados:\n\n${mensajesErrores.join("\n")}`);
         } else {
             alert("Formulario guardado con éxito.");
+            setTimeout(() => {
+                window.location.href = '../screens/gestionOrganizacional.html'; // Redirige a la siguiente pantalla
+            }, 1000);
         }
     });
 });
