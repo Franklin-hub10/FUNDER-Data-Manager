@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
+
+
     // Función para actualizar el progreso
     function updateProgress(currentStep) {
         steps.forEach((step, index) => {
@@ -121,14 +123,33 @@ document.addEventListener("DOMContentLoaded", function () {
             valid = false;
         }
 
-        // Validar Contacto (al menos uno de los campos debe estar lleno)
-        const telefonoConvencional = document.getElementById("telefono_convencional").value.trim();
-        const telefonoCelular = document.getElementById("telefono_celular").value.trim();
-        const email = document.getElementById("email").value.trim();
-        if (!telefonoConvencional && !telefonoCelular && !email) {
-            alert("Debe proporcionar al menos un medio de contacto (Teléfono o Email).");
-            valid = false;
-        }
+        // Validar Contacto
+const telefonoCelular = document.getElementById("telefono_celular").value.trim();
+const email = document.getElementById("email").value.trim();
+
+// Expresión regular para validar teléfonos
+const phoneRegex = /^0\d{9}$/;
+
+// Expresión regular para validar correos electrónicos
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Validar Teléfono Celular (Obligatorio y debe cumplir con el formato)
+if (!telefonoCelular) {
+    alert("El campo 'Teléfono Celular' es obligatorio.");
+    valid = false;
+} else if (!phoneRegex.test(telefonoCelular)) {
+    alert("El teléfono celular debe comenzar con 0 y tener exactamente 10 dígitos.");
+    valid = false;
+}
+
+// Validar Correo Electrónico (Obligatorio y debe cumplir con el formato)
+if (!email) {
+    alert("El campo 'Correo Electrónico' es obligatorio.");
+    valid = false;
+} else if (!emailRegex.test(email)) {
+    alert("Ingrese un correo electrónico válido.");
+    valid = false;
+}
 
         // Validar Promedio Mensual de Ingresos
         const ingresosMensuales = document.getElementById("ingresos_mensuales");
@@ -172,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault(); // Prevenir envío del formulario si hay errores
         }
 
-       
+      
 
         
     
