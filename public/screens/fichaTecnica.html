@@ -1,65 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Inscripción Centro de Negocios</title>
     <link rel="stylesheet" href="/public/css/FichaTecnica.css">
     <link rel="stylesheet" href="/public/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    
+
+
 </head>
+
 <body>
 
-  <!-- Navbar superior -->
-  <nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid">
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <button class="dropdown-btn" onclick="window.location.href='./home.html'">
-                        <i class="bi bi-house-door-fill"></i> 
-                    </button>
-                    <button class="dropdown-btn" onclick="window.location.href='#'">
-                        <i class="bi bi-wifi"></i>
-                    </button>
-                    
-                    
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> 
-                    </a>
-                    <ul class="dropdown-menu " aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <!-- Navbar superior -->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <button class="dropdown-btn" onclick="window.location.href='./home.html'">
+                            <i class="bi bi-house-door-fill"></i>
+                        </button>
+                        <button class="dropdown-btn" onclick="window.location.href='#'">
+                            <i class="bi bi-wifi"></i>
+                        </button>
+
+
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu " aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!--barra lateral -->
     <div class="sidebar" id="sidebar">
         <a class="navbar-brand" href="index.html">
             <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
         </a>
-        
+
         <ul class="nav flex-column mt-4">
             <li class="nav-item">
-                
+
             </li>
-                
-               
-            
-            
+
+
+
+
             <li class="nav-item">
                 <button class="dropdown-btn">
                     <i class="bi bi-gear-fill"></i> Gestión
@@ -67,10 +74,10 @@
                 <div class="dropdown-container">
                     <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
                     <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
-                   
+
                 </div>
             </li>
-            
+
             <li class="nav-item">
                 <button class="dropdown-btn">
                     <i class="bi bi-person-badge-fill"></i> Manager
@@ -92,7 +99,7 @@
         </ul>
     </div>
 
-    
+
 
     <div class="content">
         <div class="header">
@@ -143,13 +150,13 @@
                 <tr>
                     <td><label for="documento_identidad">Documento de Identidad:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="ci_dni" name="documento_identidad" required> 
+                        <input type="radio" id="ci_dni" name="documento_identidad" required>
                         <label for="CI/DNI">CI/DNI</label>
                         <input type="radio" id="pasaporte" name="documento_identidad" required>
                         <label for="pasaporte">Pasaporte</label>
-                        <input type="radio" id="tarjeta_identidad" name="documento_identidad" required> 
+                        <input type="radio" id="tarjeta_identidad" name="documento_identidad" required>
                         <label for="tarjeta_identidad">Tarjeta De Identidad</label>
-                        <input type="radio" id="doc_refugio" name="documento_identidad" required> 
+                        <input type="radio" id="doc_refugio" name="documento_identidad" required>
                         <label for="doc_refugio">Doc. Refugio</label>
                         <input type="radio" id="carnet_solicitante" name="documento_identidad" required>
                         <label for="carnet_solicitante">Carnet De Solicitante</label>
@@ -159,20 +166,20 @@
                     <td><label for="visa_amparo">Visa Amparo:</label></td>
                     <td><input type="text" id="visa_amparo" name="visa_amparo" required></td>
                     <td><label for="no_tiene">No Tiene:</label></td>
-                    <td><input type="radio" id="no_tiene" name="visa_amparo" ></td>
+                    <td><input type="radio" id="no_tiene" name="visa_amparo"></td>
                 </tr>
                 <tr>
-                   
+
                     <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
                     <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
                 </tr>
                 <tr>
-                    
+
                     <td><label for="fecha_nacimiento">Fecha de Nacimiento:</label></td>
                     <td><input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required></td>
                 </tr>
                 <tr>
-                   
+
                     <td><label for="edad">Edad:</label></td>
                     <td><input type="number" id="edad" name="edad" min="0" required></td>
                 </tr>
@@ -182,9 +189,9 @@
                 <tr>
                     <td><label for="genero">Identidad Sexo-Genérica:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="femenino" name="genero" required> 
+                        <input type="radio" id="femenino" name="genero" required>
                         <label for="femenino">Femenino</label>
-                        <input type="radio" id="masculino" name="genero" required> 
+                        <input type="radio" id="masculino" name="genero" required>
                         <label for="masculino">Masculino</label>
                         <input type="radio" id="lgbtiq" name="genero" required>
                         <label for="lgbtiq">LGBTQI+</label>
@@ -193,22 +200,22 @@
                 <tr>
                     <td><label for="estado_civil">Estado Civil:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="casado" name="estado_civil" required> 
+                        <input type="radio" id="casado" name="estado_civil" required>
                         <label for="casado">Casado/a</label>
-                        <input type="radio" id="soltero" name="estado_civil" required> 
+                        <input type="radio" id="soltero" name="estado_civil" required>
                         <label for="soltero">Soltero/a</label>
-                        <input type="radio" id="union_libre" name="estado_civil" required> 
+                        <input type="radio" id="union_libre" name="estado_civil" required>
                         <label for="union_libre">Union Libre</label>
-                        <input type="radio" id="viudo" name="estado_civil" required> 
+                        <input type="radio" id="viudo" name="estado_civil" required>
                         <label for="Viudo">Viudo/a</label>
-                        <input type="radio" id="divorciado" name="estado_civil" required> 
+                        <input type="radio" id="divorciado" name="estado_civil" required>
                         <label for="divorciado">Divorciado/a</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="rol_familiar">Rol Familiar:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="mujer_cabeza_hogar" name="rol_familiar" required> 
+                        <input type="radio" id="mujer_cabeza_hogar" name="rol_familiar" required>
                         <label for="mujer_cabeza_hogar">Mujer cabeza hogar</label>
                         <input type="radio" id="hombre_cabeza_hogar" name="rol_familiar" required>
                         <label for="hombre_cabeza_hogar">Hombre cabeza hogar</label>
@@ -217,21 +224,21 @@
                 <tr>
                     <td><label for="discapacidad">Algún Tipo de Discapacidad:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="intelectual" name="discapacidad" required> 
+                        <input type="radio" id="intelectual" name="discapacidad" required>
                         <label for="intelectual">Intelectual</label>
-                        <input type="radio" id="fisica" name="discapacidad" required> 
+                        <input type="radio" id="fisica" name="discapacidad" required>
                         <label for="fisica">Fisica</label>
-                        <input type="radio" id="visual" name="discapacidad" required> 
+                        <input type="radio" id="visual" name="discapacidad" required>
                         <label for="visual">Visual</label>
-                        <input type="radio" id="auditiva" name="discapacidad" required> 
+                        <input type="radio" id="auditiva" name="discapacidad" required>
                         <label for="auditiva"><A></A>uditiva</label>
-                        <input type="radio" id="lenguaje" name="discapacidad" required> 
+                        <input type="radio" id="lenguaje" name="discapacidad" required>
                         <label for="lenguaje">De Lenguaje</label>
-                        <input type="radio" id="psicosocial" name="discapacidad" required> 
+                        <input type="radio" id="psicosocial" name="discapacidad" required>
                         <label for="psicosocial">Psicosocial</label>
-                        <input type="radio" id="multiple" name="discapacidad" required> 
+                        <input type="radio" id="multiple" name="discapacidad" required>
                         <label for="multiple">Multiple</label>
-                        <input type="radio" id="ninguna" name="discapacidad" required> 
+                        <input type="radio" id="ninguna" name="discapacidad" required>
                         <label for="ninguna">Ninguna</label>
                     </td>
                 </tr>
@@ -245,58 +252,61 @@
                         <label for="refugiado">Refugiado</label>
                         <input type="radio" id="migrante" name="estatus" required>
                         <label for="migrante">Migrante</label>
-                        <input type="radio" id="asilado" name="estatus" required> 
+                        <input type="radio" id="asilado" name="estatus" required>
                         <label for="asilado">Asilado</label>
-                        <input type="radio" id="solicitante_refugio" name="estatus" required> 
+                        <input type="radio" id="solicitante_refugio" name="estatus" required>
                         <label for="solicitante_refugio">Solicitante de Refugio</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="tiempo_residencia">Tiempo de Residencia en el País:</label></td>
                     <td colspan="3">
-                        
+
                         <div style="display: flex; gap: 10px; align-items: center;">
-                            <input type="number" id="años_residencia" name="años_residencia" placeholder="Años" min="0" style="width: 100px;" required>
+                            <input type="number" id="años_residencia" name="años_residencia" placeholder="Años" min="0"
+                                style="width: 100px;" required>
                             <span>Años</span>
-                           
-                            <input type="number" id="meses_residencia" name="meses_residencia" placeholder="Meses" min="0" max="11" style="width: 100px;" required>
+
+                            <input type="number" id="meses_residencia" name="meses_residencia" placeholder="Meses"
+                                min="0" max="11" style="width: 100px;" required>
                             <span>Meses</span>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="direccion_negocio">Dirección Actual del Negocio:</label></td>
-                    <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio" placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
+                    <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio"
+                            placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
                 </tr>
                 <tr>
                     <td><label for="contacto">Contacto:</label></td>
                     <td colspan="3">
                         <!-- Teléfono Convencional -->
-                        Telf. Convencional: 
+                        Telf. Convencional:
                         <input type="number" id="telefono_convencional" name="telefono_convencional"
-                        placeholder="ejem: 0222222222" required>
-                
+                            placeholder="ejem: 0222222222" required>
+
                         <!-- Teléfono Celular -->
-                        Telf. Celular: 
-                        <input type="number" id="telefono_celular" name="telefono_celular"
-                        placeholder="ejem 0999999999" required>
-                
+                        Telf. Celular:
+                        <input type="number" id="telefono_celular" name="telefono_celular" placeholder="ejem 0999999999"
+                            required>
+
                         <!-- Correo Electrónico -->
-                        E-mail: 
+                        E-mail:
                         <input type="email" id="email" name="email" placeholder="funder123@gmail.com" required>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td><label for="acceso_tic">Acceso a las TIC:</label></td>
                     <td colspan="3">
                         <input type="radio" id="internet_fijo" name="acceso_tic" required>
                         <label for="servicio_de_internet_fijo">Servicio de internet fijo </label>
-                        <input type="radio" id="celular" name="acceso_tic" required> 
+                        <input type="radio" id="celular" name="acceso_tic" required>
                         <label for="celular">Celular</label>
-                        <input type="radio" id="computador" name="acceso_tic" required>  
+                        <input type="radio" id="computador" name="acceso_tic" required>
                         <label for="computadora">Computadora</label>
-                        <input type="radio" id="tablet" name="acceso_tic" required> 
+                        <input type="radio" id="tablet" name="acceso_tic" required>
                         <label for="tablet">Tablet</label>
                         <input type="radio" id="todas_las_anteriores" name="acceso_tic" required>
                         <label for="todas_las_anteriores">Todas las Anteriores</label>
@@ -305,15 +315,15 @@
                 <tr>
                     <td><label for="instruccion">Instrucción:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="primaria" name="instruccion" required> 
+                        <input type="radio" id="primaria" name="instruccion" required>
                         <label for="primaria">Primaria</label>
                         <input type="radio" id="bachillerato" name="instruccion" required>
                         <label for="bachillerato">Bachillerato</label>
-                        <input type="radio" id="tecnologico" name="instruccion" required> 
+                        <input type="radio" id="tecnologico" name="instruccion" required>
                         <label for="tecnologico">Tecnologico</label>
-                        <input type="radio" id="superior" name="instruccion" required> 
+                        <input type="radio" id="superior" name="instruccion" required>
                         <label for="superior">Superior</label>
-                        <input type="radio" id="ninguna" name="instruccion" required> 
+                        <input type="radio" id="ninguna" name="instruccion" required>
                         <label for="ninguna">Ninguna</label>
                     </td>
                 </tr>
@@ -322,16 +332,16 @@
                     <td colspan="3">
                         <input type="radio" id="produccion" name="tipo_negocio" required>
                         <label for="produccion">Produccion</label>
-                        <input type="radio" id="servicio" name="tipo_negocio" required> 
+                        <input type="radio" id="servicio" name="tipo_negocio" required>
                         <label for="servicio">Servicio</label>
-                        <input type="radio" id="comercializacion" name="tipo_negocio" required> 
+                        <input type="radio" id="comercializacion" name="tipo_negocio" required>
                         <label for="comercializacion">Comercializacion</label>
-                        <input type="radio" id="otro" name="tipo_negocio" required> 
+                        <input type="radio" id="otro" name="tipo_negocio" required>
                         <label for="otro">Otro</label>
                     </td>
                 </tr>
                 <tr>
-                    <td ><label for="actividad_economica">Actividad Económica:</label></td>
+                    <td><label for="actividad_economica">Actividad Económica:</label></td>
                     <td colspan="3"><input type="text" id="actividad_economica" name="actividad_economica"></td>
                 </tr>
                 <tr>
@@ -339,13 +349,8 @@
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
                             <span style="margin-right: 5px;">$</span>
-                            <input 
-                                type="number" 
-                                id="ingresos_mensuales" 
-                                name="ingresos_mensuales" 
-                                placeholder="0.00"
-                                oninput="validateCurrency(this)" 
-                                required>
+                            <input type="number" id="ingresos_mensuales" name="ingresos_mensuales" placeholder="0.00"
+                                oninput="validateCurrency(this)" required>
                         </div>
                     </td>
                 </tr>
@@ -354,13 +359,8 @@
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
                             <span style="margin-right: 5px;">$</span>
-                            <input 
-                                type="number" 
-                                id="gastos_mensuales" 
-                                name="gastos_mensuales" 
-                                placeholder="0.00"
-                                oninput="validateCurrency(this)" 
-                                required>
+                            <input type="number" id="gastos_mensuales" name="gastos_mensuales" placeholder="0.00"
+                                oninput="validateCurrency(this)" required>
                         </div>
                     </td>
                 </tr>
@@ -369,25 +369,22 @@
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
                             <span style="margin-right: 5px;">$</span>
-                            <input 
-                                type="number" 
-                                id="utilidad_mensual" 
-                                name="utilidad_mensual" 
-                                placeholder="0.00"
-                                oninput="validateCurrency(this)" 
-                                required>
+                            <input type="number" id="utilidad_mensual" name="utilidad_mensual" placeholder="0.00"
+                                oninput="validateCurrency(this)" required>
                         </div>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td><label for="caracteristicas_negocio">Describa las características del negocio:</label></td>
                     <td colspan="3">
-                        <textarea id="caracteristicas_negocio" name="caracteristicas_negocio" rows="4" required></textarea>
+                        <textarea id="caracteristicas_negocio" name="caracteristicas_negocio" rows="4"
+                            required></textarea>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="asistencia_tecnica">Campos de Asistencia Técnica (en orden de prioridad):</label></td>
+                    <td><label for="asistencia_tecnica">Campos de Asistencia Técnica (en orden de prioridad):</label>
+                    </td>
                     <td colspan="3">
                         <textarea id="asistencia_tecnica" name="asistencia_tecnica" rows="3" required></textarea>
                     </td>
@@ -399,41 +396,42 @@
                     </td>
                 </tr>
             </table>
-        
+
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
-            
-     <!-- Bootstrap JS -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <script>
-         const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-         const logoutLink = document.getElementById('logoutLink');
- 
-         // Manejo del menú desplegable
-         dropdownBtns.forEach((btn) => {
-             btn.addEventListener('click', function () {
-                 const container = this.nextElementSibling;
-                 container.classList.toggle('show');
-             });
-         });
- 
-         // Manejo del cierre de sesión
-         logoutLink.addEventListener('click', function (event) {
-             event.preventDefault(); // Evita la redirección inmediata
- 
-             // Limpia datos almacenados (si aplica)
-             localStorage.clear(); // Limpia almacenamiento local
-             sessionStorage.clear(); // Limpia almacenamiento de sesión
- 
-             // Redirige al usuario a la página de inicio de sesión
-             window.location.href = './index.html';
-         });
 
-     
-     </script>
-    
-      
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+        const logoutLink = document.getElementById('logoutLink');
+
+        // Manejo del menú desplegable
+        dropdownBtns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const container = this.nextElementSibling;
+                container.classList.toggle('show');
+            });
+        });
+
+        // Manejo del cierre de sesión
+        logoutLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita la redirección inmediata
+
+            // Limpia datos almacenados (si aplica)
+            localStorage.clear(); // Limpia almacenamiento local
+            sessionStorage.clear(); // Limpia almacenamiento de sesión
+
+            // Redirige al usuario a la página de inicio de sesión
+            window.location.href = './index.html';
+        });
+
+
+    </script>
+
+
     <script src="/public/js/fichatecnica.js"></script>
 </body>
+
 </html>

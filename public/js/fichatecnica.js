@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formulario"); // CORREGIDO: Se usa getElementById
+    const form = document.getElementById("formulario"); 
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
