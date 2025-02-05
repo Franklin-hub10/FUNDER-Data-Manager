@@ -164,26 +164,7 @@ button[type="submit"]:hover {
     background: #156dc1;
 }
 
-@media (max-width: 768px) {
-    .content {
-        padding: 20px;
-    }
 
-    table,
-    th,
-    td {
-        display: block;
-        width: 100%;
-    }
-
-    td {
-        margin-bottom: 10px;
-    }
-
-    th {
-        border-radius: 5px;
-    }
-}
 /* Barra lateral principal */
 .sidebar {
   height: 100vh;
@@ -399,18 +380,6 @@ button[type="submit"]:hover {
   transform: scale(1.05);
 }
 
-/* Botón del menú responsive */
-.navbar-toggler {
-  border: none;
-  background-color: rgba(241, 234, 234, 0.2);
-  border-radius: 8px;
-  padding: 5px;
-  
-}
-
-.navbar-toggler:hover {
-  background-color: #29A632;
-}
 
 /* Menú desplegable */
 
@@ -452,102 +421,8 @@ button[type="submit"]:hover {
   font-size: 2rem;  /*tamaño del icono*/
   
 }
-/* Responsividad general para dispositivos pequeños */
-@media (max-width: 768px) {
-  /* Ajustar barra lateral */
-  .sidebar {
-    width: 50px; /* Barra lateral más compacta */
-  }
 
-  .sidebar:hover {
-    width: 200px; /* Expandir menos en pantallas pequeñas */
-  }
-
-  /* Ocultar texto en los enlaces de la barra lateral cuando está colapsada */
-  .sidebar ul.nav .nav-link span {
-    display: none;
-  }
-
-  .sidebar:hover ul.nav .nav-link span {
-    display: inline;
-  }
-
-  /* Contenido principal */
-  .content {
-    margin-left: 50px;
-  }
-
-  .sidebar:hover + .content {
-    margin-left: 200px;
-  }
-
-  /* Ajustar tamaño de los íconos en la barra lateral */
-  .nav-link i {
-    font-size: 1.2rem; /* Íconos más pequeños */
-  }
-
-  /* Navbar en pantallas pequeñas */
-  .navbar {
-    padding: 10px 15px;
-  }
-
-  .navbar-brand {
-    font-size: 1rem; /* Logo más pequeño */
-  }
-
-  .navbar-nav .nav-link {
-    font-size: 0.9rem; /* Enlaces más pequeños */
-    padding: 5px; /* Menor espacio */
-  }
-}
-
-/* Responsividad para dispositivos extra pequeños */
-@media (max-width: 480px) {
-  /* Ajustar barra lateral aún más compacta */
-  .sidebar {
-    width: 40px;
-  }
-
-  .sidebar:hover {
-    width: 150px;
-  }
-
-  /* Ajustar íconos y fuentes */
-  .nav-link i {
-    font-size: 1rem;
-    margin-right: 10px; /* Menor espacio */
-  }
-
-  .nav-link {
-    font-size: 0.8rem; /* Texto más pequeño */
-  }
-
-  /* Ajustar navbar */
-  .navbar {
-    flex-wrap: wrap; /* Permitir que los elementos del navbar se apilen */
-    padding: 5px 10px;
-  }
-
-  .navbar-brand {
-    font-size: 0.9rem;
-  }
-
-  .navbar-nav .nav-link {
-    font-size: 0.8rem;
-    padding: 5px;
-  }
-
-  /* Ajustar botones desplegables */
-  .dropdown-btn {
-    font-size: 0.9rem;
-  }
-
-  .dropdown-btn i {
-    font-size: 1rem;
-  }
-}
-
-
+/*progreso */
 
 .progress-steps {
   display: flex;
@@ -607,3 +482,129 @@ button[type="submit"]:hover {
   z-index: 0;
   transition: width 0.3s ease;
 }
+
+/* Ajuste para el Navbar en dispositivos pequeños */
+
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permitir que los elementos se apilen */
+    padding: 10px;
+    height: auto; /* Ajustar la altura automáticamente */
+    background: linear-gradient(20deg, #dee1de, #a8b0b8);
+  }
+
+  .navbar-brand {
+    font-size: 1rem; /* Reducir el tamaño del logo */
+    margin: 0 auto; /* Centrar el logo */
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column; /* Apilar los elementos del navbar */
+    align-items: center; /* Centrar los elementos */
+    width: 100%;
+  }
+
+  .navbar-nav .nav-link {
+    width: 100%; /* Ocupa todo el ancho */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Espaciado interno */
+    font-size: 0.9rem; /* Ajustar el tamaño de fuente */
+  }
+
+  .navbar-toggler {
+    position: relative;
+    left: auto;
+    right: auto;
+    margin: 10px auto; /* Centrar el botón */
+    z-index: 1100;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* Ajuste para dispositivos extra pequeños */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 5px;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  .navbar-toggler {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  #staticImage {
+    width: 100%; /* Mantener el ancho completo */
+    height: 100%; /* Mantener la altura completa */
+    object-fit: cover; /* Asegura que la imagen cubra todo el área */
+  }
+}
+
+@media (max-width: 480px) {
+  #staticImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Igual configuración para pantallas más pequeñas */
+  }
+}
+
+/* Responsividad para el formulario */
+
+@media (max-width: 768px) {
+  form {
+    gap: 10px; /* Espacio más reducido entre campos */
+    padding: 10px; /* Márgenes laterales ajustados */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    font-size: 13px; /* Reducir tamaño de fuente */
+    padding: 10px; /* Reducir padding interno */
+  }
+
+  button[type="submit"] {
+    font-size: 15px; /* Ajustar tamaño del texto */
+    padding: 10px; /* Reducir padding interno */
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    gap: 8px; /* Reducir más el espacio entre campos */
+    padding: 0 5px; /* Márgenes más estrechos */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    font-size: 12px; /* Reducir más el tamaño de fuente */
+    padding: 8px; /* Reducir más el padding interno */
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
