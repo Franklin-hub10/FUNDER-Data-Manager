@@ -92,20 +92,20 @@ CREATE TABLE `emprendedor` (
   `apellidos` varchar(200) NOT NULL,
   `idPais` int(10) NOT NULL,
   `edad` int(5) NOT NULL,
-  `idGenero` int(10) NOT NULL,
-  `idEstadoCivil` int(10) NOT NULL,
+  `generoIdentidad` varchar(45) NOT NULL,
+  `estadoCivil` varchar(45) NOT NULL,
   `numeroCargas` int(5) NOT NULL,
   `cabezaHogar` varchar(10) NOT NULL,
-  `idEtnia` int(10) NOT NULL,
+  `etnia` varchar(45) NOT NULL,
   `discapacidad` varchar(50) NOT NULL,
-  `idStatusMigra` int(10) NOT NULL,
+  `estatusMigra`varchar(45) NOT NULL,
   `direccion` varchar(200) NOT NULL,
   `telefono1` varchar(20) NOT NULL,
   `telefono2` varchar(20) NOT NULL,
   `correo` varchar(200) NOT NULL,
   `disponeInternet` varchar(5) NOT NULL,
   `disponeEquipo` varchar(5) NOT NULL,
-  `idNivel` int(10) NOT NULL
+  `nivelInstitucional` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -135,25 +135,7 @@ CREATE TABLE `emprendimiento` (
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `estadocivil`
---
-
-CREATE TABLE `estadocivil` (
-  `idEstadoCivil` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estatusmigra`
---
-
-CREATE TABLE `estatusmigra` (
-  `idStatusMigra` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -168,15 +150,6 @@ CREATE TABLE `etapamedicion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `etnia`
---
-
-CREATE TABLE `etnia` (
-  `idEtnia` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -206,25 +179,7 @@ CREATE TABLE `evaluacionpregunta` (
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `genero`
---
-
-CREATE TABLE `genero` (
-  `idGenero` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `nivelinstruccion`
---
-
-CREATE TABLE `nivelinstruccion` (
-  `idNivwl` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -407,29 +362,13 @@ ALTER TABLE `emprendimiento`
   ADD KEY `idProdServ` (`idProdServ`),
   ADD KEY `idParroquia` (`idParroquia`);
 
---
--- Indices de la tabla `estadocivil`
---
-ALTER TABLE `estadocivil`
-  ADD PRIMARY KEY (`idEstadoCivil`);
 
---
--- Indices de la tabla `estatusmigra`
---
-ALTER TABLE `estatusmigra`
-  ADD PRIMARY KEY (`idStatusMigra`);
 
 --
 -- Indices de la tabla `etapamedicion`
 --
 ALTER TABLE `etapamedicion`
   ADD PRIMARY KEY (`idEtapaMedicion`);
-
---
--- Indices de la tabla `etnia`
---
-ALTER TABLE `etnia`
-  ADD PRIMARY KEY (`idEtnia`);
 
 --
 -- Indices de la tabla `evaluacion`
@@ -447,17 +386,7 @@ ALTER TABLE `evaluacionpregunta`
   ADD KEY `idEvaluacion` (`idEvaluacion`),
   ADD KEY `idDatoGestion` (`idDatoGestion`);
 
---
--- Indices de la tabla `genero`
---
-ALTER TABLE `genero`
-  ADD PRIMARY KEY (`idGenero`);
 
---
--- Indices de la tabla `nivelinstruccion`
---
-ALTER TABLE `nivelinstruccion`
-  ADD PRIMARY KEY (`idNivwl`);
 
 --
 -- Indices de la tabla `pais`
@@ -567,30 +496,12 @@ ALTER TABLE `emprendimiento`
   MODIFY `idEmprendimiento` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `estadocivil`
---
-ALTER TABLE `estadocivil`
-  MODIFY `idEstadoCivil` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estatusmigra`
---
-ALTER TABLE `estatusmigra`
-  MODIFY `idStatusMigra` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `etapamedicion`
 --
 ALTER TABLE `etapamedicion`
   MODIFY `idEtapaMedicion` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `etnia`
---
-ALTER TABLE `etnia`
-  MODIFY `idEtnia` int(10) NOT NULL AUTO_INCREMENT;
 
---
 -- AUTO_INCREMENT de la tabla `evaluacion`
 --
 ALTER TABLE `evaluacion`
@@ -602,17 +513,7 @@ ALTER TABLE `evaluacion`
 ALTER TABLE `evaluacionpregunta`
   MODIFY `idEvalPregunta` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `genero`
---
-ALTER TABLE `genero`
-  MODIFY `idGenero` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `nivelinstruccion`
---
-ALTER TABLE `nivelinstruccion`
-  MODIFY `idNivwl` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
