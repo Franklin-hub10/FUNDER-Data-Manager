@@ -50,14 +50,22 @@ CREATE TABLE `canton` (
 --
 
 CREATE TABLE `colaborador` (
-  `idColaborador` int(10) NOT NULL AUTO_INCREMENT,
-  `idRol` int(10) NOT NULL,
-  `nombres` varchar(200) NOT NULL,
-  `apellidos` varchar(200) NOT NULL,
-  `idSede` int(10) NOT NULL,
-  `cargo` varchar(100) NOT NULL,
-   identificacion
+  `idColaborador` INT(10) NOT NULL AUTO_INCREMENT,
+  `idRol` INT(10) NOT NULL,
+  `nombres` VARCHAR(200) NOT NULL,
+  `apellidos` VARCHAR(200) NOT NULL,
+  `idSede` INT(10) NOT NULL,
+  `cargo` VARCHAR(100) NOT NULL,
+  `identificacion` VARCHAR(50) NOT NULL UNIQUE, -- Cédula, DNI, pasaporte, etc.
+  `email` VARCHAR(100) NOT NULL UNIQUE, -- Email único
+  `password` VARCHAR(255) NOT NULL, -- Contraseña encriptada
+  `estado` ENUM('activo', 'inactivo') DEFAULT 'activo', -- Estado de usuario
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Registro de creación
+  PRIMARY KEY (`idColaborador`),
+  FOREIGN KEY (`idRol`) REFERENCES `rol`(`idRol`) ON UPDATE CASCADE,
+  FOREIGN KEY (`idSede`) REFERENCES `sede`(`idSede`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 

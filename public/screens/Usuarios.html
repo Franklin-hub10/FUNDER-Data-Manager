@@ -3,181 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Usuarios</title>
+    <title>Gestión de Colaboradores</title>
     <link rel="stylesheet" href="../css/usuarios.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
-    <!-- Navbar superior -->
- <nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid">
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <button class="dropdown-btn" onclick="window.location.href='./home.html'">
-                        <i class="bi bi-house-door-fill"></i> 
-                    </button>
-                    <button class="dropdown-btn" onclick="window.location.href='#'">
-                        <i class="bi bi-wifi"></i>
-                    </button>
-                    
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> 
-                    </a>
-                    <ul class="dropdown-menu " aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-light" onclick="window.location.href='./home.html'">
+                            <i class="bi bi-house-door-fill"></i> Inicio
+                        </button>
+                        <button class="btn btn-light" onclick="window.location.href='#'">
+                            <i class="bi bi-wifi"></i> Conexión
+                        </button>
+                        <button class="btn btn-danger" id="logoutBtn">Cerrar Sesión</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<body>
-    <!--barra lateral -->
+    <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
         <a class="navbar-brand" href="index.html">
             <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
         </a>
-        
         <ul class="nav flex-column mt-4">
             <li class="nav-item">
-               
-            </li>
-                
-               
-            
-            
-            <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-gear-fill"></i> Gestión
-                </button>
+                <button class="btn btn-light">Gestión</button>
                 <div class="dropdown-container">
                     <a class="nav-link" href="gestionComercial.html">Gestión Comercial</a>
                     <a class="nav-link" href="gestionFinanciera.html">Gestión Financiera</a>
                     <a class="nav-link" href="gestionOrganizacional.html">Gestión Organizacional</a>
                     <a class="nav-link" href="gestionProductiva.html">Gestión Productiva</a>
-                    
-                   
                 </div>
             </li>
-            
             <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-person-badge-fill"></i> Manager
-                </button>
+                <button class="btn btn-light">Manager</button>
                 <div class="dropdown-container">
                     <a class="nav-link" href="roles.html">Roles</a>
                     <a class="nav-link" href="gestionUsuarios.html">Usuarios</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-bar-chart-line-fill"></i> Analityca
-                </button>
-                <div class="dropdown-container">
-                    <a class="nav-link" href="#">Dashboard</a>
-                    <a class="nav-link" href="#">Sugerencias del Dx</a>
-                </div>
-            </li>
         </ul>
     </div>
-    <div class="container">
-        <h1>Prueba de API de Colaboradores</h1>
 
-        <!-- Crear Colaborador -->
+    <!-- Contenido -->
+    <div class="container mt-4">
+        <h1 class="text-center">Gestión de Colaboradores</h1>
+
+        <!-- Formulario de Creación -->
         <h2>Crear Colaborador</h2>
         <form id="create-user-form">
-            <input type="text" id="create-nombres" placeholder="Nombres" required><br><br>
-            <input type="text" id="create-apellidos" placeholder="Apellidos" required><br><br>
-            <input type="text" id="create-cedula" placeholder="Cédula" ><br><br>
-            <input type="date" id="create-fechaNacimiento" placeholder="Fecha de Nacimiento" ><br><br>
-            <input type="text" id="create-cargo" placeholder="Cargo" required><br><br>
-            <h1>Selecciona un Rol</h1>
-    
-            <!-- Elemento <select> donde se cargarán los roles -->
-            <select id="miSelect">
-                <option value="loadRoles">Cargando roles...</option>
+            <input type="text" id="nombres" placeholder="Nombres" required class="form-control mb-2">
+            <input type="text" id="apellidos" placeholder="Apellidos" required class="form-control mb-2">
+            <input type="text" id="identificacion" placeholder="Cédula o Identificación" required class="form-control mb-2">
+            <input type="email" id="email" placeholder="Correo Electrónico" required class="form-control mb-2">
+            <input type="password" id="password" placeholder="Contraseña" required class="form-control mb-2">
+            <input type="text" id="cargo" placeholder="Cargo" required class="form-control mb-2">
+
+            <h5>Selecciona un Rol</h5>
+            <select id="idRol" class="form-control mb-2">
+                <option value="">Cargando roles...</option>
             </select>
-        
-            
-            <select id="create-idSede" required>
-                <option value="loadSede">Seleccione una sede</option>
-            </select><br><br>
-            <button type="submit" value="createColaborador">Crear Colaborador</button>
-        </form>
-        
-        <hr>
 
-        <!-- Obtener Colaborador por ID -->
-        <h2>Buscar Colaborador</h2>
-        <input type="number" id="get-user-id" placeholder="ID del Colaborador">
-        <button onclick="getUser()">Obtener Colaborador</button>
-        <div id="user-details"></div>
+            <h5>Selecciona una Sede</h5>
+            <select id="idSede" class="form-control mb-2">
+                <option value="">Cargando sedes...</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Crear Colaborador</button>
+        </form>
 
         <hr>
 
-        <h2>Editar o Eliminar Colaborador</h2>
-        <form id="edit-delete-user-form">
-            <input type="number" id="edit-delete-id" placeholder="ID del Colaborador" required><br><br>
-            <input type="text" id="edit-delete-nombres" placeholder="Nuevos Nombres"><br><br>
-            <input type="text" id="edit-delete-apellidos" placeholder="Nuevos Apellidos"><br><br>
-            <input type="text" id="edit-delete-cedula" placeholder="Nueva Cédula"><br><br>
-            <input type="date" id="edit-delete-fechaNacimiento" placeholder="Nueva Fecha de Nacimiento"><br><br>
-            <input type="text" id="edit-delete-cargo" placeholder="Nuevo Cargo"><br><br>
-            <select id="edit-delete-idRol">
-                <option value="loadRoles">Seleccione un nuevo rol</option>
-            </select><br><br>
-            <select id="edit-delete-idSede">
-                <option value="loadSede">Seleccione una nueva sede</option>
-            </select><br><br>
-            <!-- Botones separados para Editar o Eliminar -->
-            <button type="button" id="update-btn" onclick="updateUser()">Actualizar Colaborador</button>
-            <button type="button" id="delete-btn" onclick="deleteUser()">Eliminar Colaborador</button>
-        </form>
-
-        <script  src="../js/usuariosF.js" type="module"></script>
-        
-
+        <!-- Tabla de Colaboradores -->
+        <h2>Lista de Colaboradores</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Identificación</th>
+                    <th>Email</th>
+                    <th>Cargo</th>
+                    <th>Rol</th>
+                    <th>Sede</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="colaboradores-table-body">
+                <!-- Datos generados dinámicamente -->
+            </tbody>
+        </table>
     </div>
-    
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-        const logoutLink = document.getElementById('logoutLink');
-
-        // Manejo del menú desplegable
-        dropdownBtns.forEach((btn) => {
-            btn.addEventListener('click', function () {
-                const container = this.nextElementSibling;
-                container.classList.toggle('show');
-            });
-        });
-
-        // Manejo del cierre de sesión
-        logoutLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Evita la redirección inmediata
-
-            // Limpia datos almacenados (si aplica)
-            localStorage.clear(); // Limpia almacenamiento local
-            sessionStorage.clear(); // Limpia almacenamiento de sesión
-
-            // Redirige al usuario a la página de inicio de sesión
-            window.location.href = './index.html';
-        });
-    </script>
     <script src="../js/usuariosF.js" type="module"></script>
+
 </body>
 </html>
