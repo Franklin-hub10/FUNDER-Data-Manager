@@ -16,8 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 // Rutas
 app.use('/roles', rolesRoutes);
 app.use('/usuarios', usuariosRoutes);
-app.use('/login', usuariosRoutes);
-
 app.use('/sedes', sedesRoutes);
 
 // Inicio del servidor
