@@ -3,6 +3,10 @@ const cors = require('cors');
 const rolesRoutes = require('./routes/roles');
 const usuariosRoutes =require('./routes/usuarios')
 const sedesRoutes = require('./routes/sedes');
+const authRoutes = require("./routes/auth");
+require("dotenv").config(); // Asegura que esto esté al inicio
+console.log("📌 EMAIL_USER:", process.env.EMAIL_USER);
+console.log("📌 EMAIL_PASSWORD:", process.env.EMAIL_PASSWORD ? "OK" : "FALTA");
 
 const app = express();
 
@@ -17,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/roles', rolesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/sedes', sedesRoutes);
+app.use("/auth", authRoutes);
 
 // Inicio del servidor
 const PORT = 3000;

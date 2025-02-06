@@ -1,5 +1,6 @@
 const API_BASE_URL = 'http://localhost:3000';
-const API_ROLES = `${API_BASE_URL}/roles`;
+const API_ROLES = "http://localhost:3000/roles/roles"; 
+
 const API_USUARIOS = `${API_BASE_URL}/usuarios`;
 const API_SEDES = `${API_BASE_URL}/sedes`;
 
@@ -176,7 +177,6 @@ async function createColaborador(event) {
         apellidos: document.getElementById("apellidos").value,
         identificacion: document.getElementById("identificacion").value,
         email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
         idRol: document.getElementById("idRol").value,
         idSede: document.getElementById("idSede").value,
         cargo: document.getElementById("cargo").value,
@@ -196,39 +196,46 @@ async function createColaborador(event) {
 
         if (!response.ok) throw new Error(result.message || "Error desconocido");
 
-        alert("✅ Colaborador creado exitosamente.");
+        alert("✅ Colaborador creado exitosamente. Se ha enviado un correo con su contraseña temporal.");
         await loadColaboradores();
     } catch (error) {
         console.error("❌ Error al crear colaborador:", error);
-
-        // 🔴 Mostrar mensaje de error en pantalla
-        const errorDiv = document.getElementById("error-message");
-        if (errorDiv) {
-            errorDiv.textContent = error.message;
-            errorDiv.style.display = "block";
-        } else {
-            alert(`❌ ${error.message}`);
-        }
+        alert(`❌ ${error.message}`);
     }
 }
 
 
+
 // Eliminar colaborador
+// Eliminar colaborador con confirmación
 async function deleteColaborador(id) {
+    const confirmDelete = confirm("❗ ¿Estás seguro de que deseas eliminar este colaborador? Esta acción no se puede deshacer.");
+    
+    if (!confirmDelete) {
+        console.log("🚫 Eliminación cancelada por el usuario.");
+        return; // Salir si el usuario cancela la acción
+    }
+
     try {
         const response = await fetch(`${API_USUARIOS}/deleteColaborador/${id}`, { method: "DELETE" });
         const result = await response.json();
         console.log("✅ Respuesta al eliminar colaborador:", result);
 
         if (response.ok) {
+            alert("✅ Colaborador eliminado correctamente.");
             await loadColaboradores();
         } else {
             throw new Error(result.message || "Error desconocido al eliminar colaborador");
         }
     } catch (error) {
         console.error("❌ Error al eliminar colaborador:", error);
+        alert(`❌ Error al eliminar colaborador: ${error.message}`);
     }
 }
+
+// Asegurar que la función esté disponible en el contexto global
+window.deleteColaborador = deleteColaborador;
+
 
 
 

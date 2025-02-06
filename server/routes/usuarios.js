@@ -1,8 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../config/database");
+const { sendPasswordEmail } = require("../services/emailService");
 
 const router = express.Router();
+
+
+
 
 // Obtener todos los colaboradores
 router.get("/colaboradores", async (req, res) => {
@@ -38,34 +42,53 @@ router.get("/colaborador/:id", async (req, res) => {
     }
 });
 
-// Crear un colaborador
+
+// Generar contraseña aleatoria
+function generateTempPassword() {
+    return Math.random().toString(36).slice(-8);
+}
+
+
+// Crear colaborador con contraseña temporal
+// 🆕 Crear colaborador con contraseña temporal
 router.post("/createColaborador", async (req, res) => {
     console.log("📥 Recibiendo datos en el backend:", req.body);
 
-    const { nombres, apellidos, identificacion, email, password, idRol, idSede, cargo } = req.body;
+    const { nombres, apellidos, identificacion, email, idRol, idSede, cargo } = req.body;
 
     try {
-        // Verificar si ya existe un colaborador con la misma identificación o correo
-        const [existingUser] = await db.query(`
-            SELECT * FROM colaborador WHERE identificacion = ? OR email = ?
-        `, [identificacion, email]);
+        // Verificar si ya existe un usuario con la misma identificación o correo
+        const [existingUser] = await db.query(
+            "SELECT * FROM colaborador WHERE identificacion = ? OR email = ?",
+            [identificacion, email]
+        );
 
         if (existingUser.length > 0) {
-            if (existingUser[0].identificacion === identificacion) {
-                return res.status(400).json({ message: "Ya existe un usuario con esta identificación." });
-            }
-            if (existingUser[0].email === email) {
-                return res.status(400).json({ message: "Ya existe un usuario con este correo electrónico." });
-            }
+            console.log("⚠️ Usuario ya existe:", existingUser);
+            return res.status(400).json({ message: "Ya existe un usuario con esta identificación o correo." });
         }
 
-        // Si no hay duplicados, proceder con la inserción
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // 🔐 Generar contraseña temporal
+        const tempPassword = generateTempPassword();
+        console.log("🔐 Contraseña temporal generada:", tempPassword);
 
-        const [result] = await db.query(`
-            INSERT INTO colaborador (idRol, nombres, apellidos, identificacion, email, password, idSede, cargo)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        `, [idRol, nombres, apellidos, identificacion, email, hashedPassword, idSede, cargo]);
+        // Hashear la contraseña antes de guardarla
+        const hashedPassword = await bcrypt.hash(tempPassword, 10);
+        console.log("🔒 Contraseña encriptada:", hashedPassword);
+
+        // Insertar el nuevo colaborador en la base de datos
+        const [result] = await db.query(
+            "INSERT INTO colaborador (idRol, nombres, apellidos, identificacion, email, password, idSede, cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [idRol, nombres, apellidos, identificacion, email, hashedPassword, idSede, cargo]
+        );
+
+        console.log("✅ Colaborador creado, ID:", result.insertId);
+
+        // Enviar correo con la contraseña temporal
+        const emailResult = await sendPasswordEmail(email, tempPassword);
+        if (!emailResult.success) {
+            console.warn("⚠️ No se pudo enviar el correo:", emailResult.message);
+        }
 
         res.status(201).json({ message: "Colaborador creado exitosamente", idColaborador: result.insertId });
     } catch (error) {

@@ -65,6 +65,8 @@ CREATE TABLE `colaborador` (
   FOREIGN KEY (`idRol`) REFERENCES `rol`(`idRol`) ON UPDATE CASCADE,
   FOREIGN KEY (`idSede`) REFERENCES `sede`(`idSede`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE colaborador ADD COLUMN password_temp BOOLEAN DEFAULT TRUE;
+
 
 
 -- --------------------------------------------------------
@@ -695,3 +697,12 @@ CREATE TABLE `rol_permiso` (
   FOREIGN KEY (`idRol`) REFERENCES `rol`(`idRol`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`idPermiso`) REFERENCES `permiso`(`idPermiso`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE vista_permiso (
+  idVista INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  url VARCHAR(255) NOT NULL UNIQUE, 
+  idPermiso INT NOT NULL,
+  FOREIGN KEY (idPermiso) REFERENCES permiso(idPermiso) ON DELETE CASCADE
+);
