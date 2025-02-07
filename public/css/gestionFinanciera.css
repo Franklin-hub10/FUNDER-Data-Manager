@@ -59,6 +59,19 @@ table {
     border-spacing: 0;
     margin-bottom: 20px;
 }
+/* Centrar el contenido de las celdas de la tabla */
+
+table td {
+  text-align: center; /* Centrar horizontalmente */
+  vertical-align: middle; /* Centrar verticalmente */
+  font-size: 1.4rem; /*tamaño de letra*/
+}
+
+/* Opcional: Ajustar el tamaño del checkbox */
+input[type="checkbox"] {
+  transform: scale(1.2); /* Cambia el tamaño del checkbox si es necesario */
+  margin: 5px; /* Espaciado opcional */
+}
 
 th {
     background: var(--primarioAzul);

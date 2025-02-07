@@ -60,6 +60,22 @@ table {
     margin-bottom: 20px;
 }
 
+/* Centrar el contenido de las celdas de la tabla */
+table td {
+  text-align: center; /* Centrar horizontalmente */
+  vertical-align: middle; /* Centrar verticalmente */
+  font-size: 1.4rem; /* Tamaño de letra más grande */
+    text-align: center; /* Asegura que esté centrado */
+    vertical-align: middle; /* Centrado vertical */
+}
+
+/* Opcional: Ajustar el tamaño del checkbox */
+input[type="checkbox"] {
+  transform: scale(1.2); /* Cambia el tamaño del checkbox si es necesario */
+  margin: 5px; /* Espaciado opcional */
+}
+
+
 th {
     background: var(--primarioAzul);
     color: var(--blanco);
@@ -81,6 +97,7 @@ td {
     vertical-align: top;
     color: var(--negro);
     border-bottom: 1px solid var(--negro);
+   
 }
 
 tr:nth-child(even) td {

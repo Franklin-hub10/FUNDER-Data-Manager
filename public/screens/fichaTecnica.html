@@ -28,13 +28,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        
+
                         <button class="dropdown-btn" onclick="window.location.href='./home.html'">
                             <i class="bi bi-house-door-fill"></i>
                         </button>
-                        
-                       
-                        
+
+
+
                         <button class="dropdown-btn" onclick="window.location.href='#'">
                             <i class="bi bi-wifi"></i>
                         </button>
@@ -45,7 +45,7 @@
                             <i class="bi bi-person-circle"></i>
                         </a>
                         <ul class="dropdown-menu " aria-labelledby="userDropdown">
-                            
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -95,7 +95,7 @@
                 <button class="dropdown-btn">
                     <i class="bi bi-bar-chart-line-fill"></i> Analityca
                 </button>
-                
+
             </li>
         </ul>
     </div>
@@ -151,28 +151,29 @@
                 <tr>
                     <td><label for="documento_identidad">Documento de Identidad:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="ci_dni" name="documento_identidad" required>
-                        <label for="CI/DNI">CI/DNI</label>
-                        <input type="radio" id="pasaporte" name="documento_identidad" required>
-                        <label for="pasaporte">Pasaporte</label>
-                        <input type="radio" id="tarjeta_identidad" name="documento_identidad" required>
-                        <label for="tarjeta_identidad">Tarjeta De Identidad</label>
-                        <input type="radio" id="doc_refugio" name="documento_identidad" required>
-                        <label for="doc_refugio">Doc. Refugio</label>
-                        <input type="radio" id="carnet_solicitante" name="documento_identidad" required>
-                        <label for="carnet_solicitante">Carnet De Solicitante</label>
+                        <select id="documento_identidad" name="documento_identidad" required
+                            onchange="toggleVisaAmparo()">
+                            <option value="" disabled selected>Seleccione un documento</option>
+                            <option value="ci_dni">CI/DNI</option>
+                            <option value="pasaporte">Pasaporte</option>
+                            <option value="tarjeta_identidad">Tarjeta De Identidad</option>
+                            <option value="doc_refugio">Doc. Refugio</option>
+                            <option value="visa_amparo">Visa Amparo</option>
+                            <option value="carnet_solicitante">Carnet De Solicitante</option>
+                        </select>
                     </td>
                 </tr>
-                <tr>
+                <tr id="fila_visa_amparo" style="display: none;">
                     <td><label for="visa_amparo">Visa Amparo:</label></td>
-                    <td><input type="text" id="visa_amparo" name="visa_amparo" required></td>
-                    <td><label for="no_tiene">No Tiene:</label></td>
-                    <td><input type="radio" id="no_tiene" name="visa_amparo"></td>
-                </tr>
-                <tr>
+                    <td>
+                        <input type="text" id="visa_amparo" name="visa_amparo" placeholder="Ingrese Visa Amparo">
+                    </td>
 
-                    <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
-                    <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
+                </tr>
+
+
+                <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
+                <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
                 </tr>
                 <tr>
 
@@ -185,80 +186,95 @@
                     <td><input type="number" id="edad" name="edad" min="0" required></td>
                 </tr>
                 <tr>
+                    <td><label for="instruccion">Instrucción:</label></td>
+                    <td colspan="3">
+                        <select id="instruccion" name="instruccion" required>
+                            <option value="" disabled selected>Seleccione su nivel de instrucción</option>
+                            <option value="primaria">Primaria</option>
+                            <option value="bachillerato">Bachillerato</option>
+                            <option value="tecnologico">Tecnológico</option>
+                            <option value="superior">Superior</option>
+                            <option value="ninguna">Ninguna</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="estatus">Estatus (en caso de ser extranjero):</label></td>
+                    <td colspan="3">
+                        <select id="estatus" name="estatus" required>
+                            <option value="" disabled selected>Seleccione un estatus</option>
+                            <option value="refugiado">Refugiado</option>
+                            <option value="migrante">Migrante</option>
+                            <option value="asilado">Asilado</option>
+                            <option value="solicitante_refugio">Solicitante de Refugio</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
                     <th colspan="4">AUTOIDENTIFICACIÓN ÉTNICA</th>
                 </tr>
                 <tr>
                     <td><label for="genero">Identidad Sexo-Genérica:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="femenino" name="genero" required>
-                        <label for="femenino">Femenino</label>
-                        <input type="radio" id="masculino" name="genero" required>
-                        <label for="masculino">Masculino</label>
-                        <input type="radio" id="lgbtiq" name="genero" required>
-                        <label for="lgbtiq">LGBTQI+</label>
+                        <select id="genero" name="genero" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="lgbtiq">LGBTQI+</option>
+                        </select>
                     </td>
                 </tr>
+
                 <tr>
                     <td><label for="estado_civil">Estado Civil:</label></td>
+
                     <td colspan="3">
-                        <input type="radio" id="casado" name="estado_civil" required>
-                        <label for="casado">Casado/a</label>
-                        <input type="radio" id="soltero" name="estado_civil" required>
-                        <label for="soltero">Soltero/a</label>
-                        <input type="radio" id="union_libre" name="estado_civil" required>
-                        <label for="union_libre">Union Libre</label>
-                        <input type="radio" id="viudo" name="estado_civil" required>
-                        <label for="Viudo">Viudo/a</label>
-                        <input type="radio" id="divorciado" name="estado_civil" required>
-                        <label for="divorciado">Divorciado/a</label>
+                        <select id="estado_civil" name="estado_civil" required>
+                            <option value="" disabled selected>Seleccione su estado civil</option>
+                            <option value="casado">Casado/a</option>
+                            <option value="soltero">Soltero/a</option>
+                            <option value="union_libre">Unión Libre</option>
+                            <option value="viudo">Viudo/a</option>
+                            <option value="divorciado">Divorciado/a</option>
+                        </select>
                     </td>
+
                 </tr>
+
+
                 <tr>
                     <td><label for="rol_familiar">Rol Familiar:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="mujer_cabeza_hogar" name="rol_familiar" required>
-                        <label for="mujer_cabeza_hogar">Mujer cabeza hogar</label>
-                        <input type="radio" id="hombre_cabeza_hogar" name="rol_familiar" required>
-                        <label for="hombre_cabeza_hogar">Hombre cabeza hogar</label>
+                        <select id="rol_familiar" name="rol_familiar" required>
+                            <option value="" disabled selected>Seleccione su rol</option>
+                            <option value="mujer_cabeza_hogar">Mujer cabeza de hogar</option>
+                            <option value="hombre_cabeza_hogar">Hombre cabeza de hogar</option>
+                        </select>
                     </td>
                 </tr>
+
                 <tr>
                     <td><label for="discapacidad">Algún Tipo de Discapacidad:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="intelectual" name="discapacidad" required>
-                        <label for="intelectual">Intelectual</label>
-                        <input type="radio" id="fisica" name="discapacidad" required>
-                        <label for="fisica">Fisica</label>
-                        <input type="radio" id="visual" name="discapacidad" required>
-                        <label for="visual">Visual</label>
-                        <input type="radio" id="auditiva" name="discapacidad" required>
-                        <label for="auditiva"><A></A>uditiva</label>
-                        <input type="radio" id="lenguaje" name="discapacidad" required>
-                        <label for="lenguaje">De Lenguaje</label>
-                        <input type="radio" id="psicosocial" name="discapacidad" required>
-                        <label for="psicosocial">Psicosocial</label>
-                        <input type="radio" id="multiple" name="discapacidad" required>
-                        <label for="multiple">Multiple</label>
-                        <input type="radio" id="ninguna" name="discapacidad" required>
-                        <label for="ninguna">Ninguna</label>
+                        <select id="discapacidad" name="discapacidad" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="intelectual">Intelectual</option>
+                            <option value="fisica">Física</option>
+                            <option value="visual">Visual</option>
+                            <option value="auditiva">Auditiva</option>
+                            <option value="lenguaje">De Lenguaje</option>
+                            <option value="psicosocial">Psicosocial</option>
+                            <option value="multiple">Múltiple</option>
+                            <option value="ninguna">Ninguna</option>
+                        </select>
                     </td>
+
                 </tr>
                 <tr>
                     <th colspan="4">SITUACIÓN ACTUAL DEL NEGOCIO</th>
                 </tr>
-                <tr>
-                    <td><label for="estatus">Estatus (en caso de ser extranjero):</label></td>
-                    <td colspan="3">
-                        <input type="radio" id="refugiado" name="estatus" required>
-                        <label for="refugiado">Refugiado</label>
-                        <input type="radio" id="migrante" name="estatus" required>
-                        <label for="migrante">Migrante</label>
-                        <input type="radio" id="asilado" name="estatus" required>
-                        <label for="asilado">Asilado</label>
-                        <input type="radio" id="solicitante_refugio" name="estatus" required>
-                        <label for="solicitante_refugio">Solicitante de Refugio</label>
-                    </td>
-                </tr>
+
                 <tr>
                     <td><label for="tiempo_residencia">Tiempo de Residencia en el País:</label></td>
                     <td colspan="3">
@@ -301,46 +317,38 @@
                 <tr>
                     <td><label for="acceso_tic">Acceso a las TIC:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="internet_fijo" name="acceso_tic" required>
-                        <label for="servicio_de_internet_fijo">Servicio de internet fijo </label>
-                        <input type="radio" id="celular" name="acceso_tic" required>
-                        <label for="celular">Celular</label>
-                        <input type="radio" id="computador" name="acceso_tic" required>
-                        <label for="computadora">Computadora</label>
-                        <input type="radio" id="tablet" name="acceso_tic" required>
-                        <label for="tablet">Tablet</label>
-                        <input type="radio" id="todas_las_anteriores" name="acceso_tic" required>
-                        <label for="todas_las_anteriores">Todas las Anteriores</label>
+                        <select id="acceso_tic" name="acceso_tic" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="internet_fijo">Servicio de internet fijo</option>
+                            <option value="celular">Celular</option>
+                            <option value="computador">Computadora</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="todas_las_anteriores">Todas las Anteriores</option>
+                        </select>
                     </td>
                 </tr>
-                <tr>
-                    <td><label for="instruccion">Instrucción:</label></td>
-                    <td colspan="3">
-                        <input type="radio" id="primaria" name="instruccion" required>
-                        <label for="primaria">Primaria</label>
-                        <input type="radio" id="bachillerato" name="instruccion" required>
-                        <label for="bachillerato">Bachillerato</label>
-                        <input type="radio" id="tecnologico" name="instruccion" required>
-                        <label for="tecnologico">Tecnologico</label>
-                        <input type="radio" id="superior" name="instruccion" required>
-                        <label for="superior">Superior</label>
-                        <input type="radio" id="ninguna" name="instruccion" required>
-                        <label for="ninguna">Ninguna</label>
-                    </td>
-                </tr>
+
+
+
                 <tr>
                     <td><label for="tipo_negocio">Tipo del Negocio:</label></td>
                     <td colspan="3">
-                        <input type="radio" id="produccion" name="tipo_negocio" required>
-                        <label for="produccion">Produccion</label>
-                        <input type="radio" id="servicio" name="tipo_negocio" required>
-                        <label for="servicio">Servicio</label>
-                        <input type="radio" id="comercializacion" name="tipo_negocio" required>
-                        <label for="comercializacion">Comercializacion</label>
-                        <input type="radio" id="otro" name="tipo_negocio" required>
-                        <label for="otro">Otro</label>
+                        <select id="tipo_negocio" name="tipo_negocio" required onchange="toggleOtroNegocio()">
+                            <option value="" disabled selected>Seleccione el tipo de negocio</option>
+                            <option value="produccion">Producción</option>
+                            <option value="servicio">Servicio</option>
+                            <option value="comercializacion">Comercialización</option>
+                            <option value="otro">Otro</option>
+                        </select>
                     </td>
                 </tr>
+                <tr id="fila_otro_negocio" style="display: none;">
+                    <td><label for="otro_negocio">Especifique otro tipo de negocio:</label></td>
+                    <td colspan="3">
+                        <input type="text" id="otro_negocio" name="otro_negocio" placeholder="Ingrese tipo de negocio">
+                    </td>
+                </tr>
+
                 <tr>
                     <td><label for="actividad_economica">Actividad Económica:</label></td>
                     <td colspan="3"><input type="text" id="actividad_economica" name="actividad_economica"></td>
@@ -349,8 +357,8 @@
                     <td><label for="ingresos_mensuales">Promedio Mensual de Ingresos:</label></td>
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
-                            <span style="margin-right: 5px;">$</span>
-                            <input type="number" id="ingresos_mensuales" name="ingresos_mensuales" placeholder="0.00"
+
+                            <input type="number" id="ingresos_mensuales" name="ingresos_mensuales" placeholder=" $ 0.00"
                                 oninput="validateCurrency(this)" required>
                         </div>
                     </td>
@@ -359,8 +367,8 @@
                     <td><label for="gastos_mensuales">Promedio Mensual de Gastos:</label></td>
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
-                            <span style="margin-right: 5px;">$</span>
-                            <input type="number" id="gastos_mensuales" name="gastos_mensuales" placeholder="0.00"
+
+                            <input type="number" id="gastos_mensuales" name="gastos_mensuales" placeholder=" $ 0.00"
                                 oninput="validateCurrency(this)" required>
                         </div>
                     </td>
@@ -369,8 +377,8 @@
                     <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>
                     <td colspan="3">
                         <div style="display: flex; align-items: center;">
-                            <span style="margin-right: 5px;">$</span>
-                            <input type="number" id="utilidad_mensual" name="utilidad_mensual" placeholder="0.00"
+
+                            <input type="number" id="utilidad_mensual" name="utilidad_mensual" placeholder="$ 0.00"
                                 oninput="validateCurrency(this)" required>
                         </div>
                     </td>
@@ -405,6 +413,25 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
+        function toggleVisaAmparo() {
+            const select = document.getElementById("documento_identidad");
+            const visaAmparoRow = document.getElementById("fila_visa_amparo");
+
+            if (select.value === "visa_amparo") {
+                visaAmparoRow.style.display = "table-row"; // Muestra la fila si se selecciona Visa Amparo
+            } else {
+                visaAmparoRow.style.display = "none"; // Oculta la fila si se elige otra opción
+            }
+        }
+
+        function hideVisaAmparo() {
+            const visaAmparoRow = document.getElementById("fila_visa_amparo");
+            visaAmparoRow.style.display = "none"; // Oculta la fila cuando se selecciona "No Tiene"
+        }
+
+
+
         const dropdownBtns = document.querySelectorAll('.dropdown-btn');
         const logoutLink = document.getElementById('logoutLink');
 
@@ -427,6 +454,7 @@
             // Redirige al usuario a la página de inicio de sesión
             window.location.href = './index.html';
         });
+
 
 
     </script>

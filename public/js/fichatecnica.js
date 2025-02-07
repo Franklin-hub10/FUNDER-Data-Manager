@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formulario"); 
+    const form = document.getElementById("formulario");
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
@@ -62,12 +62,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Validar Documento de Identidad (Debe haber al menos un seleccionado)
-        const documentoIdentidad = document.querySelectorAll("input[name='documento_identidad']:checked");
-        if (documentoIdentidad.length === 0) {
-            alert("Seleccione al menos un tipo de documento de identidad.");
+        // Validar Documento de Identidad (Debe haber una opción seleccionada)
+        const documentoIdentidad = document.getElementById("documento_identidad").value;
+
+        if (!documentoIdentidad) {
+            alert("Seleccione un tipo de documento de identidad.");
             valid = false;
         }
+
 
         // Validar teléfono celular
         const telefonoCelular = document.getElementById("telefono_celular").value.trim();
@@ -113,26 +115,31 @@ document.addEventListener("DOMContentLoaded", function () {
             valid = false;
         }
 
-        // Validar que haya seleccionado al menos una opción en género
-        const genero = document.querySelectorAll("input[name='genero']:checked");
-        if (genero.length === 0) {
-            alert("Seleccione al menos una opción en 'Identidad Sexo-Genérica'.");
-            valid = false;
-        }
+       // Validar que haya seleccionado una opción en "Identidad Sexo-Genérica"
+const genero = document.getElementById("genero").value;
 
-        // Validar Estado Civil (Debe haber al menos uno seleccionado)
-        const estadoCivil = document.querySelectorAll("input[name='estado_civil']:checked");
-        if (estadoCivil.length === 0) {
-            alert("Seleccione al menos una opción en 'Estado Civil'.");
-            valid = false;
-        }
+if (!genero) {
+    alert("Seleccione una opción en 'Identidad Sexo-Genérica'.");
+    valid = false;
+}
 
-        // Validar Rol Familiar (Debe haber al menos uno seleccionado)
-        const rolFamiliar = document.querySelectorAll("input[name='rol_familiar']:checked");
-        if (rolFamiliar.length === 0) {
-            alert("Seleccione al menos una opción en 'Rol Familiar'.");
-            valid = false;
-        }
+
+       // Validar que haya seleccionado una opción en "Estado Civil"
+const estadoCivil = document.getElementById("estado_civil").value;
+
+if (!estadoCivil) {
+    alert("Seleccione una opción en 'Estado Civil'.");
+    valid = false;
+}
+
+        // Validar que haya seleccionado una opción en "Rol Familiar"
+const rolFamiliar = document.getElementById("rol_familiar").value;
+
+if (!rolFamiliar) {
+    alert("Seleccione una opción en 'Rol Familiar'.");
+    valid = false;
+}
+
 
         // Validar Características del Negocio
         const caracteristicasNegocio = document.getElementById("caracteristicas_negocio").value.trim();
