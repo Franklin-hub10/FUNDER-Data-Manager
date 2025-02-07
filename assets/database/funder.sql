@@ -94,6 +94,7 @@ CREATE TABLE `emprendedor` (
   `apellidos` varchar(200) NOT NULL,
   `idPais` int(10) NOT NULL,
   `edad` int(5) NOT NULL,
+  `idSede` INT(10) NOT NULL,
   `generoIdentidad` varchar(45) NOT NULL,
   `estadoCivil` varchar(45) NOT NULL,
   `numeroCargas` int(5) NOT NULL,
