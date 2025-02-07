@@ -198,6 +198,45 @@ button[type="submit"]:hover {
   background: #156dc1;
 }
 
+/* Botón de descarga fijo */
+
+.download-btn {
+  position: fixed; 
+  right: 30px; 
+  top: 110px; 
+  font-size: 1rem; 
+  font-weight: bold; 
+  color: white; 
+  background-color: #29A632; 
+  border: none; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  z-index: 1000; 
+  width: 100px; 
+  height: 40px; 
+  padding: 0; /
+  
+}
+
+.download-btn:hover {
+  background-color: #218838; 
+  transform: scale(1.05); 
+}
+
+/* Responsivo: Ajustar tamaño y posición en pantallas pequeñas */
+@media (max-width: 768px) {
+  .download-btn {
+      padding: 10px 15px; 
+      font-size: 0.9rem; 
+      right: 10px;
+      top: 80px; 
+      position: absolute;
+  }
+}
+
+
 
 /* Barra lateral principal */
 .sidebar {
