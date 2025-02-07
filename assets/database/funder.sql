@@ -89,7 +89,7 @@ CREATE TABLE `datosgestion` (
 --
 
 CREATE TABLE `emprendedor` (
-  `idEmprendedor` int(10) NOT NULL,
+  `idEmprendedor` int(10) NOT NULL AUTO_INCREMENT,
   `nombres` varchar(200) NOT NULL,
   `apellidos` varchar(200) NOT NULL,
   `idPais` int(10) NOT NULL,
@@ -97,17 +97,30 @@ CREATE TABLE `emprendedor` (
   `generoIdentidad` varchar(45) NOT NULL,
   `estadoCivil` varchar(45) NOT NULL,
   `numeroCargas` int(5) NOT NULL,
-  `cabezaHogar` varchar(10) NOT NULL,
+  `rolFamiliar` varchar(10) NOT NULL,
   `etnia` varchar(45) NOT NULL,
   `discapacidad` varchar(50) NOT NULL,
-  `estatusMigra`varchar(45) NOT NULL,
+  `estatusMigra` varchar(45),
   `direccion` varchar(200) NOT NULL,
   `telefono1` varchar(20) NOT NULL,
   `telefono2` varchar(20) NOT NULL,
   `correo` varchar(200) NOT NULL,
-  `disponeInternet` varchar(5) NOT NULL,
-  `disponeEquipo` varchar(5) NOT NULL,
-  `nivelInstitucional` varchar(45) NOT NULL
+  `servicioDeInternet` boolean NOT NULL,
+  `celular` boolean NOT NULL,
+  `computadora` boolean NOT NULL,
+  `tablet` boolean NOT NULL,
+  `nivelInstitucional` varchar(45) NOT NULL,
+  `idColaborador` int(10),
+  `tipoNegocio` varchar(200) NOT NULL,
+  `actividadEconomica` varchar(200) NOT NULL,
+  `promMensualIngreso` double NOT NULL,
+  `promMensualGastos` double NOT NULL,
+  `promMensualUtilidad` double NOT NULL,
+  `caracteristicaDelNegocio` varchar(1000) NOT NULL,
+  `camposAsistenciaTecnica` varchar(1000) NOT NULL,
+  `temaCapacitacion` varchar(1000) NOT NULL,
+  PRIMARY KEY (`idEmprendedor`),
+  FOREIGN KEY (`idColaborador`) REFERENCES `colaborador`(`idColaborador`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,23 +130,35 @@ CREATE TABLE `emprendedor` (
 --
 
 CREATE TABLE `emprendimiento` (
-  `idEmprendimiento` int(10) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `razonSocial` varchar(100) NOT NULL,
-  `idSede` int(10) NOT NULL,
-  `idProdServ` int(10) NOT NULL,
-  `direccion` varchar(200) NOT NULL,
-  `idParroquia` int(10) NOT NULL,
-  `telefono1` varchar(20) NOT NULL,
-  `telefono2` varchar(20) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `numSocios` int(10) NOT NULL,
-  `numEmpleados` int(10) NOT NULL,
-  `antiguedad` int(10) NOT NULL,
-  `contacto1` varchar(200) NOT NULL,
-  `contacto2` varchar(200) NOT NULL,
-  `referencia` varchar(200) NOT NULL
+  `idEmprendimiento` INT(10) NOT NULL AUTO_INCREMENT,
+  `nombreComercial` VARCHAR(100) NOT NULL,
+  `razonSocial` VARCHAR(12) NOT NULL,
+  `idSede` INT(10) NOT NULL,
+  `idProdServ` INT(10) NOT NULL,
+  `direccionNegocio` VARCHAR(200) NOT NULL,
+  `idParroquia` INT(10) NOT NULL,
+  `canton` VARCHAR(200) NOT NULL,
+  `ciudad` VARCHAR(200) NOT NULL,
+  `telefono1` VARCHAR(20) NOT NULL,
+  `telefono2` VARCHAR(20) NOT NULL,
+  `correo` VARCHAR(100) NOT NULL,
+  `numSocios` INT(10) NOT NULL,
+  `numEmpleados` INT(100) NOT NULL,
+  `antiguedad` INT(10) NOT NULL,
+  `nombreContacto1` VARCHAR(200) NOT NULL,
+  `telefonoContacto1` VARCHAR(20) NOT NULL,
+  `nombreContacto2` VARCHAR(200) NOT NULL,
+  `telefonoContacto2` VARCHAR(20) NOT NULL,
+  `referencia` VARCHAR(200) NOT NULL,
+  `nombreEvaluador` VARCHAR(200) NOT NULL,
+  `fechaEvaluacion` DATE NOT NULL,
+  `idEmprendedor` INT(10) NOT NULL,
+  `idColaborador` INT(10) NOT NULL,
+  PRIMARY KEY (`idEmprendimiento`),
+  FOREIGN KEY (`idEmprendedor`) REFERENCES `emprendedor`(`idEmprendedor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`idColaborador`) REFERENCES `colaborador`(`idColaborador`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 

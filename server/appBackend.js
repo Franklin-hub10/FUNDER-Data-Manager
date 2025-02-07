@@ -22,6 +22,8 @@ app.use('/roles', rolesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/sedes', sedesRoutes);
 app.use("/auth", authRoutes);
+app.use("/fichaTecnica", fichaTecnicaRoutes);
+app.use("/fichaDiagnostico", fichaDiagnosticoRoutes);
 
 // Inicio del servidor
 const PORT = 3000;

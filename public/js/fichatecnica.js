@@ -165,3 +165,5 @@ if (!rolFamiliar) {
         }
     });
 });
+
+//************************llamado de CRUD de ficha tecnica****************************//
