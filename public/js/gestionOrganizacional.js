@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-    // Barra de progreso
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
+    const step3Label = document.getElementById('step3Label'); // Contenedor para el paso 3
 
     // Función para actualizar el progreso
     function updateProgress(currentStep) {
@@ -24,6 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicializar con el paso 3 activo
     updateProgress(2);
+
+    // Cambiar el nombre de la página en el paso 3
+    function actualizarNombrePagina() {
+        // Si ya tienes un valor seleccionado en algún select, úsalo aquí.
+        const paginaSeleccionada = document.querySelector('select[name="pagina"]'); // Este es solo un ejemplo
+        const nombrePagina = paginaSeleccionada ? paginaSeleccionada.value : 'Gestión Organizacional';
+
+        step3Label.textContent = nombrePagina; // Actualiza el nombre en el paso 3
+    }
+
+    // Llama a la función para actualizar el nombre de la página al cargar
+    actualizarNombrePagina();
 
     // Redirigir al hacer clic en un círculo
     steps.forEach((step, index) => {

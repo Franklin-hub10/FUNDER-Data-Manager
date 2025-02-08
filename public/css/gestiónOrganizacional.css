@@ -22,8 +22,9 @@ body::before {
     height: 100%;
     background: url('/assets/images/Logo FUNDER 2021.png') no-repeat center center fixed;
     background-size: 400px; 
-    filter: brightness(0.5); 
+    opacity: 0.15;
     z-index: -1; 
+    background: linear-gradient(180deg, #e7e7e7, #c9ffc9);
 }
 
 .content {
@@ -155,17 +156,18 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    margin-top: 20px;
 }
 
 button[type="submit"]:hover {
     background: #156dc1;
 }
+.containerDownload {
+  flex-direction:row;
+  justify-items: end;
+}
 
-/* Botón de descarga fijo */
 .download-btn {
-  position: fixed; 
-  right: 30px; 
-  top: 110px; 
   font-size: 1rem; 
   font-weight: bold; 
   color: white; 
@@ -178,13 +180,50 @@ button[type="submit"]:hover {
   z-index: 1000; 
   width: 100px; 
   height: 40px; 
-  padding: 0; /
+  padding: 20px; 
   
 }
 
 .download-btn:hover {
   background-color: #218838; 
   transform: scale(1.05); 
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+  background-color: #29A632;
+  margin: 10px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);  /* Sombra para darle más visibilidad */
+  margin-bottom: 40px;
+}
+
+
+/* Estilo para todos los menús desplegables */
+select {
+  padding: 10px;
+
+  font-size: 1.2rem;
+
+  border-radius: 8px;
+  border: 1px solid #444; 
+
+  cursor: pointer;
+}
+
+
+select:focus {
+
+  outline: none;
+  background-color: #e6f7ff;
+
+}
+
+
+select option {
+  font-size: 1.2rem;
+
+  padding: 10px;
 }
 
 /* Responsivo: Ajustar tamaño y posición en pantallas pequeñas */
@@ -248,8 +287,10 @@ button[type="submit"]:hover {
 }
 
 .sidebar:hover a.navbar-brand img {
-  width: 80px;
+  display: flex;
+  width: 120px;
   transform: scale(1.1);
+  justify-self: center;
 }
 
 /* Lista de navegación en la barra lateral */

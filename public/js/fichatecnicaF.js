@@ -28,15 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
             updateProgress(index);
-            const pages = [
-                'fichaTecnica.html',
-                'fichaDiagnostico.html',
-                'gestionOrganizacional.html',
-                'gestionProductiva.html',
-                'gestionComercial.html',
-                'gestionFinanciera.html'
-            ];
-            window.location.href = pages[index];
+            switch (index) {
+                case 0:
+                    window.location.href = 'fichaTecnica.html';
+                    break;
+                case 1:
+                    window.location.href = 'fichaDiagnostico.html';
+                    break;
+                case 2:
+                    window.location.href = '';
+                    break;
+                case 3:
+                    window.location.href = '';
+                    break;
+                case 4:
+                    window.location.href = '';
+                    break;
+                case 5:
+                    window.location.href = '';
+                    break;
+                default:
+                    break;
+            }
         });
     });
 
