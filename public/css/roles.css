@@ -60,10 +60,10 @@ body::before {
   display: flex;
   width: 120px;
   transform: scale(1.1);
-  align-self: center;
-  justify-content: center;
-  justify-items: center;
+  justify-self: center;
 }
+
+
 
 /* Lista de navegación en la barra lateral */
 .sidebar ul.nav {

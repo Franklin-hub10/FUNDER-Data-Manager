@@ -287,8 +287,10 @@ select option {
 }
 
 .sidebar:hover a.navbar-brand img {
-  width: 80px;
+  display: flex;
+  width: 120px;
   transform: scale(1.1);
+  justify-self: center;
 }
 
 /* Lista de navegación en la barra lateral */
