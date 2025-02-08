@@ -1,9 +1,13 @@
+const API_BASE_URL = 'http://localhost:3000';
+const API_ROLES = "http://localhost:3000/emprendimientos"; 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formulario"); // Ahora selecciona por ID
+    const form = document.getElementById("formulario");
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
-    // Función para actualizar el progreso
     function updateProgress(currentStep) {
         steps.forEach((step, index) => {
             if (index < currentStep) {
@@ -16,64 +20,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 step.classList.remove('active', 'completed');
             }
         });
-
-        const progressWidth = (currentStep / (steps.length - 1)) * 100;
-        line.style.width = `${progressWidth}%`;
+        line.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
     }
 
-    // Inicializar con el primer paso activo
     updateProgress(1);
 
-    // Redirigir al hacer clic en un círculo
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
             updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
+            const pages = [
+                'fichaTecnica.html',
+                'fichaDiagnostico.html',
+                'gestionOrganizacional.html',
+                'gestionProductiva.html',
+                'gestionComercial.html',
+                'gestionFinanciera.html'
+            ];
+            if (pages[index]) window.location.href = pages[index];
         });
     });
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevenir el envío del formulario inicialmente
+        event.preventDefault();
         let valid = true;
         const mensajesErrores = [];
 
-        // Validar campos de texto requeridos
-        const requiredTextFields = [
-            "nombre_comercial",
-            "razon_social",
-            "sede",
-            "productos_servicios",
-            "direccion",
-            "ciudad",
-            "canton",
-            "parroquia",
-            "contacto1",
-            "contacto2",
-            "referencia",
-            "tecnico"
+        const requiredFields = [
+            "nombreComercial", "razonSocial", "idSede", "idProdServ", "direccionNegocio", 
+            "ciudad", "canton", "idParroquia", "nombreContacto1", "nombreContacto2", 
+            "referencia", "nombreEvaluador"
         ];
-        requiredTextFields.forEach((id) => {
+
+        requiredFields.forEach(id => {
             const field = document.getElementById(id);
             if (!field || field.value.trim() === "") {
                 mensajesErrores.push(`El campo '${id}' es obligatorio.`);
@@ -81,54 +59,127 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Validar números de teléfono (10 dígitos)
         const telefono1 = document.getElementById("telefono1").value.trim();
         const telefono2 = document.getElementById("telefono2").value.trim();
-        if (!/^\d{10}$/.test(telefono1)) {
-            mensajesErrores.push("El 'Teléfono 1' debe contener exactamente 10 dígitos.");
-            valid = false;
-        }
-        if (!/^\d{10}$/.test(telefono2)) {
-            mensajesErrores.push("El 'Teléfono 2' debe contener exactamente 10 dígitos.");
-            valid = false;
-        }
+        if (!/^[0-9]{10}$/.test(telefono1)) mensajesErrores.push("El 'Teléfono 1' debe tener 10 dígitos.");
+        if (!/^[0-9]{10}$/.test(telefono2)) mensajesErrores.push("El 'Teléfono 2' debe tener 10 dígitos.");
+        
+        const email = document.getElementById("correo").value.trim();
+        if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) mensajesErrores.push("Correo electrónico inválido.");
 
-        // Validar correo electrónico
-        const email = document.getElementById("email").value.trim();
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            mensajesErrores.push("El campo 'Email' debe contener una dirección de correo válida.");
-            valid = false;
-        }
-
-        // Validar números requeridos (socios, empleados, antigüedad)
-        const requiredNumberFields = [
-            { id: "num_socios", label: "Número de socios" },
-            { id: "num_empleados", label: "Número de empleados" },
-            { id: "antiguedad", label: "Antigüedad de la empresa" }
+        const numericFields = [
+            { id: "numSocios", label: "Número de socios" },
+            { id: "numEmpleados", label: "Número de empleados" },
+            { id: "antiguedad", label: "Antigüedad" }
         ];
-        requiredNumberFields.forEach((field) => {
+        numericFields.forEach(field => {
             const value = document.getElementById(field.id).value.trim();
-            if (value === "" || isNaN(value) || value <= 0) {
-                mensajesErrores.push(`El campo '${field.label}' debe ser un número mayor a 0.`);
-                valid = false;
-            }
+            if (isNaN(value) || value <= 0) mensajesErrores.push(`${field.label} debe ser mayor a 0.`);
         });
 
-        // Validar fecha de evaluación
-        const fechaEvaluacion = document.getElementById("fecha_evaluacion").value.trim();
-        if (fechaEvaluacion === "") {
-            mensajesErrores.push("El campo 'Fecha de la evaluación' es obligatorio.");
-            valid = false;
-        }
+        const fechaEvaluacion = document.getElementById("fechaEvaluacion").value.trim();
+        if (!fechaEvaluacion) mensajesErrores.push("Fecha de evaluación es obligatoria.");
 
-        // Mostrar errores o redirigir
-        if (!valid) {
-            alert(`Errores encontrados:\n\n${mensajesErrores.join("\n")}`);
+        if (mensajesErrores.length > 0) {
+            alert(`Errores:\n\n${mensajesErrores.join("\n")}`);
         } else {
             alert("Formulario guardado con éxito.");
-            setTimeout(() => {
-                window.location.href = '../screens/gestionOrganizacional.html'; // Redirige a la siguiente pantalla
-            }, 1000);
+            setTimeout(() => window.location.href = '../screens/gestionOrganizacional.html', 1000);
         }
     });
 });
+
+const apiUrl = "http://localhost:3000/emprendimientos";  // URL de la API
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarEmprendimientos(); // Cargar la lista de emprendimientos
+    document.getElementById("formNuevoEmprendimiento").addEventListener("submit", crearEmprendimiento);  // Manejar la creación
+});
+
+// Cargar los emprendimientos desde la API y mostrarlos en la tabla
+async function cargarEmprendimientos() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const tableBody = document.getElementById("tablaEmprendimientos").getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = "";
+
+        data.forEach((emp) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${emp.idEmprendimiento}</td>
+                <td>${emp.nombreComercial}</td>
+                <td>${emp.ciudad}</td>
+                <td>
+                    <button onclick="editarEmprendimiento(${emp.idEmprendimiento})">✏️</button>
+                    <button onclick="eliminarEmprendimiento(${emp.idEmprendimiento})">🗑️</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error al cargar emprendimientos:", error);
+    }
+}
+
+// Mostrar el formulario para agregar un nuevo emprendimiento
+function mostrarFormularioEmprendimiento() {
+    document.getElementById("formularioEmprendimiento").style.display = "block";
+}
+
+// Cerrar el formulario sin guardar
+function cerrarFormularioEmprendimiento() {
+    document.getElementById("formularioEmprendimiento").style.display = "none";
+}
+
+// Crear un nuevo emprendimiento a través de la API
+async function crearEmprendimiento(event) {
+    event.preventDefault();
+
+    const nombreComercial = document.getElementById("nombreComercial").value;
+    const ciudad = document.getElementById("ciudad").value;
+
+    const nuevoEmp = { nombreComercial, ciudad };
+
+    try {
+        await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevoEmp)
+        });
+        cargarEmprendimientos();  // Recargar los emprendimientos
+        cerrarFormularioEmprendimiento();  // Cerrar el formulario
+    } catch (error) {
+        console.error("Error al crear emprendimiento:", error);
+    }
+}
+
+// Eliminar un emprendimiento por ID
+async function eliminarEmprendimiento(id) {
+    if (!confirm("¿Seguro que quieres eliminar este emprendimiento?")) return;
+    
+    try {
+        await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+        cargarEmprendimientos();  // Recargar los emprendimientos
+    } catch (error) {
+        console.error("Error al eliminar emprendimiento:", error);
+    }
+}
+
+// Editar un emprendimiento por ID
+async function editarEmprendimiento(id) {
+    const nuevoNombre = prompt("Nuevo nombre comercial:");
+    if (!nuevoNombre) return;
+
+    try {
+        await fetch(`${apiUrl}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nombreComercial: nuevoNombre })
+        });
+        cargarEmprendimientos();  // Recargar los emprendimientos
+    } catch (error) {
+        console.error("Error al editar emprendimiento:", error);
+    }
+}
+
