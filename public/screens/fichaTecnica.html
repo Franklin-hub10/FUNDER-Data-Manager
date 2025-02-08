@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Inscripción Centro de Negocios</title>
-    <link rel="stylesheet" href="../css/FichaTecnica.css">
+    <link rel="stylesheet" href="/public/css/FichaTecnica.css">
     <link rel="stylesheet" href="/public/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
@@ -100,15 +100,16 @@
         </ul>
     </div>
 
-
-    <!-- Botón de descarga -->
-    <button id="downloadBtn" class="btn btn-success download-btn" onclick="downloadFile()">
-        Descargar <i class="bi bi-download"></i>
-    </button>
     
     <div class="content">
         <div class="header">
-
+            <div class="containerDownload">
+            <button id=
+            "downloadBtn" class="btn btn-success download-btn" onclick="downloadFile()">
+                Descargar <i class="bi bi-download"></i>
+            </button>
+            <hr class="separator">
+        </div>
             <div class="progress-steps">
                 <div class="step" data-step="1">
                     <div class="circle">1</div>
@@ -120,26 +121,26 @@
                 </div>
                 <div class="step" data-step="3">
                     <div class="circle">3</div>
-                    <div class="label">Gestión Organizacional</div>
+                    <div class="label"></div>
                 </div>
                 <div class="step" data-step="4">
                     <div class="circle">4</div>
-                    <div class="label">Gestión Productiva</div>
+                    <div class="label"></div>
                 </div>
                 <div class="step" data-step="5">
                     <div class="circle">5</div>
-                    <div class="label">Gestión Comercial</div>
+                    <div class="label"></div>
                 </div>
                 <div class="step" data-step="6">
                     <div class="circle">6</div>
-                    <div class="label">Gestión Financiera</div>
+                    <div class="label"></div>
                 </div>
                 <div class="line"></div>
             </div>
 
             <h1>Ficha de Inscripción Centro de Negocios</h1>
         </div>
-        <form id="formulario">
+        <form id="formulario" action="fichaDiagnostico.html" method="POST">
             <table>
                 <tr>
                     <th colspan="4">DATOS GENERALES</th>
@@ -409,6 +410,7 @@
                     </td>
                 </tr>
             </table>
+
 
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
