@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const newPassword = document.getElementById("newPassword").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
+        const newPassword = document.getElementById("newPassword").value.trim();
+        const confirmPassword = document.getElementById("confirmPassword").value.trim();
         const idColaborador = sessionStorage.getItem("tempUserId");
 
         if (!idColaborador) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert("✅ Contraseña actualizada correctamente. Ahora puedes iniciar sesión.");
-                sessionStorage.clear(); // Borrar sesión temporal
+                sessionStorage.clear();
                 window.location.href = "/public/screens/index.html";
             } else {
                 alert(`❌ ${result.message}`);
