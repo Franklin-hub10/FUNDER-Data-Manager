@@ -2,7 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Barra de progreso
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
+    const step3 = steps[2]; // Step 3 en la barra de progreso (índice 2)
 
+    // Obtener el elemento de la etiqueta dentro del Step 3
+    const step3Label = step3.querySelector('.label');
+
+    // Función para actualizar el progreso
     function updateProgress(currentStep) {
         steps.forEach((step, index) => {
             if (index < currentStep) {
@@ -20,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
         line.style.width = `${progressWidth}%`;
     }
 
-    updateProgress(5);
+    // Inicializar con el paso 3 activo
+    updateProgress(2); // Tercer paso (Gestión Organizacional)
 
     // Redirigir al hacer clic en un círculo
     steps.forEach((step, index) => {
@@ -37,56 +43,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Función para formatear entrada de dinero con signo de $
-    function formatCurrencyOnBlur(input) {
-        let value = input.value.replace(/[^0-9.]/g, ''); // Permitir solo números y punto decimal
-        if (value === "") return;
-        let num = parseFloat(value);
-        if (!isNaN(num)) {
-            input.value = `$${num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        }
-    }
-
-    // Función para calcular el subtotal basado en los campos
-    function calcularSubtotal() {
-        const gasto = parseFloat(document.querySelector('input[name="diagnostico11"]').value.replace(/[^0-9.]/g, '')) || 0;
-        const ingreso = parseFloat(document.querySelector('input[name="diagnostico13"]').value.replace(/[^0-9.]/g, '')) || 0;
-        const utilidad = parseFloat(document.getElementById('diagnostico_utilidad').value.replace(/[^0-9.]/g, '')) || 0;
-
-        // Subtotal = ingreso + utilidad - gasto
-        const subtotal = ingreso + utilidad - gasto;
-
-        // Mostrar el subtotal en todos los campos relacionados
-        document.getElementById('subtotal_diagnostico').value = `$${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
-        
-    }
-
-    // Evento para formatear entrada de dinero y calcular totales
-    document.querySelectorAll('.money-input').forEach(input => {
-        input.addEventListener('input', function () {
-            if (!this.classList.contains('product')) { // Excluir campo de producto más vendido
-                this.value = this.value.replace(/[^0-9.]/g, ''); // Permitir solo números
-            }
-        });
-
-        input.addEventListener('blur', function () {
-            if (!this.classList.contains('product')) { // Excluir campo de producto más vendido
-                formatCurrencyOnBlur(this);
-                calcularSubtotal(); // Recalcular totales después de formatear
-            }
-        });
-    });
-
     // Evento del botón de guardar
     document.querySelector('form').addEventListener('submit', function (event) {
         event.preventDefault(); // Evita el envío del formulario
 
-        // Mostrar alerta de éxito
-        alert("Guardado con éxito.");
+        alert("✅ Guardado con éxito."); // Mensaje de éxito
 
-        // Redirigir tras un pequeño retraso
+        // Redirigir a la página seleccionada en el select
+        const gestionSelect = document.getElementById("gestion");
+        const selectedPage = gestionSelect.value; // Obtiene la página seleccionada
+        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Obtiene el nombre de la gestión
+
+        // Actualizar el texto de la etiqueta del Step 3
+        if (step3Label) {
+            step3Label.textContent = selectedText;
+        }
+
+        // Asegurar que Step 3 siga siendo visible
+        step3.classList.add('active');
+
         setTimeout(() => {
-            window.location.href = '../screens/fichaTecnica.html'; // Página de redirección
+            window.location.href = selectedPage; // Redirige a la página elegida
         }, 1000);
     });
 });

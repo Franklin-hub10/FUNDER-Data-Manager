@@ -4,10 +4,11 @@ const API_ROLES = "http://localhost:3000/emprendimientos";
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formulario");
+    const form = document.getElementById("formulario"); // Ahora selecciona por ID
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
 
+    // Función para actualizar el progreso
     function updateProgress(currentStep) {
         steps.forEach((step, index) => {
             if (index < currentStep) {
@@ -20,38 +21,64 @@ document.addEventListener("DOMContentLoaded", function () {
                 step.classList.remove('active', 'completed');
             }
         });
-        line.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+
+        const progressWidth = (currentStep / (steps.length - 1)) * 100;
+        line.style.width = `${progressWidth}%`;
     }
 
+    // Inicializar con el primer paso activo
     updateProgress(1);
 
+    // Redirigir al hacer clic en un círculo
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
             updateProgress(index);
-            const pages = [
-                'fichaTecnica.html',
-                'fichaDiagnostico.html',
-                'gestionOrganizacional.html',
-                'gestionProductiva.html',
-                'gestionComercial.html',
-                'gestionFinanciera.html'
-            ];
-            if (pages[index]) window.location.href = pages[index];
+            switch (index) {
+                case 0:
+                    window.location.href = 'fichaTecnica.html';
+                    break;
+                case 1:
+                    window.location.href = 'fichaDiagnostico.html';
+                    break;
+                case 2:
+                    window.location.href = 'gestionOrganizacional.html';
+                    break;
+                case 3:
+                    window.location.href = 'gestionProductiva.html';
+                    break;
+                case 4:
+                    window.location.href = 'gestionComercial.html';
+                    break;
+                case 5:
+                    window.location.href = 'gestionFinanciera.html';
+                    break;
+                default:
+                    break;
+            }
         });
     });
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevenir el envío del formulario inicialmente
         let valid = true;
         const mensajesErrores = [];
 
-        const requiredFields = [
-            "nombreComercial", "razonSocial", "idSede", "idProdServ", "direccionNegocio", 
-            "ciudad", "canton", "idParroquia", "nombreContacto1", "nombreContacto2", 
-            "referencia", "nombreEvaluador"
+        // Validar campos de texto requeridos
+        const requiredTextFields = [
+            "nombre_comercial",
+            "razon_social",
+            "sede",
+            "productos_servicios",
+            "direccion",
+            "ciudad",
+            "canton",
+            "parroquia",
+            "contacto1",
+            "contacto2",
+            "referencia",
+            "tecnico"
         ];
-
-        requiredFields.forEach(id => {
+        requiredTextFields.forEach((id) => {
             const field = document.getElementById(id);
             if (!field || field.value.trim() === "") {
                 mensajesErrores.push(`El campo '${id}' es obligatorio.`);
@@ -59,33 +86,57 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Validar números de teléfono (10 dígitos)
         const telefono1 = document.getElementById("telefono1").value.trim();
         const telefono2 = document.getElementById("telefono2").value.trim();
-        if (!/^[0-9]{10}$/.test(telefono1)) mensajesErrores.push("El 'Teléfono 1' debe tener 10 dígitos.");
-        if (!/^[0-9]{10}$/.test(telefono2)) mensajesErrores.push("El 'Teléfono 2' debe tener 10 dígitos.");
-        
-        const email = document.getElementById("correo").value.trim();
-        if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) mensajesErrores.push("Correo electrónico inválido.");
+        if (!/^\d{10}$/.test(telefono1)) {
+            mensajesErrores.push("El 'Teléfono 1' debe contener exactamente 10 dígitos.");
+            valid = false;
+        }
+        if (!/^\d{10}$/.test(telefono2)) {
+            mensajesErrores.push("El 'Teléfono 2' debe contener exactamente 10 dígitos.");
+            valid = false;
+        }
 
-        const numericFields = [
-            { id: "numSocios", label: "Número de socios" },
-            { id: "numEmpleados", label: "Número de empleados" },
-            { id: "antiguedad", label: "Antigüedad" }
+        // Validar correo electrónico
+        const email = document.getElementById("email").value.trim();
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            mensajesErrores.push("El campo 'Email' debe contener una dirección de correo válida.");
+            valid = false;
+        }
+
+        // Validar números requeridos (socios, empleados, antigüedad)
+        const requiredNumberFields = [
+            { id: "num_socios", label: "Número de socios" },
+            { id: "num_empleados", label: "Número de empleados" },
+            { id: "antiguedad", label: "Antigüedad de la empresa" }
         ];
-        numericFields.forEach(field => {
+        requiredNumberFields.forEach((field) => {
             const value = document.getElementById(field.id).value.trim();
-            if (isNaN(value) || value <= 0) mensajesErrores.push(`${field.label} debe ser mayor a 0.`);
+            if (value === "" || isNaN(value) || value <= 0) {
+                mensajesErrores.push(`El campo '${field.label}' debe ser un número mayor a 0.`);
+                valid = false;
+            }
         });
 
-        const fechaEvaluacion = document.getElementById("fechaEvaluacion").value.trim();
-        if (!fechaEvaluacion) mensajesErrores.push("Fecha de evaluación es obligatoria.");
-
-        if (mensajesErrores.length > 0) {
-            alert(`Errores:\n\n${mensajesErrores.join("\n")}`);
-        } else {
-            alert("Formulario guardado con éxito.");
-            setTimeout(() => window.location.href = '../screens/gestionOrganizacional.html', 1000);
+        // Validar fecha de evaluación
+        const fechaEvaluacion = document.getElementById("fecha_evaluacion").value.trim();
+        if (fechaEvaluacion === "") {
+            mensajesErrores.push("El campo 'Fecha de la evaluación' es obligatorio.");
+            valid = false;
         }
+
+        // Mostrar errores o redirigir
+    if (!valid) {
+        alert(`Errores encontrados:\n\n${mensajesErrores.join("\n")}`);
+    } else {
+        alert("Formulario guardado con éxito.");
+        setTimeout(() => {
+            const gestionSelect = document.getElementById("gestion");
+            const selectedPage = gestionSelect.value; // Obtiene la página seleccionada
+            window.location.href = `../screens/${selectedPage}`; // Redirige a la página elegida
+        }, 1000);
+    }
     });
 });
 

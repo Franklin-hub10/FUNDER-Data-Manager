@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Barra de progreso
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
-    const step3Label = document.getElementById('step3Label'); // Contenedor para el paso 3
+    const step3Label = document.getElementById('step3Label'); // Obtiene el label de Step 3
 
     // Función para actualizar el progreso
     function updateProgress(currentStep) {
@@ -22,83 +23,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Inicializar con el paso 3 activo
-    updateProgress(2);
+    updateProgress(2); // Paso 3 (Gestión Organizacional)
 
-    // Cambiar el nombre de la página en el paso 3
-    function actualizarNombrePagina() {
-        // Si ya tienes un valor seleccionado en algún select, úsalo aquí.
-        const paginaSeleccionada = document.querySelector('select[name="pagina"]'); // Este es solo un ejemplo
-        const nombrePagina = paginaSeleccionada ? paginaSeleccionada.value : 'Gestión Organizacional';
-
-        step3Label.textContent = nombrePagina; // Actualiza el nombre en el paso 3
-    }
-
-    // Llama a la función para actualizar el nombre de la página al cargar
-    actualizarNombrePagina();
-
-    // Redirigir al hacer clic en un círculo
-    steps.forEach((step, index) => {
-        step.addEventListener('click', () => {
-            updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
-        });
-    });
-
-    // Función para calcular los subtotales
-    function calcularSubtotales() {
-        // Contar checkboxes marcados en cada columna
-        const diagnostico = document.querySelectorAll('input[name^="diagnostico"]:checked').length;
-        const intermedia = document.querySelectorAll('input[name^="intermedia"]:checked').length;
-        const final = document.querySelectorAll('input[name^="final"]:checked').length;
-        const final1 = document.querySelectorAll('input[name^="final1"]:checked').length;
-        const status = document.querySelectorAll('input[name^="status"]:checked').length;
-
-        // Actualizar los campos de subtotal
-        document.getElementById('subtotal_diagnostico').value = diagnostico;
-        document.getElementById('subtotal_intermedia').value = intermedia;
-        document.getElementById('subtotal_final').value = final;
-        document.getElementById('subtotal_final1').value = final1;
-        document.getElementById('status_final').value = status;
-    }
-
-    // Evento para calcular subtotales automáticamente al marcar/desmarcar un checkbox
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', calcularSubtotales);
-    });
-
-    // ✅ Evento para mostrar mensaje de éxito y redirigir sin validar casillas marcadas
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío por defecto
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
 
         alert("✅ Guardado con éxito."); // Mensaje de éxito
 
-        // Redirección después de 1 segundo
+        // Obtener la página seleccionada y su nombre
+        const gestionSelect = document.getElementById("gestion");
+        const selectedPage = gestionSelect.value; // URL seleccionada
+        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Nombre de la gestión
+
+        // Verificar si el elemento de Step 3 existe y actualizarlo
+        if (step3Label) {
+            step3Label.textContent = selectedText; // Cambia el texto del label en el Step 3
+        }
+
+        // Redirigir después de un pequeño retraso
         setTimeout(() => {
-            window.location.href = '../screens/gestionProductiva.html';
+            window.location.href = selectedPage;
         }, 1000);
     });
-
 });
