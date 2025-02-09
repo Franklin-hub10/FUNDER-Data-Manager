@@ -1,92 +1,96 @@
-const db = require('../config/database');
+const db = require("../config/database");
 
-// Obtener todos los emprendedores
-exports.getEmprendedores = async (req, res) => {
+// 📌 Obtener todas las fichas técnicas
+exports.getAll = async (req, res) => {
     try {
-        const [emprendedores] = await db.query('SELECT * FROM emprendedor');
-        res.status(200).json(emprendedores);
+        const [results] = await db.query("SELECT * FROM emprendedor");
+        res.status(200).json(results);
     } catch (error) {
-        console.error('Error al obtener emprendedores:', error);
-        res.status(500).json({ message: 'Error al obtener emprendedores', error });
+        console.error("Error al obtener fichas técnicas:", error);
+        res.status(500).json({ message: "Error al obtener fichas técnicas", error });
     }
 };
 
-// Obtener un emprendedor por ID
-exports.getEmprendedorById = async (req, res) => {
+// 📌 Obtener una ficha técnica por ID
+exports.getById = async (req, res) => {
     const { id } = req.params;
     try {
-        const [emprendedor] = await db.query('SELECT * FROM emprendedor WHERE idEmprendedor = ?', [id]);
-        if (emprendedor.length === 0) {
-            return res.status(404).json({ message: 'Emprendedor no encontrado' });
-        }
-        res.status(200).json(emprendedor[0]);
+        const [result] = await db.query("SELECT * FROM emprendedor WHERE idEmprendedor = ?", [id]);
+        if (result.length === 0) return res.status(404).json({ message: "Ficha no encontrada" });
+
+        res.status(200).json(result[0]);
     } catch (error) {
-        console.error('Error al obtener emprendedor:', error);
-        res.status(500).json({ message: 'Error al obtener emprendedor', error });
+        console.error("Error al obtener ficha técnica:", error);
+        res.status(500).json({ message: "Error al obtener ficha técnica", error });
     }
 };
 
-// Crear un nuevo emprendedor
-exports.createEmprendedor = async (req, res) => {
-    const {
-        nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas,
-        rolFamiliar, etnia, discapacidad, estatusMigra, direccion, telefono1, telefono2,
-        correo, servicioDeInternet, celular, computadora, tablet, nivelInstitucional,
-        idColaborador, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
-        promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion
-    } = req.body;
-
+// 📌 Crear una ficha técnica
+exports.create = async (req, res) => {
     try {
-        const [result] = await db.query(
-            `INSERT INTO emprendedor (
-                nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas,
-                rolFamiliar, etnia, discapacidad, estatusMigra, direccion, telefono1, telefono2,
-                correo, servicioDeInternet, celular, computadora, tablet, nivelInstitucional,
-                idColaborador, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
-                promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
-            [
-                nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas,
-                rolFamiliar, etnia, discapacidad, estatusMigra, direccion, telefono1, telefono2,
-                correo, servicioDeInternet, celular, computadora, tablet, nivelInstitucional,
-                idColaborador, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
-                promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion
-            ]
-        );
+        const {
+            nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil,
+            numeroCargas, rolFamiliar, etnia, discapacidad, estatusMigra, direccion,
+            telefono1, telefono2, correo, servicioDeInternet, celular, computadora,
+            tablet, idNivel, idColaborador, tipoNegocio, actividadEconomica,
+            promMensualIngreso, promMensualGastos, promMensualUtilidad,
+            caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+            cabezaHogar = "No"  // 👈 Si no viene en el JSON, se asigna "No"
+        } = req.body;
 
-        res.status(201).json({ message: 'Emprendedor registrado correctamente', id: result.insertId });
+        const query = `
+            INSERT INTO emprendedor (
+                nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil,
+                numeroCargas, rolFamiliar, etnia, discapacidad, estatusMigra, direccion,
+                telefono1, telefono2, correo, servicioDeInternet, celular, computadora,
+                tablet, idNivel, idColaborador, tipoNegocio, actividadEconomica,
+                promMensualIngreso, promMensualGastos, promMensualUtilidad,
+                caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+                cabezaHogar  -- 👈 Agregamos este campo
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        const values = [
+            nombres, apellidos, idPais, edad, idSede, generoIdentidad, estadoCivil,
+            numeroCargas, rolFamiliar, etnia, discapacidad, estatusMigra, direccion,
+            telefono1, telefono2, correo, servicioDeInternet, celular, computadora,
+            tablet, idNivel, idColaborador, tipoNegocio, actividadEconomica,
+            promMensualIngreso, promMensualGastos, promMensualUtilidad,
+            caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+            cabezaHogar // 👈 Agregamos este valor
+        ];
+
+        const [result] = await db.query(query, values);
+        res.status(201).json({ message: "Ficha técnica creada", idEmprendedor: result.insertId });
+
     } catch (error) {
-        console.error('Error al registrar emprendedor:', error);
-        res.status(500).json({ message: 'Error al registrar emprendedor', error });
+        console.error("❌ Error al crear ficha técnica:", error);
+        res.status(500).json({ message: "Error al crear ficha técnica", error });
     }
 };
 
-// Actualizar un emprendedor
-exports.updateEmprendedor = async (req, res) => {
+
+
+// 📌 Actualizar una ficha técnica
+exports.update = async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        await db.query("UPDATE emprendedor SET ? WHERE idEmprendedor = ?", [data, id]);
+        res.status(200).json({ message: "Ficha técnica actualizada" });
+    } catch (error) {
+        console.error("Error al actualizar ficha técnica:", error);
+        res.status(500).json({ message: "Error al actualizar ficha técnica", error });
+    }
+};
+
+// 📌 Eliminar una ficha técnica
+exports.delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const [result] = await db.query('UPDATE emprendedor SET ? WHERE idEmprendedor = ?', [req.body, id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Emprendedor no encontrado' });
-        }
-        res.status(200).json({ message: 'Emprendedor actualizado correctamente' });
+        await db.query("DELETE FROM emprendedor WHERE idEmprendedor = ?", [id]);
+        res.status(200).json({ message: "Ficha técnica eliminada" });
     } catch (error) {
-        console.error('Error al actualizar emprendedor:', error);
-        res.status(500).json({ message: 'Error al actualizar emprendedor', error });
-    }
-};
-
-// Eliminar un emprendedor
-exports.deleteEmprendedor = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const [result] = await db.query('DELETE FROM emprendedor WHERE idEmprendedor = ?', [id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Emprendedor no encontrado' });
-        }
-        res.status(200).json({ message: 'Emprendedor eliminado correctamente' });
-    } catch (error) {
-        console.error('Error al eliminar emprendedor:', error);
-        res.status(500).json({ message: 'Error al eliminar emprendedor', error });
+        console.error("Error al eliminar ficha técnica:", error);
+        res.status(500).json({ message: "Error al eliminar ficha técnica", error });
     }
 };
