@@ -1,0 +1,265 @@
+[1mdiff --git a/assets/database/funder.sql b/assets/database/funder.sql[m
+[1mindex c054483..e8c23b0 100644[m
+[1m--- a/assets/database/funder.sql[m
+[1m+++ b/assets/database/funder.sql[m
+[36m@@ -92,20 +92,20 @@[m [mCREATE TABLE `emprendedor` ([m
+   `apellidos` varchar(200) NOT NULL,[m
+   `idPais` int(10) NOT NULL,[m
+   `edad` int(5) NOT NULL,[m
+[31m-  `idGenero` int(10) NOT NULL,[m
+[31m-  `idEstadoCivil` int(10) NOT NULL,[m
+[32m+[m[32m  `generoIdentidad` varchar(45) NOT NULL,[m
+[32m+[m[32m  `estadoCivil` varchar(45) NOT NULL,[m
+   `numeroCargas` int(5) NOT NULL,[m
+   `cabezaHogar` varchar(10) NOT NULL,[m
+[31m-  `idEtnia` int(10) NOT NULL,[m
+[32m+[m[32m  `etnia` varchar(45) NOT NULL,[m
+   `discapacidad` varchar(50) NOT NULL,[m
+[31m-  `idStatusMigra` int(10) NOT NULL,[m
+[32m+[m[32m  `estatusMigra`varchar(45) NOT NULL,[m
+   `direccion` varchar(200) NOT NULL,[m
+   `telefono1` varchar(20) NOT NULL,[m
+   `telefono2` varchar(20) NOT NULL,[m
+   `correo` varchar(200) NOT NULL,[m
+   `disponeInternet` varchar(5) NOT NULL,[m
+   `disponeEquipo` varchar(5) NOT NULL,[m
+[31m-  `idNivel` int(10) NOT NULL[m
+[32m+[m[32m  `nivelInstitucional` varchar(45) NOT NULL[m
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+ [m
+ -- --------------------------------------------------------[m
+[36m@@ -135,26 +135,8 @@[m [mCREATE TABLE `emprendimiento` ([m
+ [m
+ -- --------------------------------------------------------[m
+ [m
+[31m---[m
+[31m--- Estructura de tabla para la tabla `estadocivil`[m
+[31m---[m
+[31m-[m
+[31m-CREATE TABLE `estadocivil` ([m
+[31m-  `idEstadoCivil` int(10) NOT NULL,[m
+[31m-  `nombre` varchar(50) NOT NULL[m
+[31m-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+[31m-[m
+ -- --------------------------------------------------------[m
+ [m
+[31m---[m
+[31m--- Estructura de tabla para la tabla `estatusmigra`[m
+[31m---[m
+[31m-[m
+[31m-CREATE TABLE `estatusmigra` ([m
+[31m-  `idStatusMigra` int(10) NOT NULL,[m
+[31m-  `nombre` varchar(50) NOT NULL[m
+[31m-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+[31m-[m
+ -- --------------------------------------------------------[m
+ [m
+ --[m
+[36m@@ -169,15 +151,6 @@[m [mCREATE TABLE `etapamedicion` ([m
+ [m
+ -- --------------------------------------------------------[m
+ [m
+[31m---[m
+[31m--- Estructura de tabla para la tabla `etnia`[m
+[31m---[m
+[31m-[m
+[31m-CREATE TABLE `etnia` ([m
+[31m-  `idEtnia` int(10) NOT NULL,[m
+[31m-  `nombre` varchar(50) NOT NULL[m
+[31m-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+[31m-[m
+ -- --------------------------------------------------------[m
+ [m
+ --[m
+[36m@@ -206,26 +179,8 @@[m [mCREATE TABLE `evaluacionpregunta` ([m
+ [m
+ -- --------------------------------------------------------[m
+ [m
+[31m---[m
+[31m--- Estructura de tabla para la tabla `genero`[m
+[31m---[m
+[31m-[m
+[31m-CREATE TABLE `genero` ([m
+[31m-  `idGenero` int(10) NOT NULL,[m
+[31m-  `nombre` varchar(50) NOT NULL[m
+[31m-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+[31m-[m
+ -- --------------------------------------------------------[m
+ [m
+[31m---[m
+[31m--- Estructura de tabla para la tabla `nivelinstruccion`[m
+[31m---[m
+[31m-[m
+[31m-CREATE TABLE `nivelinstruccion` ([m
+[31m-  `idNivwl` int(10) NOT NULL,[m
+[31m-  `nombre` varchar(50) NOT NULL[m
+[31m-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;[m
+[31m-[m
+ -- --------------------------------------------------------[m
+ [m
+ --[m
+[36m@@ -407,17 +362,7 @@[m [mALTER TABLE `emprendimiento`[m
+   ADD KEY `idProdServ` (`idProdServ`),[m
+   ADD KEY `idParroquia` (`idParroquia`);[m
+ [m
+[31m---[m
+[31m--- Indices de la tabla `estadocivil`[m
+[31m---[m
+[31m-ALTER TABLE `estadocivil`[m
+[31m-  ADD PRIMARY KEY (`idEstadoCivil`);[m
+ [m
+[31m---[m
+[31m--- Indices de la tabla `estatusmigra`[m
+[31m---[m
+[31m-ALTER TABLE `estatusmigra`[m
+[31m-  ADD PRIMARY KEY (`idStatusMigra`);[m
+ [m
+ --[m
+ -- Indices de la tabla `etapamedicion`[m
+[36m@@ -425,12 +370,6 @@[m [mALTER TABLE `estatusmigra`[m
+ ALTER TABLE `etapamedicion`[m
+   ADD PRIMARY KEY (`idEtapaMedicion`);[m
+ [m
+[31m---[m
+[31m--- Indices de la tabla `etnia`[m
+[31m---[m
+[31m-ALTER TABLE `etnia`[m
+[31m-  ADD PRIMARY KEY (`idEtnia`);[m
+[31m-[m
+ --[m
+ -- Indices de la tabla `evaluacion`[m
+ --[m
+[36m@@ -447,17 +386,7 @@[m [mALTER TABLE `evaluacionpregunta`[m
+   ADD KEY `idEvaluacion` (`idEvaluacion`),[m
+   ADD KEY `idDatoGestion` (`idDatoGestion`);[m
+ [m
+[31m---[m
+[31m--- Indices de la tabla `genero`[m
+[31m---[m
+[31m-ALTER TABLE `genero`[m
+[31m-  ADD PRIMARY KEY (`idGenero`);[m
+ [m
+[31m---[m
+[31m--- Indices de la tabla `nivelinstruccion`[m
+[31m---[m
+[31m-ALTER TABLE `nivelinstruccion`[m
+[31m-  ADD PRIMARY KEY (`idNivwl`);[m
+ [m
+ --[m
+ -- Indices de la tabla `pais`[m
+[36m@@ -566,31 +495,13 @@[m [mALTER TABLE `emprendedor`[m
+ ALTER TABLE `emprendimiento`[m
+   MODIFY `idEmprendimiento` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+[31m---[m
+[31m--- AUTO_INCREMENT de la tabla `estadocivil`[m
+[31m---[m
+[31m-ALTER TABLE `estadocivil`[m
+[31m-  MODIFY `idEstadoCivil` int(10) NOT NULL AUTO_INCREMENT;[m
+[31m-[m
+[31m---[m
+[31m--- AUTO_INCREMENT de la tabla `estatusmigra`[m
+[31m---[m
+[31m-ALTER TABLE `estatusmigra`[m
+[31m-  MODIFY `idStatusMigra` int(10) NOT NULL AUTO_INCREMENT;[m
+[31m-[m
+ --[m
+ -- AUTO_INCREMENT de la tabla `etapamedicion`[m
+ --[m
+ ALTER TABLE `etapamedicion`[m
+   MODIFY `idEtapaMedicion` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+[31m---[m
+[31m--- AUTO_INCREMENT de la tabla `etnia`[m
+[31m---[m
+[31m-ALTER TABLE `etnia`[m
+[31m-  MODIFY `idEtnia` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+[31m---[m
+ -- AUTO_INCREMENT de la tabla `evaluacion`[m
+ --[m
+ ALTER TABLE `evaluacion`[m
+[36m@@ -602,17 +513,7 @@[m [mALTER TABLE `evaluacion`[m
+ ALTER TABLE `evaluacionpregunta`[m
+   MODIFY `idEvalPregunta` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+[31m---[m
+[31m--- AUTO_INCREMENT de la tabla `genero`[m
+[31m---[m
+[31m-ALTER TABLE `genero`[m
+[31m-  MODIFY `idGenero` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+[31m---[m
+[31m--- AUTO_INCREMENT de la tabla `nivelinstruccion`[m
+[31m---[m
+[31m-ALTER TABLE `nivelinstruccion`[m
+[31m-  MODIFY `idNivwl` int(10) NOT NULL AUTO_INCREMENT;[m
+ [m
+ --[m
+ -- AUTO_INCREMENT de la tabla `pais`[m
+[1mdiff --git a/public/css/FichaTecnica.css b/public/css/FichaTecnica.css[m
+[1mindex 5d9e503..d2b4d12 100644[m
+[1m--- a/public/css/FichaTecnica.css[m
+[1m+++ b/public/css/FichaTecnica.css[m
+[36m@@ -164,26 +164,7 @@[m [mbutton[type="submit"]:hover {[m
+     background: #156dc1;[m
+ }[m
+ [m
+[31m-@media (max-width: 768px) {[m
+[31m-    .content {[m
+[31m-        padding: 20px;[m
+[31m-    }[m
+[31m-[m
+[31m-    table,[m
+[31m-    th,[m
+[31m-    td {[m
+[31m-        display: block;[m
+[31m-        width: 100%;[m
+[31m-    }[m
+[31m-[m
+[31m-    td {[m
+[31m-        margin-bottom: 10px;[m
+[31m-    }[m
+ [m
+[31m-    th {[m
+[31m-        border-radius: 5px;[m
+[31m-    }[m
+[31m-}[m
+ /* Barra lateral principal */[m
+ .sidebar {[m
+   height: 100vh;[m
+[36m@@ -399,18 +380,6 @@[m [mbutton[type="submit"]:hover {[m
+   transform: scale(1.05);[m
+ }[m
+ [m
+[31m-/* Botón del menú responsive */[m
+[31m-.navbar-toggler {[m
+[31m-  border: none;[m
+[31m-  background-color: rgba(241, 234, 234, 0.2);[m
+[31m-  border-radius: 8px;[m
+[31m-  padding: 5px;[m
+[31m-  [m
+[31m-}[m
+[31m-[m
+[31m-.navbar-toggler:hover {[m
+[31m-  background-color: #29A632;[m
+[31m-}[m
+ [m
+ /* Menú desplegable */[m
+ [m
+[36m@@ -452,102 +421,8 @@[m [mbutton[type="submit"]:hover {[m
+   font-size: 2rem;  /*tamaño del icono*/[m
+   [m
+ }[m
+[31m-/* Responsividad general para dispositivos pequeños */[m
+[31m-@media (max-width: 768px) {[m
+[31m-  /* Ajustar barra lateral */[m
+[31m-  .sidebar {[m
+[31m-    width: 50px; /* Barra lateral más compacta */[m
+[31m-  }[m
+[31m-[m
+[31m-  .sidebar:hover {[m
+[31m-    width: 200px; /* Expandir menos en pantallas pequeñas */[m
+[31m-  }[m
+[31m-[m
+[31m-  /* Ocultar texto en los enlaces de la b
