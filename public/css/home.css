@@ -15,7 +15,8 @@ body::before {
   height: 100%;
   background: url('/assets/images/Logo\ FUNDER\ 2021.png') no-repeat center center fixed;
   z-index: -1; 
-
+  background-position: 65% center; /* Mueve la imagen hacia la izquierda */
+  opacity: 0.4;
 
 }
 
