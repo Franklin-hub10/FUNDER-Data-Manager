@@ -3,7 +3,6 @@
     const pool = mysql.createPool({
         host: '127.0.0.1', // Cambia si tu host es diferente
         user: 'root', // Reemplaza con tu usuario
-        password: 'FPdesmond10', // Reemplaza con tu contraseña
         database: 'funder', // Reemplaza con tu base de datos
         waitForConnections: true,
         connectionLimit: 10,
