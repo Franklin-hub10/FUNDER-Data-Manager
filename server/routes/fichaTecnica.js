@@ -73,14 +73,14 @@ router.post("/createFicha", async (req, res) => {
         // Si se envía tiempoDeResidenciaPais, se espera en formato "YYYY-MM-DD"
         const tiempoResidencia = tiempoDeResidenciaPais ? tiempoDeResidenciaPais : null;
 
-        // Nota: Se asigna idPais = 1 (puedes ajustar según la lógica de tu aplicación)
-        const idPais = 1;
+      
+   
 
         // La consulta ahora incluye el nuevo campo "numeroIdentificacion" y "idPais"
         const sql = `
             INSERT INTO emprendedor (
-                nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
-                etnia, discapacidad, Nacionalidad, pais, estatusMigra, tiempoDeResidenciaPais, direccion, telefono1, telefono2, correo,
+                nombres, apellidos, numeroIdentificacion, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+                etnia, discapacidad, Nacionalidad, pais, estatusMigratorio, tiempoDeResidenciaPais, direccion, telefono1, telefono2, correo,
                 servicioDeInternet, celular, computadora, tablet, nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso,
                 promMensualGastos, promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
                 idColaborador
@@ -88,7 +88,7 @@ router.post("/createFicha", async (req, res) => {
         `;
 
         const values = [
-            nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            nombres, apellidos, numeroIdentificacion, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
             etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null, tiempoResidencia, direccion, telefono1, telefono2, correo,
             internet, celularDisponible, pcDisponible, tabletDisponible, nivelInstitucional, tipoNegocio, actividadEconomica, ingreso,
             gastos, utilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
@@ -131,14 +131,14 @@ router.put("/updateFicha/:id", async (req, res) => {
         const tiempoResidencia = tiempoDeResidenciaPais ? tiempoDeResidenciaPais : null;
 
         // Asignar idPais = 1 (puedes ajustar este valor según corresponda)
-        const idPais = 1;
+      
 
         await db.query(`
             UPDATE emprendedor SET
                 nombres = ?,
                 apellidos = ?,
                 numeroIdentificacion = ?,
-                idPais = ?,
+              
                 edad = ?,
                 idSede = ?,
                 generoIdentidad = ?,
@@ -149,7 +149,7 @@ router.put("/updateFicha/:id", async (req, res) => {
                 discapacidad = ?,
                 Nacionalidad = ?,
                 pais = ?,
-                estatusMigra = ?,
+                estatusMigratorio = ?,
                 tiempoDeResidenciaPais = ?,
                 direccion = ?,
                 telefono1 = ?,
@@ -171,7 +171,7 @@ router.put("/updateFicha/:id", async (req, res) => {
                 idColaborador = ?
             WHERE idEmprendedor = ?
         `, [
-            nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            nombres, apellidos, numeroIdentificacion, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
             etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null, tiempoResidencia, direccion, telefono1, telefono2, correo,
             internet, celularDisponible, pcDisponible, tabletDisponible, nivelInstitucional, tipoNegocio, actividadEconomica, ingreso,
             gastos, promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,

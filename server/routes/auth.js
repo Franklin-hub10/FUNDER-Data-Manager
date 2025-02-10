@@ -51,10 +51,12 @@ router.post("/login", async (req, res) => {
   try {
     // Verificar si el usuario existe
     const [users] = await db.query(
-        `SELECT idColaborador, email, password, idRol, password_temp, nombres, apellidos FROM colaborador WHERE email = ?`,
-        [email]
-      );
-      
+      `SELECT c.idColaborador, c.email, c.password, c.idRol, c.password_temp, c.nombres, c.apellidos, c.idSede, s.nombre AS sede
+       FROM colaborador c
+       JOIN sede s ON c.idSede = s.idSede
+       WHERE c.email = ?`,
+      [email]
+    );
 
     if (users.length === 0) {
       return res.status(401).json({ message: "Usuario no encontrado." });
