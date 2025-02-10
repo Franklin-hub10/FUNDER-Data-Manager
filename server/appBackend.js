@@ -30,6 +30,8 @@ app.use("/fichaDiagnostico", fichaDiagnosticoRoutes);
 
 
 
+
+
 // Inicio del servidor
 const PORT = 3000;
 app.listen(PORT, () => {

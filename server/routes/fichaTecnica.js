@@ -37,8 +37,9 @@ router.get("/ficha/:id", async (req, res) => {
 // 📌 Crear una ficha técnica
 router.post("/createFicha", async (req, res) => {
     try {
+        // Incluir el nuevo campo "numeroIdentificacion" en la desestructuración
         const {
-            nombres, apellidos, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            nombres, apellidos, numeroIdentificacion, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
             etnia, discapacidad, Nacionalidad, pais, estatusMigratorio, tiempoDeResidenciaPais,
             direccion, telefono1, telefono2, correo, servicioDeInternet, celular, computadora, tablet,
             nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
@@ -46,8 +47,8 @@ router.post("/createFicha", async (req, res) => {
             idColaborador
         } = req.body;
 
-        // Validar que los campos obligatorios no estén vacíos
-        if (!nombres || !apellidos || !edad || !idSede || !generoIdentidad || !estadoCivil ||
+        // Validar que los campos obligatorios no estén vacíos (agrega numeroIdentificacion en la validación)
+        if (!nombres || !apellidos || !numeroIdentificacion || !edad || !idSede || !generoIdentidad || !estadoCivil ||
             numeroCargas === undefined || !rolFamiliar || !etnia || !discapacidad || !direccion ||
             !telefono1 || !telefono2 || !correo || !nivelInstitucional || !tipoNegocio || !actividadEconomica ||
             promMensualIngreso === undefined || promMensualGastos === undefined || !caracteristicaDelNegocio ||
@@ -72,22 +73,24 @@ router.post("/createFicha", async (req, res) => {
         // Si se envía tiempoDeResidenciaPais, se espera en formato "YYYY-MM-DD"
         const tiempoResidencia = tiempoDeResidenciaPais ? tiempoDeResidenciaPais : null;
 
+        // Nota: Se asigna idPais = 1 (puedes ajustar según la lógica de tu aplicación)
+        const idPais = 1;
+
+        // La consulta ahora incluye el nuevo campo "numeroIdentificacion" y "idPais"
         const sql = `
             INSERT INTO emprendedor (
-                nombres, apellidos, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
-                etnia, discapacidad, Nacionalidad, pais, estatusMigratorio, tiempoDeResidenciaPais,
-                direccion, telefono1, telefono2, correo, servicioDeInternet, celular, computadora, tablet,
-                nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
-                promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+                nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+                etnia, discapacidad, Nacionalidad, pais, estatusMigra, tiempoDeResidenciaPais, direccion, telefono1, telefono2, correo,
+                servicioDeInternet, celular, computadora, tablet, nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso,
+                promMensualGastos, promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
                 idColaborador
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         const values = [
-            nombres, apellidos, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
-            etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null,
-            tiempoResidencia, direccion, telefono1, telefono2, correo, internet, celularDisponible,
-            pcDisponible, tabletDisponible, nivelInstitucional, tipoNegocio, actividadEconomica, ingreso,
+            nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null, tiempoResidencia, direccion, telefono1, telefono2, correo,
+            internet, celularDisponible, pcDisponible, tabletDisponible, nivelInstitucional, tipoNegocio, actividadEconomica, ingreso,
             gastos, utilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
             idColaborador || null
         ];
@@ -105,20 +108,20 @@ router.post("/createFicha", async (req, res) => {
 // 📌 Actualizar una ficha técnica
 router.put("/updateFicha/:id", async (req, res) => {
     const { id } = req.params;
-    const {
-        nombres, apellidos, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
-        etnia, discapacidad, Nacionalidad, pais, estatusMigratorio, tiempoDeResidenciaPais,
-        direccion, telefono1, telefono2, correo, servicioDeInternet, celular, computadora, tablet,
-        nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
-        caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion, idColaborador
-    } = req.body;
-
     try {
+        const {
+            nombres, apellidos, numeroIdentificacion, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            etnia, discapacidad, Nacionalidad, pais, estatusMigratorio, tiempoDeResidenciaPais,
+            direccion, telefono1, telefono2, correo, servicioDeInternet, celular, computadora, tablet,
+            nivelInstitucional, tipoNegocio, actividadEconomica, promMensualIngreso, promMensualGastos,
+            caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+            idColaborador
+        } = req.body;
+
         const ingreso = Number(promMensualIngreso) || 0;
         const gastos = Number(promMensualGastos) || 0;
         const promMensualUtilidad = ingreso - gastos;
 
-        // Convertir booleanos
         const internet = boolToInt(servicioDeInternet);
         const celularDisponible = boolToInt(celular);
         const pcDisponible = boolToInt(computadora);
@@ -127,22 +130,51 @@ router.put("/updateFicha/:id", async (req, res) => {
         const paisFinal = pais || "Ecuador";
         const tiempoResidencia = tiempoDeResidenciaPais ? tiempoDeResidenciaPais : null;
 
+        // Asignar idPais = 1 (puedes ajustar este valor según corresponda)
+        const idPais = 1;
+
         await db.query(`
             UPDATE emprendedor SET
-                nombres = ?, apellidos = ?, edad = ?, idSede = ?, generoIdentidad = ?, estadoCivil = ?,
-                numeroCargas = ?, rolFamiliar = ?, etnia = ?, discapacidad = ?, Nacionalidad = ?, pais = ?,
-                estatusMigratorio = ?, tiempoDeResidenciaPais = ?, direccion = ?, telefono1 = ?, telefono2 = ?,
-                correo = ?, servicioDeInternet = ?, celular = ?, computadora = ?, tablet = ?, nivelInstitucional = ?,
-                tipoNegocio = ?, actividadEconomica = ?, promMensualIngreso = ?, promMensualGastos = ?,
-                promMensualUtilidad = ?, caracteristicaDelNegocio = ?, camposAsistenciaTecnica = ?, temaCapacitacion = ?,
+                nombres = ?,
+                apellidos = ?,
+                numeroIdentificacion = ?,
+                idPais = ?,
+                edad = ?,
+                idSede = ?,
+                generoIdentidad = ?,
+                estadoCivil = ?,
+                numeroCargas = ?,
+                rolFamiliar = ?,
+                etnia = ?,
+                discapacidad = ?,
+                Nacionalidad = ?,
+                pais = ?,
+                estatusMigra = ?,
+                tiempoDeResidenciaPais = ?,
+                direccion = ?,
+                telefono1 = ?,
+                telefono2 = ?,
+                correo = ?,
+                servicioDeInternet = ?,
+                celular = ?,
+                computadora = ?,
+                tablet = ?,
+                nivelInstitucional = ?,
+                tipoNegocio = ?,
+                actividadEconomica = ?,
+                promMensualIngreso = ?,
+                promMensualGastos = ?,
+                promMensualUtilidad = ?,
+                caracteristicaDelNegocio = ?,
+                camposAsistenciaTecnica = ?,
+                temaCapacitacion = ?,
                 idColaborador = ?
             WHERE idEmprendedor = ?
         `, [
-            nombres, apellidos, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
-            etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null, tiempoResidencia,
-            direccion, telefono1, telefono2, correo, internet, celularDisponible, pcDisponible, tabletDisponible,
-            nivelInstitucional, tipoNegocio, actividadEconomica, ingreso, gastos, promMensualUtilidad,
-            caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
+            nombres, apellidos, numeroIdentificacion, idPais, edad, idSede, generoIdentidad, estadoCivil, numeroCargas, rolFamiliar,
+            etnia, discapacidad, Nacionalidad || null, paisFinal, estatusMigratorio || null, tiempoResidencia, direccion, telefono1, telefono2, correo,
+            internet, celularDisponible, pcDisponible, tabletDisponible, nivelInstitucional, tipoNegocio, actividadEconomica, ingreso,
+            gastos, promMensualUtilidad, caracteristicaDelNegocio, camposAsistenciaTecnica, temaCapacitacion,
             idColaborador || null, id
         ]);
 
