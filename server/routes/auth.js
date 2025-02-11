@@ -87,7 +87,8 @@ router.post("/login", async (req, res) => {
     res.json({
       token,
       permisos: ["Gestionar Usuarios", "Gestionar Roles", "Gestionar Finanzas"],  
-      nombre: `${user.nombres} ${user.apellidos}`
+      nombre: `${user.nombres} ${user.apellidos}`,
+      id: user.idColaborador 
     });
   } catch (error) {
     console.error("❌ Error en login:", error);
