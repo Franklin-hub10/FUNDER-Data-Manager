@@ -65,7 +65,7 @@
         </button>
         <div class="dropdown-container">
           <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
-          <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>  
+          <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
         </div>
       </li>
       <li class="nav-item">
@@ -133,12 +133,13 @@
 
     <!-- Formulario (sin acción para evitar envío nativo) -->
     <form id="formulario" action="#" method="POST">
-      <!-- Campo oculto para la sede; se fija en "Funder Quito" -->
-     
+
+      <input type="hidden" id="idColaborador" value="...">
       <table>
         <tr>
           <th colspan="4">DATOS GENERALES</th>
         </tr>
+
         <!-- Nombres y Apellidos -->
         <tr>
           <td><label for="nombres_apellidos">Nombres y Apellidos:</label></td>
@@ -211,42 +212,44 @@
           </td>
         </tr>
         <!-- Campos para extranjeros -->
-      <!-- Campos para extranjeros -->
-<tr id="row_estatus" style="display: none;">
-  <td>
-    <label for="pais">País:</label>
-  </td>
-  <td>
-    <!-- Input para ingresar el país cuando la nacionalidad es extranjero -->
-    <input type="text" id="pais" name="pais" placeholder="Ingrese su país">
-  </td>
-  <td>
-    <label for="estatus">Estatus Migratorio (en caso de ser extranjero):</label>
-  </td>
-  <td colspan="3">
-    <select id="estatus" name="estatus">
-      <option value="" disabled selected>Seleccione un estatus</option>
-      <option value="refugiado">Refugiado</option>
-      <option value="migrante">Migrante</option>
-      <option value="asilado">Asilado</option>
-      <option value="solicitante_refugio">Solicitante de Refugio</option>
-    </select>
-  </td>
-</tr>
-<tr id="row_tiempo_residencia" style="display: none;">
-  <td>
-    <label for="tiempo_residencia">Tiempo de Residencia en el País:</label>
-  </td>
-  <td colspan="3">
-    <div style="display: flex; gap: 10px; align-items: center;">
-      <input type="number" id="años_residencia" name="años_residencia" placeholder="Años" min="0" style="width: 100px;">
-      <span>Años</span>
-      <input type="number" id="meses_residencia" name="meses_residencia" placeholder="Meses" min="0" max="11" style="width: 100px;">
-      <span>Meses</span>
-    </div>
-  </td>
-</tr>
-          <th colspan="4">AUTOIDENTIFICACIÓN ÉTNICA</th>
+        <!-- Campos para extranjeros -->
+        <tr id="row_estatus" style="display: none;">
+          <td>
+            <label for="pais">País:</label>
+          </td>
+          <td>
+            <!-- Input para ingresar el país cuando la nacionalidad es extranjero -->
+            <input type="text" id="pais" name="pais" placeholder="Ingrese su país">
+          </td>
+          <td>
+            <label for="estatus">Estatus Migratorio (en caso de ser extranjero):</label>
+          </td>
+          <td colspan="3">
+            <select id="estatus" name="estatus">
+              <option value="" disabled selected>Seleccione un estatus</option>
+              <option value="refugiado">Refugiado</option>
+              <option value="migrante">Migrante</option>
+              <option value="asilado">Asilado</option>
+              <option value="solicitante_refugio">Solicitante de Refugio</option>
+            </select>
+          </td>
+        </tr>
+        <tr id="row_tiempo_residencia" style="display: none;">
+          <td>
+            <label for="tiempo_residencia">Tiempo de Residencia en el País:</label>
+          </td>
+          <td colspan="3">
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <input type="number" id="años_residencia" name="años_residencia" placeholder="Años" min="0"
+                style="width: 100px;">
+              <span>Años</span>
+              <input type="number" id="meses_residencia" name="meses_residencia" placeholder="Meses" min="0" max="11"
+                style="width: 100px;">
+              <span>Meses</span>
+            </div>
+          </td>
+        </tr>
+        <th colspan="4">AUTOIDENTIFICACIÓN </th>
         </tr>
         <tr>
           <td><label for="genero">Identidad Sexo-Genérica:</label></td>
@@ -259,6 +262,12 @@
             </select>
           </td>
         </tr>
+
+                <tr>
+          <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
+          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
+        </tr>
+        <tr>
         <tr>
           <td><label for="estado_civil">Estado Civil:</label></td>
           <td colspan="3">
@@ -269,6 +278,20 @@
               <option value="union_libre">Unión Libre</option>
               <option value="viudo">Viudo/a</option>
               <option value="divorciado">Divorciado/a</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="etnia">Etnia:</label></td>
+          <td colspan="3">
+            <select id="etnia" name="etnia" required>
+              <option value="" disabled selected>Seleccione su etnia</option>
+              <option value="mestizo">Mestizo</option>
+              <option value="indigena">Indígena</option>
+              <option value="afroecuatoriano">Afroecuatoriano</option>
+              <option value="montubio">Montubio</option>
+              <option value="blanco">Blanco</option>
+              <option value="otro">Otro</option>
             </select>
           </td>
         </tr>
@@ -387,7 +410,7 @@
         </tr>
       </table>
       <!-- Botón actualizado para que diga "Guardar" -->
-      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="submit" id="guardarBtn" class="btn btn-primary">Guardar</button>
     </form>
   </div>
 

@@ -121,7 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Envío del formulario
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
+    const idColaborador = localStorage.getItem("idColaborador");
+    console.log("idColaborador obtenido:", idColaborador);  
 
+    const etnia = document.getElementById("etnia").value;
     const docType = document.getElementById("documento_identidad").value;
     const cedula = document.getElementById("numeroIdentificacion").value;
     if (docType === "ci_dni" && !validateCedula(cedula)) {
@@ -135,13 +138,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const nombres = nombresArray[0] || "";
     const apellidos = nombresArray.slice(1).join(" ") || "";
 
-    // Obtener nacionalidad y determinar el país a enviar
-    const nacionalidad = document.getElementById("nacionalidad").value;
-    const pais = (nacionalidad === "ecuatoriana")
-                 ? "Ecuador"
-                 : document.getElementById("pais").value;
+   // Obtener nacionalidad y determinar el país a enviar
+const nacionalidad = document.getElementById("nacionalidad").value;
+const pais = (nacionalidad === "ecuatoriana")
+             ? "Ecuador"
+             : document.getElementById("pais").value;
+
+// Si la nacionalidad es extranjera, obtén los valores de años y meses de residencia
+let tiempoResidencia = null;
+if(nacionalidad === "extranjero") {
+  const anios = document.getElementById("años_residencia").value;
+  const meses = document.getElementById("meses_residencia").value;
+  // Puedes combinar los valores en un string, por ejemplo:
+  tiempoResidencia = `${anios} años, ${meses} meses`;
+}
+
+
+
 
     const data = {
+      idColaborador: idColaborador || null,
       nombres: nombres,
       apellidos: apellidos,
       numeroIdentificacion: cedula,
@@ -151,14 +167,13 @@ document.addEventListener("DOMContentLoaded", function () {
       estadoCivil: document.getElementById("estado_civil").value,
       numeroCargas: document.getElementById("numeroCargas").value,
       rolFamiliar: document.getElementById("rol_familiar").value,
-      etnia: "N/A",
+  
       discapacidad: "Ninguna",
       Nacionalidad: nacionalidad,
       pais: pais,
+      etnia: etnia,
       estatusMigratorio: document.getElementById("estatus") ? document.getElementById("estatus").value : null,
-      tiempoDeResidenciaPais: (nacionalidad === "extranjero")
-                              ? new Date().toISOString().slice(0,10)
-                              : null,
+      tiempoDeResidenciaPais: tiempoResidencia,
       direccion: document.getElementById("direccion_negocio").value,
       telefono1: document.getElementById("telefono_celular").value,
       telefono2: document.getElementById("telefono_convencional").value,
@@ -252,4 +267,37 @@ document.addEventListener("DOMContentLoaded", function () {
       if (pages[index]) window.location.href = pages[index];
     });
   });
+});
+
+// Función que se ejecuta al hacer clic en el botón de guardar
+document.getElementById("guardarBtn").addEventListener("click", function(event) {
+  // Evita que el formulario se envíe inmediatamente
+  event.preventDefault();
+ 
+  // Obtener todos los campos del formulario
+  const formulario = document.getElementById("formulario");
+  const inputs = formulario.querySelectorAll("input[required], select[required], textarea[required]");
+ 
+  let allFilled = true;
+ 
+  // Recorremos los campos para verificar si están vacíos
+  inputs.forEach(input => {
+      if (input.value.trim() === "") {
+          allFilled = false;
+          // Añadir mensaje de advertencia (si se desea)
+          input.style.borderColor = "red";  // Cambio de color para indicar error
+      } else {
+          input.style.borderColor = ""; // Restablecer color si ya está lleno
+      }
+  });
+ 
+  // Si todos los campos están llenos, se puede enviar el formulario
+  if (allFilled) {
+      // Aquí puedes agregar la lógica para guardar los datos
+      alert("Formulario guardado exitosamente.");
+      formulario.submit();  // Enviar el formulario si todo está correcto
+  } else {
+      // Si falta algún campo, mostrar un mensaje de advertencia
+      alert("Por favor, complete todos los campos obligatorios.");
+  }
 });

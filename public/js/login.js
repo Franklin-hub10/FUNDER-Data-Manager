@@ -90,5 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("userName", data.nombre); // Se asume que el servidor envía 'nombre'
     localStorage.setItem("loginTime", Date.now());
     console.log("✅ Token almacenado correctamente:", localStorage.getItem("token"));
+    localStorage.setItem("idColaborador", data.id);
+
   }
   
