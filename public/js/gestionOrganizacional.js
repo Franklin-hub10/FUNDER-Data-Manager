@@ -22,7 +22,36 @@ document.addEventListener('DOMContentLoaded', function () {
         line.style.width = `${progressWidth}%`;
     }
 
+
+     // Inicializar con el paso 3 activo
+     updateProgress(2); // Tercer paso (Gestión Organizacional)
+
+     // Redirigir al hacer clic en un círculo
+     steps.forEach((step, index) => {
+         step.addEventListener('click', () => {
+             const pages = [
+                 'fichaTecnica.html',
+                 'fichaDiagnostico.html',
+                 'gestionOrganizacional.html',
+                 'gestionProductiva.html',
+                 'gestionComercial.html',
+                 'gestionFinanciera.html'
+             ];
+             window.location.href = pages[index] || 'fichaTecnica.html';
+         });
+     });
+
+     
     // Inicializar con el paso 3 activo
+    updateProgress(2); // Paso 3 (Gestión Organizacional)
+
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
+
+        alert("✅ Guardado con éxito."); // Mensaje de éxito
+
+       // Inicializar con el paso 3 activo
     updateProgress(2); // Paso 3 (Gestión Organizacional)
 
     // Evento del botón de guardar
@@ -41,6 +70,11 @@ document.addEventListener('DOMContentLoaded', function () {
             step3Label.textContent = selectedText; // Cambia el texto del label en el Step 3
         }
 
+        // Redirigir después de un pequeño retraso
+        setTimeout(() => {
+            window.location.href = selectedPage;
+        }, 1000);
+    });
         // Redirigir después de un pequeño retraso
         setTimeout(() => {
             window.location.href = selectedPage;

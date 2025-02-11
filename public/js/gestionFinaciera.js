@@ -49,18 +49,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
         alert("✅ Guardado con éxito."); // Mensaje de éxito
 
-        // Redirigir a la página seleccionada en el select
-        const gestionSelect = document.getElementById("gestion");
-        const selectedPage = gestionSelect.value; // Obtiene la página seleccionada
-        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Obtiene el nombre de la gestión
+        // Inicializar con el paso 3 activo
+    updateProgress(2); // Paso 3 (Gestión Organizacional)
 
-        // Actualizar el texto de la etiqueta del Step 3
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
+
+        alert("✅ Guardado con éxito."); // Mensaje de éxito
+
+       // Inicializar con el paso 3 activo
+    updateProgress(2); // Paso 3 (Gestión Organizacional)
+
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
+
+        alert("✅ Guardado con éxito."); // Mensaje de éxito
+
+        // Obtener la página seleccionada y su nombre
+        const gestionSelect = document.getElementById("gestion");
+        const selectedPage = gestionSelect.value; // URL seleccionada
+        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Nombre de la gestión
+
+        // Verificar si el elemento de Step 3 existe y actualizarlo
         if (step3Label) {
-            step3Label.textContent = selectedText;
+            step3Label.textContent = selectedText; // Cambia el texto del label en el Step 3
         }
 
-        // Asegurar que Step 3 siga siendo visible
-        step3.classList.add('active');
+        // Redirigir después de un pequeño retraso
+        setTimeout(() => {
+            window.location.href = selectedPage;
+        }, 1000);
+    });
+
+        // Redirigir después de un pequeño retraso
+        setTimeout(() => {
+            window.location.href = selectedPage;
+        }, 1000);
+    });
 
         setTimeout(() => {
             window.location.href = selectedPage; // Redirige a la página elegida

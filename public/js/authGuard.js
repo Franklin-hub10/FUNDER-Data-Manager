@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const token = sessionStorage.getItem("token");
-    const permisos = JSON.parse(sessionStorage.getItem("permisos")) || [];
+    const token = localStorage.getItem("token");
+    const permisos = JSON.parse(localStorage.getItem("permisos")) || [];
 
     // Redirigir si no está autenticado
     if (!token) {
