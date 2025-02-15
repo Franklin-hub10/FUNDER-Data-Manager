@@ -9,7 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/authGuard.js"></script>
+   
+ 
+ 
+   <script src="../js/authGuard.js"></script>
 </head>
 
  <!-- Navbar superior -->
@@ -189,11 +192,25 @@
                     <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <td><label for="contacto1">Persona de contacto 1:</label></td>
-                    <td><input type="text" id="contacto1" name="contacto1" required></td>
-                    <td><label for="contacto2">Persona de contacto 2:</label></td>
-                    <td><input type="text" id="contacto2" name="contacto2" required></td>
+                    <td><label for="nombreContacto1">Nombre de persona de contacto 1:</label></td>
+                    <td><input type="text" id="nombreContacto1" name="nombreContacto1" class="input-text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required></td>
+                
+                    <td><label for="contacto1">Número de contacto 1:</label></td>
+                    <td><input type="text" id="contacto1" name="contacto1" class="input-text" pattern="[0-9]+" title="Solo se permiten números" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
+                        placeholder="0999999999"></td>
                 </tr>
+                <tr>
+                    <td><label for="nombreContacto2">Nombre de persona de contacto 2:</label></td>
+                    <td><input type="text" id="nombreContacto2" name="nombreContacto2" class="input-text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required></td>
+                
+                    <td><label for="contacto2">Número de contacto 2:</label></td>
+                    <td><input type="text" id="contacto2" name="contacto2" class="input-text" pattern="[0-9]+" title="Solo se permiten números" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
+                        placeholder="0999999999"></td>
+                </tr>
+                
+                
+                
+                
                 <tr>
                     <td><label for="referencia">Referencia:</label></td>
                     <td colspan="3"><input type="text" id="referencia" name="referencia" required></td>
