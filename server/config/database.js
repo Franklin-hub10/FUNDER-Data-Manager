@@ -4,6 +4,7 @@
         host: '127.0.0.1', // Cambia si tu host es diferente
         user: 'root', // Reemplaza con tu usuario
         database: 'funder', // Reemplaza con tu base de datos
+         password: "FPdesmond10",
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,

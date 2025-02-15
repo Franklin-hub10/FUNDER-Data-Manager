@@ -1,96 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('loginForm');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const emailError = document.getElementById('email-error');
-    const passwordError = document.getElementById('password-error');
-    const forgotPasswordLink = document.getElementById('forgotPassword');
-
+    const forgotPasswordBtn = document.getElementById("forgotPassword");
+  
+    // Evento para manejar el inicio de sesión
     form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        // Limpiar mensajes de error previos
-        emailError.textContent = '';
-        passwordError.textContent = '';
-
-        let isValid = true;
-
-        // Validar email
-        if (!emailInput.value.trim()) {
-            emailError.textContent = 'El campo de usuario o correo electrónico no puede estar vacío.';
-            isValid = false;
+      event.preventDefault();
+  
+      // Obtener valores de los inputs
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+  
+      // Validar que los campos no estén vacíos
+      if (!email || !password) {
+        alert("Email y contraseña son obligatorios.");
+        return;
+      }
+  
+      try {
+        // Realizar la solicitud al servidor
+        const response = await fetch("http://localhost:3000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        // Leer la respuesta en formato JSON
+        const data = await response.json();
+  
+        // Si el servidor indica que se debe cambiar la contraseña
+        if (response.status === 403 && data.forceChange) {
+          alert("Debes cambiar tu contraseña antes de continuar.");
+          sessionStorage.setItem("tempUserId", data.userId);
+          window.location.href = "/public/screens/cambiarPassword.html";
+          return;
         }
-
-        // Validar contraseña
-        if (!passwordInput.value.trim()) {
-            passwordError.textContent = 'El campo de contraseña no puede estar vacío.';
-            isValid = false;
+  
+        // Si la respuesta no es OK, mostrar error
+        if (!response.ok) {
+          alert(`❌ Error: ${data.message || "No se pudo iniciar sesión"}`);
+          return;
         }
-
-        if (!isValid) return;
-
-        // Autenticación contra backend
-        try {
-            const response = await fetch("http://localhost:3000/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: emailInput.value, password: passwordInput.value }),
-            });
-
-            const data = await response.json();
-            
-            if (response.ok) {
-                if (data.forceChange) {
-                    // 🚨 Si el backend indica que la contraseña debe ser cambiada, redirigir al usuario
-                    alert("Debes cambiar tu contraseña antes de continuar.");
-                    sessionStorage.setItem("tempUserId", data.userId); // Guardamos el ID del usuario temporalmente
-                    window.location.href = "/public/screens/cambiarPassword.html"; 
-                    return;
-                }
-
-                // Guardar sesión
-                sessionStorage.setItem("token", data.token);
-                sessionStorage.setItem("permisos", JSON.stringify(data.permisos));
-                sessionStorage.setItem("loginTime", Date.now()); // Guardar tiempo de inicio
-                window.location.href = "/public/screens/home.html";
-            } else {
-                alert(data.message);
-            }
-        } catch (error) {
-            console.error("❌ Error en login:", error);
-            alert("Error en el servidor, intenta más tarde.");
+  
+        // Guardar la sesión del usuario, incluyendo el nombre (data.nombre)
+        saveUserSession(data);
+  
+        // Verificar que el token se haya guardado correctamente
+        if (!localStorage.getItem("token")) {
+          console.error("❌ El token no se guardó correctamente en localStorage.");
+          alert("Hubo un problema al guardar tu sesión. Intenta nuevamente.");
+          return;
         }
-    });
-
-    // Mostrar alerta al hacer clic en "¿Olvidaste tu contraseña?"
-    forgotPasswordLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        alert('Por favor, contacte con su administrador para recuperar su contraseña.');
-    });
-
-    // Verificar sesión y cerrar después de 30 minutos de inactividad
-    setInterval(() => {
-        const loginTime = parseInt(sessionStorage.getItem('loginTime'), 10);
-        const currentTime = Date.now();
-
-        if (loginTime && currentTime - loginTime > 30 * 60 * 1000) { // 30 minutos
-            sessionStorage.clear();
-            alert('Su sesión ha expirado. Vuelva a iniciar sesión.');
-            window.location.href = "/public/screens/index.html";
-        }
-    }, 60 * 1000);
-
-    // Control de acceso a vistas según permisos
-    const permisos = JSON.parse(sessionStorage.getItem("permisos")) || [];
-    const vistasProtegidas = {
-        "gestionUsuarios.html": "Gestionar Usuarios",
-        "roles.html": "Gestionar Roles",
-        "gestionFinanciera.html": "Gestionar Finanzas",
-    };
-
-    const pathname = window.location.pathname.split("/").pop();
-    if (vistasProtegidas[pathname] && !permisos.includes(vistasProtegidas[pathname])) {
-        alert("No tienes permiso para acceder a esta página.");
+  
+        // Redirigir a la página de inicio
         window.location.href = "/public/screens/home.html";
-    }
-});
+  
+      } catch (error) {
+        console.error("❌ Error en login:", error);
+        alert("Error en el servidor, intenta más tarde.");
+      }
+    });
+  
+    // Evento para manejar "Olvidé mi contraseña"
+    forgotPasswordBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      const email = prompt("Ingresa tu correo para recuperar tu contraseña:");
+      if (!email) return;
+      try {
+        const response = await fetch("http://localhost:3000/auth/forgot-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        const data = await response.json();
+        alert(data.message);
+      } catch (error) {
+        console.error("❌ Error en recuperación:", error);
+        alert("Error en el servidor. Intenta más tarde.");
+      }
+    });
+  });
+  
+  // Función para guardar la sesión del usuario
+  function saveUserSession(data) {
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("permisos", JSON.stringify(data.permisos));
+    localStorage.setItem("userName", data.nombre); // Se asume que el servidor envía 'nombre'
+    localStorage.setItem("loginTime", Date.now());
+    console.log("✅ Token almacenado correctamente:", localStorage.getItem("token"));
+    localStorage.setItem("idColaborador", data.id);
+
+  }
+  

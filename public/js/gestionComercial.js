@@ -1,29 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Mostrar/ocultar inputs basados en checkbox
-    const checkboxRedes = document.querySelector('input[name="diagnostico8"]');
-    const inputRedes = document.getElementById('redesSocialesInput');
-
-    checkboxRedes.addEventListener('change', function () {
-        inputRedes.style.display = this.checked ? 'table-row' : 'none';
-    });
-
-    const checkboxRecursos = document.querySelector('input[name="diagnostico10"]');
-    const inputRecursos = document.getElementById('recursosInput');
-
-    checkboxRecursos.addEventListener('change', function () {
-        inputRecursos.style.display = this.checked ? 'table-row' : 'none';
-    });
-
-    const checkboxTemas = document.querySelector('input[name="diagnostico11"]');
-    const inputTemas = document.getElementById('temasInput');
-
-    checkboxTemas.addEventListener('change', function () {
-        inputTemas.style.display = this.checked ? 'table-row' : 'none';
-    });
-
     // Barra de progreso
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
+    const step3 = steps[2]; // Step 3 en la barra de progreso (índice 2)
+
+    // Obtener el elemento de la etiqueta dentro del Step 3
+    const step3Label = step3.querySelector('.label');
 
     // Función para actualizar el progreso
     function updateProgress(currentStep) {
@@ -43,70 +25,60 @@ document.addEventListener('DOMContentLoaded', function () {
         line.style.width = `${progressWidth}%`;
     }
 
-    // Inicializar con el paso 5 activo
-    updateProgress(4);
+    // Inicializar con el paso 3 activo
+    updateProgress(2); // Tercer paso (Gestión Organizacional)
 
     // Redirigir al hacer clic en un círculo
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
-            updateProgress(index);
-            switch (index) {
-                case 0:
-                    window.location.href = 'fichaTecnica.html';
-                    break;
-                case 1:
-                    window.location.href = 'fichaDiagnostico.html';
-                    break;
-                case 2:
-                    window.location.href = 'gestionOrganizacional.html';
-                    break;
-                case 3:
-                    window.location.href = 'gestionProductiva.html';
-                    break;
-                case 4:
-                    window.location.href = 'gestionComercial.html';
-                    break;
-                case 5:
-                    window.location.href = 'gestionFinanciera.html';
-                    break;
-                default:
-                    break;
-            }
+            const pages = [
+                'fichaTecnica.html',
+                'fichaDiagnostico.html',
+                'gestionOrganizacional.html',
+                'gestionProductiva.html',
+                'gestionComercial.html',
+                'gestionFinanciera.html'
+            ];
+            window.location.href = pages[index] || 'fichaTecnica.html';
         });
     });
 
-    // Función para calcular los subtotales
-    function calcularSubtotales() {
-        const diagnostico = document.querySelectorAll('input[name^="diagnostico"]:checked').length;
-        const intermedia = document.querySelectorAll('input[name^="intermedia"]:checked').length;
-        const final = document.querySelectorAll('input[name^="final"]:checked').length;
-        const final1 = document.querySelectorAll('input[name^="finalco"]:checked').length;
-        const status = document.querySelectorAll('input[name^="status"]:checked').length;
-
-        document.getElementById('subtotal_diagnostico').value = diagnostico;
-        document.getElementById('subtotal_intermedia').value = intermedia;
-        document.getElementById('subtotal_final').value = final;
-        document.getElementById('subtotal_final1').value = final1;
-        document.getElementById('status_final').value = status;
-    }
-
-    // Evento para calcular subtotales automáticamente al marcar/desmarcar un checkbox
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', calcularSubtotales);
-    });
-
-    // ✅ Evento para mostrar mensaje de éxito y redirigir sin validar casillas marcadas
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío por defecto
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
 
         alert("✅ Guardado con éxito."); // Mensaje de éxito
 
-        // Redirección después de 1 segundo
+       // Inicializar con el paso 3 activo
+    updateProgress(2); // Paso 3 (Gestión Organizacional)
+
+    // Evento del botón de guardar
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
+
+        alert("✅ Guardado con éxito."); // Mensaje de éxito
+
+        // Obtener la página seleccionada y su nombre
+        const gestionSelect = document.getElementById("gestion");
+        const selectedPage = gestionSelect.value; // URL seleccionada
+        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Nombre de la gestión
+
+        // Verificar si el elemento de Step 3 existe y actualizarlo
+        if (step3Label) {
+            step3Label.textContent = selectedText; // Cambia el texto del label en el Step 3
+        }
+
+        // Redirigir después de un pequeño retraso
         setTimeout(() => {
-            window.location.href = 'gestionFinanciera.html';
+            window.location.href = selectedPage;
         }, 1000);
     });
 
+        // Asegurar que Step 3 siga siendo visible
+        step3.classList.add('active');
+
+        setTimeout(() => {
+            window.location.href = selectedPage; // Redirige a la página elegida
+        }, 1000);
+    });
 });
