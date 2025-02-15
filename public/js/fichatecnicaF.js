@@ -112,11 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     otroNegocioRow.style.display = (tipoNegocio === "otro") ? "table-row" : "none";
   };
 
-  window.calcularUtilidad = function() {
-    const ingresos = parseFloat(document.getElementById("ingresos_mensuales").value) || 0;
-    const gastos = parseFloat(document.getElementById("gastos_mensuales").value) || 0;
-    document.getElementById("utilidad_mensual").value = (ingresos - gastos).toFixed(2);
-  };
 
   // Envío del formulario
   form.addEventListener("submit", async function (event) {
@@ -185,9 +180,6 @@ if(nacionalidad === "extranjero") {
       nivelInstitucional: document.getElementById("instruccion").value,
       tipoNegocio: document.getElementById("tipo_negocio").value,
       actividadEconomica: document.getElementById("actividad_economica").value,
-      promMensualIngreso: parseFloat(document.getElementById("ingresos_mensuales").value),
-      promMensualGastos: parseFloat(document.getElementById("gastos_mensuales").value),
-      promMensualUtilidad: parseFloat(document.getElementById("utilidad_mensual").value),
       caracteristicaDelNegocio: document.getElementById("caracteristicas_negocio").value,
       camposAsistenciaTecnica: document.getElementById("asistencia_tecnica").value,
       temaCapacitacion: document.getElementById("temas_capacitacion").value

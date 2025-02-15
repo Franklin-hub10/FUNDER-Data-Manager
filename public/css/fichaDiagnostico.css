@@ -322,6 +322,8 @@ select option {
 
 .nav-item {
   margin: 15px 0;
+  padding: 10px 15px;
+  border-radius: 8px; 
 }
 
 .nav-link {
@@ -541,6 +543,15 @@ select option {
 .nav-item.dropdown .nav-link i {
   font-size: 2rem;  /*tamaño del icono*/
   
+}
+
+.input-text {
+  width: 250px; /* Asegura que todos los input tengan el mismo ancho */
+  height: 35px; /* Ajusta la altura */
+  padding: 5px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño del texto */
+  border: 1px solid #ccc; /* Borde uniforme */
+  border-radius: 5px; /* Bordes redondeados */
 }
 /* Responsividad general para dispositivos pequeños */
 @media (max-width: 768px) {
