@@ -52,6 +52,13 @@ CREATE TABLE rol_vista (
 ALTER TABLE rol ADD COLUMN idVista INT NULL;
 
 
+--TABLA SEDE
+create table sede(
+idSede int auto_increment not null primary key,
+nombre varchar(30) not null
+);
+
+
 -- 📌 TABLAS DE USUARIOS
 CREATE TABLE colaborador (
     idColaborador INT AUTO_INCREMENT PRIMARY KEY,
@@ -175,3 +182,25 @@ INSERT INTO vista (nombre, url, categoria) VALUES
 ('Roles', 'roles.html', 'Manager'),
 ('Usuarios', 'Usuarios.html', 'Manager'),
 ('Dashboard', 'dashboard.html', 'Analítica');
+
+
+
+
+
+
+
+///////////////////////////////////////
+
+--PROCESO DE CONVERSIÓN A CSV
+
+
+
+
+-- Tabla para exportar los DATOS
+CREATE TABLE export_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_formulario VARCHAR(50),
+    datos JSON,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
