@@ -1,96 +1,106 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Barra de progreso
+    console.log("📌 Script de navegación cargado correctamente.");
+
+    // Selección de elementos de la barra de progreso
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
-    const step3 = steps[2]; // Step 3 en la barra de progreso (índice 2)
+    const nextButton = document.getElementById("nextButton"); // Botón Siguiente
+    const prevButton = document.getElementById("prevButton"); // Botón Atrás
+    const form = document.querySelector('form'); // Formulario de guardado
 
-    // Obtener el elemento de la etiqueta dentro del Step 3
-    const step3Label = step3.querySelector('.label');
+    // Lista de pantallas en orden de pasos
+    const pages = [
+        'fichaTecnica.html',
+        'fichaDiagnostico.html',
+        'gestionOrganizacional.html',
+        'gestionProductiva.html',
+        'gestionComercial.html',
+        'gestionFinanciera.html'
+    ];
 
-    // Función para actualizar el progreso
-    function updateProgress(currentStep) {
-        steps.forEach((step, index) => {
-            if (index < currentStep) {
-                step.classList.add('completed');
-                step.classList.remove('active');
-            } else if (index === currentStep) {
-                step.classList.add('active');
-                step.classList.remove('completed');
-            } else {
-                step.classList.remove('active', 'completed');
-            }
+    // Determinar el paso actual basado en la URL
+    let currentStep = pages.findIndex(page => window.location.pathname.includes(page));
+    if (currentStep === -1) currentStep = 0; // Si la página no está en la lista, iniciar en 0
+
+    console.log("🔢 Paso actual detectado:", currentStep);
+
+    // Función para actualizar la barra de progreso
+    function updateProgress(step) {
+        console.log("📌 Actualizando progreso a paso:", step);
+        steps.forEach((stepElement, index) => {
+            stepElement.classList.toggle('completed', index < step);
+            stepElement.classList.toggle('active', index === step);
         });
 
-        const progressWidth = (currentStep / (steps.length - 1)) * 100;
-        line.style.width = `${progressWidth}%`;
+        const progressWidth = (step / (steps.length - 1)) * 100;
+        if (line) line.style.width = `${progressWidth}%`;
     }
 
-    // Inicializar con el paso 3 activo
-    updateProgress(2); // Tercer paso (Gestión Organizacional)
+    // Inicializar la barra de progreso en el paso actual
+    updateProgress(currentStep);
 
-    // Redirigir al hacer clic en un círculo
+    // Evento para avanzar al siguiente paso
+    if (nextButton) {
+        nextButton.addEventListener("click", function () {
+            console.log("➡️ Botón 'Siguiente' presionado");
+            if (currentStep < pages.length - 1) {
+                currentStep++;
+                updateProgress(currentStep);
+                console.log("⏭️ Redirigiendo a:", pages[currentStep]);
+                window.location.href = pages[currentStep];
+            }
+        });
+    } else {
+        console.warn("⚠️ No se encontró el botón 'Siguiente'");
+    }
+
+    // Evento para retroceder al paso anterior
+    if (prevButton) {
+        prevButton.addEventListener("click", function () {
+            console.log("⬅️ Botón 'Atrás' presionado");
+            if (currentStep > 0) {
+                currentStep--;
+                updateProgress(currentStep);
+                console.log("🔙 Redirigiendo a:", pages[currentStep]);
+                window.location.href = pages[currentStep];
+            }
+        });
+    } else {
+        console.warn("⚠️ No se encontró el botón 'Atrás'");
+    }
+
+    // Habilitar navegación haciendo clic en los pasos (sin `select`)
     steps.forEach((step, index) => {
-        step.addEventListener('click', () => {
-            const pages = [
-                'fichaTecnica.html',
-                'fichaDiagnostico.html',
-                'gestionOrganizacional.html',
-                'gestionProductiva.html',
-                'gestionComercial.html',
-                'gestionFinanciera.html'
-            ];
-            window.location.href = pages[index] || 'fichaTecnica.html';
+        step.addEventListener("click", function () {
+            console.log("🔵 Círculo de la barra de progreso presionado, índice:", index);
+            if (index !== currentStep && pages[index]) {
+                currentStep = index;
+                updateProgress(currentStep);
+                console.log("🚀 Redirigiendo a:", pages[index]);
+                window.location.href = pages[index];
+            }
         });
     });
 
-    // Evento del botón de guardar
-    document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita el envío del formulario
+    // Evento del botón de guardar para avanzar automáticamente
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita el envío del formulario
+            console.log("💾 Guardando formulario...");
 
-        alert("✅ Guardado con éxito."); // Mensaje de éxito
+            alert("✅ Guardado con éxito."); // Mensaje de éxito
 
-        // Inicializar con el paso 3 activo
-    updateProgress(2); // Paso 3 (Gestión Organizacional)
-
-    // Evento del botón de guardar
-    document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita el envío del formulario
-
-        alert("✅ Guardado con éxito."); // Mensaje de éxito
-
-       // Inicializar con el paso 3 activo
-    updateProgress(2); // Paso 3 (Gestión Organizacional)
-
-    // Evento del botón de guardar
-    document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita el envío del formulario
-
-        alert("✅ Guardado con éxito."); // Mensaje de éxito
-
-        // Obtener la página seleccionada y su nombre
-        const gestionSelect = document.getElementById("gestion");
-        const selectedPage = gestionSelect.value; // URL seleccionada
-        const selectedText = gestionSelect.options[gestionSelect.selectedIndex].text; // Nombre de la gestión
-
-        // Verificar si el elemento de Step 3 existe y actualizarlo
-        if (step3Label) {
-            step3Label.textContent = selectedText; // Cambia el texto del label en el Step 3
-        }
-
-        // Redirigir después de un pequeño retraso
-        setTimeout(() => {
-            window.location.href = selectedPage;
-        }, 1000);
-    });
-
-        // Redirigir después de un pequeño retraso
-        setTimeout(() => {
-            window.location.href = selectedPage;
-        }, 1000);
-    });
-
-        setTimeout(() => {
-            window.location.href = selectedPage; // Redirige a la página elegida
-        }, 1000);
-    });
+            // Avanzar automáticamente al siguiente paso después de guardar
+            if (currentStep < pages.length - 1) {
+                setTimeout(() => {
+                    currentStep++;
+                    updateProgress(currentStep);
+                    console.log("⏭️ Redirigiendo después de guardar:", pages[currentStep]);
+                    window.location.href = pages[currentStep];
+                }, 1000);
+            }
+        });
+    } else {
+        console.warn("⚠️ No se encontró el formulario");
+    }
 });
