@@ -322,6 +322,8 @@ select option {
 
 .nav-item {
   margin: 15px 0;
+  padding: 10px 15px;
+  border-radius: 8px; 
 }
 
 .nav-link {

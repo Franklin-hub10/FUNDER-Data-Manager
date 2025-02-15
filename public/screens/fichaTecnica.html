@@ -25,6 +25,11 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
+           <li class="nav-item">
+            <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
+            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
+            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+           </li>
           <li class="nav-item">
             <span id="userName"></span>
           </li>
@@ -123,13 +128,7 @@
       <h1>Ficha de Inscripción Centro de Negocios</h1>
     </div>
 
-    <div class="form-group">
-      <label for="sede_funder_display">Sede:</label>
-      <!-- Se muestra el nombre de la sede en un campo de solo lectura -->
-      <input type="text" id="sede_funder_display" class="form-control" value="Funder Quito" readonly>
-      <!-- Se guarda el id de la sede para enviarlo en el formulario -->
-      <input type="hidden" id="sede_funder" name="sede_funder" value="1">
-    </div>
+   
 
     <!-- Formulario (sin acción para evitar envío nativo) -->
     <form id="formulario" action="#" method="POST">
@@ -216,15 +215,25 @@
         <tr id="row_estatus" style="display: none;">
           <td>
             <label for="pais">País:</label>
+            
           </td>
           <td>
-            <!-- Input para ingresar el país cuando la nacionalidad es extranjero -->
-            <input type="text" id="pais" name="pais" placeholder="Ingrese su país">
+            <select id="pais" name="pais" required>
+                <option value="">Seleccione un país</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Chile">Chile</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="México">México</option>
+                <option value="Perú">Perú</option>
+                <option value="Venezuela">Venezuela</option>
+            </select>
           </td>
           <td>
             <label for="estatus">Estatus Migratorio (en caso de ser extranjero):</label>
           </td>
-          <td colspan="3">
+          <td colspan="5">
             <select id="estatus" name="estatus">
               <option value="" disabled selected>Seleccione un estatus</option>
               <option value="refugiado">Refugiado</option>
@@ -363,33 +372,6 @@
         <tr>
           <td><label for="actividad_economica">Actividad Económica:</label></td>
           <td colspan="3"><input type="text" id="actividad_economica" name="actividad_economica"></td>
-        </tr>
-        <tr>
-          <td><label for="ingresos_mensuales">Promedio Mensual de Ingresos:</label></td>
-          <td colspan="3">
-            <div style="display: flex; align-items: center;">
-              <input type="number" id="ingresos_mensuales" name="ingresos_mensuales" placeholder="$ 0.00"
-                oninput="calcularUtilidad()" required>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="gastos_mensuales">Promedio Mensual de Gastos:</label></td>
-          <td colspan="3">
-            <div style="display: flex; align-items: center;">
-              <input type="number" id="gastos_mensuales" name="gastos_mensuales" placeholder="$ 0.00"
-                oninput="calcularUtilidad()" required>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="utilidad_mensual">Promedio Mensual de Utilidad:</label></td>
-          <td colspan="3">
-            <div style="display: flex; align-items: center;">
-              <input type="number" id="utilidad_mensual" name="utilidad_mensual" placeholder="$ 0.00" readonly required>
-            </div>
-          </td>
-        </tr>
         <tr>
           <td><label for="caracteristicas_negocio">Describa las características del negocio:</label></td>
           <td colspan="3">

@@ -22,6 +22,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
+                    <!-- Se guarda el id de la sede para enviarlo en el formulario -->
+                    <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+                   </li>
+                <li class="nav-item">
                     <span id="userName"></span>
                 </li>
                 <li class="nav-item dropdown">
@@ -130,13 +135,6 @@
             
 
         </div>
-    <div class="form-group">
-      <label for="sede_funder_display">Sede:</label>
-      <!-- Se muestra el nombre de la sede en un campo de solo lectura -->
-      <input type="text" id="sede_funder_display" class="form-control" value="Funder Quito" readonly>
-      <!-- Se guarda el id de la sede para enviarlo en el formulario -->
-      <input type="hidden" id="sede_funder" name="sede_funder" value="1">
-    </div>
         <form  id="formulario"> 
             <table>
                 <tr>
@@ -189,6 +187,7 @@
                     <td colspan="2"></td>
                 </tr>
                 <tr>
+                    
                     <td><label for="contacto1">Persona de contacto 1:</label></td>
                     <td><input type="text" id="contacto1" name="contacto1" required></td>
                     <td><label for="contacto2">Persona de contacto 2:</label></td>
@@ -208,13 +207,7 @@
                 </tr>
             </table>
 
-            <label for="gestion">Seleccione una Gestión:</label>
-            <select id="gestion">
-                <option value="gestionOrganizacional.html">Gestión Organizacional</option>
-                <option value="gestionProductiva.html">Gestión Productiva</option>
-                <option value="gestionComercial.html">Gestión Comercial</option>
-                <option value="gestionFinanciera.html">Gestión Financiera</option>
-            </select>
+           
            
             <button type="submit" id="Guardar" >Guardar</button>
         </form>
