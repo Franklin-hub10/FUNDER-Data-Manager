@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextButton = document.getElementById("nextButton"); // Botón Siguiente
     const prevButton = document.getElementById("prevButton"); // Botón Atrás
     const form = document.querySelector('form'); // Formulario de guardado
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            window.location.href = "http://localhost:3000/export/download";
+        });
+    }
 
     // Lista de páginas en orden de pasos
     const pages = [

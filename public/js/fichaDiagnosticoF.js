@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const line = document.querySelector('.progress-steps .line');
     // Se asume que el select de gestión existe en la página
     const gestionSelect = document.getElementById("gestion");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            window.location.href = "http://localhost:3000/export/download";
+        });
+    }
 
     // Función para actualizar el progreso (barra de avance)
     function updateProgress(currentStep) {

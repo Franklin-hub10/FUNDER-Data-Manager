@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formulario");
   const steps = document.querySelectorAll('.progress-steps .step');
   const line = document.querySelector('.progress-steps .line');
+  const downloadBtn = document.getElementById("downloadBtn");
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            window.location.href = "http://localhost:3000/export/download";
+        });
+    }
 
   // Función para actualizar la barra de progreso
   function updateProgress(currentStep) {
