@@ -209,15 +209,8 @@ if(nacionalidad === "extranjero") {
   });
 });
 
-// Funcionalidad del menú lateral y cierre de sesión
-document.addEventListener("DOMContentLoaded", function () {
-  const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-  dropdownBtns.forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const container = this.nextElementSibling;
-      if (container) container.classList.toggle('show');
-    });
-  });
+// Manejo de cierre de sesion
+
   const logoutLink = document.getElementById('logoutLink');
   if (logoutLink) {
     logoutLink.addEventListener('click', function (event) {
@@ -227,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = './index.html';
     });
   }
-});
+
 
 // Funcionalidad de Progreso (Progress Steps)
 document.addEventListener("DOMContentLoaded", function () {
@@ -299,4 +292,17 @@ document.getElementById("guardarBtn").addEventListener("click", function(event) 
       // Si falta algún campo, mostrar un mensaje de advertencia
       alert("Por favor, complete todos los campos obligatorios.");
   }
+  // Configurar los botones dropdown del menú lateral
+  const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+  dropdownBtns.forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const container = this.nextElementSibling;
+      if (container) {
+        container.classList.toggle('show');
+      }
+    });
+  });
+
+
 });
+
