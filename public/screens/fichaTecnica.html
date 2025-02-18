@@ -184,8 +184,8 @@
         </tr>
         <tr>
           <td><label for="edad">Edad:</label></td>
-          <td><input type="number" id="edad" name="edad" min="0" required></td>
-        </tr>
+          <td><input type="number" id="edad" name="edad" min="0" required style="width: 80px; text-align: center;"></td>
+      </tr>      
         <tr>
           <td><label for="instruccion">Instrucción:</label></td>
           <td colspan="3">
@@ -218,34 +218,92 @@
             
           </td>
           <td>
-            <select id="pais" name="pais" required>
-                <option value="">Seleccione un país</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="Chile">Chile</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Ecuador">Ecuador</option>
-                <option value="México">México</option>
-                <option value="Perú">Perú</option>
-                <option value="Venezuela">Venezuela</option>
-            </select>
+            <label for="pais">Selecciona tu país:</label>
+<select id="pais" name="pais">
+    <option value="">-- Selecciona un país --</option>
+    <option value="argentina">Argentina</option>
+    <option value="bolivia">Bolivia</option>
+    <option value="brasil">Brasil</option>
+    <option value="chile">Chile</option>
+    <option value="colombia">Colombia</option>
+    <option value="ecuador">Ecuador</option>
+    <option value="guyana">Guyana</option>
+    <option value="paraguay">Paraguay</option>
+    <option value="peru">Perú</option>
+    <option value="surinam">Surinam</option>
+    <option value="uruguay">Uruguay</option>
+    <option value="venezuela">Venezuela</option>
+    <option value="mexico">México</option>
+    <option value="guatemala">Guatemala</option>
+    <option value="honduras">Honduras</option>
+    <option value="el_salvador">El Salvador</option>
+    <option value="nicaragua">Nicaragua</option>
+    <option value="costa_rica">Costa Rica</option>
+    <option value="panama">Panamá</option>
+    <option value="cuba">Cuba</option>
+    <option value="republica_dominicana">República Dominicana</option>
+    <option value="haiti">Haití</option>
+    <option value="estados_unidos">Estados Unidos</option>
+    <option value="canada">Canadá</option>
+    <option value="espana">España</option>
+    <option value="portugal">Portugal</option>
+    <option value="francia">Francia</option>
+    <option value="alemania">Alemania</option>
+    <option value="italia">Italia</option>
+    <option value="reino_unido">Reino Unido</option>
+    <option value="paises_bajos">Países Bajos</option>
+    <option value="belgica">Bélgica</option>
+    <option value="suiza">Suiza</option>
+    <option value="austria">Austria</option>
+    <option value="dinamarca">Dinamarca</option>
+    <option value="noruega">Noruega</option>
+    <option value="suecia">Suecia</option>
+    <option value="finlandia">Finlandia</option>
+    <option value="rusia">Rusia</option>
+    <option value="china">China</option>
+    <option value="japon">Japón</option>
+    <option value="corea_del_sur">Corea del Sur</option>
+    <option value="india">India</option>
+    <option value="pakistan">Pakistán</option>
+    <option value="bangladesh">Bangladesh</option>
+    <option value="indonesia">Indonesia</option>
+    <option value="filipinas">Filipinas</option>
+    <option value="malasia">Malasia</option>
+    <option value="vietnam">Vietnam</option>
+    <option value="tailandia">Tailandia</option>
+    <option value="australia">Australia</option>
+    <option value="nueva_zelanda">Nueva Zelanda</option>
+    <option value="sudafrica">Sudáfrica</option>
+    <option value="nigeria">Nigeria</option>
+    <option value="egipto">Egipto</option>
+    <option value="marruecos">Marruecos</option>
+    <option value="argelia">Argelia</option>
+    <option value="arabia_saudita">Arabia Saudita</option>
+    <option value="turquia">Turquía</option>
+    <option value="israel">Israel</option>
+    <option value="iran">Irán</option>
+    <option value="emiratos_arabes_unidos">Emiratos Árabes Unidos</option>
+    <option value="singapur">Singapur</option>
+    <option value="kazajistan">Kazajistán</option>
+</select >
           </td>
           <td>
             <label for="estatus">Estatus Migratorio (en caso de ser extranjero):</label>
           </td>
           <td colspan="5">
-            <select id="estatus" name="estatus">
+            <select id="estatus" name="estatus" style="width: 200px; height: 50px;">
               <option value="" disabled selected>Seleccione un estatus</option>
               <option value="refugiado">Refugiado</option>
               <option value="migrante">Migrante</option>
               <option value="asilado">Asilado</option>
               <option value="solicitante_refugio">Solicitante de Refugio</option>
-            </select>
+          </select>
+          
           </td>
         </tr>
         <tr id="row_tiempo_residencia" style="display: none;">
           <td>
-            <label for="tiempo_residencia">Tiempo de Residencia en el País:</label>
+            <label for="tiempo_residencia">Tiempo de Residencia en Ecuador:</label>
           </td>
           <td colspan="3">
             <div style="display: flex; gap: 10px; align-items: center;">
@@ -272,10 +330,6 @@
           </td>
         </tr>
 
-                <tr>
-          <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
-          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
-        </tr>
         <tr>
         <tr>
           <td><label for="estado_civil">Estado Civil:</label></td>
@@ -324,7 +378,7 @@
           <th colspan="4">SITUACIÓN ACTUAL DEL NEGOCIO</th>
         </tr>
         <tr>
-          <td><label for="direccion_negocio">Dirección Actual del Negocio:</label></td>
+          <td><label for="direccion_negocio">Dirección Actual del Emprendedor:</label></td>
           <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio"
               placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
         </tr>
