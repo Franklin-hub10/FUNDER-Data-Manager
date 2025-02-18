@@ -251,6 +251,26 @@ button[type="submit"]:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);  /* Sombra para darle más visibilidad */
   margin-bottom: 40px;
 }
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  gap: 15px; /* Espacio entre los elementos */
+}
+
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  font-size: 12px; /* Tamaño de la letra */
+
+}
+
+.checkbox-container input {
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+  transform: scale(1.2); /* Aumentar tamaño del checkbox */
+}
+
 
 /* Responsivo: Ajustar tamaño y posición en pantallas pequeñas */
 @media (max-width: 768px) {
