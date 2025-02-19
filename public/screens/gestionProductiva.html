@@ -14,40 +14,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-     <!-- Navbar superior -->
- <nav class="navbar navbar-expand-lg ">
+  <!-- Navbar superior -->
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-
-                    <button class="dropdown-btn" onclick="window.location.href='./home.html'">
-                        <i class="bi bi-house-door-fill"></i> 
-                    </button>
-
-                    
-                    
-                    <button class="dropdown-btn" onclick="window.location.href='#'">
-                        <i class="bi bi-wifi"></i>
-                    </button>
-                    
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> 
-                    </a>
-                    <ul class="dropdown-menu " aria-labelledby="userDropdown">
-                        
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-                    </ul>
-                </li>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
+           <li class="nav-item-superior">
+            <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
+            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
+            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+           </li>
+          <li class="nav-item-superior">
+            <span id="userName"></span>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="dropdown-btn" onclick="window.location.href='./home.html'">
+              <i class="bi bi-house-door-fill"></i>
+            </button>
+            <button class="dropdown-btn" onclick="window.location.href='#'">
+              <i class="bi bi-wifi"></i>
+            </button>
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
             </ul>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
     <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
         <div class="slidebar-header">
@@ -221,32 +227,8 @@
     </div>
    <!-- Bootstrap JS -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <script>
-       const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-       const logoutLink = document.getElementById('logoutLink');
-
-       // Manejo del menú desplegable
-       dropdownBtns.forEach((btn) => {
-           btn.addEventListener('click', function () {
-               const container = this.nextElementSibling;
-               container.classList.toggle('show');
-           });
-       });
-
-       // Manejo del cierre de sesión
-       logoutLink.addEventListener('click', function (event) {
-           event.preventDefault(); // Evita la redirección inmediata
-
-           // Limpia datos almacenados (si aplica)
-           localStorage.clear(); // Limpia almacenamiento local
-           sessionStorage.clear(); // Limpia almacenamiento de sesión
-
-           // Redirige al usuario a la página de inicio de sesión
-           window.location.href = './index.html';
-       });
-
-
-   </script>
+   <!-- Se carga la lógica del frontend desde un archivo externo -->
    <script src="/public/js/gestionProductiva.js"></script>
+   <script src="../js/Componentes/common.js"></script>
 </body>
 </html>

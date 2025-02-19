@@ -209,17 +209,7 @@ if(nacionalidad === "extranjero") {
   });
 });
 
-// Manejo de cierre de sesion
 
-  const logoutLink = document.getElementById('logoutLink');
-  if (logoutLink) {
-    logoutLink.addEventListener('click', function (event) {
-      event.preventDefault();
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = './index.html';
-    });
-  }
 
 
 // Funcionalidad de Progreso (Progress Steps)
@@ -292,17 +282,7 @@ document.getElementById("guardarBtn").addEventListener("click", function(event) 
       // Si falta algún campo, mostrar un mensaje de advertencia
       alert("Por favor, complete todos los campos obligatorios.");
   }
-  // Configurar los botones dropdown del menú lateral
-  const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-  dropdownBtns.forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const container = this.nextElementSibling;
-      if (container) {
-        container.classList.toggle('show');
-      }
-    });
-  });
-
+  
 
 });
 

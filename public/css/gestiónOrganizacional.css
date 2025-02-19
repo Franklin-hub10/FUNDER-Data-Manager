@@ -308,7 +308,20 @@ select option {
 
 .nav-item {
   margin: 15px 0;
+
 }
+.nav-item-superior {
+  display: flex;
+  align-items: center; /* Centrar verticalmente dentro del navbar */
+  justify-content: center; /* Centrar horizontalmente */
+  text-align: center;
+  padding: 0 15px; /* Ajuste de espacio */
+  border-radius: 8px;
+  font-size: 15px;
+  height: 100%; /* Asegurar que ocupe la altura completa del navbar */
+  line-height: 100px; /* Asegura que el texto se alinee con la altura del navbar */
+}
+
 
 .nav-link {
   display: flex;
