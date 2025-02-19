@@ -145,14 +145,17 @@
                 </tr>
                 <tr>
                     <td><label for="nombre_comercial">Nombre comercial:</label></td>
-                    <td><input type="text" id="nombre_comercial" name="nombre_comercial" required></td>
+                    <td><input type="text" id="nombre_comercial" name="nombre_comercial" required
+                        placeholder="Ej: Tienda La Esquina"></td>
                     <td><label for="razon_social" >Razón Social:</label></td>
-                    <td><input type="text" id="razon_social" name="razon_social" required></td>
+                    <td><input type="text" id="razon_social" name="razon_social" required
+                        placeholder="Ej: La Esquina S.A."></td>
                 </tr>
              
                 <tr>
                     <td><label for="productos_servicios">Productos y/o servicios:</label></td>
-                    <td colspan="3"><input type="text" id="productos_servicios" name="productos_servicios" required></td>
+                    <td colspan="3"><input type="text" id="productos_servicios" name="productos_servicios" required
+                        placeholder="Ej: Venta de ropa, reparación de celulares"></td>
                 </tr>
                 <tr>
                     <td><label for="direccion">Dirección:</label></td>
@@ -201,7 +204,7 @@
                     
                     <td><label for="contacto1"> Nombre de persona de contacto 1:</label></td>
                     <td><input type="text" id="contacto1" name="contacto1" required
-                        placeholder="ejemplo: juan"></td>
+                        placeholder="ej: juan"></td>
                     <td><label for="contacto2">Numero de  contacto 1:</label></td>
                     <td><input type="text" id="contacto2" name="contacto2" required
                         placeholder="0999999999"></td>
@@ -209,7 +212,7 @@
                 <tr>
                     <td><label for="nombreContacto2">Nombre de persona de contacto 2:</label></td>
                     <td><input type="text" id="nombreContacto2" name="nombreContacto2" class="input-text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required
-                        placeholder="ejemplo: juan" ></td>
+                        placeholder="ej: juan" ></td>
                 
                     <td><label for="contacto2">Número de contacto 2:</label></td>
                     <td><input type="text" id="contacto2" name="contacto2" class="input-text" pattern="[0-9]+" title="Solo se permiten números" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
@@ -222,7 +225,8 @@
                
                 <tr>
                     <td><label for="tecnico">Nombre del técnico evaluador:</label></td>
-                    <td colspan="3"><input type="text" id="tecnico" name="tecnico" required></td>
+                    <td colspan="3"><input type="text" id="tecnico" name="tecnico" required
+                        placeholder="ej: Juan Perez"></td>
                 </tr>
                 <tr>
                     <td><label for="fecha_evaluacion">Fecha de la evaluación:</label></td>

@@ -142,7 +142,8 @@
         <!-- Nombres y Apellidos -->
         <tr>
           <td><label for="nombres_apellidos">Nombres y Apellidos:</label></td>
-          <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos" required></td>
+          <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos" required
+            placeholder="Ej: Juan Pérez Gómez"></td>
         </tr>
 
         <!-- Documento de Identidad -->
@@ -164,7 +165,8 @@
         <tr>
           <td><label for="numeroIdentificacion">Número de Identificación:</label></td>
           <td colspan="3">
-            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" maxlength="10" required>
+            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" maxlength="10" required
+            placeholder="Ingrese su DNI ">
             <span id="numeroIdentificacionError" style="color: red; display: none;">Cédula inválida</span>
           </td>
         </tr>
@@ -176,7 +178,8 @@
         <!-- Resto de los campos (se mantienen igual) -->
         <tr>
           <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
-          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
+          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required
+            placeholder="Ej: Quito, Ecuador"></td>
         </tr>
         <tr>
           <td><label for="fecha_nacimiento">Fecha de Nacimiento:</label></td>
@@ -380,16 +383,16 @@
         <tr>
           <td><label for="direccion_negocio">Dirección Actual del Emprendedor:</label></td>
           <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio"
-              placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
+              placeholder=" ej: Ciudad, Barrio, Calle, N. Casa"></td>
         </tr>
         <tr>
           <td><label for="contacto">Contacto:</label></td>
           <td colspan="3">
             Telf. Convencional:
-            <input type="number" id="telefono_convencional" name="telefono_convencional" placeholder="ejem: 0222222222"
+            <input type="number" id="telefono_convencional" name="telefono_convencional" placeholder="eje: 0222222222"
               required>
             Telf. Celular:
-            <input type="number" id="telefono_celular" name="telefono_celular" placeholder="ejem: 0999999999" required>
+            <input type="number" id="telefono_celular" name="telefono_celular" placeholder="eje: 0999999999" required>
             E-mail:
             <input type="email" id="email" name="email" placeholder="funder123@gmail.com" required>
           </td>
