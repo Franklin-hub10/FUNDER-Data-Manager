@@ -255,9 +255,13 @@ button[type="submit"]:hover {
   display: flex;
   flex-wrap: wrap;
 
+<<<<<<< HEAD
   justify-content:
 c
 center;
+=======
+  justify-content: center;
+>>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6
   gap: 15px; /* Espacio entre los elementos */
 }
 

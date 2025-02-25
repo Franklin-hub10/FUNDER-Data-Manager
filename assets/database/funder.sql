@@ -139,7 +139,7 @@ CREATE TABLE emprendimiento (
     nombreEvaluador VARCHAR(200) NOT NULL,
     fechaEvaluacion DATE NOT NULL,
     idEmprendedor INT NOT NULL,
-    idColaborador INT NOT NULL,
+    idColaborador INT NULL,
     FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -198,9 +198,59 @@ INSERT INTO vista (nombre, url, categoria) VALUES
 CREATE TABLE export_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_formulario VARCHAR(50),
-    datos JSON,
+    idEntidad INT,
+    nombres VARCHAR(100),
+    apellidos VARCHAR(100),
+    nombreSede VARCHAR(30), 
+    email VARCHAR(100),
+    pais VARCHAR(50),
+    edad INT,
+    generoIdentidad VARCHAR(50),
+    estadoCivil VARCHAR(50),
+    numeroCargas INT,
+    rolFamiliar VARCHAR(50),
+    etnia VARCHAR(50),
+    discapacidad VARCHAR(50),
+    estatusMigratorio VARCHAR(50),
+    direccion VARCHAR(255),
+    telefono1 VARCHAR(20),
+    telefono2 VARCHAR(20),
+    correo VARCHAR(100),
+    servicioDeInternet BOOLEAN,
+    celular BOOLEAN,
+    computadora BOOLEAN,
+    tablet BOOLEAN,
+    nivelInstitucional VARCHAR(100),
+    idColaborador INT,
+    tipoNegocio VARCHAR(100),
+    actividadEconomica VARCHAR(100),
+    promMensualIngreso DECIMAL(10,2),
+    promMensualGastos DECIMAL(10,2),
+    promMensualUtilidad DECIMAL(10,2),
+    caracteristicaDelNegocio TEXT,
+    camposAsistenciaTecnica TEXT,
+    temaCapacitacion TEXT,
+    numeroIdentificacion VARCHAR(50),
+    nombreComercial VARCHAR(150),
+    razonSocial VARCHAR(150),
+    idProdServ INT,
+    direccionNegocio VARCHAR(255),
+    idParroquia INT,
+    canton VARCHAR(100),
+    ciudad VARCHAR(100),
+    numSocios INT,
+    numEmpleados INT,
+    antiguedad INT,
+    nombreContacto1 VARCHAR(100),
+    telefonoContacto1 VARCHAR(20),
+    nombreContacto2 VARCHAR(100),
+    telefonoContacto2 VARCHAR(20),
+    referencia TEXT,
+    nombreEvaluador VARCHAR(100),
+    fechaEvaluacion DATE,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+<<<<<<< HEAD
 
 ---gestion comercial---
 
@@ -463,3 +513,5 @@ CREATE TABLE respuestas_gestion_productiva (
     FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (idPregunta_Productiva) REFERENCES preguntas_gestion_productiva(idPregunta_Productiva) ON DELETE CASCADE ON UPDATE CASCADE
 );
+=======
+>>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6

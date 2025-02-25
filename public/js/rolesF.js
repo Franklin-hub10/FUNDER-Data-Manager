@@ -385,6 +385,28 @@ async function openViewsModal(idRol, currentVistasIdsString) {
   };
   modal.show();
 }
+  // Configurar los botones dropdown del menú lateral
+  const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+  dropdownBtns.forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const container = this.nextElementSibling;
+      if (container) {
+        container.classList.toggle('show');
+      }
+    });
+  });
+
+  // Configurar el cierre de sesión
+  const logoutLink = document.getElementById('logoutLink');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      // Limpiar el almacenamiento y redirigir a la página de login
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = './index.html';
+    });
+  }
 
 // ─── ENVÍO DEL FORMULARIO PARA CREAR ROL CON LOGS ─────────────────
 document.getElementById("createRoleForm").addEventListener("submit", async (e) => {
@@ -454,4 +476,8 @@ document.getElementById("createRoleForm").addEventListener("submit", async (e) =
     console.error("Error al crear el rol:", error);
     alert("No se pudo crear el rol. Revisa la consola para más detalles.");
   }
+
+
 });
+
+

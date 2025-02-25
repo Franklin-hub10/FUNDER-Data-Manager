@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
  
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg">
@@ -18,6 +19,29 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
+=======
+  <!-- Navbar superior -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
+           <li class="nav-item-superior">
+            <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
+            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
+            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+           </li>
+          <li class="nav-item-superior">
+            <span id="userName"></span>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="dropdown-btn" onclick="window.location.href='./home.html'">
+              <i class="bi bi-house-door-fill"></i>
+>>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6
             </button>
  
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -218,10 +242,18 @@
             <button type="submit" id="Guardar" class="btn btn-primary">Guardar</button>
         </form>
     </div>
+<<<<<<< HEAD
  
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/public/js/gestionProductivaF.js"></script>
     <script src="../js/Componentes/common.js"></script>
+=======
+   <!-- Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Se carga la lógica del frontend desde un archivo externo -->
+   <script src="/public/js/gestionProductiva.js"></script>
+   <script src="../js/Componentes/common.js"></script>
+>>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6
 </body>
 </html>
