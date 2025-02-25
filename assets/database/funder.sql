@@ -250,7 +250,6 @@ CREATE TABLE export_data (
     fechaEvaluacion DATE,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-<<<<<<< HEAD
 
 ---gestion comercial---
 
@@ -513,5 +512,3 @@ CREATE TABLE respuestas_gestion_productiva (
     FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (idPregunta_Productiva) REFERENCES preguntas_gestion_productiva(idPregunta_Productiva) ON DELETE CASCADE ON UPDATE CASCADE
 );
-=======
->>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6
