@@ -87,6 +87,7 @@ CREATE TABLE emprendedor (
     pais VARCHAR(50) NOT NULL,
     edad INT NULL,
     idSede INT NOT NULL,
+    lugar_nacimiento VARCHAR(200) NOT NULL,
     generoIdentidad VARCHAR(45) NOT NULL,
     estadoCivil VARCHAR(45) NOT NULL,
     numeroCargas INT NULL,
@@ -106,9 +107,6 @@ CREATE TABLE emprendedor (
     idColaborador INT DEFAULT NULL,
     tipoNegocio VARCHAR(200) NOT NULL,
     actividadEconomica VARCHAR(200) NOT NULL,
-    promMensualIngreso DOUBLE NULL,
-    promMensualGastos DOUBLE NULL,
-    promMensualUtilidad DOUBLE NULL,
     caracteristicaDelNegocio VARCHAR(1000) NOT NULL,
     camposAsistenciaTecnica VARCHAR(1000) NOT NULL,
     temaCapacitacion VARCHAR(1000) NOT NULL,
@@ -204,3 +202,264 @@ CREATE TABLE export_data (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+---gestion comercial---
+
+CREATE TABLE preguntas_gestion_Comercial (
+    idPregunta_Comercial INT AUTO_INCREMENT PRIMARY KEY,
+    pregunta VARCHAR(255) NOT NULL
+);
+
+-- Inserción de las preguntas existentes
+INSERT INTO preguntas_gestion_Comercial (pregunta) VALUES
+('¿Cuenta su negocio con una marca comercial?'),
+('¿Dispone de aplicaciones gráficas y de promoción? (tarjetas y etiquetas)'),
+('¿Promociona sus productos por redes sociales?'),
+('¿Considera que los canales de comercialización que utiliza son los adecuados?'),
+('¿Realiza servicio post venta?'),
+('¿Existe inversión en publicidad?'),
+('¿Sus productos tienen características innovadoras apreciadas por los compradores?'),
+('¿Sus productos disponen de una adecuada presentación y protección?'),
+('¿Qué temas de capacitación y asistencia técnica considera que se requieren en su negocio?'),
+
+
+
+
+CREATE TABLE respuestas_gestion_Comercial (
+    idRespuesta_Comercial INT AUTO_INCREMENT PRIMARY KEY,
+    idEmprendimiento INT NOT NULL,
+    idEmprendedor INT NOT NULL,
+    idColaborador INT NOT NULL,
+    idPregunta_Comercial INT NOT NULL, 
+    diagnostico VARCHAR(255),
+    intermedia VARCHAR(255),
+    final VARCHAR(255),
+    mejora VARCHAR(255),
+    status VARCHAR(100),
+    recursos VARCHAR(100),
+    redesSociales VARCHAR(100),
+    observaciones TEXT,
+    tecnico_responsable VARCHAR(100) NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    -- Claves Foráneas para establecer relaciones
+
+    FOREIGN KEY (idEmprendimiento) REFERENCES emprendimiento(idEmprendimiento) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idPregunta_Comercial) REFERENCES preguntas_gestion_Comercial(idPregunta_Comercial) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+---gestion Financiera--
+
+CREATE TABLE preguntas_gestion_Financiera (
+    idPregunta_Financiera INT AUTO_INCREMENT PRIMARY KEY,
+    pregunta VARCHAR(255) NOT NULL
+);
+
+-- Inserción de las preguntas existentes
+INSERT INTO preguntas_gestion_Financiera (pregunta) VALUES
+('¿Existen registros contables de su negocio?'),
+('¿Tiene RUC a su nombre o de su negocio?'),
+('¿Realiza declaraciones al SRI (RISE)?'),
+('¿Está al día en sus declaraciones con el SRI?'),
+('¿Dispone de fuentes de financiamiento?'),
+('¿Ha sido sujeto de crédito?'),
+('¿Conoce el costo de sus productos o servicios?'),
+('¿Conoce exactamente cuáles son sus ingresos por producto al mes?'),
+('¿Conoce cuál es la utilidad por producto al mes?'),
+('¿Cuál es la utilidad del producto que más vende al mes?'),
+('¿Cuál es el ingreso total al mes?'),
+('¿Cuál es la utilidad total al mes?'),
+('¿De cuánto es el gasto total al mes?');
+
+
+
+CREATE TABLE respuestas_gestion_Financiera (
+    idRespuesta_Financiera INT AUTO_INCREMENT PRIMARY KEY,
+    idEmprendimiento INT NOT NULL,
+    idEmprendedor INT NOT NULL,
+    idColaborador INT NOT NULL,
+    idPregunta_Financiera INT NOT NULL, 
+    diagnostico VARCHAR(255),
+    intermedia VARCHAR(255),
+    final VARCHAR(255),
+    mejora VARCHAR(255),
+    status VARCHAR(100),
+    diagnostico_valor DECIMAL(10,2) NULL,
+    intermedia_valor DECIMAL(10,2) NULL,
+    final_valor DECIMAL(10,2) NULL,
+    mejora_valor DECIMAL(10,2) NULL,
+    status_valor DECIMAL(10,2) NULL,
+    observaciones TEXT,
+    tecnico_responsable VARCHAR(100) NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    -- Claves Foráneas para establecer relaciones
+
+    FOREIGN KEY (idEmprendimiento) REFERENCES emprendimiento(idEmprendimiento) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idPregunta_Financiera) REFERENCES preguntas_gestion_Financiera(idPregunta_Financiera) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+----Gestion Organizacional-----
+
+CREATE TABLE preguntas_gestion_organizacional (
+    idPregunta_Organizacional INT AUTO_INCREMENT PRIMARY KEY,
+    pregunta VARCHAR(255) NOT NULL
+);
+
+-- Inserción de las preguntas existentes
+INSERT INTO preguntas_gestion_organizacional (pregunta) VALUES
+('¿Cuenta con un local propio?'),
+('¿Dispone de un plan de negocios?'),
+('¿El negocio cuenta con personería jurídica?'),
+('¿El negocio cuenta con una estructura de funcionamiento?'),
+('¿El personal se encuentra afiliado al IESS?'),
+('¿Ha capacitado a sus empleados en este último año?'),
+('¿Su familia está asegurada al seguro social?'),
+('¿Tiene socios en su negocio?'),
+('¿Usted está afiliado al seguro social?');
+
+
+
+CREATE TABLE respuestas_gestion_organizacional (
+    idRespuesta_Organizacional INT AUTO_INCREMENT PRIMARY KEY,
+    idEmprendimiento INT NOT NULL,
+    idEmprendedor INT NOT NULL,
+    idColaborador INT NOT NULL,
+    idPregunta_Organizacional INT NOT NULL, 
+    diagnostico VARCHAR(255),
+    intermedia VARCHAR(255),
+    final VARCHAR(255),
+    mejora VARCHAR(255),
+    status VARCHAR(100),
+    observaciones TEXT,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    -- Claves Foráneas para establecer relaciones
+
+    FOREIGN KEY (idEmprendimiento) REFERENCES emprendimiento(idEmprendimiento) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idPregunta_Organizacional) REFERENCES preguntas_gestion_organizacional(idPregunta_Organizacional) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+---Gestion Productiva
+
+CREATE TABLE preguntas_gestion_productiva (
+    idPregunta_Productiva INT AUTO_INCREMENT PRIMARY KEY,
+    pregunta VARCHAR(255) NOT NULL
+);
+
+
+INSERT INTO preguntas_gestion_productiva (pregunta) VALUES
+('¿Conoce su cadena productiva / procesos?'),
+('¿Dispone de información documentada (inventario, fichas) sobre sus productos?'),
+('¿Dispone de equipos o maquinarias para la elaboración de sus productos?'),
+('¿Conoce y aplica las medidas de bioseguridad adecuadas a sus productos y/o servicios?'),
+('¿Dispone de equipos o maquinarias necesarios para la elaboración de sus productos?'),
+('¿Dispone de una adecuada infraestructura para su gestión? (taller, bodegas)'),
+('¿Dispone de computador y acceso a internet en su negocio?'),
+('¿Dispone de un plan de emergencia y seguridad?'),
+('¿Tiene identificado proveedores con precios de venta adecuados?');
+('Subtotal:');
+
+
+
+
+CREATE TABLE respuestas_gestion_productiva (
+    idRespuesta_Productiva INT AUTO_INCREMENT PRIMARY KEY,
+    idEmprendimiento INT NOT NULL,
+    idEmprendedor INT NOT NULL,
+    idColaborador INT NOT NULL,
+    idPregunta_Productiva INT NOT NULL, 
+    diagnostico VARCHAR(255),
+    intermedia VARCHAR(255),
+    final VARCHAR(255),
+    mejora VARCHAR(255),
+    status VARCHAR(100),
+    observaciones TEXT,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    -- Claves Foráneas para las relaciones
+    FOREIGN KEY (idEmprendimiento) REFERENCES emprendimiento(idEmprendimiento) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idPregunta_Productiva) REFERENCES preguntas_gestion_productiva(idPregunta_Productiva) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+---  consulta para verificar las respuestas de gestion Organizacional y validar con los id de emprendedor emprendimiento y colaborador
+SELECT 
+    r.idRespuesta_Organizacional, 
+    e.nombreComercial AS Emprendimiento, 
+    CONCAT(en.nombres, ' ', en.apellidos) AS Emprendedor, 
+    CONCAT(c.nombres, ' ', c.apellidos) AS Colaborador, 
+    p.pregunta, 
+    r.diagnostico, 
+    r.intermedia, 
+    r.final, 
+    r.mejora, 
+    r.status, 
+    r.observaciones
+FROM respuestas_gestion_organizacional r
+JOIN emprendimiento e ON r.idEmprendimiento =
+e.idEmprendimiento
+JOIN emprendedor en ON r.idEmprendedor = en.idEmprendedor
+JOIN colaborador c ON r.idColaborador = c.idColaborador
+JOIN preguntas_gestion_organizacional p ON r.idPregunta_Organizacional = p.idPregunta_Organizacional;
+
+
+
+
+
+
+
+---Gestion Productiva
+
+CREATE TABLE preguntas_gestion_productiva (
+    idPregunta_Productiva INT AUTO_INCREMENT PRIMARY KEY,
+    pregunta VARCHAR(255) NOT NULL
+);
+
+
+INSERT INTO preguntas_gestion_productiva (pregunta) VALUES
+('¿Conoce su cadena productiva / procesos?'),
+('¿Dispone de información documentada (inventario, fichas) sobre sus productos?'),
+('¿Dispone de equipos o maquinarias para la elaboración de sus productos?'),
+('¿Conoce y aplica las medidas de bioseguridad adecuadas a sus productos y/o servicios?'),
+('¿Dispone de equipos o maquinarias necesarios para la elaboración de sus productos?'),
+('¿Dispone de una adecuada infraestructura para su gestión? (taller, bodegas)'),
+('¿Dispone de computador y acceso a internet en su negocio?'),
+('¿Dispone de un plan de emergencia y seguridad?'),
+('¿Tiene identificado proveedores con precios de venta adecuados?');
+
+
+
+
+CREATE TABLE respuestas_gestion_productiva (
+    idRespuesta_Productiva INT AUTO_INCREMENT PRIMARY KEY,
+    idEmprendimiento INT NOT NULL,
+    idEmprendedor INT NOT NULL,
+    idColaborador INT NOT NULL,
+    idPregunta_Productiva INT NOT NULL, 
+    diagnostico VARCHAR(255),
+    intermedia VARCHAR(255),
+    final VARCHAR(255),
+    mejora VARCHAR(255),
+    status VARCHAR(100),
+    observaciones TEXT,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    -- Claves Foráneas para las relaciones
+    FOREIGN KEY (idEmprendimiento) REFERENCES emprendimiento(idEmprendimiento) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idEmprendedor) REFERENCES emprendedor(idEmprendedor) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idColaborador) REFERENCES colaborador(idColaborador) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idPregunta_Productiva) REFERENCES preguntas_gestion_productiva(idPregunta_Productiva) ON DELETE CASCADE ON UPDATE CASCADE
+);

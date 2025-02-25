@@ -157,4 +157,19 @@ router.delete("/deleteColaborador/:id", async (req, res) => {
     }
 });
 
+
+// NUEVO ENDPOINT: Obtener el último idColaborador creado para vincularlo en emprendimiento
+router.get('/ultimo-colaborador', async (req, res) => {
+    try {
+      const [rows] = await db.query("SELECT idColaborador FROM colaborador ORDER BY idColaborador DESC LIMIT 1");
+      if (rows.length === 0) {
+        return res.status(404).json({ message: "No se encontró ningún colaborador." });
+      }
+      res.status(200).json({ idColaborador: rows[0].idColaborador });
+    } catch (error) {
+      console.error("❌ Error al obtener el último colaborador:", error);
+      res.status(500).json({ message: "Error al obtener el último colaborador", error: error.message });
+    }
+ 
+});
 module.exports = router;

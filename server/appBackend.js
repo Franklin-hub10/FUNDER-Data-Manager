@@ -1,29 +1,35 @@
 const express = require('express');
 const cors = require('cors');
 const rolesRoutes = require('./routes/roles');
-const usuariosRoutes =require('./routes/usuarios')
+const usuariosRoutes = require('./routes/usuarios');
 const sedesRoutes = require('./routes/sedes');
 const authRoutes = require("./routes/auth");
 const fichaDiagnosticoRoutes = require("./routes/fichaDiagnostico");
 const fichaTecnicaRoutes = require("./routes/fichaTecnica");
 const exportControllerRoutes = require("./routes/exportControllerRoutes");
-
+const gestionFinancieraRoutes = require("./routes/gestionFinancieraRoutes");
+const gestionComercialRoutes = require("./routes/gestionComercialRoutes");
+const gestionOrganizacional = require("./routes/gestionOrganizacional");
+const gestionProductivaRoutes = require("./routes/gestionProductiva");
+ 
+ 
 require("dotenv").config(); // Asegura que esto esté al inicio
 console.log("📌 EMAIL_USER:", process.env.EMAIL_USER);
 console.log("📌 EMAIL_PASSWORD:", process.env.EMAIL_PASSWORD ? "OK" : "FALTA");
-
+ 
 const app = express();
-
-// Middleware
+ 
+// ✅ Middleware para permitir múltiples orígenes
 app.use(cors({
-    origin: 'http://localhost:5000',  // Ajusta esto con el puerto de tu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-  }));
+    origin: ['http://localhost:5501', 'http://127.0.0.1:5501'], // Permite ambos orígenes
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Si usas cookies o tokens
+}));
+ 
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
-
-
+ 
 // Rutas
 app.use('/roles', rolesRoutes);
 app.use('/usuarios', usuariosRoutes);
@@ -32,12 +38,17 @@ app.use("/auth", authRoutes);
 app.use("/fichaTecnica", fichaTecnicaRoutes);
 app.use("/fichaDiagnostico", fichaDiagnosticoRoutes);
 app.use("/export", exportControllerRoutes);
+app.use("/gestionfinanciera", gestionFinancieraRoutes);
+app.use("/gestionComercial", gestionComercialRoutes);
+app.use("/gestionOrganizacional", gestionOrganizacional);
+app.use("/gestionProductiva", gestionProductivaRoutes);
 
-
-
-
-// Inicio del servidor
+ 
+// ✅ Manejo explícito para solicitudes preflight OPTIONS
+app.options('*', cors());
+ 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
+ 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
+ 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!--<script src="../js/authGuard.js"></script>-->
 </head>
-
+ 
 <body>
   <!-- Navbar superior -->
   <nav class="navbar navbar-expand-lg">
@@ -25,12 +25,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
-           <li class="nav-item">
+           <li class="nav-item-superior">
             <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
             <!-- Se guarda el id de la sede para enviarlo en el formulario -->
             <input type="hidden" id="sede_funder" name="sede_funder" value="1">
            </li>
-          <li class="nav-item">
+          <li class="nav-item-superior">
             <span id="userName"></span>
           </li>
           <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
       </div>
     </div>
   </nav>
-
+ 
   <!-- Barra lateral -->
   <div class="sidebar" id="sidebar">
     <div class="slidebar-header">
@@ -89,7 +89,7 @@
       </li>
     </ul>
   </div>
-
+ 
   <div class="content">
     <div class="header">
       <div class="containerDownload">
@@ -127,24 +127,28 @@
       </div>
       <h1>Ficha de Inscripción Centro de Negocios</h1>
     </div>
-
+ 
    
-
+ 
     <!-- Formulario (sin acción para evitar envío nativo) -->
-    <form id="formulario" action="#" method="POST">
-
+    <form id="formulario" method="POST">
+ 
+     
+ 
+ 
       <input type="hidden" id="idColaborador" value="...">
       <table>
         <tr>
           <th colspan="4">DATOS GENERALES</th>
         </tr>
-
+ 
         <!-- Nombres y Apellidos -->
         <tr>
           <td><label for="nombres_apellidos">Nombres y Apellidos:</label></td>
-          <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos" required></td>
+          <td colspan="3"><input type="text" id="nombres_apellidos" name="nombres_apellidos" required
+            placeholder="Ej: Juan Pérez Gómez"></td>
         </tr>
-
+ 
         <!-- Documento de Identidad -->
         <tr>
           <td><label for="documento_identidad">Documento de Identidad:</label></td>
@@ -164,7 +168,8 @@
         <tr>
           <td><label for="numeroIdentificacion">Número de Identificación:</label></td>
           <td colspan="3">
-            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" maxlength="10" required>
+            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" maxlength="10" required
+            placeholder="Ingrese su DNI ">
             <span id="numeroIdentificacionError" style="color: red; display: none;">Cédula inválida</span>
           </td>
         </tr>
@@ -176,16 +181,19 @@
         <!-- Resto de los campos (se mantienen igual) -->
         <tr>
           <td><label for="lugar_nacimiento">Lugar de Nacimiento:</label></td>
-          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required></td>
+          <td><input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required
+            placeholder="Ej: Quito, Ecuador"></td>
         </tr>
+ 
+     
         <tr>
+ 
+          <td><label for="edad">Edad:</label></td>
+          <td><input type="number" id="edad" name="edad" min="0" required style="width: 110px; text-align: center;"></td>
           <td><label for="fecha_nacimiento">Fecha de Nacimiento:</label></td>
           <td><input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required></td>
         </tr>
-        <tr>
-          <td><label for="edad">Edad:</label></td>
-          <td><input type="number" id="edad" name="edad" min="0" required style="width: 80px; text-align: center;"></td>
-      </tr>      
+         
         <tr>
           <td><label for="instruccion">Instrucción:</label></td>
           <td colspan="3">
@@ -215,10 +223,10 @@
         <tr id="row_estatus" style="display: none;">
           <td>
             <label for="pais">País:</label>
-            
+           
           </td>
           <td>
-            <label for="pais">Selecciona tu país:</label>
+           
 <select id="pais" name="pais">
     <option value="">-- Selecciona un país --</option>
     <option value="argentina">Argentina</option>
@@ -298,7 +306,7 @@
               <option value="asilado">Asilado</option>
               <option value="solicitante_refugio">Solicitante de Refugio</option>
           </select>
-          
+         
           </td>
         </tr>
         <tr id="row_tiempo_residencia" style="display: none;">
@@ -329,7 +337,7 @@
             </select>
           </td>
         </tr>
-
+ 
         <tr>
         <tr>
           <td><label for="estado_civil">Estado Civil:</label></td>
@@ -380,16 +388,16 @@
         <tr>
           <td><label for="direccion_negocio">Dirección Actual del Emprendedor:</label></td>
           <td colspan="3"><input type="text" id="direccion_negocio" name="direccion_negocio"
-              placeholder="Ciudad, Barrio, Calle, N. Casa"></td>
+              placeholder=" ej: Ciudad, Barrio, Calle, N. Casa"></td>
         </tr>
         <tr>
           <td><label for="contacto">Contacto:</label></td>
           <td colspan="3">
             Telf. Convencional:
-            <input type="number" id="telefono_convencional" name="telefono_convencional" placeholder="ejem: 0222222222"
+            <input type="number" id="telefono_convencional" name="telefono_convencional" placeholder="eje: 0222222222"
               required>
             Telf. Celular:
-            <input type="number" id="telefono_celular" name="telefono_celular" placeholder="ejem: 0999999999" required>
+            <input type="number" id="telefono_celular" name="telefono_celular" placeholder="eje: 0999999999" required>
             E-mail:
             <input type="email" id="email" name="email" placeholder="funder123@gmail.com" required>
           </td>
@@ -398,13 +406,15 @@
         <tr>
           <td><label>Acceso a las TIC:</label></td>
           <td colspan="3">
-            <label><input type="checkbox" id="servicioDeInternet" name="servicioDeInternet"> Servicio de
-              Internet</label>
-            <label><input type="checkbox" id="celular" name="celular"> Celular</label>
-            <label><input type="checkbox" id="computadora" name="computadora"> Computadora</label>
-            <label><input type="checkbox" id="tablet" name="tablet"> Tablet</label>
+              <div class="checkbox-container">
+                  <label><input type="checkbox" id="servicioDeInternet" name="servicioDeInternet"> Servicio de Internet</label>
+                  <label><input type="checkbox" id="celular" name="celular"> Celular</label>
+                  <label><input type="checkbox" id="computadora" name="computadora"> Computadora</label>
+                  <label><input type="checkbox" id="tablet" name="tablet"> Tablet</label>
+              </div>
           </td>
-        </tr>
+      </tr>
+     
         <tr>
           <td><label for="tipo_negocio">Tipo del Negocio:</label></td>
           <td colspan="3">
@@ -449,12 +459,12 @@
       <button type="submit" id="guardarBtn" class="btn btn-primary">Guardar</button>
     </form>
   </div>
-
+ 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Se carga la lógica del frontend desde un archivo externo -->
   <script src="/public/js/fichatecnicaF.js"></script>
   <script src="../js/Componentes/common.js"></script>
 </body>
-
+ 
 </html>

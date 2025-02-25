@@ -251,6 +251,28 @@ button[type="submit"]:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);  /* Sombra para darle más visibilidad */
   margin-bottom: 40px;
 }
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content:
+c
+center;
+  gap: 15px; /* Espacio entre los elementos */
+}
+
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  font-size: 12px; /* Tamaño de la letra */
+
+}
+
+.checkbox-container input {
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+  transform: scale(1.2); /* Aumentar tamaño del checkbox */
+}
+
 
 /* Responsivo: Ajustar tamaño y posición en pantallas pequeñas */
 @media (max-width: 768px) {
@@ -314,14 +336,21 @@ button[type="submit"]:hover {
   opacity: 1;
 }
 
+
 .nav-item {
   margin: 15px 0;
-  padding: 10px 15px;
-  border-radius: 8px;
+  
+}
+.nav-item-superior {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centrar verticalmente dentro del navbar */
+  justify-content: center; /* Centrar horizontalmente */
   text-align: center;
+  padding: 0 15px; /* Ajuste de espacio */
+  border-radius: 8px;
+  font-size: 15px;
+  height: 100%; /* Asegurar que ocupe la altura completa del navbar */
+  line-height: 100px; /* Asegura que el texto se alinee con la altura del navbar */
 }
 
 .edad {
@@ -441,7 +470,8 @@ button[type="submit"]:hover {
   backdrop-filter: blur(8px);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   position: fixed;
-  /* Mantener el navbar siempre visible */
+  /* Mantener el navbar siemp
+re visible */
   top: 0;
   left: 0;
   width: 100%;
@@ -660,7 +690,7 @@ button[type="submit"]:hover {
     margin: 10px auto;
     /* Centrar el botón */
     z-index: 1100;
-    border-radius: 5px;
+border-radius: 5px;
     padding: 5px 15px;
     font-size: 1rem;
     text-align: center;

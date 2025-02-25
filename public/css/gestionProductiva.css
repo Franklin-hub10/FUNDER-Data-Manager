@@ -12,6 +12,7 @@ body {
   background: none; 
 }
 
+
 body::before {
     content: '';
     position: absolute;
@@ -60,14 +61,11 @@ table {
     border-spacing: 0;
     margin-bottom: 20px;
 }
-
 /* Centrar el contenido de las celdas de la tabla */
 table td {
   text-align: center; /* Centrar horizontalmente */
   vertical-align: middle; /* Centrar verticalmente */
-  font-size: 1.4rem; /* Tamaño de letra más grande */
-    text-align: center; /* Asegura que esté centrado */
-    vertical-align: middle; /* Centrado vertical */
+  font-size: 1.4rem;
 }
 
 /* Opcional: Ajustar el tamaño del checkbox */
@@ -75,7 +73,6 @@ input[type="checkbox"] {
   transform: scale(1.2); /* Cambia el tamaño del checkbox si es necesario */
   margin: 5px; /* Espaciado opcional */
 }
-
 
 th {
     background: var(--primarioAzul);
@@ -98,7 +95,6 @@ td {
     vertical-align: top;
     color: var(--negro);
     border-bottom: 1px solid var(--negro);
-   
 }
 
 tr:nth-child(even) td {
@@ -166,7 +162,6 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background: #156dc1;
 }
-
 .containerDownload {
   flex-direction:row;
   justify-items: end;
@@ -204,7 +199,8 @@ button[type="submit"]:hover {
 }
 
 
-/* Estilo para todos los menús desplegables */
+/* Estilo para
+a todos los menús desplegables */
 select {
   padding: 10px;
 
@@ -241,6 +237,7 @@ select option {
       position: absolute;
   }
 }
+
 @media (max-width: 768px) {
     .content {
         padding: 20px;
@@ -261,6 +258,7 @@ select option {
         border-radius: 5px;
     }
 }
+
 /* Barra lateral principal */
 .sidebar {
   height: 100vh;
@@ -311,12 +309,18 @@ select option {
 
 .nav-item {
   margin: 15px 0;
-  padding: 10px 15px;
-  border-radius: 8px;
+
+}
+.nav-item-superior {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centrar verticalmente dentro del navbar */
+  justify-content: center; /* Centrar horizontalmente */
   text-align: center;
+  padding: 0 15px; /* Ajuste de espacio */
+  border-radius: 8px;
+  font-size: 15px;
+  height: 100%; /* Asegurar que ocupe la altura completa del navbar */
+  line-height: 100px; /* Asegura que el texto se alinee con la altura del navbar */
 }
 
 
@@ -427,7 +431,8 @@ select option {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   height: 50px;
   backdrop-filter: blur(8px);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s
+ease, box-shadow 0.3s ease;
   position: fixed; /* Mantener el navbar siempre visible */
   top: 0;
   left: 0;
@@ -638,7 +643,8 @@ select option {
 .progress-steps {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:
+center;
   position: relative;
   margin-bottom: 2rem;
   padding: 0 20px;

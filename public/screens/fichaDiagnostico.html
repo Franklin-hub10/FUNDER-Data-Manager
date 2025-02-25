@@ -24,12 +24,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
+                <li class="nav-item-superior">
                     <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
                     <!-- Se guarda el id de la sede para enviarlo en el formulario -->
                     <input type="hidden" id="sede_funder" name="sede_funder" value="1">
                    </li>
-                <li class="nav-item">
+                <li class="nav-item-superior">
                     <span id="userName"></span>
                 </li>
                 <li class="nav-item dropdown">
@@ -89,6 +89,7 @@
                 <button class="dropdown-btn">
                     <i class="bi bi-bar-chart-line-fill"></i> Analityca
                 </button>
+/button>
                 
             </li>
         </ul>
@@ -139,20 +140,26 @@
 
         </div>
         <form  id="formulario"> 
+            
+            <input type="hidden" id="idEmprendedor" name="idEmprendedor">
+            <input type="hidden" id="idColaborador" name="idColaborador">
             <table>
                 <tr>
                     <th colspan="4">INFORMACIÓN GENERAL</th>
                 </tr>
                 <tr>
                     <td><label for="nombre_comercial">Nombre comercial:</label></td>
-                    <td><input type="text" id="nombre_comercial" name="nombre_comercial" required></td>
+                    <td><input type="text" id="nombre_comercial" name="nombre_comercial" required
+                        placeholder="Ejemplo: Tienda La Esquina"></td>
                     <td><label for="razon_social" >Razón Social:</label></td>
-                    <td><input type="text" id="razon_social" name="razon_social" required></td>
+                    <td><input type="text" id="razon_social" name="razon_social" required
+                        placeholder="Ej: La Esquina S.A."></td>
                 </tr>
              
                 <tr>
                     <td><label for="productos_servicios">Productos y/o servicios:</label></td>
-                    <td colspan="3"><input type="text" id="productos_servicios" name="productos_servicios" required></td>
+                    <td colspan="3"><input type="text" id="productos_servicios" name="productos_servicios" required
+                        placeholder="Ej: Venta de ropa, reparación de celulares"></td>
                 </tr>
                 <tr>
                     <td><label for="direccion">Dirección:</label></td>
@@ -168,13 +175,16 @@
                 </tr>
                 <tr>
                     <td><label for="referencia">Referencia:</label></td>
-                    <td colspan="3"><input type="text" id="referencia" name="referencia" required></td>
+                    <td colspan="3"><input type="text" id="referencia" name="referencia" required
+                        placeholder="Ej: Calle 123, Barrio Centro, al frente de..."></td>
                 </tr>
                 <tr>
                     <td><label for="telefono1">Teléfono 1:</label></td>
-                    <td><input type="number" id="telefono1" name="telefono1" maxlength="10" required></td>
+                    <td><input type="number" id="telefono1" name="telefono1" maxlength="10" required
+placeholder="099999999"></td>
                     <td><label for="telefono2">Teléfono 2:</label></td>
-                    <td><input type="number" id="telefono2" name="telefono2" maxlength="10" required></td>
+                    <td><input type="number" id="telefono2" name="telefono2" maxlength="10" required
+                        placeholder="0999999999"></td>
                 </tr>
                 
                 
@@ -197,19 +207,19 @@
                 <tr>
                     
                     <td><label for="contacto1"> Nombre de persona de contacto 1:</label></td>
-                    <td><input type="text" id="contacto1" name="contacto1" required
-                        placeholder="ejemplo: juan"></td>
+                    <td><input type="text" id="nombreContacto1" name="NombreContacto1" required
+                        placeholder="ej: juan"></td>
                     <td><label for="contacto2">Numero de  contacto 1:</label></td>
-                    <td><input type="text" id="contacto2" name="contacto2" required
+                    <td><input type="text" id="telefonoContacto1" name="telefonoContacto1" required
                         placeholder="0999999999"></td>
                 </tr>
                 <tr>
                     <td><label for="nombreContacto2">Nombre de persona de contacto 2:</label></td>
                     <td><input type="text" id="nombreContacto2" name="nombreContacto2" class="input-text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" required
-                        placeholder="ejemplo: juan" ></td>
+                        placeholder="ej: juan" ></td>
                 
                     <td><label for="contacto2">Número de contacto 2:</label></td>
-                    <td><input type="text" id="contacto2" name="contacto2" class="input-text" pattern="[0-9]+" title="Solo se permiten números" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
+                    <td><input type="text" id="telefonoContacto2" name="telefonoContacto2" class="input-text" pattern="[0-9]+" title="Solo se permiten números" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
                         placeholder="0999999999"></td>
                 </tr>
                 
@@ -219,7 +229,8 @@
                
                 <tr>
                     <td><label for="tecnico">Nombre del técnico evaluador:</label></td>
-                    <td colspan="3"><input type="text" id="tecnico" name="tecnico" required></td>
+                    <td colspan="3"><input type="text" id="tecnico" name="tecnico" required
+                        placeholder="ej: Juan Perez"></td>
                 </tr>
                 <tr>
                     <td><label for="fecha_evaluacion">Fecha de la evaluación:</label></td>
@@ -234,7 +245,7 @@
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+ <!-- Se carga la lógica del frontend desde un archivo externo -->
      <script src="/public/js/fichaDiagnosticoF.js"></script>
      <script src="../js/Componentes/common.js"></script>
 </body>

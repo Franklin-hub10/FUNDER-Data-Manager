@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-     <!--<script src="../js/authGuard.js"></script>-->
-
-        
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Productiva</title>
@@ -14,125 +11,102 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Navbar superior -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
-           <li class="nav-item">
-            <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
-            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
-            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
-           </li>
-          <li class="nav-item">
-            <span id="userName"></span>
-          </li>
-          <li class="nav-item dropdown">
-            <button class="dropdown-btn" onclick="window.location.href='./home.html'">
-              <i class="bi bi-house-door-fill"></i>
+ 
+    <!-- Navbar superior -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="dropdown-btn" onclick="window.location.href='#'">
-              <i class="bi bi-wifi"></i>
-            </button>
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="bi bi-person-circle"></i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="userDropdown">
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+ 
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item-superior">
+                        <label><strong>Sede:</strong> Funder Quito</label>
+                        <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+                    </li>
+                    <li class="nav-item-superior">
+                        <span id="userName"></span>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="dropdown-btn" onclick="window.location.href='./home.html'">
+                            <i class="bi bi-house-door-fill"></i>
+                        </button>
+                        <button class="dropdown-btn" onclick="window.location.href='#'">
+                            <i class="bi bi-wifi"></i>
+                        </button>
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ 
     <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
         <div class="slidebar-header">
-        <a class="navbar-brand" href="index.html">
-         <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
-        </a>
-    </div>
-
+            <a class="navbar-brand" href="index.html">
+                <img src="../../assets/images/Logo FUNDER 2021.png" alt="Logo">
+            </a>
+        </div>
+ 
         <ul class="nav flex-column mt-4">
             <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-gear-fill"></i> Gestión
-                </button>
+                <button class="dropdown-btn"><i class="bi bi-gear-fill"></i> Gestión</button>
                 <div class="dropdown-container">
                     <a class="nav-link" href="fichaTecnica.html">Ficha Técnica</a>
                     <a class="nav-link" href="fichaDiagnostico.html">Ficha Diagnóstico</a>
                 </div>
             </li>
             <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-person-badge-fill"></i> Manager
-                </button>
+                <button class="dropdown-btn"><i class="bi bi-person-badge-fill"></i> Manager</button>
                 <div class="dropdown-container">
                     <a class="nav-link active" href="roles.html">Roles</a>
                     <a class="nav-link" href="Usuarios.html">Usuarios</a>
                 </div>
             </li>
             <li class="nav-item">
-                <button class="dropdown-btn">
-                    <i class="bi bi-bar-chart-line-fill"></i> Analityca
-                </button>
-                
+                <button class="dropdown-btn"><i class="bi bi-bar-chart-line-fill"></i> Analityca</button>
             </li>
         </ul>
     </div>
-
+ 
+    <!-- Contenido principal -->
     <div class="content">
         <div class="header">
-                <div class="containerDownload">
-                <button id=
-                "downloadBtn" class="btn btn-success download-btn" onclick="downloadFile()">
+            <div class="containerDownload">
+                <button id="downloadBtn" class="btn btn-success download-btn" onclick="downloadFile()">
                     Descargar <i class="bi bi-download"></i>
                 </button>
                 <hr class="separator">
             </div>
+ 
             <div class="progress-steps">
-              <div class="step" data-step="1">
-                <div class="circle">1</div>
-                <div class="label">Ficha Técnica</div>
-              </div>
-              <div class="step" data-step="2">
-                <div class="circle">2</div>
-                <div class="label">Ficha Diagnóstico</div>
-              </div>
-              <div class="step" data-step="3">
-                <div class="circle">3</div>
-                <div class="label">gestion Organizacional</div>
-              </div>
-              <div class="step" data-step="4">
-                <div class="circle">4</div>
-                <div class="label">gestion Productiva</div>
-              </div>
-              <div class="step" data-step="5">
-                <div class="circle">5</div>
-                <div class="label">gestion Comercial</div>
-              </div>
-              <div class="step" data-step="6">
-                <div class="circle">6</div>
-                <div class="label">gestion Financiera</div>
-              </div>
-              <div class="line"></div>
+                <div class="step" data-step="1"><div class="circle">1</div><div class="label">Ficha Técnica</div></div>
+                <div class="step" data-step="2"><div class="circle">2</div><div class="label">Ficha Diagnóstico</div></div>
+                <div class="step" data-step="3"><div class="circle">3</div><div class="label">Gestión Organizacional</div></div>
+                <div class="step" data-step="4"><div class="circle">4</div><div class="label">Gestión Productiva</div></div>
+                <div class="step" data-step="5"><div class="circle">5</div><div class="label">Gestión Comercial</div></div>
+                <div class="step" data-step="6"><div class="circle">6</div><div class="label">Gestión Financiera</div></div>
+                <div class="line"></div>
             </div>
-
-
+ 
             <h1>Gestión Productiva</h1>
         </div>
-
+ 
+        <!-- Formulario de Gestión Productiva -->
         <form id="formulario">
-            <table>
+            <input type="hidden" id="idEmprendimiento" name="idEmprendimiento">
+            <input type="hidden" id="idEmprendedor" name="idEmprendedor">
+            <input type="hidden" id="idColaborador" name="idColaborador">
+            <table >
                 <tr>
                     <th>Preguntas</th>
                     <th>Diagnóstico</th>
@@ -141,122 +115,113 @@
                     <th>Mejora Final</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>¿Conoce su cadena productiva / procesos?</td>
-                    <td><input type="checkbox" name="diagnostico1" ></td>
-                    <td><input type="checkbox" name="intermedia1"></td>
-                    <td><input type="checkbox" name="final1"></td>
-                    <td><input type="checkbox" name="final1.1"></td>
-                    <td><input type="checkbox" name="status1"></td>
+ 
+                <!-- Pregunta 1 -->
+                <tr data-idPregunta="1">
+                    <td><label for="diagnostico1">¿Conoce su cadena productiva / procesos?</label></td>
+                    <td><input type="checkbox" id="diagnostico1" name="diagnostico1"></td>
+                    <td><input type="checkbox" id="intermedia1" name="intermedia1"></td>
+                    <td><input type="checkbox" id="final1" name="final1"></td>
+                    <td><input type="checkbox" id="mejora1" name="mejora1"></td>
+                    <td><input type="checkbox" id="status1" name="status1"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de información documentada (inventario, fichas) sobre sus productos?</td>
-                    <td><input type="checkbox" name="diagnostico2" ></td>
-                    <td><input type="checkbox" name="intermedia2"></td>
-                    <td><input type="checkbox" name="final2"></td>
-                    <td><input type="checkbox" name="final2.2"></td>
-                    <td><input type="checkbox" name="status2"></td>
+ 
+                <!-- Pregunta 2 -->
+                <tr data-idPregunta="2">
+                    <td><label for="diagnostico2">¿Dispone de información documentada (inventario, fichas) sobre sus productos?</label></td>
+                    <td><input type="checkbox" id="diagnostico2" name="diagnostico2"></td>
+                    <td><input type="checkbox" id="intermedia2" name="intermedia2"></td>
+                    <td><input type="checkbox" id="final2" name="final2"></td>
+                    <td><input type="checkbox" id="mejora2" name="mejora2"></td>
+                    <td><input type="checkbox" id="status2" name="status2"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de equipos o maquinarias para la elaboración de sus productos?</td>
-                    <td><input type="checkbox" name="diagnostico3" ></td>
-                    <td><input type="checkbox" name="intermedia3"></td>
-                    <td><input type="checkbox" name="final3"></td>
-                    <td><input type="checkbox" name="final3.3"></td>
-                    <td><input type="checkbox" name="status3"></td>
+ 
+                <!-- Pregunta 3 -->
+                <tr data-idPregunta="3">
+                    <td><label for="diagnostico3">¿Dispone de equipos o maquinarias para la elaboración de sus productos?</label></td>
+                    <td><input type="checkbox" id="diagnostico3" name="diagnostico3"></td>
+                    <td><input type="checkbox" id="intermedia3" name="intermedia3"></td>
+                    <td><input type="checkbox" id="final3" name="final3"></td>
+                    <td><input type="checkbox" id="mejora3" name="mejora3"></td>
+                    <td><input type="checkbox" id="status3" name="status3"></td>
                 </tr>
-                <tr>
-                    <td>¿Conoce y aplica las medidas de bioseguridad adecuadas a sus productos y/o servicios?</td>
-                    <td><input type="checkbox" name="diagnostico4" ></td>
-                    <td><input type="checkbox" name="intermedia4"></td>
-                    <td><input type="checkbox" name="final4"></td>
-                    <td><input type="checkbox" name="final4.4"></td>
-                    <td><input type="checkbox" name="status4"></td>
+ 
+                <!-- Pregunta 4 -->
+                <tr data-idPregunta="4">
+                    <td><label for="diagnostico4">¿Conoce y aplica las medidas de bioseguridad adecuadas a sus productos y/o servicios?</label></td>
+                    <td><input type="checkbox" id="diagnostico4" name="diagnostico4"></td>
+                    <td><input type="checkbox" id="intermedia4" name="intermedia4"></td>
+                    <td><input type="checkbox" id="final4" name="final4"></td>
+                    <td><input type="checkbox" id="mejora4" name="mejora4"></td>
+                    <td><input type="checkbox" id="status4" name="status4"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de equipos o maquinarias necesarios para la elaboración de sus productos?</td>
-                    <td><input type="checkbox" name="diagnostico5" ></td>
-                    <td><input type="checkbox" name="intermedia5"></td>
-                    <td><input type="checkbox" name="final5"></td>
-                    <td><input type="checkbox" name="final5.5"></td>
-                    <td><input type="checkbox" name="status5"></td>
+ 
+                <!-- Pregunta 5 -->
+                <tr data-idPregunta="5">
+                    <td><label for="diagnostico5">¿Dispone de equipos o maquinarias necesarios para la elaboración de sus productos?</label></td>
+                    <td><input type="checkbox" id="diagnostico5" name="diagnostico5"></td>
+                    <td><input type="checkbox" id="intermedia5" name="intermedia5"></td>
+                    <td><input type="checkbox" id="final5" name="final5"></td>
+                    <td><input type="checkbox" id="mejora5" name="mejora5"></td>
+                    <td><input type="checkbox" id="status5" name="status5"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de una adecuada infraestructura para su gestión? (taller, bodegas)</td>
-                    <td><input type="checkbox" name="diagnostico6" ></td>
-                    <td><input type="checkbox" name="intermedia6"></td>
-                    <td><input type="checkbox" name="final6"></td>
-                    <td><input type="checkbox" name="final6.6"></td>
-                    <td><input type="checkbox" name="status6"></td>
+ 
+                <!-- Pregunta 6 -->
+                <tr data-idPregunta="6">
+                    <td><label for="diagnostico6">¿Dispone de una adecuada infraestructura para su gestión? (taller, bodegas)</label></td>
+                    <td><input type="checkbox" id="diagnostico6" name="diagnostico6"></td>
+                    <td><input type="checkbox" id="intermedia6" name="intermedia6"></td>
+                    <td><input type="checkbox" id="final6" name="final6"></td>
+                    <td><input type="checkbox" id="mejora6" name="mejora6"></td>
+                    <td><input type="checkbox" id="status6" name="status6"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de computador y acceso a internet en su negocio?</td>
-                    <td><input type="checkbox" name="diagnostico7" ></td>
-                    <td><input type="checkbox" name="intermedia7"></td>
-                    <td><input type="checkbox" name="final7"></td>
-                    <td><input type="checkbox" name="final7.7"></td>
-                    <td><input type="checkbox" name="status7"></td>
+ 
+                <!-- Pregunta 7 -->
+                <tr data-idPregunta="7">
+                    <td><label for="diagnostico7">¿Dispone de computador y acceso a internet en su negocio?</label></td>
+                    <td><input type="checkbox" id="diagnostico7" name="diagnostico7"></td>
+                    <td><input type="checkbox" id="intermedia7" name="intermedia7"></td>
+                    <td><input type="checkbox" id="final7" name="final7"></td>
+                    <td><input type="checkbox" id="mejora7" name="mejora7"></td>
+                    <td><input type="checkbox" id="status7" name="status7"></td>
                 </tr>
-                <tr>
-                    <td>¿Dispone de un plan de emergencia y seguridad?</td>
-                    <td><input type="checkbox" name="diagnostico8" ></td>
-                    <td><input type="checkbox" name="intermedia8"></td>
-                    <td><input type="checkbox" name="final8"></td>
-                    <td><input type="checkbox" name="final8.8"></td>
-                    <td><input type="checkbox" name="status8"></td>
+ 
+                <!-- Pregunta 8 -->
+                <tr data-idPregunta="8">
+                    <td><label for="diagnostico8">¿Dispone de un plan de emergencia y seguridad?</label></td>
+                    <td><input type="checkbox" id="diagnostico8" name="diagnostico8"></td>
+                    <td><input type="checkbox" id="intermedia8" name="intermedia8"></td>
+                    <td><input type="checkbox" id="final8" name="final8"></td>
+                    <td><input type="checkbox" id="mejora8" name="mejora8"></td>
+                    <td><input type="checkbox" id="status8" name="status8"></td>
                 </tr>
-                <tr>
-                    <td>¿Tiene identificado proveedores con precios de venta adecuados?</td>
-                    <td><input type="checkbox" name="diagnostico9" ></td>
-                    <td><input type="checkbox" name="intermedia9"></td>
-                    <td><input type="checkbox" name="final9"></td>
-                    <td><input type="checkbox" name="final9.9"></td>
-                    <td><input type="checkbox" name="status9"></td>
+ 
+                <!-- Pregunta 9 -->
+                <tr data-idPregunta="9">
+                    <td><label for="diagnostico9">¿Tiene identificado proveedores con precios de venta adecuados?</label></td>
+                    <td><input type="checkbox" id="diagnostico9" name="diagnostico9"></td>
+                    <td><input type="checkbox" id="intermedia9" name="intermedia9"></td>
+                    <td><input type="checkbox" id="final9" name="final9"></td>
+                    <td><input type="checkbox" id="mejora9" name="mejora9"></td>
+                    <td><input type="checkbox" id="status9" name="status9"></td>
                 </tr>
+ 
+                <!-- Observaciones -->
                 <tr>
-                    <td>Subtotal:</td>
-                    <td><input type="text" id="subtotal_diagnostico" readonly></td>
-                    <td><input type="text" id="subtotal_intermedia" readonly></td>
-                    <td><input type="text" id="subtotal_final" readonly></td>
-                    <td><input type="text" id="subtotal_final1" readonly></td>
-                    <td><input type="text" id="status_final" readonly></td>
-                    <td></td>
+                    <td colspan="6">
+                        <label for="observaciones">Observaciones:</label><br>
+                        <textarea id="observaciones" name="observaciones" rows="4" cols="50" placeholder="Escriba sus observaciones aquí..."></textarea>
+                    </td>
                 </tr>
             </table>
-           
-           
-            <button type="submit" id="Guardar" >Guardar</button>
+ 
+            <button type="submit" id="Guardar" class="btn btn-primary">Guardar</button>
         </form>
     </div>
-   <!-- Bootstrap JS -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <script>
-       const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-       const logoutLink = document.getElementById('logoutLink');
-
-       // Manejo del menú desplegable
-       dropdownBtns.forEach((btn) => {
-           btn.addEventListener('click', function () {
-               const container = this.nextElementSibling;
-               container.classList.toggle('show');
-           });
-       });
-
-       // Manejo del cierre de sesión
-       logoutLink.addEventListener('click', function (event) {
-           event.preventDefault(); // Evita la redirección inmediata
-
-           // Limpia datos almacenados (si aplica)
-           localStorage.clear(); // Limpia almacenamiento local
-           sessionStorage.clear(); // Limpia almacenamiento de sesión
-
-           // Redirige al usuario a la página de inicio de sesión
-           window.location.href = './index.html';
-       });
-
-
-   </script>
-   <script src="/public/js/gestionProductiva.js"></script>
-   <script src="../js/Componentes/common.js"></script>
+ 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/js/gestionProductivaF.js"></script>
+    <script src="../js/Componentes/common.js"></script>
 </body>
 </html>

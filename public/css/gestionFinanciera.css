@@ -12,6 +12,7 @@ body {
   background: none; 
 }
 
+
 body::before {
     content: '';
     position: absolute;
@@ -61,11 +62,10 @@ table {
     margin-bottom: 20px;
 }
 /* Centrar el contenido de las celdas de la tabla */
-
 table td {
   text-align: center; /* Centrar horizontalmente */
   vertical-align: middle; /* Centrar verticalmente */
-  font-size: 1.4rem; /*tamaño de letra*/
+  font-size: 1.4rem;
 }
 
 /* Opcional: Ajustar el tamaño del checkbox */
@@ -198,7 +198,9 @@ button[type="submit"]:hover {
   margin-bottom: 40px;
 }
 
-/* Estilo para todos los menús desplegables */
+
+/* Estilo para
+a todos los menús desplegables */
 select {
   padding: 10px;
 
@@ -224,7 +226,6 @@ select option {
 
   padding: 10px;
 }
-
 
 /* Responsivo: Ajustar tamaño y posición en pantallas pequeñas */
 @media (max-width: 768px) {
@@ -308,12 +309,18 @@ select option {
 
 .nav-item {
   margin: 15px 0;
-  padding: 10px 15px;
-  border-radius: 8px;
+
+}
+.nav-item-superior {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centrar verticalmente dentro del navbar */
+  justify-content: center; /* Centrar horizontalmente */
   text-align: center;
+  padding: 0 15px; /* Ajuste de espacio */
+  border-radius: 8px;
+  font-size: 15px;
+  height: 100%; /* Asegurar que ocupe la altura completa del navbar */
+  line-height: 100px; /* Asegura que el texto se alinee con la altura del navbar */
 }
 
 
@@ -424,7 +431,8 @@ select option {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   height: 50px;
   backdrop-filter: blur(8px);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s
+ease, box-shadow 0.3s ease;
   position: fixed; /* Mantener el navbar siempre visible */
   top: 0;
   left: 0;
@@ -635,7 +643,8 @@ select option {
 .progress-steps {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:
+center;
   position: relative;
   margin-bottom: 2rem;
   padding: 0 20px;

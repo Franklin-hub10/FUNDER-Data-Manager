@@ -113,3 +113,8 @@ INSERT INTO rol_vista (idRol, idVista, acciones) VALUES
 ((SELECT idRol FROM rol WHERE nombre = 'Manager'), (SELECT idVista FROM vista WHERE url = 'roles.html'), 'ver,editar,crear,eliminar'),
 ((SELECT idRol FROM rol WHERE nombre = 'Manager'), (SELECT idVista FROM vista WHERE url = 'Usuarios.html'), 'ver,editar,crear,eliminar'),
 ((SELECT idRol FROM rol WHERE nombre = 'Analytica'), (SELECT idVista FROM vista WHERE url = 'dashboard.html'), 'ver,descargar');
+
+
+
+
+
