@@ -150,23 +150,23 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log("Número de preguntas encontradas:", preguntas.length);
  
         preguntas.forEach(row => {
-            const idPregunta_Organizacional = row.dataset.idpregunta;
-            console.log("Procesando pregunta con ID:", idPregunta_Organizacional);
+            const idPregunta_Comercial = row.dataset.idpregunta;
+            console.log("Procesando pregunta con ID:", idPregunta_Comercial);
  
-            if (!idPregunta_Organizacional) {
+            if (!idPregunta_Comercial) {
                 console.warn("⚠️ Pregunta sin ID encontrada y omitida.");
                 return;
             }
  
-            const diagnostico = row.querySelector("input[name^='diagnostico']")?.checked ? "Sí" : "No";
-            const intermedia = row.querySelector("input[name^='intermedia']")?.checked ? "Sí" : "No";
-            const final = row.querySelector("input[name^='final']")?.checked ? "Sí" : "No";
-            const mejora = row.querySelector("input[name^='mejora']")?.checked ? "Sí" : "No";
-            const status = row.querySelector("input[name^='status']")?.checked ? "Sí" : "No";
+            const diagnostico = row.querySelector(`input[name^="diagnostico${idPregunta_Comercial}"]`)?.checked ? "Sí" : "No";
+            const intermedia = row.querySelector(`input[name="intermedia${idPregunta_Comercial}"]`)?.checked ? "Sí" : "No";
+            const final = row.querySelector(`input[name="final${idPregunta_Comercial}"]`)?.checked ? "Sí" : "No";
+            const mejora = row.querySelector(`input[name="mejora${idPregunta_Comercial}"]`)?.checked ? "Sí" : "No";
+            const status = row.querySelector(`input[name="status${idPregunta_Comercial}"]`)?.checked ? "Sí" : "No";
             
  
             respuestas.push({
-                idPregunta_Organizacional,
+                idPregunta_Comercial,
                 diagnostico,
                 intermedia,
                 final,
@@ -179,6 +179,10 @@ document.addEventListener('DOMContentLoaded', async function () {
  
         const observaciones = document.getElementById("observaciones")?.value.trim() || "Sin observaciones";
         console.log("Observaciones:", observaciones);
+        const recursos = document.getElementById("recursos")?.value.trim() || "Sin recursos";
+        console.log("Recursos:", recursos);
+        const redesSociales = document.getElementById("redesSociales")?.value.trim() || "Sin redes";
+        console.log("Redes Sociales:", redesSociales);
  
         // Obtener valores de los campos ocultos
         const idEmprendimientoEl = document.getElementById("idEmprendimiento");

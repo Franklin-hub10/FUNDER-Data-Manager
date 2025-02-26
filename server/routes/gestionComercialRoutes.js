@@ -43,7 +43,7 @@ router.get("/respuestas/:id", async (req, res) => {
 // Insertar una nueva respuesta de Gestión Comercial
 router.post("/guardarRespuestasComercial", async (req, res) => {
     try {
-        const { idEmprendimiento, idEmprendedor, idColaborador, respuestas, observaciones } = req.body;
+        const { idEmprendimiento, idEmprendedor, idColaborador, respuestas, observaciones,redesSociales,recursos } = req.body;
 
         if (!idEmprendimiento || !idEmprendedor  || !Array.isArray(respuestas) || respuestas.length === 0) {
             return res.status(400).json({ message: "❌ Faltan datos en la solicitud. Verifique los campos obligatorios." });
@@ -69,8 +69,8 @@ router.post("/guardarRespuestasComercial", async (req, res) => {
                 r.final || "No",
                 r.mejora || "No",
                 r.status || "No",
-                r.recursos || "Sin recursos",
-                r.redesSociales || "Sin redes",
+                recursos || "Sin recursos",
+                redesSociales || "Sin redes",
                 observaciones || "Sin observaciones",
         
             ];

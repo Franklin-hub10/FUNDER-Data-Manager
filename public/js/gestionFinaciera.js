@@ -150,29 +150,28 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log("Número de preguntas encontradas:", preguntas.length);
  
         preguntas.forEach(row => {
-            const idPregunta_Organizacional = row.dataset.idpregunta;
-            console.log("Procesando pregunta con ID:", idPregunta_Organizacional);
+            const idPregunta_Financiera = row.dataset.idpregunta;
+            console.log("Procesando pregunta con ID:", idPregunta_Financiera);
  
-            if (!idPregunta_Organizacional) {
+            if (!idPregunta_Financiera) {
                 console.warn("⚠️ Pregunta sin ID encontrada y omitida.");
                 return;
             }
  
-            const diagnostico = row.querySelector("input[name^='diagnostico']")?.checked ? "Sí" : "No";
-            const intermedia = row.querySelector("input[name^='intermedia']")?.checked ? "Sí" : "No";
-            const final = row.querySelector("input[name^='final']")?.checked ? "Sí" : "No";
-            const mejora = row.querySelector("input[name^='mejora']")?.checked ? "Sí" : "No";
-            const status = row.querySelector("input[name^='status']")?.checked ? "Sí" : "No";
-            const diagnostico_valor = row.querySelector("input[name^='diagnostico_valor']")?.value || "0.0";
-            const intermedia_valor = row.querySelector("input[name^='intermedia_valor']")?.value || "0.0";
-            const final_valor = row.querySelector("input[name^='final_valor']")?.value || "0.0";
-            const mejora_valor = row.querySelector("input[name^='mejora_valor']")?.value || "0.0";
-            const status_valor = row.querySelector("input[name^='status_valor']")?.value || "0.0";
+            const diagnostico = row.querySelector(`input[name^="diagnostico${idPregunta_Financiera}"]`)?.checked ? "Sí" : "No";
+            const intermedia = row.querySelector(`input[name="intermedia${idPregunta_Financiera}"]`)?.checked ? "Sí" : "No";
+            const final = row.querySelector(`input[name="final${idPregunta_Financiera}"]`)?.checked ? "Sí" : "No";
+            const mejora = row.querySelector(`input[name="mejora${idPregunta_Financiera}"]`)?.checked ? "Sí" : "No";
+            const status = row.querySelector(`input[name="status${idPregunta_Financiera}"]`)?.checked ? "Sí" : "No";
+            
+            const diagnostico_valor = row.querySelector(`input[name^="diagnostico_valor${idPregunta_Financiera}"]`)?.value || "0.0";
+            const intermedia_valor = row.querySelector(`input[name="intermedia_valor${idPregunta_Financiera}"]`)?.value || "0.0";
+            const final_valor = row.querySelector(`input[name="final_valor${idPregunta_Financiera}"]`)?.value || "0.0";
+            const mejora_valor = row.querySelector(`input[name="mejora_valor${idPregunta_Financiera}"]`)?.value || "0.0";
+            const status_valor = row.querySelector(`input[name="status_valor${idPregunta_Financiera}"]`)?.value || "0.0";
 
-
- 
             respuestas.push({
-                idPregunta_Organizacional,
+                idPregunta_Financiera,
                 diagnostico,
                 intermedia,
                 final,
@@ -190,6 +189,8 @@ document.addEventListener('DOMContentLoaded', async function () {
  
         const observaciones = document.getElementById("observaciones")?.value.trim() || "Sin observaciones";
         console.log("Observaciones:", observaciones);
+        const tecnico_responsable = document.getElementById("tecnico_responsable")?.value.trim() || "Sin técnico responsable";
+        console.log("Técnico responsable:", tecnico_responsable);
  
         // Obtener valores de los campos ocultos
         const idEmprendimientoEl = document.getElementById("idEmprendimiento");
