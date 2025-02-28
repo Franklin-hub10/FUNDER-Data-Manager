@@ -81,7 +81,6 @@ function saveUserSession(data) {
   // Guarda token y datos del usuario
   localStorage.setItem("token", data.token);
   localStorage.setItem("userName", data.nombre);
-  localStorage.setItem("sede", data.colaborador.sede);
   localStorage.setItem("idColaborador", data.id);
   localStorage.setItem("loginTime", Date.now());
 

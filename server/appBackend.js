@@ -18,12 +18,7 @@ const gestionProductivaRoutes = require("./routes/gestionProductiva");
 const app = express();
  
 // ✅ Middleware para permitir múltiples orígenes
-app.use(cors({
-    origin: ['http://localhost:5501', 'http://127.0.0.1:5501'], // Permite ambos orígenes
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // Si usas cookies o tokens
-}));
+app.use(cors());
  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
