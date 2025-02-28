@@ -130,5 +130,38 @@ router.delete("/eliminar-respuesta/:id", async (req, res) => {
     }
 });
 
-// Exportar las rutas
-module.exports = router;
+
+
+
+// Endpoin pra descargar el archivo csv de toda la tabla  gestion Organizacional
+
+router.get('/download-csv', async (req, res) => {
+    try {
+      
+      const [results] = await db.query("SELECT * FROM respuestas_gestion_Financiera");
+  
+      if (!results || results.length === 0) {
+        return res.status(404).json({ message: "No se encontraron datos para generar CSV." });
+      }
+      const headers = Object.keys(results[0]).join(",");
+      const csvRows = results.map(row => {
+        return Object.values(row).map(value => {
+            if (value === null || value === undefined) {
+              return "";
+            }
+            if (typeof value === "string" && value.includes(",")) {
+              return `"${value}"`;
+            }
+            return value;
+          }).join(",");
+        });
+        const csv = headers + "\n" + csvRows.join("\n");
+        res.setHeader("Content-Disposition", "attachment; filename=respuestas_gestion_Financiera.csv");
+        res.setHeader("Content-Type", "text/csv");
+        res.status(200).send(csv);
+      } catch (error) {
+        console.error("❌ Error al generar CSV:", error);
+        res.status(500).json({ message: "Error al generar CSV", error: error.message });
+      }
+    });
+    module.exports = router;

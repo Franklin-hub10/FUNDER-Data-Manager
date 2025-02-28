@@ -187,7 +187,7 @@ router.get('/ultimo-emprendedor', async (req, res) => {
   try {
     const [rows] = await db.query("SELECT idEmprendedor FROM emprendedor ORDER BY idEmprendedor DESC LIMIT 1");
     if (rows.length === 0) {
-      return res.status(404).json({ message: "No se encontró ningún emprendedor." });
+      return res.status(404).json({ message: "No se encontró ningún empren  dedor." });
     }
     res.status(200).json({ idEmprendedor: rows[0].idEmprendedor });
   } catch (error) {

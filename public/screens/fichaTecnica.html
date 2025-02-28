@@ -85,7 +85,11 @@
       <li class="nav-item">
         <button class="dropdown-btn">
           <i class="bi bi-bar-chart-line-fill"></i> Analityca
+          
         </button>
+        <div class="dropdown-container">
+          <a id="downloadBtn" class="nav-link" href="#" onclick="descargarTodo()">Descargar Información</a>
+        </div>
       </li>
     </ul>
   </div>
@@ -93,11 +97,9 @@
   <div class="content">
     <div class="header">
       <div class="containerDownload">
-        <button id="downloadBtn" class="btn btn-success download-btn" onclick="downloadFile()">
-          Descargar <i class="bi bi-download"></i>
-        </button>
+       
         <hr class="separator">
-      </div>
+    </div>
       <div class="progress-steps">
         <div class="step" data-step="1">
           <div class="circle">1</div>
@@ -465,6 +467,7 @@
   <!-- Se carga la lógica del frontend desde un archivo externo -->
   <script src="/public/js/fichatecnicaF.js"></script>
   <script src="../js/Componentes/common.js"></script>
+   <script src="../js/dashboard.js"></script>
 </body>
  
 </html>

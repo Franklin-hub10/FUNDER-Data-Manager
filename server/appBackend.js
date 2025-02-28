@@ -13,9 +13,7 @@ const gestionOrganizacional = require("./routes/gestionOrganizacional");
 const gestionProductivaRoutes = require("./routes/gestionProductiva");
  
  
-require("dotenv").config(); // Asegura que esto esté al inicio
-console.log("📌 EMAIL_USER:", process.env.EMAIL_USER);
-console.log("📌 EMAIL_PASSWORD:", process.env.EMAIL_PASSWORD ? "OK" : "FALTA");
+
  
 const app = express();
  
@@ -42,6 +40,8 @@ app.use("/gestionfinanciera", gestionFinancieraRoutes);
 app.use("/gestionComercial", gestionComercialRoutes);
 app.use("/gestionOrganizacional", gestionOrganizacional);
 app.use("/gestionProductiva", gestionProductivaRoutes);
+
+
 
  
 // ✅ Manejo explícito para solicitudes preflight OPTIONS

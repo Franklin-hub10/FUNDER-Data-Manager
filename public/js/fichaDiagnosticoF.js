@@ -244,3 +244,10 @@ function construirDatosFormulario() {
     };
 }
  
+
+document.addEventListener("DOMContentLoaded", function() {
+    const downloadBtn = document.getElementById("downloadBtn");
+    if (downloadBtn) {
+        downloadBtn.style.display = "none"; // Oculta el botón
+    }
+});

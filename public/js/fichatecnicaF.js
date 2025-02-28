@@ -208,6 +208,7 @@ if (downloadBtn) {
  
     // ✅ Realizar la solicitud POST
     try {
+      
         const response = await fetch(API_FICHA_TECNICA, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -232,4 +233,16 @@ if (downloadBtn) {
     }
 });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const downloadBtn = document.getElementById("downloadAllBtn");
+
+  if (downloadBtn) {
+      downloadBtn.addEventListener("click", function () {
+          window.location.href = "http://localhost:3000/export/download-all";
+      });
+  }
+});
+
 

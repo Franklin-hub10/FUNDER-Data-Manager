@@ -257,3 +257,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 });
+
+   //  botón de descarga  archivo csv
+   if (downloadBtn) {
+    downloadBtn.addEventListener("click", function () {
+        window.location.href = "http://localhost:3000/gestionFinanciera/download-csv";
+    });
+  }
