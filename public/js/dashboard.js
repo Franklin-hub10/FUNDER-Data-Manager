@@ -1,30 +1,20 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const downloadBtn = document.getElementById("downloadBtn"); // Asegúrate de que el botón tenga este ID
- 
-    if (downloadBtn) {
-        downloadBtn.addEventListener("click", function () {
-            descargarTodo();
-        });
-    }
-});
- 
-function descargarTodo() {
-    const urls = [
-        "http://localhost:3000/fichaDiagnostico/download-csv",
-     //   "http://localhost:3000/fichaTecnica/download-csv",
-    //   "http://localhost:3000/gestionComercial/download-csv",
-    //   "http://localhost:3000/gestionOrganizacional/download-csv",
-   //     "http://localhost:3000/gestionFinanciera/guardarRespuestasFinanciera"
-    ];
- 
-    urls.forEach(url => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = ""; // Permite que el navegador maneje el nombre del archivo
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+const downloadBtn1 = document.getElementById("downloadBtn1");
+const downloadBtn2 = document.getElementById("downloadBtn2");
+
+
+// Solo agregar eventos si el botón existe en el DOM
+if (downloadBtn1) {
+    downloadBtn1.addEventListener("click", function (event) {
+        event.preventDefault(); // Evita la redirección inmediata
+        const confirmacion = confirm("¿Estás seguro de que deseas descargar este archivo?");
+        if (confirmacion) {
+            window.location.href = "http://localhost:3000/fichaTecnica/download-csv";
+        }
     });
- 
-    alert("Las descargas han comenzado.");
+}
+
+if (downloadBtn2) {
+    downloadBtn2.addEventListener("click", function () {
+        window.location.href = "http://localhost:3000/fichaDiagnostico/download-csv";
+    });
 }

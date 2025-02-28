@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const form = document.getElementById("formulario");
   const steps = document.querySelectorAll('.progress-steps .step');
   const line = document.querySelector('.progress-steps .line');
-  const downloadBtn = document.getElementById("downloadBtn");
+  const downloadBtn1 = document.getElementById("downloadBtn1");
  
   // Llamada al endpoint para obtener el último idColaborador desde la tabla colaborador
   try {
@@ -25,9 +25,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Error al obtener idColaborador:", error);
 }
  
-if (downloadBtn) {
-  downloadBtn.addEventListener("click", function () {
-    window.location.href = "http://localhost:3000/fichaTecnica/download-csv";
+ // Configurar el botón de descarga
+ if (downloadBtn1) {
+  downloadBtn1.addEventListener("click", function (event) {
+    event.preventDefault(); // Evita la redirección inmediata
+    const confirmacion = confirm("¿Estás seguro de que deseas descargar este archivo?");
+    if (confirmacion) {
+      window.location.href = "http://localhost:3000/fichaTecnica/download-csv";
+    }
   });
 }
  
