@@ -24,12 +24,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
-           <li class="nav-item-superior">
-            <label for="sede_funder_display"><strong>Sede:</strong> Funder Quito</label>
-            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
-            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
-           </li>
+             <!--obtener la sede del ultimo colaborador logueado-->
+             <li class="nav-item-superior">
+              <label for="sede_funder_display"><strong>Sede:</strong></label> 
+              <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+              <span id="sede_funder_display"></span> 
+            </li>
+           <!--obtener el nombre del colaborador logueado-->
+            <li class="nav-item-superior">
+              <span id="userName"></span>
+            </li>
+            
           <li class="nav-item-superior">
             <span id="userName"></span>
           </li>

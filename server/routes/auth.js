@@ -1,15 +1,14 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const db = require("../config/database");
 require("dotenv").config();
+const jwtMiddleware = require("../middleware/authMiddleware"); // Importa el middleware
 
 const router = express.Router();
 const SECRET_KEY = process.env.SECRET_KEY || "secreto_super_seguro";
 
-// =====================================================
-// 🔐 Autenticación de usuario (Login con usuario o email y contraseña)
-// =====================================================
+// Ruta de login
 router.post("/login", async (req, res) => {
   const { usuario, password } = req.body;
 
@@ -43,13 +42,7 @@ router.post("/login", async (req, res) => {
       return res.status(403).json({ message: "⚠️ Cuenta inactiva. Contacte al administrador." });
     }
 
-    // 3. Verificar que tenga una contraseña almacenada
-    if (!user.password) {
-      console.error(`❌ Error: El usuario "${usuario}" no tiene contraseña almacenada.`);
-      return res.status(500).json({ message: "⚠️ Error en la cuenta. Contacte al soporte." });
-    }
-
-    // 4. Comparar la contraseña ingresada con la de la base de datos
+    // 3. Verificar la contraseña
     const passwordMatch = await bcrypt.compare(password, user.password);
     console.log(`🔑 Comparación de contraseña: ${passwordMatch}`);
 
@@ -58,15 +51,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "⚠️ Usuario o contraseña incorrectos." });
     }
 
-    // 5. Obtener las vistas de este rol
-    const [views] = await db.query(`
-      SELECT v.idVista, v.nombre, v.url, v.categoria
-        FROM rol_vista rv
-        JOIN vista v ON rv.idVista = v.idVista
-       WHERE rv.idRol = ?
-    `, [user.idRol]);
-
-    // 6. Generar el token JWT
+    // 4. Generar el token JWT
     const token = jwt.sign(
       { id: user.idColaborador, usuario: user.usuario, rol: user.idRol },
       SECRET_KEY,
@@ -75,12 +60,13 @@ router.post("/login", async (req, res) => {
 
     console.log(`✅ Usuario "${user.usuario}" inició sesión correctamente.`);
 
-    // 7. Devolver info al frontend
+    // 5. Devolver info al frontend
     res.json({
       token,
-      vistas: views,  // Array de {idVista, nombre, url, categoria}
+      vistas: [],  // Aquí puedes devolver las vistas si las necesitas
       nombre: `${user.nombres} ${user.apellidos}`,
-      id: user.idColaborador
+      id: user.idColaborador,
+      sede: user.sede  // Aquí añadimos la sede al JSON de respuesta
     });
 
   } catch (error) {
@@ -89,5 +75,34 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Endpoint para obtener la sede del colaborador
+router.get("/sede", jwtMiddleware.verifyToken, async (req, res) => {
+  const { id } = req.user;  // Obtener el id desde el token JWT (decodificado)
+
+  if (!id) {
+    return res.status(400).json({ message: "⚠️ No se ha proporcionado el id del usuario." });
+  }
+
+  try {
+    // Buscar la sede asociada al colaborador logueado
+    const [result] = await db.query(`
+      SELECT s.nombre AS sede
+        FROM colaborador c
+        JOIN sede s ON c.idSede = s.idSede
+       WHERE c.idColaborador = ?
+    `, [id]);
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "⚠️ Sede no encontrada para este colaborador." });
+    }
+
+    const sede = result[0].sede;
+    res.json({ sede });
+
+  } catch (error) {
+    console.error("❌ Error al obtener la sede:", error);
+    res.status(500).json({ message: "❌ Error en el servidor. Intenta más tarde." });
+  }
+});
+
 module.exports = router;
-  

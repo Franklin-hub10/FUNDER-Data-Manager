@@ -10,23 +10,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     const gestionSelect = document.getElementById("gestion");
     const downloadBtn = document.getElementById("downloadBtn");
 
-    // Obtener el id del colaborador logueado desde el localStorage
-    document.addEventListener("DOMContentLoaded", () => {
-        const idColaborador = localStorage.getItem("idColaborador");
+ // Obtener el id del colaborador logueado desde el localStorage
+ const idColaborador = localStorage.getItem("idColaborador");
 
-        if (!idColaborador) {
-            console.warn("⚠️ No se encontró idColaborador en localStorage. Asegúrate de estar logueado.");
-            return;
-        }
+ if (!idColaborador) {
+     console.warn("⚠️ No se encontró idColaborador en localStorage. Asegúrate de estar logueado.");
+     return;
+ }
 
-        console.log("✅ idColaborador del usuario logueado:", idColaborador);
+ console.log("✅ idColaborador del usuario logueado:", idColaborador);
 
-        // Asignar el idColaborador a un campo oculto si existe en el formulario
-        const idColaboradorField = document.getElementById("idColaborador");
-        if (idColaboradorField) {
-            idColaboradorField.value = idColaborador;
-        }
-    });
+ // Asignar el idColaborador a un campo oculto si existe en el formulario
+ const idColaboradorField = document.getElementById("idColaborador");
+ if (idColaboradorField) {
+     idColaboradorField.value = idColaborador;
+ }
+
+ // Obtener la sede del colaborador logueado desde el localStorage
+ const sedeFunder = localStorage.getItem("sedeFunder");
+
+ if (sedeFunder) {
+   document.getElementById("sede_funder_display").innerText = sedeFunder; // Muestra la sede en el campo correspondiente
+ } else {
+   console.warn("⚠️ No se encontró sedeFunder en localStorage.");
+ }
+
 
     // Llamada al endpoint para obtener el último idEmprendedor desde la tabla emprendedor
     try {

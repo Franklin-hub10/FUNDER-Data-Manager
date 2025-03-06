@@ -12,55 +12,53 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Auth guard (si se utiliza para proteger rutas) -->
-    <!--<script src="../js/authGuard.js"></script>-->
+    <script src="../js/authGuard.js"></script>
 </head>
 
 <body>
-    <!-- Navbar superior -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+   <!-- Navbar superior -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        <!--obtener la sede del ultimo colaborador logueado-->
+          <li class="nav-item-superior">
+            <label for="sede_funder_display"><strong>Sede:</strong></label> 
+            <input type="hidden" id="sede_funder" name="sede_funder" value="1">
+            <span id="sede_funder_display"></span> 
+          </li>
+         <!--obtener el nombre del colaborador logueado-->
+          <li class="nav-item-superior">
+            <span id="userName"></span>
+          </li>
+          
+         
+          <li class="nav-item dropdown">
+            <button class="dropdown-btn" onclick="window.location.href='./home.html'">
+              <i class="bi bi-house-door-fill"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-
-                    <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
-                    <li class="nav-item-superior">
-                       <!--   <span id="userName"></span> -->
-                    </li>
-                    <li class="nav-item">
-                        <span id="sede_funder"></span>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="./home.html">
-                            <i class="bi bi-house-door-fill"></i>
-                        </a>
-                    </li>
-                    <!-- Otros iconos -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-wifi"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+            <button class="dropdown-btn" onclick="window.location.href='#'">
+              <i class="bi bi-wifi"></i>
+            </button>
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
@@ -91,32 +89,36 @@
                     <i class="bi bi-bar-chart-line-fill"></i> Analityca
                 </button>
                 <div class="dropdown-container">
-                  <a id="downloadBtn1" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Ficha
-                    Tecnica</a>
-                  <a id="downloadBtn2" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Ficha
-                    Diagnostico</a>
-                  <a id="downloadBtn3" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Comercial</a>
-                  <a id="downloadBtn4" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
-                    Financiera</a>
-                  <a id="downloadBtn5" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
-                    Organizacional</a>
-                  <a id="downloadBtn6" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
-                    Productiva</a>
+                    <a id="downloadBtn1" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Ficha
+                        Tecnica</a>
+                    <a id="downloadBtn2" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Ficha
+                        Diagnostico</a>
+                    <a id="downloadBtn3" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Comercial</a>
+                    <a id="downloadBtn4" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
+                        Financiera</a>
+                    <a id="downloadBtn5" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
+                        Organizacional</a>
+                    <a id="downloadBtn6" class="nav-link" href="#" onclick="downloadFile()">Descargar CSV Gestión
+                        Productiva</a>
                 </div>
-              </li>
+            </li>
 
-    <!-- Contenido principal -->
-    <div class="content" id="content">
-        <div class="container mt-4 text-center">
-            <p class="parrafo"></p>
-        </div>
-    </div>
-    <input type="hidden" id="idColaborador" name="idColaborador">
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Archivo JS principal para la página (home.js) -->
-    <script src="../js/Componentes/common.js"></script>
-    <script src="/public/js/dashboard.js"></script>
+            <!-- Contenido principal -->
+            <div class="content" id="content">
+                <div class="container mt-4 text-center">
+                    <p class="parrafo"></p>
+                </div>
+            </div>
+            <input type="hidden" id="idColaborador" name="idColaborador">
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Archivo JS principal para la página (home.js) -->
+
+          
+           
+            <script src="/public/js/dashboard.js"></script>
+               
+            <script src="/public/js/home.js"></script>
 </body>
 
 </html>

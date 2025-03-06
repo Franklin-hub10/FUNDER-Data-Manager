@@ -1,3 +1,4 @@
+// Después de un login exitoso, guarda la sede en localStorage
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
   const forgotPasswordBtn = document.getElementById("forgotPassword");
@@ -85,8 +86,13 @@ function saveUserSession(data) {
   localStorage.setItem("loginTime", Date.now());
 
   // Guardar las vistas en localStorage
-  // data.vistas es el array de vistas que viene del backend
   localStorage.setItem("vistas", JSON.stringify(data.vistas));
 
+  // Guardar la sedeFunder en localStorage
+  if (data.sede) {
+    localStorage.setItem("sedeFunder", data.sede);  // Guardar la sede
+  }
+
   console.log("✅ Token almacenado correctamente:", localStorage.getItem("token"));
+  console.log("✅ Sede almacenada correctamente:", localStorage.getItem("sedeFunder"));
 }

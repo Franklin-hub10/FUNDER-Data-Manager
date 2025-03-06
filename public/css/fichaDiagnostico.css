@@ -343,23 +343,42 @@ center;
 }
 .nav-item-superior {
   display: flex;
-  align-items: center; /* Centrar verticalmente dentro del navbar */
-  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  justify-content: flex-start; /* Alinea a la izquierda */
   text-align: center;
-  padding: 0 15px; /* Ajuste de espacio */
-  border-radius: 8px;
+  padding: 10px 15px; /* Añadí algo más de espacio para que no esté pegado al borde */
   font-size: 15px;
-  height: 100%; /* Asegurar que ocupe la altura completa del navbar */
-  line-height: 100px; /* Asegura que el texto se alinee con la altura del navbar */
-<<<<<<< HEAD
+  height: 100px; /* Ajuste de altura de la barra */
+  line-height: 60px; /* Alineación vertical dentro del contenedor */
 }
+
+#sede_funder_display, #userName {
+  margin: 0 10px; /* Añadí margen horizontal para separación */
+  padding: 0; /* Eliminamos rellenos innecesarios */
+  display: inline-block;
+  font-weight: bold;
+  height: 65px;
+  line-height: 60px; /* Alineación vertical dentro del contenedor */
+}
+
+#sede_funder_display {
+  color: #333; /* Color de la sede */
+  flex-grow: 1; /* Permite que el campo de sede ocupe el espacio disponible */
+}
+
+#userName {
+  color: #555; /* Color del nombre del usuario */
+  font-style: italic; /* Hacemos que el nombre del usuario se vea en cursiva */
+}
+
+
 
 .edad {
   width: 80px; /* Reduce el ancho del campo */
   text-align: center; /* Centra el texto dentro del campo */
-=======
->>>>>>> 21a19bdfa8f3139b34a46359e44f18a00d9122b6
 }
+
+
 
 
 .nav-link {

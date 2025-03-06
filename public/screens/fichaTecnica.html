@@ -24,15 +24,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- Elemento que muestra el icono de casa y el nombre del usuario -->
-           <li class="nav-item-superior">
-            <label for="sede_funder_display"><strong>Sede:</strong> </span> </label>
-            <!-- Se guarda el id de la sede para enviarlo en el formulario -->
+        <!--obtener la sede del ultimo colaborador logueado-->
+          <li class="nav-item-superior">
+            <label for="sede_funder_display"><strong>Sede:</strong></label> 
             <input type="hidden" id="sede_funder" name="sede_funder" value="1">
-           </li>
+            <span id="sede_funder_display"></span> 
+          </li>
+         <!--obtener el nombre del colaborador logueado-->
           <li class="nav-item-superior">
             <span id="userName"></span>
           </li>
+          
+         
           <li class="nav-item dropdown">
             <button class="dropdown-btn" onclick="window.location.href='./home.html'">
               <i class="bi bi-house-door-fill"></i>
