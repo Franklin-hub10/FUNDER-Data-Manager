@@ -39,25 +39,25 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.error("Error al obtener idEmprendimiento:", error);
     }
  
-    // Llamada al endpoint para obtener el último idColaborador desde la tabla colaborador
-    try {
-        const response = await fetch("http://localhost:3000/usuarios/ultimo-colaborador");
-        if (response.ok) {
-            const data = await response.json();
-            const idColaboradorField = document.getElementById("idColaborador");
-            if (idColaboradorField) {
-                idColaboradorField.value = data.idColaborador;
-                console.log("Campo oculto idColaborador actualizado:", data.idColaborador);
-            } else {
-                console.warn("El campo oculto 'idColaborador' no se encontró en el DOM.");
-            }
-        } else {
-            console.error("Error al obtener idColaborador:", response.statusText);
-        }
-    } catch (error) {
-        console.error("Error al obtener idColaborador:", error);
+   // Obtener el id del colaborador logueado desde el localStorage
+document.addEventListener("DOMContentLoaded", () => {
+    const idColaborador = localStorage.getItem("idColaborador");
+   
+    if (!idColaborador) {
+        console.warn("⚠️ No se encontró idColaborador en localStorage. Asegúrate de estar logueado.");
+        return;
     }
- 
+   
+    console.log("✅ idColaborador del usuario logueado:", idColaborador);
+   
+    // Asignar el idColaborador a un campo oculto si existe en el formulario
+    const idColaboradorField = document.getElementById("idColaborador");
+    if (idColaboradorField) {
+        idColaboradorField.value = idColaborador;
+    }
+  });
+
+  
     // Resto del código existente:
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');

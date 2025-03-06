@@ -510,3 +510,21 @@ document.getElementById("createRoleForm").addEventListener("submit", async (e) =
     alert(error.message || "No se pudo crear el rol. Revisa la consola para más detalles.");
   }
 })
+
+// Obtener el id del colaborador logueado desde el localStorage
+document.addEventListener("DOMContentLoaded", () => {
+  const idColaborador = localStorage.getItem("idColaborador");
+ 
+  if (!idColaborador) {
+      console.warn("⚠️ No se encontró idColaborador en localStorage. Asegúrate de estar logueado.");
+      return;
+  }
+ 
+  console.log("✅ idColaborador del usuario logueado:", idColaborador);
+ 
+  // Asignar el idColaborador a un campo oculto si existe en el formulario
+  const idColaboradorField = document.getElementById("idColaborador");
+  if (idColaboradorField) {
+      idColaboradorField.value = idColaborador;
+  }
+});

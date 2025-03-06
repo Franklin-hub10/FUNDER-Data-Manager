@@ -1,62 +1,61 @@
 const API_BASE_URL = 'http://localhost:3000';
 const API_ROLES = `${API_BASE_URL}/emprendimientos`;
 const API_FICHA_DIAGNOSTICO = `${API_BASE_URL}/fichaDiagnostico/crear-emprendimiento`;
- 
- 
+
+
 document.addEventListener("DOMContentLoaded", async function () {
     const form = document.getElementById("formulario");
     const steps = document.querySelectorAll('.progress-steps .step');
     const line = document.querySelector('.progress-steps .line');
     const gestionSelect = document.getElementById("gestion");
     const downloadBtn = document.getElementById("downloadBtn");
- 
-    // Llamada al endpoint para obtener el último idColaborador desde la tabla emprendedor
-  try {
-    const response = await fetch("http://localhost:3000/usuarios/ultimo-colaborador");
-    if (response.ok) {
-        const data = await response.json();
+
+    // Obtener el id del colaborador logueado desde el localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+        const idColaborador = localStorage.getItem("idColaborador");
+
+        if (!idColaborador) {
+            console.warn("⚠️ No se encontró idColaborador en localStorage. Asegúrate de estar logueado.");
+            return;
+        }
+
+        console.log("✅ idColaborador del usuario logueado:", idColaborador);
+
+        // Asignar el idColaborador a un campo oculto si existe en el formulario
         const idColaboradorField = document.getElementById("idColaborador");
         if (idColaboradorField) {
-            idColaboradorField.value = data.idColaborador;
-            console.log("Campo oculto idColaborador actualizado:", data.idColaborador);
-        } else {
-            console.warn("El campo oculto 'idColaborador' no se encontró en el DOM.");
+            idColaboradorField.value = idColaborador;
         }
-    } else {
-        console.error("Error al obtener idColaborador:", response.statusText);
-    }
-} catch (error) {
-    console.error("Error al obtener idColaborador:", error);
-}
- 
-// Llamada al endpoint para obtener el último idEmprendedor desde la tabla emprendedor
-try {
-    const response = await fetch("http://localhost:3000/fichaDiagnostico/ultimo-emprendedor");
-    if (response.ok) {
-        const data = await response.json();
-        const idEmprendedorField = document.getElementById("idEmprendedor");
-        if (idEmprendedorField) {
-            idEmprendedorField.value = data.idEmprendedor;
-            console.log("Campo oculto idEmprendedor actualizado:", data.idEmprendedor);
+    });
+
+    // Llamada al endpoint para obtener el último idEmprendedor desde la tabla emprendedor
+    try {
+        const response = await fetch("http://localhost:3000/fichaDiagnostico/ultimo-emprendedor");
+        if (response.ok) {
+            const data = await response.json();
+            const idEmprendedorField = document.getElementById("idEmprendedor");
+            if (idEmprendedorField) {
+                idEmprendedorField.value = data.idEmprendedor;
+                console.log("Campo oculto idEmprendedor actualizado:", data.idEmprendedor);
+            } else {
+                console.warn("El campo oculto 'idEmprendedor' no se encontró en el DOM.");
+            }
         } else {
-            console.warn("El campo oculto 'idEmprendedor' no se encontró en el DOM.");
+            console.error("Error al obtener idEmprendedor:", response.statusText);
         }
-    } else {
-        console.error("Error al obtener idEmprendedor:", response.statusText);
+    } catch (error) {
+        console.error("Error al obtener idEmprendedor:", error);
     }
-} catch (error) {
-    console.error("Error al obtener idEmprendedor:", error);
-}
- 
- 
- 
-      // Configurar el botón de descarga
-      if (downloadBtn) {
+
+
+
+    // Configurar el botón de descarga
+    if (downloadBtn) {
         downloadBtn.addEventListener("click", function () {
-          window.location.href = "http://localhost:3000/fichaDiagnostico/download-csv";
+            window.location.href = "http://localhost:3000/fichaDiagnostico/download-csv";
         });
-      }
- 
+    }
+
     // Función para actualizar la barra de progreso
     function updateProgress(currentStep) {
         steps.forEach((step, index) => {
@@ -73,10 +72,10 @@ try {
         const progressWidth = (currentStep / (steps.length - 1)) * 100;
         line.style.width = `${progressWidth}%`;
     }
- 
+
     // Inicializar con el primer paso activo
     updateProgress(1);
- 
+
     // Actualizar el label del paso dinámico según el select "gestion"
     function updateGestionStepLabel() {
         if (gestionSelect) {
@@ -87,13 +86,13 @@ try {
             }
         }
     }
- 
+
     // Actualizar el label al cargar y cada vez que se cambie el select
     updateGestionStepLabel();
     if (gestionSelect) {
         gestionSelect.addEventListener("change", updateGestionStepLabel);
     }
- 
+
     // Redirección entre pasos
     steps.forEach((step, index) => {
         step.addEventListener('click', () => {
@@ -109,22 +108,22 @@ try {
             if (pages[index]) window.location.href = pages[index];
         });
     });
- 
+
     // Event listener para el envío del formulario
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
- 
+
         // Validar campos del formulario
         const { valid, mensajesErrores } = validarFormulario();
- 
+
         if (!valid) {
             alert(`Errores encontrados:\n\n${mensajesErrores.join("\n")}`);
             return;
         }
- 
+
         // Construir los datos del formulario
         const data = construirDatosFormulario();
- 
+
         // Enviar los datos al backend
         try {
             const response = await fetch(API_FICHA_DIAGNOSTICO, {
@@ -132,12 +131,12 @@ try {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
- 
+
             if (!response.ok) {
                 const errorMessage = await response.text();
                 throw new Error(`Error: ${errorMessage}`);
             }
- 
+
             alert("✅ Ficha de diagnóstico guardada correctamente");
             window.location.href = "/public/screens/gestionOrganizacional.html";
         } catch (error) {
@@ -146,12 +145,12 @@ try {
         }
     });
 });
- 
+
 // Función para validar el formulario
 function validarFormulario() {
     let valid = true;
     const mensajesErrores = [];
- 
+
     // Validar campos de texto requeridos
     const requiredTextFields = [
         "nombre_comercial",
@@ -172,7 +171,7 @@ function validarFormulario() {
             valid = false;
         }
     });
- 
+
     // Validar números de teléfono (10 dígitos)
     const telefono1 = document.getElementById("telefono1").value.trim();
     const telefono2 = document.getElementById("telefono2").value.trim();
@@ -184,14 +183,14 @@ function validarFormulario() {
         mensajesErrores.push("El 'Teléfono 2' debe contener exactamente 10 dígitos.");
         valid = false;
     }
- 
+
     // Validar correo electrónico
     const email = document.getElementById("email").value.trim();
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
         mensajesErrores.push("El campo 'Email' debe contener una dirección de correo válida.");
         valid = false;
     }
- 
+
     // Validar números requeridos (socios, empleados, antigüedad)
     const requiredNumberFields = [
         { id: "num_socios", label: "Número de socios" },
@@ -205,19 +204,19 @@ function validarFormulario() {
             valid = false;
         }
     });
- 
+
     // Validar fecha de evaluación
     const fechaEvaluacion = document.getElementById("fecha_evaluacion").value.trim();
     if (fechaEvaluacion === "") {
         mensajesErrores.push("El campo 'Fecha de la evaluación' es obligatorio.");
         valid = false;
     }
- 
+
     return { valid, mensajesErrores };
 }
- 
+
 // Función para construir los datos del formulario
- 
+
 function construirDatosFormulario() {
     return {
         nombreComercial: document.getElementById("nombre_comercial").value.trim(),
@@ -243,9 +242,9 @@ function construirDatosFormulario() {
         idColaborador: document.getElementById("idColaborador").value,
     };
 }
- 
 
-document.addEventListener("DOMContentLoaded", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
     const downloadBtn = document.getElementById("downloadBtn");
     if (downloadBtn) {
         downloadBtn.style.display = "none"; // Oculta el botón
