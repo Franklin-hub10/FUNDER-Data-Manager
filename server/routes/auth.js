@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const db = require("../config/database");
 require("dotenv").config();
-const jwtMiddleware = require("../middleware/authMiddleware"); // Importa el middleware
+const jwtMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 const SECRET_KEY = process.env.SECRET_KEY || "secreto_super_seguro";
@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
   try {
     console.log(`🔍 Buscando usuario en la BD: "${usuario}"`);
 
-    // 1. Buscar al usuario por 'usuario' o 'email'
+    // Buscar al usuario por 'usuario' o 'email'
     const [users] = await db.query(`
       SELECT c.idColaborador, c.usuario, c.email, c.password, c.idRol, c.nombres, c.apellidos,
              c.idSede, s.nombre AS sede, c.estado
@@ -36,13 +36,13 @@ router.post("/login", async (req, res) => {
 
     const user = users[0];
 
-    // 2. Verificar si el usuario está activo
+    // Verificar si el usuario está activo
     if (user.estado !== "activo") {
       console.warn(`⚠️ Usuario "${usuario}" está inactivo.`);
       return res.status(403).json({ message: "⚠️ Cuenta inactiva. Contacte al administrador." });
     }
 
-    // 3. Verificar la contraseña
+    // Verificar la contraseña
     const passwordMatch = await bcrypt.compare(password, user.password);
     console.log(`🔑 Comparación de contraseña: ${passwordMatch}`);
 
@@ -51,7 +51,15 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "⚠️ Usuario o contraseña incorrectos." });
     }
 
-    // 4. Generar el token JWT
+    // Obtener las vistas permitidas para el rol del usuario
+    const [vistasRows] = await db.query(`
+      SELECT v.nombre, v.url, v.categoria
+      FROM rol_vista rv
+      JOIN vista v ON rv.idVista = v.idVista
+      WHERE rv.idRol = ?
+    `, [user.idRol]);
+
+    // Generar el token JWT
     const token = jwt.sign(
       { id: user.idColaborador, usuario: user.usuario, rol: user.idRol },
       SECRET_KEY,
@@ -60,13 +68,13 @@ router.post("/login", async (req, res) => {
 
     console.log(`✅ Usuario "${user.usuario}" inició sesión correctamente.`);
 
-    // 5. Devolver info al frontend
+    // Devolver la respuesta con la información necesaria
     res.json({
       token,
-      vistas: [],  // Aquí puedes devolver las vistas si las necesitas
+      vistas: vistasRows,  // vistas permitidas para el rol del usuario
       nombre: `${user.nombres} ${user.apellidos}`,
       id: user.idColaborador,
-      sede: user.sede  // Aquí añadimos la sede al JSON de respuesta
+      sede: user.sede
     });
 
   } catch (error) {
@@ -77,14 +85,13 @@ router.post("/login", async (req, res) => {
 
 // Endpoint para obtener la sede del colaborador
 router.get("/sede", jwtMiddleware.verifyToken, async (req, res) => {
-  const { id } = req.user;  // Obtener el id desde el token JWT (decodificado)
+  const { id } = req.user;
 
   if (!id) {
     return res.status(400).json({ message: "⚠️ No se ha proporcionado el id del usuario." });
   }
 
   try {
-    // Buscar la sede asociada al colaborador logueado
     const [result] = await db.query(`
       SELECT s.nombre AS sede
         FROM colaborador c
