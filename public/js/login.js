@@ -1,4 +1,3 @@
-// Después de un login exitoso, guarda la sede en localStorage
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
   const forgotPasswordBtn = document.getElementById("forgotPassword");
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Redirigir a la página de inicio (ajusta la ruta según tu proyecto)
+      // Redirigir a la página de inicio
       window.location.href = "/public/screens/home.html";
 
     } catch (error) {
@@ -85,14 +84,19 @@ function saveUserSession(data) {
   localStorage.setItem("idColaborador", data.id);
   localStorage.setItem("loginTime", Date.now());
 
-  // Guardar las vistas en localStorage
-  localStorage.setItem("vistas", JSON.stringify(data.vistas));
+  // Guardar las vistas permitidas en localStorage
+  if (data.vistas && Array.isArray(data.vistas)) {
+    localStorage.setItem("vistas", JSON.stringify(data.vistas));
+  } else {
+    console.error("❌ Error: No se encontraron vistas en la respuesta del servidor.");
+  }
 
-  // Guardar la sedeFunder en localStorage
+  // Guardar la sede en localStorage
   if (data.sede) {
     localStorage.setItem("sedeFunder", data.sede);  // Guardar la sede
   }
 
   console.log("✅ Token almacenado correctamente:", localStorage.getItem("token"));
+  console.log("✅ Vistas almacenadas correctamente:", localStorage.getItem("vistas"));
   console.log("✅ Sede almacenada correctamente:", localStorage.getItem("sedeFunder"));
 }

@@ -24,9 +24,9 @@ router.post("/login", async (req, res) => {
     const [users] = await db.query(`
       SELECT c.idColaborador, c.usuario, c.email, c.password, c.idRol, c.nombres, c.apellidos,
              c.idSede, s.nombre AS sede, c.estado
-        FROM colaborador c
-        JOIN sede s ON c.idSede = s.idSede
-       WHERE c.usuario = ? OR c.email = ?
+      FROM colaborador c
+      JOIN sede s ON c.idSede = s.idSede
+      WHERE c.usuario = ? OR c.email = ?
     `, [usuario, usuario]);
 
     if (users.length === 0) {
@@ -94,9 +94,9 @@ router.get("/sede", jwtMiddleware.verifyToken, async (req, res) => {
   try {
     const [result] = await db.query(`
       SELECT s.nombre AS sede
-        FROM colaborador c
-        JOIN sede s ON c.idSede = s.idSede
-       WHERE c.idColaborador = ?
+      FROM colaborador c
+      JOIN sede s ON c.idSede = s.idSede
+      WHERE c.idColaborador = ?
     `, [id]);
 
     if (result.length === 0) {
